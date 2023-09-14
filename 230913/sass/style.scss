@@ -1,0 +1,12 @@
+$bg:blue;
+
+// 별개로 분리한 카드 삽입
+@import "_card.scss";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+

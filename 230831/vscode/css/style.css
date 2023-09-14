@@ -1,0 +1,50 @@
+/* *는 모든 속성에 적용하겠다는 의미  */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* font-size: 16px;
+    font-size: 1em;
+    font-size: 1rem; 드레그 상태에서 shift+/ = 주석처리 */
+
+
+
+
+h1{
+    color: rgba(5, 251, 251, 0.866);
+    background-color: #dc5f5f;
+    border: 2px dotted rgb(93, 58, 234);
+    padding: 20px;
+    /* margin: 20px; */
+    width: 500px;
+    border-radius: 20px;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(64, 228, 173);
+    border: 1px solid black;
+    padding: 10px;
+    /* box-sizing: border-box; */
+    /* 전체 사이즈 안에 마진 패딩 볼드를 포함시킨다 */
+}
+
+.box2{
+    width: 200px;
+    height: 200px;
+    background-color: blueviolet;
+    border-radius: 10px;
+}
+
+.box3{
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+    border: 10px dashed black;
+    border-radius: 50%;
+
+}

@@ -1,0 +1,158 @@
+
+html의 시작은 '논문'을 좀 더 편하게 보기 위해 만들어 졌다.
+
+팁.1
+<html>
+</html>
+후에
+<html>
+    <head>    ... 보통 해드에 아이콘을 넣기도 한다.(팝이콘)
+    </head>
+    <body>
+    </body>
+</html>
+그래야 열고 닫기가 확실하다.
+
+<em></em> : 글 기우림. 인라인속성
+
+태그 안에 인라인 태그 중첩 사용 가능하다!
+예시) 
+<p><strng><em></em></strng><em></em></p>
+
+<hr/> : 혼자닫는태그(셀프클로징) 뒤에 '/' 붙고 단독사용 , <hr></hr>도 작동은 되는데 굳이...
+
+
+이미지 넣기 시 파일의 이름 변경 시 뒤에 확장자는 함부로 변경x
+
+<img src="(파일경로)/(이미지 이름 및 확장자)" alt="(이미지파손 시 '대체' 텍스트)"/>
+	""안에 내용이 들어간다.  :  인라인 속성이다.
+
+*인라인 속성은 연속적으로 출력된다. 그렇다고 인라인 속성의 것을 <P>태그 안에서도 밖에서도 단독으로도 가능.
+
+
+mtnl 간 이동
+
+<a></a> : 앵커(닻)태그   :  인라인속성이다. 그래서 이미지 옆에 링크가 붙음
+<a href="(문서이름)">(이동용 출력 텍스트)</a>
+
+인터넷 이동 링크시 예시
+<a href="https://naver.com">네이버</a>
+<a href="https://google.com">구글</a>
+여기서 창에서 이동이 아닌 새 창에서 띄우고 싶다면
+
+target="_black"을 추가하여
+
+<a href="https://google.com" target="_black" >구글</a>
+
+형태로 한다.
+
+
+https?
+하이퍼텍스트 전송 프로토콜 보안(HTTPS)은 웹 브라우저와 웹 사이트 간에 데이터를 전송하는 데 사용되는 기본 프로토콜인 HTTP의 보안 버전입니다.
+HTTPS(HyperText Transfer Protocol over Secure Socket Layer, HTTP over TLS, HTTP over SSL, HTTP Secure)
+
+
+<리스트 태그>
+<ul></ul> 뜻 <!-- unordered list -->
+의 안에 <li></li>가 들어가며 "●~" 같이 앞에 문자표(불릿)가 붙는다.
+<ul></ul> 뜻 <!-- ordered list -->
+의 안에 <li></li>가 들어가며 "숫자.~" 같이 앞에 숫자가 붙는다.
+
+
+<h2 id="first">에서 <>안에 [id=""]은 문서에 고유 이름을 부여한다.
+그리고
+<li><a href="#first">첫번째 문단<a></li>처럼 앞에 "#"을 붙여서 사용한다.
+당연하지만 id는 고유이름인 만큼 중복되는 안된다. 독립성필요 / 하나에 하나.
+
+이미지에 링크 걸기
+<a href="사이트주소 또는 파일 주소"> <img src="이미지 파일"> </a>
+
+
+
+CSS맛보기
+<!-- CSS - cascading style sheete -->
+
+<h1 style="color:red;">이곳은 문서의 제목입니다. </h1> 에서 <> 안에 style="color:red;"의 형식으로 글자 색을 변경하는 경우를 '인라인 형식으로 스타일을 변환"했다고 한다.
+
+
+ <body>
+    <style>
+        .text-color{
+           color: blue;
+        } 
+    </style>
+..
+
+으로 색을 지정하고
+
+<p class="text-color"
+
+처럼 class로 바꾼다.  	css에선 :(클론)과 ;(세미클론)을 사용한다.
+
+<style>
+        .text-color{
+           color: red !important;
+        } 
+        .blue {
+           color: blue;
+        }
+        .green {
+           color: green;
+        }
+    </style>
+
+같이 동일 속성에서는 가장 밑이 우선순위를 갖는다.
+
+여기서 우순순위는 직접적인 <h1 style="color:yellow;"> 형식  >  !important   > <style> 순이다.  
+
+!important은 동일한 <style> 안에서 "중복"이 되었을 경우 우선순위를 말한다.
+
+css에서는 주석을 /* */ 로 사용한다.
+(html에선 <!-- --> 로 사용한다.)
+
+
+     <style>
+        .text-color{
+           color: red ;
+        } 
+        .green {
+           color: green;
+        }
+        .blue {
+            /*주석을 작성할 수 있습니다. */
+            /*특히나 마지막 ;은 중요함니다. */
+            /*color: #ed09e2;*/
+            /* red , green , blue */
+            /* color: rgb(0, 0, 255) ; */
+            /* Hus, Saturation, Lightness */
+            /* 색상값, 채도, 명도 */
+            color : hsl(180, 50%, 50%);
+            background-color: red;
+        }
+        .puple{
+            color: #d01ee8;
+            background-color: #46e81e;
+       }
+        strong{
+           /*color: white ; */
+           color: #ffffff;
+          /* #ffffff=#fff=하얗   #000000=#000=검정  즉, 축약 가능 존재*/
+           background-color: blue ;
+       }
+        span{
+            background-color: pink;
+        }
+        /* span태그는 약간 효과없이 범용 사용 시 좋음 */
+
+
+*<style> 안에서 strong태그를 바꿀 수 있다.
+
+
+
+
+href(hypertext reference(참조))
+
+
+
+
+

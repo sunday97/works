@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <form autocomplete="off">
+        <div>
+            <label for="username">사용자이름</label>
+            <!-- self clossing tag,혼자 닫는 태그 -->
+            <input id="username" type="text" name="sendusername" placeholder="사용자 이름을 작성해주세요">
+        </div>
+        <div>
+            <label for="password">패스워드</label>
+            <input id="password" type="password" placeholder="비밀번호를 입력하세요" name="sendpassword">
+        </div>
+        <div>
+            <label for="check">개인정보 사용에 동의 하시겠습니까?</label>
+            <input type="checkbox" id="check" checked>
+        </div>
+        <!-- 레이블 안에 input을 넣은 경우 -->
+        <label>
+            새로운 입력
+            <input type="text">
+        </label>
+
+        <select name="" id="">
+            <option value="">사과</option>
+            <option value="">오렌지</option>
+            <option value="">수박</option>
+            <option value="">딸기</option>
+        </select>
+
+        <!-- alt+shif+f 줄정렬 -->
+        <button type="submit">제출</button>
+    </form>
+    <!-- id가 password인 인풋 만들고, label태그도 만들어서 둘을 연결해주세요 -->
+    <!-- <form>
+        <label for="password">패스워드</label>
+        <input id="password" type="password" placeholder="비밀번호를 입력하세요">
+    </form> -->
+</body>
+
+</html>

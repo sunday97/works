@@ -1,0 +1,61 @@
+#header{
+    font-size: 32px;
+
+}
+
+#header > h2{
+    /* 20px * 2em = 40px */
+    /* em은 부모를 기준으로 배수. */
+    font-size: 1rem;
+    /* rem = 최상위 요소(html)을 기준으로 삼음. 유지보수에 유용.*/
+    /* 크롬브라우저에선 16px가 기본. */
+}
+/* 아래를 보면 ul 안에 첫 번째 li가 두배인 20으로 그리고 그 자식ul의 자식li에 그 두배인 40px가 됨. 더블더블. 그래서 보통 안 씀 */
+/* 중첩적용의 위험 */
+.list{
+    font-size: 5px;
+}
+.list li{
+    font-size: 2em;
+}
+
+.btn{
+    /* width: 50px;   
+    height: 40px; */
+    padding: 0.5rem 1rem;
+    background-color: rgb(187, 189, 190);
+    border: 0;
+    /* 테두리 없애기 */
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 40px;
+    color: rgb(16, 91, 157);
+    cursor: pointer;
+    /* cursor:  grab;  */
+    /* ctrl = space 도구 불러오기 */
+    transition-property: all;
+    transition-duration: 200ms;
+    transition-timing-function: ease;   
+    /* 위 속석을 한번에 줄여서 쓴 transition 축약형 속성 */
+    /* 1s = 1000ms , 0.2s = 200ms */
+    transition: all 1000ms ease;
+}
+
+.btn:hover{
+    /* 하나의 명령은 하나의 단위로 즉 띄어쓰기 x 단 구분을 위해서는 중첩같은 경우는 띄어쓰기 한 칸 */
+    background-color: yellow;
+}
+
+.btn:active{
+    background-color: black;
+}
+
+
+.btn-primary{
+    background-color: rgb(76, 206, 206);
+    color: aliceblue;
+}
+
+.btn-primary:active{
+    background-color: red;
+}

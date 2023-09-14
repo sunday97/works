@@ -1,0 +1,19 @@
+ .big{
+    font-size: 32px;
+     /* 글자크기 */
+     font-weight: bold;
+     /* 글자굵기 */
+}
+ .small{
+    font-size:16px;
+    /*굵기는 백단울 100~900 값 변경 가능*/
+    font-weight: 300;
+ }
+.red{
+    color:red;
+    font-size:32px;
+    background-color:yellow;
+}
+
+
+

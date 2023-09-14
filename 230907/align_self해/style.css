@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.gallery{
+    display: flex;
+    width: 1140px;
+    height: 400px;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.gallery-item{
+    flex-basis: calc(25%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+.gallery-item:nth-child(even){
+    align-self: flex-end;
+}
+.gallery-image{
+    height: 240px;
+    aspect-ratio: 1/1;
+    /* border-radius: 50% ; */
+    /* overflow: hidden; */
+    position: relative;
+}
+
+/* 보더가 없으니 이미지가 깜빡일 때 해결방안 */
+/* .gallery-image img{
+    border: 3px solid transparent;
+}
+.gallery-image:hover img{
+    border: 3px solid pink;
+} */
+
+/* '그림자'기 때문에 다른 요소에 영향을 주기 않기에 스프레드를 사용해서 사용한다. */
+.gallery-image img{
+    transition: all 200ms ease;
+}
+
+.gallery-image:hover img{
+    box-shadow: 0 0 3px 6px pink, 0 0 0 12px red, 0 0 0 18px orange, 0 0 0 24px green, 0 0 3px 28px blue;
+}
+
+
+.badge{
+    padding: 1rem;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

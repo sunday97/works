@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.container{
+    width: 390px;
+    height: 690px;
+    background-image: url(https://images.pexels.com/photos/2147311/pexels-photo-2147311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 1rem auto;
+
+    background-color: bisque;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    color: white;
+    border-radius: 1rem;
+}
+
+.container .frofile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+.container .frofile figure{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+
+.container .contacts{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 75%;
+
+}
+.container .contacts .contact{
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 0.5rem 0;
+    text-align: center;
+    backdrop-filter: blur(10px);
+
+
+}
+.container .contacts a{
+    /* 선택커서를 꽉 채우기 위해 전체를 늘렸다. */
+    display: block;
+    /* 블록속성을 해야 늘어난다. */
+    text-decoration: none;
+    color: white;
+    width: 100%;
+
+}
+
+
+.container .socials{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container .socials .badge{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.container .socials .badge a{
+    font-size: 1.5rem;
+}

@@ -1,0 +1,95 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+    max-width: 100%;
+    /* 사진이 직사각형이면 넣어준다. */
+    height: 100%;
+    object-fit: cover;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Black+Han+Sans&family=Nanum+Brush+Script&display=swap');
+
+
+html,body{
+    font-family: 'Nanum Brush Script', cursive;}
+
+body{
+    background-color: rgb(198, 216, 232);
+}
+
+.card{
+    width: 100%;
+    background-color: white;
+    max-width: 400px;
+    padding: 1rem;
+    margin: 1rem auto 0;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    /* box-shadow: x y blur spread color; */
+    /* rgba = red, green, blue, alpha(투명도) */
+    /* 투명도:1=100%, 0=0%, 0.5=50% */
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    transform: translateY(0);
+    
+}
+
+.card:hover{
+    /* margin: 0.5rem auto 0; */
+    transform: translateY(-5px);
+}
+
+.card .button{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(180, 100%, 50%);
+    border: 2px solid lightgrey;
+    border-radius: 2em;
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    transition: all 0.5s ease;
+}
+
+.card .button:hover{
+    background-color: black;
+    border: 2px solid aqua;
+    transform: scale(1.1);
+}
+
+.card .button .icon:hover{
+    color: hsl(0, 100%, 60%);
+}
+
+
+
+.avatar{
+    width: 128px;
+    height: 128px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid hsl(308, 86%, 56%);
+    margin-bottom: 1rem;
+}
+
+.card h2{
+    font-size: 20px;
+}
+
+.card p{
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.icon{
+    font-size: 40px;
+    color: aqua;
+}

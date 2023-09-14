@@ -1,0 +1,109 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.flex{
+    background-color: hsl(48, 98%, 90%);
+    display: flex; 
+    /* flex는 '1차' 자식에게만 영향을 준다. */
+    /* 명시적 사용임. 기본값이 100% */
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    /* 양쪽으로 균등하게 여백을 만들어 중앙으로 정렬 */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* 중앙정렬 축약형 */
+    margin: 10px auto;
+    /* 자식 요소들을 중앙으로 정렬 */
+    /* 자식 요소들을 균등 배치 할 때 자주 쓰이는 속성 */
+    /* justify-content: space-between; */
+    /* 어디까지나 '축' 정렬이기 떄문에 축의 방향에 따라 값이 변함 */
+    /* flex-direction: row-reverse; */
+    /* align-items: flex-end */
+    justify-content: center;
+    align-items: center;
+}
+
+.flex > div{
+    flex-basis: calc(100% / 5);
+    
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    background-color: hsl(64, 93%, 73%);
+    margin: 0 auto 0 auto;
+    /* 줄바꿈 허용 */
+    flex-wrap: wrap;
+    /* align-item은 1줄 일 때 즉 nowrap일 때 사용한다. */
+    /* align-content는 여러줄일 때만 작동한다. */
+
+    /* align-content:space-between; */
+}
+
+.container > div{
+    /* 두 둘로 배치. 한 줄에 5개씩 배치 */
+    flex-basis: calc(100% / 5);
+    /* flex-grow: 1; */
+    /* grow는 basis를 제외한 여백부분을 지정된 숫자 비율로 나눠가진다는 의미. */
+    /* 하지만 여기선 basis가 전체를 가져갔기 때문에 필요x */
+}
+
+.container > div:first-child{
+    /* flex-grow: 2; */
+    /* 위와 마찬가지... */
+    flex-basis: calc(40%);
+
+}
+
+.container > div:nth-child(7){
+    flex-basis: calc(60%);
+}
+
+
+/* 4번째부터 글자 색을 하얀색으로 만들기 */
+.container > div:nth-child(n+4){
+    color: white;
+}
+.container > div:nth-child(1),
+.flex > div:nth-child(1){
+    background-color: hsl(180, 100%, 90%);
+}
+.container > div:nth-child(2),
+.flex > div:nth-child(2){
+    background-color: hsl(180, 100%, 80%);
+}
+.container > div:nth-child(3),
+.flex > div:nth-child(3){
+    background-color: hsl(180, 100%, 70%);
+}
+.container > div:nth-child(4),
+.flex > div:nth-child(4){
+    background-color: hsl(180, 100%, 60%);
+}
+.container > div:nth-child(5),
+.flex > div:nth-child(5){
+    background-color: hsl(180, 100%, 50%);
+}
+.container > div:nth-child(6),
+.flex > div:nth-child(6){
+    background-color: hsl(180, 100%, 40%);
+}
+.container > div:nth-child(7),
+.flex > div:nth-child(7){
+    background-color: hsl(180, 100%, 30%);
+}
+.container > div:nth-child(8),
+.flex > div:nth-child(8){
+    background-color: hsl(180, 100%, 20%);
+}
+.container > div:nth-child(9),
+.flex > div:nth-child(9){
+    background-color: hsl(180, 100%, 10%);
+}

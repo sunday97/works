@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 50px 50px 1fr 50px 50px;
+    height: 100vh;
+    gap: 1rem;
+    padding: 1rem;
+
+}
+
+.logo,
+.menu,
+.content,
+.sidebar,
+.footer {
+    background-color: dodgerblue;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@media(min-width:1024px) {
+    .main{
+        grid-template-areas: 
+        "logo menu menu"
+        "content content content"
+        /* .은 인접과 동일한 사이즈 공백 */
+        ". sidebar ."
+        "footer footer footer";
+        grid-template-columns: 100px 1fr 1fr;
+        grid-template-rows: 100px 1fr 100px 100px;
+    }
+
+    .logo {
+        grid-area: logo;
+        background-color: yellow;
+        border-radius: 50%;
+    }
+    .menu {
+        grid-area: menu;
+        background-color: antiquewhite;
+    }
+    .content {
+        grid-area: content;
+        border-radius: 5rem;
+    }
+    .sidebar {
+        grid-area: sidebar;
+        background-color: magenta;
+    }
+    .footer {
+        grid-area: footer;
+        background-color: cadetblue;
+    }
+}
+
+@media(min-width:1200px){
+    .main{
+        grid-template-areas: 
+        "logo menu ."
+        "content content sidebar"
+        "footer footer footer";
+        grid-template-columns: 200px 1fr 300px;
+        grid-template-rows: 100px 1fr 100px;
+    }
+    .logo{
+        border-radius: 8px;
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+    <title> table 연습 </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <table>                               <!-- border="1" css파일없이 직접적인 임시 표 (잘 안씀) -->
+            <thead>		           <!-- thead / tbody / bfoot 는 dvi같은 의미론적인 영역구분>
+                <tr>	                        <!--tr태그 = 행(row)-->
+                    <th>제목</th>          <!-- td태그 = 셀(열) -->
+                    <th>가격</th>
+                    <th>주문수량</th>     
+                    <!-- th태그는 table태그 중 제목에 오는 tr 대신 사용 해 중앙정렬 굵은글씨 줌 -->
+                </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td>카페라떼</td>
+                    <td>3000</td>
+                    <!-- rowspan="숫자" 태그 기준으로 아래 행 병합-->
+                    <td rowspan="2"> 5 </td>
+                </tr>
+                <tr>
+                    <td>에스프레소</td>
+                    <td>2500</td>
+                </tr>
+                <tr>
+                    <td>수박쥬스</td>
+                    <td>5000</td>
+                    <td rowspan="3">10</td>
+                </tr>
+                <tr>
+                    <td>미숫가루</td>
+                    <td>6000</td>
+                </tr>
+                <tr>
+                    <td>아메리카노</td>
+                    <td>2000</td>
+                 </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <!-- colspan="숫자" 태그 기준으로 열(column) 병합(오른쪽방향으로) -->
+                    <td>총가격</td>
+                    <td colspan="2">100,000원</td>
+                </tr>
+            <tfoot>
+        </table>
+    </body>
+
+</html>

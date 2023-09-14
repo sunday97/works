@@ -1,0 +1,82 @@
+/* 폰트 컬러는 불릿에도 영향을 줌 */
+/* >(꺽쇠 생략 가능?> */
+/*  :nth-child(숫자) : 몇 번째 항목에만 적용할 것이냐 */
+/*  :nth-child(1), ul li:nth-child(3) ","로 동시 적용 가능 */
+/* ul li:nth-child(1) 가능 ul li: nth-child(1) 불가능 / 띄어쓰기 조심*/
+/* --------------------
+ul li:nth-child(1), ul li:nth-child(3) {
+    background:blue;
+    color:yellow; 
+}
+--------------------*/
+
+/*----li:nth-child(2n) {
+    background:red;
+}
+----*/
+
+/* 홀수번째 쓸때는 odd*/
+/* 짝수번째 쓸때는 enen*/
+/* 2n-1 같이 수식도 가능*/
+ul li:nth-child(odd) {
+    background:red;
+}
+
+ul li{
+    color:yellow;
+   }
+
+/*짝수번째 background-color를 blue 변경해주시오*/
+ul li:nth-child(even) {
+    background:blue;
+}
+
+ol > li {
+    background:yellow;
+    color:red;
+}
+
+ol li:nth-child(1){
+    background-color:black;
+}
+
+/* nth 몇 번째냐 / last 마지막 / first 처음 */
+ol li:last-child{
+    background-color:green;
+}
+
+/* border = 테두리 */
+/* solid-직선 dashed-점선 dotted-점점 */
+/* 축약 가능 border : ()px (형태) (color)  */
+/* border-radius: ()px = 둥글게 마감.  */
+ul {
+    /*border-width: 3px;*/
+    /*border-style: solid;*/ 
+    /*border-style: dashed;*/
+    /*border-style: dotted;*/
+    /*border-color: black;*/
+    /*속성&명령엔 '띄어쓰기'가 존재x*/
+    border: 3px solid black;
+    border-radius: 20px;
+    
+    border-top-left-radius:40px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius:40px;
+    border-bottom-right-radius:20px;
+    
+    overflow:hidden;
+    /* overflow : 넘치는 것에 대한 영향. 이때 명령대상은 부모다.  */
+}
+
+ol{
+    /*border: 10px dashed pink;*/
+    /*border-radius:30px;*/
+    overflow:hidden;
+    border-top:3px solid red;
+    border-bottom:3px solid red;
+    border-left:10px solid blue;
+    border-right:20px dashed blue;
+}
+   
+
+

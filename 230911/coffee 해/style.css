@@ -1,0 +1,62 @@
+/* 전역(전체영역) 변수 지정 */
+:root{
+    --size: 50px;
+    --pos : 200px
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.gallery{
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+.gallery-items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: calc(100% / 4);
+    gap: 1rem;
+}
+.image{
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    /* var(--변수명) var = variable */
+    border-radius: var(--size);
+}.image .badge{
+    /* 아래와 같이 사용하면 '지역({} 안에서만) 변수'로서 기능함. */
+    --size : 40px;
+    position: absolute;
+    background-color: blue;
+    color: white;
+    bottom: var(--pos);
+    left: var(--pos);
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gallery-items h2{
+    font-size: 18px;
+    /* text 가 너무 길 때 ...으로 줄여 줌 */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 150px;
+    text-align: center;
+}

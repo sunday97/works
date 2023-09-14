@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* 전체영역을 사용하기 위함 */
+/* 부모높이 상속 목적 즉 부모임. */
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.box{
+    background-color: hsl(220, 50%, 80%);
+    color: white;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box:nth-child(2){
+    background-color: hsl(220, 50%, 70%);
+}
+.box:nth-child(3){
+    background-color: hsl(220, 50%, 60%);
+}
+.box:nth-child(4){
+    background-color: hsl(220, 50%, 50%);
+}
+.box:nth-child(5){
+    background-color: hsl(220, 50%, 40%);
+}
+.box:nth-child(6){
+    background-color: hsl(0, 50%, 50%);
+}
+
+/* 0~640px까지 역순 수직정력*/
+/* 0이 기본값. */
+/* @media(min-width:0px) and (max-width:640px)와 같은 의미다 */
+/* screen and = screen 장비에서 보여질 상황이라는 것을 명시한 것. */
+@media screen and (max-width:640px){
+    .container{
+        flex-direction: column-reverse;
+    }
+}
+/* 1024px 부터 2등분 */
+@media(min-width:1024px){
+    .container{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .box{
+        flex-basis: 50%;
+    }
+}
+/* 1200px부터는 3단 그리드 */
+/* 상속이기 때문에 위에 값에서 변한 값만 적는다. */
+@media(min-width:1200px){
+    .box{
+        flex-basis: calc(100% / 3);
+    }
+}
+/* 1400px부터는 5단 그리드 */
+@media(min-width:1400px){
+    .box{
+        flex-basis: 20%;
+    }
+}

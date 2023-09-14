@@ -1,0 +1,49 @@
+.btn{
+    /* block속성을 inline 속성으로 변화, 반대도 가능 */
+    /* display: block; */
+    display: inline;
+    /* 1rem = 16px */
+    font-size: 1rem;
+    padding: 10px 20px;
+    /* 배경색을 blue 만들어 주세여 */
+    /* 글자색은 흰색 */
+    /* 테두리는 짙은 blue 만들어주세요 */
+    background-color: blue;
+    color: aqua;
+    border: 4px solid rgb(27, 27, 112);
+    /* 사용자에게 커서 모양을 바꿔서 보여준다. */
+    cursor: pointer;
+    /* 1000ms = 1s */
+    transition: all 0.3s ease;
+    /* trasition은 before 상태에 배치하는 게 좋다. */
+}
+
+.btn:hover{
+    /* 커서를 올려놓았을 때 */
+    background-color: red;
+    /* 모서리 둥글게 처리하세요 */
+    border-radius: 20px;
+}
+
+.btn:active{
+    /* 눌렀을 때 */
+    /* css에선 :에 띄어쓰지 xxx */
+    /* :active 같은 걸 '의사클래스'라고 한다. */
+    background-color: yellow;
+    color: black;
+}
+
+/* btn -> hover -> active 우선 순위 중요. 따라서 작동 안 할 수도 있다. */
+
+/* .small{
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+} */
+
+/* img{  
+    height: 30px;
+    width: 30px;
+    box-sizing: content-box;
+} */
+    

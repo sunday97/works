@@ -1,0 +1,29 @@
+.container{
+    border: 4px solid lightgrey;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+table{
+    border-collapse: collapse; 
+    border-radius: 10px;
+    overflow;
+}
+
+table td{
+    border:2px solid lightgrey;
+}
+
+table tr:nth-child(2){
+    background-color:lightblue;
+}
+
+table tbody tr td:first-child{
+    border-right:3px double black;
+    text-align: center;
+}
+
+table tbody tr:first-child td:first-child{
+    background-color:yellow;
+}
+

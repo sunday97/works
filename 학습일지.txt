@@ -1,0 +1,126 @@
+◎230828
+    HTML(Hypertext Markup Language,하이퍼텍스트 마크업 언어)
+    block element
+<html>
+    <head>  
+        <title></title>  
+    </head>
+    <body>
+        <h1~6> 제목 </h1~6>
+        <p> 본문 </p>
+        <!-- 주석 : 숨겨진 텍스트 -->
+    </bady>
+◎230829
+<html>
+    <head>  
+        <title></title>  
+    </head>
+    <body>
+        <img src="이미지주소" alt="파일 손상 시 대체 텍스트"/>
+            이때 이미지주소는 인터넷에서 이미지주소 복사로도 가능하다.
+        <strong> 텍스트 </strong> : 글자bord효과
+        <em> 텍스트 </em> : 텍스트 기우리기
+        <a herf=|
+    </bady>
+
+
+◎230830
+    F12 크롬 개발자 도구
+    <table> <>
+
+
+◎230831
+    div : division : 영역 구분.
+    선생님 백업파일 https://github.com/baehyunki/dw_data2/tree/master
+    vscode 다운로드 https://code.visualstudio.com/download
+    무료이미지 소스 https://www.pexels.com/ko-kr/
+
+
+◎230901
+    혼자 배울 수 있는 사이트 https://www.w3schools.com/
+    정보 사이트 https://developer.mozilla.org/ko/docs/Web/CSS/cursor
+    구글 폰트 https://fonts.google.com/
+    눈누 폰트    https://noonnu.cc/
+
+◎230904
+    나쁘지 않은 듯? https://dinfree.com/lecture/frontend/121_html_1.html
+    참고 학습 https://studiomeal.com/archives/197
+
+◎230905
+커스텀 아이콘 사이트 = https://iconify.design/
+
+◎230906
+atomic design
+atlassian design system
+
+
+◎230907
+[CSS 방법론] BEM 방식
+sass
+HTML entity code
+flexbox froggy
+
+◎2309011
+https://yeun.github.io/open-color/
+타이핑 연습하기
+https://caniuse.com/
+
+◎2309012
+https://developer.mozilla.org/ko/docs/Web/CSS/CSS_media_queries/Using_media_queries
+https://developer.mozilla.org/ko/docs/Learn/Getting_started_with_the_web/HTML_basics
+
+DRY 원칙“반복하지 마라(Don't Repeat Yourself)”
+
+https://userinyerface.com/
+
+◎2309013
+css gradient generator
+css gradient stripes generator
+sass 찍먹한 날    Live Sass Compiler
+다른 사람들이 작성에 놓은 소스들 모음 https://codepen.io/
+참고) 구조화 개념 사이트 BEM방법론 https://bem-cheat-sheet.9elements.com/
+
+◎2309014
+[git] 설치 -> microsoft store 에서 windows terminal 설치 후 열기 -> 설정에서 기본 프로필을 깃 배쉬로 변환
+CLI(Command-Line Interface, 명령줄 인터페이스)
+pwb = 위치확인 / ls =현 위치 있는 것들 보기 / cd (파일명) 안으로 이동 / cd .. 밖으로 이동 / mkdir (생성폴더명) /
+explorer . = 현 위치 탐색기(화면)으로 열기 / touch (파일명).(확장자) = 파일생성 / . 하나는 현재 폴더 .. 두개는 상위폴더
+/ code . 현 위치에서 프로젝트 열기
+
+cd ..	상위 폴더 이동
+mkdir grid	grid 폴더 생성
+cd grid		grid 폴더 이동
+touch index.html style.css	인덱스 와 스타일 생성
+code . 열기
+
+(띄어쓰기 조심)
+git config --global user.name "sunday97"	깃 아이디 연결
+git config --global user.email "a01029243700@gmail.com" 	깃 이메일 연결
+
+ctrl + c 실행취소!!
+
+    <!--관리 대상화-->
+    git init 	깃 초기화 (폴더 관리 선언)
+    git add index.html	index.html 파일을 관리(감시) 하에 놓겠다.
+    (git status 깃 상태보기)
+    git commit -m "index.html 파일 생성" index.html 파일에 대한 정보 작성(기록작성)
+    git add style.css
+    git commit -m "css 파일 추가"
+
+    git add -A 	위 두 파일(index, style) 저장을 한 번에
+    git commit -m "index, style 수정"	추가 메모 작성
+   
+    git remote add origin https://github.com/sunday97/grid_test.git
+    ( 원격에서  (처음으로) 파일을 내 저장소에 추가하겠다)
+    git push -u origin main 에서 master로 강제 변경 후 실행
+    <!-- 파일 적용 과정-->
+    git add -A
+    git commit -m "백 그라운드 핑크 적용"
+    git push	위에 보면 처음에만 git push -u origin master를 해서 축약 가능
+   <!-- README.md 문서 추가-->
+    vscode 에서 README.md 문서 추가 후
+    git add -A
+    git commit -m "readme 문서 추가"
+    git push
+    
+crtl + 백팁(1 왼쪽) = vs 코드 내에서 터미널 열기

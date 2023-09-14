@@ -1,0 +1,110 @@
+.box{
+    /* inline과 block의 성격을 모두 가진 속성 - inline요소에 width, height 값을 적용할 때 활용*/
+    /* inline 속성은 width와 height 속성이 잘 안 먹는다. */
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: rgb(169, 245, 219);
+}
+
+/* 위는 전체 속성 */
+/* 편의적 구분해주기 */
+/* 아래는 객체 속성 */
+/* 명령은 위에서 아래로 적용된다. 즉 가장 밑이 최신이며 현재 적용명령이다. 중복이면 밑이 우선이란 소리다.*/
+
+
+#first{
+    background-color: rgb(192, 48, 48);
+    /* 여러가지 속성 대해 개별적으로  transiton을 적용할 수 있다. */
+    /* transition: all 1s ease, margin-right 1s ease; */
+    transition: transform 1s ease;
+    /* deg = fegree, 각도 */
+    /* 음수, 양수 가능 */
+    /* transform: rotate(0), ; */
+    transform-origin: left bottom;
+}
+/*  #first에 마우스를 올렸을 때 45도 회전하게 만들어주세요 <hint> :hover(의사코드) */
+#first:hover{
+    transform: rotate(45deg);
+}    
+#first:active{
+    transform: rotate(360deg);
+    background-color: aqua;
+}    
+
+
+#second{
+
+    background-color: rgb(47, 0, 255);
+    transform: scale(1);
+    transition: all 0.5s ease;
+}
+/* #second에 마우스르 올렸을 떄 2배로 커지도록 만들어 주세요. transition도 사용 해주세요 */
+#second:hover{
+    transform: scale(2);
+    /* width나 height를 사용하면 블록속성을 따라 주위를 밀어내며 변함. */
+    /* transform은 다른 요소에 영향을 주지 않고, 혼자 변형된다. */
+}
+#second:active{
+    transform: rotate(-180deg) scale(2);
+    /* transform */
+    background-color: rgb(65, 243, 6);
+}
+
+#third{
+
+    background-color: rgb(51, 215, 161);
+    transition: all 500ms ease;
+    /* skew(x값, y값) */
+    /* transform: skew(30deg, 30deg); */
+    /* skewX는 x방향으로 기울일때 */
+    /* transform: skewX(45deg); */
+    /* skewX는 y방향으로 기울일때 */
+    /* transform: skewY(45deg); */
+}
+#third:hover{
+    transform: skew(30deg, 30deg);
+}
+#third:active{
+    background-color: blueviolet;
+    transform: skew(-180deg, -180deg);
+
+}
+
+/* ------------------------------ */
+
+#t1{
+    /* translateX(x축으로 이동할 값) */
+    transform: translateX(0);
+    transition: all 500ms ease;
+}
+#t1:hover{
+    transform: translateX(100%);
+}
+
+#t2{
+    /* translateY(y축으로 이동할 값) */
+    /* transform: translateY(-20px); */
+    transform: translateX(0%);
+    transition: all 500ms ease-in-out;
+}
+#t2:hover{
+    transform: translateX(100%);
+}
+#t3{
+    /* translate(x값, y값) */
+    /* transform: translate(100px, 150px); */
+    transform: translateX(0);
+    /* transform: translate3d(100px, 0, 0); */
+    /* 퍼포먼스 개선을 위해 transform3d를 활용하는 경우도 있다. */
+    /* animation/tansform을 과하게 많이 쓰면, 브라우저가 해야할 일이 많아져 화면이 버벅거리는 원인이 될 수 있다. */
+    /* 앞 초는 작동시간, 뒤 초는 지연시간 */
+    /* cubic-bezier - 크롬 사용자 모드에서 임의적 움직인 지정 가능. */
+    transition: all 1s 1s cubic-bezier(0.77, 0.02, 0.29, 0.95)
+
+}
+#t3:hover{
+    transform: translateX(100%);
+}

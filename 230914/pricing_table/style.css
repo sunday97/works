@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    font-weight: 600;
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+.card{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+    gap: 1rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+
+}
+.card-item{
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.2rem;
+    
+}
+.card-item-header{
+    display: grid;
+    gap: 0.5rem;
+}
+.card-item-header p{
+    font-size: 12px;
+}
+.card-item-body{
+    display: grid;
+    gap: 1rem;
+}
+.card-item-body .prise{
+    display: flex;
+}
+.card-item-body .prise p:nth-child(1){
+    font-size: 24px;
+    font-weight: 600;
+}
+.card-item-body .prise p:nth-child(2){
+    font-size: 14px;
+    align-self: flex-end;
+    margin-left: -3px;
+}
+.card-item-body .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid blue;
+    border-radius: 10px;
+}
+.card-item-body .btn a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+/* .card-item-body .btn:hover{
+    background-color: blue;
+    color: white;
+} */
+
+.card-item:hover {
+    border-color: blue;
+}
+
+.card-item:hover .btn{
+    background-color: blue;
+}
+.card-item:hover .btn a{
+    color: white;
+}
+
+.card-item-footer{
+    display: grid;
+    gap: 0.5rem;
+    font-size: 14px;
+}
+.card-item-footer .icon{
+    color: green;
+}
+
+@media(min-width:1024px){
+    .card{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media(min-width:1200px){
+    .card{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

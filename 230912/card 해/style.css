@@ -1,0 +1,54 @@
+/* 어디에 붙여넣든 작동할 수 있도록 (유연하게) 독립적으로 작동할 수 있도록 생각하며 만들기 */
+/* 컴포넌트 = 재활용가능 블럭 */
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+figure{
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
+}
+img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card{
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    margin: 2rem auto 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.content{
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Breakpoint : 1024px */
+@media(min-width:1024px){
+    .card{
+        max-width: 1024px;
+        flex-direction: row;
+    }
+    /* 가로 상황일 때 반반 비율 */
+    figure{
+        flex-basis: 50%;
+        height: auto;
+    }
+    /* 가로 일 때 글 중앙정렬 */
+    .content{
+        flex-basis: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

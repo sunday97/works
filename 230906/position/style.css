@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.box{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(43, 102, 231);
+}
+
+#static{
+    background-color: hsl(160, 70%, 50%);
+    position: static;
+    /* top 같은 위치 변경 수단 작동x */
+    top: 200px;
+    left: 100px;
+}
+
+#relative{
+    background-color: hsl(160, 70%, 40%);
+    position: relative;
+    top: -70px;
+    left: 50px;
+}
+#absolute{
+    /* 부모를 기준으로(없으면 body를 기준으로) 위치함 */
+    background-color: hsl(160, 70%, 30%);
+    position: absolute;
+    top: 0px;
+    left: 200px;
+}
+
+#fixed{
+    /* 자신이 어디에 있든 화면을 기준으로 고정된다. */
+    background-color: black;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}

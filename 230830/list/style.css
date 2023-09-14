@@ -1,0 +1,25 @@
+.bord {
+    font-weight:900;
+}
+
+/*.red {
+    color:red;
+} */
+
+/* 태그 자체에도 css를 줄 수 있다.*/
+ul {
+    background-color:aliceblue;
+    }
+
+/*  > 을 이용한 제한 방법*/
+/* ul과 그 안의 li에 영향을 주겠다.*/
+ul > li {
+    background-color:yellow;
+    }
+
+/* html의 인과는 부모자식 관계이고 가장 마지막 개체에 효과를 준다.*/
+ul > li > ul> li  {
+    background-color:red;
+    }
+
+

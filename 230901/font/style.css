@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
+
+@font-face {
+    font-family: 'IAMAPLAYER';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/IAMAPLAYER.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HakgyoansimGaeulsopungB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimGaeulsopungB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html,
+body {}
+
+.title {
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 2rem;
+    font-weight: 100;
+    /* text-decoration: line-through; */
+    /* 자간 조절 */
+    letter-spacing: -0.9px;
+    /* 행간 조절 */
+    /* line-height: 150%; */
+    line-height: 1.5;
+    /* 줄 바꿈 없이 나열하는 방식 */
+    white-space: nowrap;
+    
+}
+
+/* h1 {
+    font-family: 'Gasoek One', sans-serif;
+
+} */
+
+.IAMAPLAYER {
+    font-family: 'IAMAPLAYER';
+}
+
+.HakgyoansimGaeulsopungB{
+    font-family: 'HakgyoansimGaeulsopungB';
+
+}

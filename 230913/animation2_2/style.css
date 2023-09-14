@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background:linear-gradient(red, blue);
+}
+
+.chevron-item{
+    width: 32px;
+    height: 32px;
+    border-bottom: 3px solid rgb(238, 255, 1);
+    border-right: 3px solid rgb(238, 255, 1);
+    transform: rotate(45deg) translateY(10px) ;
+    border-radius: 3px;
+    margin-bottom: -10px;
+    animation: as 1s alternate infinite;
+}
+.chevron-item:nth-child(2){
+    animation: as 1s 0.33333s alternate infinite cubic-bezier(1,0,0,1);
+
+}
+.chevron-item:nth-child(3){
+    animation: as 1s 0.66666s alternate infinite;
+}
+.dot{
+    display: flex;
+    gap: 1rem;
+}
+.dot-item{
+    background: linear-gradient(red, blue);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    animation: ds 1s alternate infinite ease;
+    transform: translateY(-3px);
+}
+.dot-item:nth-child(2){
+    
+}
+.dot-item:nth-child(3){}
+
+@keyframes as{
+    0%{
+        opacity: 0.1;
+        /* translasteY와 rotate의 순서를 바꾸면 바꾼 순서로 움직임 */
+        transform: translateY(10px) rotate(45deg)  scale(0.8);
+    }
+    50%{
+        opacity: 1;
+        border-color:rgb(21, 255, 13);
+    }
+    100%{
+        transform:translateY(0) rotate(45deg) scale(1.3);
+    }
+}
+
+@keyframes ds{
+    form{
+        /* opacity: 0.3; */
+        transform:  translateY(-3px);
+    }
+    to{
+        /* opacity: 1; */
+        transform:  translateY(0px);
+    }
+}
