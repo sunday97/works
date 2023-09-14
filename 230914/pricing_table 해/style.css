@@ -23,7 +23,7 @@ ul{
 }
 .pricing-item .btn{
     /* 지역변수 */
-    --color:hsl(200, 50%, 50%);
+    --color:hsl(200, 60%, 50%);
     padding: 1rem 2rem;
     font-size: 18px;
     font-weight: bold;
@@ -43,7 +43,7 @@ ul{
 }   
 .pricing-item p{
     line-height: 1.75;
-    color: rgb(85, 85, 85);
+    color: rgb(130, 130, 130);
 }
 .pricing-item .cost{
     font-size: 48px;
