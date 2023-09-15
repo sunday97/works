@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.logo{
+    --size: 36px;
+    width: var(--size);
+    height: var(--size);
+    fill: dodgerblue;
+}
+.social-icon{
+    --size:18px;
+    width: var(--size);
+    height: var(--size);
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    /* flex는 기본적으로 왼쪽으로 붙여서 정렬한다는 속성을 기억하자. */
+    display: flex;
+    flex-direction: column-reverse;
+    /* 아래에 붙던 놈을 위로 붙인다. */
+    justify-content: flex-end;
+}
+.image{
+    max-height: 25vh;
+    overflow: hidden;
+}
+.form{
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 2rem auto;
+}
+.title{
+    margin-bottom: 2rem;
+}
