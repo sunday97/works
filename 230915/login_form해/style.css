@@ -23,6 +23,7 @@ img{
     --size:18px;
     width: var(--size);
     height: var(--size);
+    fill: white;
 }
 .container{
     width: 100vw;
@@ -49,3 +50,106 @@ img{
 .title{
     margin-bottom: 2rem;
 }
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.input-wrapper.horizontal{
+    flex-direction: row;
+    align-content: center;
+}
+input[type="email"], input[type="password"]{
+    border: 0;
+    box-shadow: 0 0 0 1px #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+input[type="email"]:focus,input[type="password"]:focus{
+    box-shadow: 0 0 0 3px dodgerblue;
+    outline: none;
+}
+label{
+ font-size: 13px;
+ color: slategray;
+}
+.btn{
+    background-color: dodgerblue;
+    border: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+.divider{
+    background-color: slategray;
+    height: 1px;
+    margin: 2rem 0;
+    position: relative;
+}
+.divider span{
+    position: absolute;
+    /* position을 이용한 트릭 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 0 1rem;
+    font-size: 13px;
+    color: slategray;
+}
+.socials{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.btn-social{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+/* :has : 부모요소가 자기 자식요소에서 ()이라는 요소를 가지고 있다면... */
+.btn-social:has(.twitter){
+    background-color: #1D9BF0;
+}
+.btn-social:has(.facebook){
+    background-color: #1877F2;
+}
+.btn-social:has(.naver){
+    background-color: #03C75A;
+}
+.btn-social:has(.kakao){
+    background-color: #FFCD00;
+}
+.btn-social:has(.github){
+    background-color: #181717;
+}
+.btn:active{
+    filter: brightness(80%);
+}
+
+@media(min-width:1024px){
+    .container{
+        flex-direction: row;
+        align-items: center;
+    }
+    form, .image{
+        flex-basis: 50%;
+    }
+    .form{
+        margin: 0 auto;
+    }
+    .image{
+        max-height: 100vh;
+        height: 100%;
+    }
+    .socials{
+        flex-direction: row;
+        justify-content: center;
+    }
+    .btn span{
+        display: none;
+    }
+}
+
+
