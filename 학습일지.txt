@@ -128,3 +128,15 @@ crtl + 백팁(1 왼쪽) = vs 코드 내에서 터미널 열기
 form 연습 선생님 예제에 필기 못 한 '트릭' 있음.
 
 마크다운 문서 작성법(사용법)을 익혀서 txt를 대신하자
+
+◎2309015
+https://simpleicons.org/
+
+md 언어 사용 법 https://inpa.tistory.com/entry/MarkDown-%F0%9F%93%9A-%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4-%EB%AC%B8%EB%B2%95-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC#%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4_markdown_%EC%9D%B4%EB%9E%80
+
+clip path generator
+ex) https://bennettfeely.com/clippy/
+https://codepen.io/tag/mega-menu
+
+ECMA Script 6 = jaba script
+
