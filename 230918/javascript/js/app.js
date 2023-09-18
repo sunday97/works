@@ -18,4 +18,24 @@ text.style.color = `red`;
 text.style.fontSize = `${size}px`; // 템플릿 방식
 text.style.fontSize = size + `px`; // 문자열 방식
 
+// 택스트 내용을 바꾸는 방법
+text.textContent = `바뀐 내용입니다`;
+text.innerText = `이렇게도 바꿀 수 있습니다`
+// HTML 요소를 추가할 수 있는 방식
+text.innerHTML = `<span>이렇게 태그를 넣어서 바꿀 수 있습니다</span>`
 
+// gragh 라는 아이디를 통해서 element 요소를 가져옴
+const barGragh = document.getElementById(`gragh`)
+// gragh 요소에서 data-value 값을 가져옴
+const graghValue = barGragh.dataset.value;
+
+// gragh 요소의 폭을 graghValue 만큼 조정
+barGragh.style.width = graghValue + `%`;
+// gragh 요소의 텍스트를 graghValue 값으로 넣음.
+// barGragh.innerHTML = `<span>${graghValue}</span>%`;
+barGragh.textContent = `${graghValue}%`
+// gragh 요소의 컬러, 폰트 사이즈 조정
+barGragh.style.fontSize = `30px`;
+barGragh.style.color = `white`;
+
+console.log(barGragh, graghValue)
