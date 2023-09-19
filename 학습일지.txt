@@ -24,30 +24,15 @@
     </bady>
 
 
-◎230830
     F12 크롬 개발자 도구
     <table> <>
 
 
-◎230831
     div : division : 영역 구분.
-    선생님 백업파일 https://github.com/baehyunki/dw_data2/tree/master
-    vscode 다운로드 https://code.visualstudio.com/download
-    무료이미지 소스 https://www.pexels.com/ko-kr/
+   
 
 
-◎230901
-    혼자 배울 수 있는 사이트 https://www.w3schools.com/
-    정보 사이트 https://developer.mozilla.org/ko/docs/Web/CSS/cursor
-    구글 폰트 https://fonts.google.com/
-    눈누 폰트    https://noonnu.cc/
 
-◎230904
-    나쁘지 않은 듯? https://dinfree.com/lecture/frontend/121_html_1.html
-    참고 학습 https://studiomeal.com/archives/197
-
-◎230905
-커스텀 아이콘 사이트 = https://iconify.design/
 
 ◎230906
 atomic design
@@ -57,28 +42,22 @@ atlassian design system
 ◎230907
 [CSS 방법론] BEM 방식
 sass
-HTML entity code
 flexbox froggy
 
 ◎2309011
-https://yeun.github.io/open-color/
-타이핑 연습하기
-https://caniuse.com/
 
-◎2309012
-https://developer.mozilla.org/ko/docs/Web/CSS/CSS_media_queries/Using_media_queries
-https://developer.mozilla.org/ko/docs/Learn/Getting_started_with_the_web/HTML_basics
+타이핑 연습하기
+
+
+
 
 DRY 원칙“반복하지 마라(Don't Repeat Yourself)”
 
-https://userinyerface.com/
+https://userinyerface.com/ 킹받는 사이트
 
 ◎2309013
-css gradient generator
-css gradient stripes generator
+
 sass 찍먹한 날    Live Sass Compiler
-다른 사람들이 작성에 놓은 소스들 모음 https://codepen.io/
-참고) 구조화 개념 사이트 BEM방법론 https://bem-cheat-sheet.9elements.com/
 
 ◎2309014
 [git] 설치 -> microsoft store 에서 windows terminal 설치 후 열기 -> 설정에서 기본 프로필을 깃 배쉬로 변환
@@ -130,20 +109,19 @@ form 연습 선생님 예제에 필기 못 한 '트릭' 있음.
 마크다운 문서 작성법(사용법)을 익혀서 txt를 대신하자
 
 ◎2309015
-https://simpleicons.org/
 
-md 언어 사용 법 https://inpa.tistory.com/entry/MarkDown-%F0%9F%93%9A-%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4-%EB%AC%B8%EB%B2%95-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC#%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4_markdown_%EC%9D%B4%EB%9E%80
 
-clip path generator
-ex) https://bennettfeely.com/clippy/
-https://codepen.io/tag/mega-menu
+
+
+
+
 
 ECMA Script 6 = jaba script
 
 ◎2309018
 DOM 구조 
 
-AOS Library  : https://michalsnik.github.io/aos/
+
 CDN(Content Delivery Network)은 지리적으로 분산된 서버들을 연결한 네트워크로서 웹 컨텐츠의 복사본을 사용자에 가까운 곳에 두거나 동적 컨텐츠(예: 라이브 비디오 피드)의 전달을 활성화하여 웹 성능 및 속도를 향상할 수 있게 합니다.
 부트스트랩(Bootstrap)은 웹사이트를 쉽게 만들 수 있게 도와주는 CSS, JS 프레임워크이다.
 Library 번들s = 부트스크랩트
