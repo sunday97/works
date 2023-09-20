@@ -58,6 +58,7 @@ function showName(name) {
     console.log(`매개변수의 타입은 ${typeof name}입니다`)
     console.log(`매개변수의 길이는 ${name.length}입니다`)
     //  typeof name의 값은 'string' 이다.
+    // 아래 string의 s를 소문자 대문자 조심하자.
     if (typeof name === `string`) {
         return console.log(`제 이름은 ${name}입니다`)
     }
