@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bar{
+    height: 50px;
+    width: 0%;
+    background-color: rgb(137, 62, 212);
+}
+
+
+/* color */
+.color{
+    background-color: hsl(0, 50%, 50%);
+    width: 100%;
+    height: 200px;
+    border-radius: 3rem;
+}
