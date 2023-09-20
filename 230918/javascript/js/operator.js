@@ -44,7 +44,7 @@ let userPlace = `대전`;
 let userAge = 26;
 userInfo = userName + '님의 이메일 주소는 ' + userEmail + ', 거주지는 ' + userPlace + '입니다.' ; 
 console.log(userInfo);
-//ES6 부터 추가된 템플릿 리터럴 방식 백팁 필수!
+//ES6 부터 추가된 템플릿 리터럴 방식, 백팁 필수!
 userInfo = `${userName}님의 이메일 주소는 ${userEmail}, 사용자의 나이는 ${userAge + 1}, 거주지는 ${userPlace}입니다.`
 console.log(userInfo);
 
