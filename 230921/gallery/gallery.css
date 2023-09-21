@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+img{
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 248px 1fr;
+}
+#list{
+    padding: 1rem;
+    list-style: none;
+}
+#list li{
+    background-color: rgb(107, 158, 204);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.show{
+    background-color: aqua;
+    color: red;
+}
