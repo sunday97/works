@@ -3,7 +3,9 @@ const data = [
     {title: `카우BOY`, url: `image/7.jpg`},
     {title: `도심Tree`, url: `image/8.jpg`},
     {title: `브런치`, url: `image/9.jpg`},
-    {title: `로맨스in파리`, url: `image/10.jpg`}
+    {title: `로맨스in파리`, url: `image/10.jpg`},
+    {title: `무제`, url: `image/1.jpg`},
+    {title: `무제2`, url: `image/2.jpg`}
 ]
 
 // 1. list에 목록
@@ -33,10 +35,12 @@ for(let i = 0; i < buttons.length; i++) {
         image.src = data[i].url
         // title 값에 대한 data[i].title
         title.textContent = data[i].title
-
-
-        // 숙제. 버튼 누르면 그것만 색상 변화
-        buttons[i].classList.add(`show`)
+        // 모든 버튼에서 check 클래스 제거
+        for(let i = 0; i  < buttons.length; i++){
+            buttons[i].classList.remove(`check`)
+        }
+        // 클릭한 버튼에서 check 클래스 추가
+        buttons[i].classList.add(`check`)
     })
 }
 
