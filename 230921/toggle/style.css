@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+.toggle{
+    width: 100px;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 50px ;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.switch{
+    width: 46px;
+    height: 46px;
+    background-color: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle.active{
+    background-color: aquamarine;
+}
+.toggle.active .switch{
+    left: 52px;
+}
