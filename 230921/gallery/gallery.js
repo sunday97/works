@@ -27,6 +27,12 @@ const buttons = document.querySelectorAll('.button')
 // console.log(buttons)
 
 for(let i = 0; i < buttons.length; i++) {
+    // 초기화
+    // 첫번째 버튼에 check 클래스 추가
+    buttons[0].classList.add(`check`)
+    // 첫번째 데이터 타이틀을 figcaption에 할당
+    title.textContent = data[0].title
+
     // console.log(buttons[i])
     buttons[i].addEventListener(`click`, () => {
         // i번째 데이터의 url 출력
