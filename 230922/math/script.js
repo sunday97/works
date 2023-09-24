@@ -6,33 +6,33 @@ console.log(Math.PI)
 console.log(`--절대값--`)
 
 // 절대값
-console.log(Math.abs(-1))
-console.log(Math.abs(1))
-console.log(Math.abs(`1`))
+console.log(Math.abs(-1))  // 1
+console.log(Math.abs(1))  // 1
+console.log(Math.abs(`1`))  // 1
 
 console.log(`--반올림--`)
 
 // 반올림
-console.log(Math.round(1.4))
-console.log(Math.round(1.5))
+console.log(Math.round(1.4))  // 1
+console.log(Math.round(1.5))  // 2
 
 console.log(`--올림--`)
 
 // 올림
-console.log(Math.ceil(1.2))
-console.log(Math.ceil(-1.2))
+console.log(Math.ceil(1.2))  // 2
+console.log(Math.ceil(-1.2))  // -1
 
 console.log(`--버림--`)
 
 // 버림
-console.log(Math.floor(1.9999999999999))
-console.log(Math.floor(-1.9999999999999))
+console.log(Math.floor(1.9999999999999))  // 1
+console.log(Math.floor(-1.9999999999999))  // -2
 
 console.log(`--랜덤--`)
 
 // random : 0부터 0.99999999999999999....
-console.log(Math.random())
-console.log(Math.random()+1)
+console.log(Math.random())  // 0.xxxxxxx
+console.log(Math.random()+1)  // 1.xxxxxx
 // Math.random() *(최댓값 - 최솟값 + 1) + 최솟값;
 
 
