@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: hsl(260, 95%, 5%);
+}
+
+/* css로 기초뼈대를 만들고 js로 살을 붙인다. */
+.snow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 100%;
+    filter: blur(1px);
+    animation-name: snowfall;
+    animation-duration: 6s;
+    animation-delay: 0;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+    0%{
+        top: 0;
+    }
+    100%{
+        top: 100%;
+        opacity: 0;
+    }
+
+}
