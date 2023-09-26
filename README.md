@@ -62,3 +62,9 @@ gitignore.io[링크](https://www.toptal.com/developers/gitignore)
 
 Envato Market [링크](https://elements.envato.com/?utm_source=redrct&utm_medium=clkr)
 - 스트럭쳐 이미징 참조 사이트
+
+스와이퍼 모음집 사이트 [링크](https://swiperjs.com/)
+
+wappalyzer [링크](https://chrome.google.com/webstore/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg)
+- 크롬 확장
+- 웹사이트 브라우저 분석 툴
