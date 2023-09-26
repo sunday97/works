@@ -68,3 +68,9 @@ Envato Market [링크](https://elements.envato.com/?utm_source=redrct&utm_medium
 wappalyzer [링크](https://chrome.google.com/webstore/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg)
 - 크롬 확장
 - 웹사이트 브라우저 분석 툴
+
+#### CRUD
+- Create(생성)
+- Read(읽기)
+- Update(갱신)
+- Delete(삭제)
