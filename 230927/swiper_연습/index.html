@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- swiper.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- my css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2>mono.Tone</h2>
+
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="image/img (1).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (2).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (3).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (4).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (5).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (6).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (7).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (8).jpg" alt=""></div>
+            <div class="swiper-slide"><img src="image/img (9).jpg" alt=""></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="btn"><a href="https://www.pexels.com/ko-kr/" target="_blank"><iconify-icon icon="gg:pexels" class="icon"></iconify-icon></a></div>
+
+    <div class="sidebar">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, temporibus, enim optio commodi aliquid impedit in laudantium consectetur magni est error reprehenderit quam officiis. Iure sapiente aliquam non magni in?</p>
+        <button class="trigger"></button>
+    </div>
+
+
+
+    <!-- swiper.script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- 초기화 -->
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            // direction: 'vertical',
+            loop: true,
+            slidesPerView: 4,
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 1000,
+                disableOnInteraction: false,
+            },
+
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+            // Navigation arrows
+            // navigation: {
+            //     nextEl: '.swiper-button-next',
+            //     prevEl: '.swiper-button-prev',
+            // },
+
+            // And if we need scrollbar
+            // scrollbar: {
+            //     el: '.swiper-scrollbar',
+            // },
+        });
+    </script>
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+
+</html>

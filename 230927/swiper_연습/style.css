@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
+
+
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,0) 0%, rgba(113,72,112,1) 0%, rgba(236,84,55,1) 100%);
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+h2{
+    font-family: 'Croissant One', cursive;
+    font-size: 48px;
+    margin-bottom: -10px;
+}
+
+.swiper {
+    width: 80%;
+    height: 80%;
+    margin: 1rem auto 0;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-pagination-bullet{}
+
+
+.swiper-pagination-bullet-active{
+    background-color: rgb(149, 149, 149);
+    border-radius: 2px;
+    width: 28px;
+    
+
+}
+
+.btn{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,0) 0%, rgba(208,68,204,1) 0%, rgba(31,241,244,1) 100%);
+    border-radius: 1rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn > a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    position: relative;
+}
+.btn > a > .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 20%;
+    /* transform: rotate(-30deg); */
+    animation: wiggle;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.sidebar{
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    top: 0;
+    /* left: 0; */
+    background-color: white;
+    z-index: 1000;
+    
+}
+.sidebar > p{
+    padding: 1rem;
+}
+.sidebar.open{
+    left: 0;
+}
+
+.trigger{
+    position: absolute;
+    left: 100%;
+    top: 10px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-top:3px solid orange;
+    border-right:3px solid orange;
+    border-bottom:3px solid orange;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,0) 0%, rgba(208,68,204,1) 0%, rgba(31,241,244,1) 77%);
+   
+    
+}
+
+
+
+
+@keyframes wiggle {
+
+    0%{
+        transform: rotate(-15deg);
+    }
+    50%{
+        transform: rotate(15deg);
+
+    }
+    100%{
+        transform: rotate(-15deg);
+
+    }
+}
