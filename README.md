@@ -69,8 +69,24 @@ wappalyzer [링크](https://chrome.google.com/webstore/detail/wappalyzer-technol
 - 크롬 확장
 - 웹사이트 브라우저 분석 툴
 
+
 #### CRUD
 - Create(생성)
 - Read(읽기)
 - Update(갱신)
 - Delete(삭제)
+
+tcpschool[링크](http://www.tcpschool.com/)
+- 코딩 참고 내용
+
+함수 vs 익명함수 [링크](https://dev-note-97.tistory.com/273)
+- 그 외에도 도움되는 정보들
+
+
+
+사이트 구조 참고 사이트
+- DBCUT [링크](https://www.dbcut.com/)
+- Awwwards [링크](https://www.awwwards.com/)
+- behance [링크](https://www.behance.net/)
+- Dribbble [링크](https://dribbble.com/)
+
