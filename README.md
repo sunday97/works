@@ -1,7 +1,13 @@
 # **---Info---**
 
+
+배현기 선생님 git [링크](https://github.com/baehyunki/dw_data2/tree/master)
+
+김진용 선생님 (Tel.010-6773-3469)
+
+---
+
 ### 사이트 링크
-백현기 선생님 git [링크](https://github.com/baehyunki/dw_data2/tree/master)
 
 VS Code download [링크]( https://code.visualstudio.com/download)
 
@@ -76,6 +82,10 @@ wappalyzer [링크](https://chrome.google.com/webstore/detail/wappalyzer-technol
 - Update(갱신)
 - Delete(삭제)
 
+DRY 원칙“반복하지 마라(Don't Repeat Yourself)”
+
+[링크](https://happygrammer.github.io/guide/code-design/)
+
 tcpschool[링크](http://www.tcpschool.com/)
 - 코딩 참고 내용
 
@@ -84,7 +94,7 @@ tcpschool[링크](http://www.tcpschool.com/)
 
 
 
-사이트 구조 참고 사이트
+사이트 구조화 사례 참고 사이트
 - DBCUT [링크](https://www.dbcut.com/)
 - Awwwards [링크](https://www.awwwards.com/)
 - behance [링크](https://www.behance.net/)
