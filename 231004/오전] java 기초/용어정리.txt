@@ -1,0 +1,12 @@
+- (hyphen)
+＼(Backslash, 키보트에 따라 \표기이며 동일한 값을 가진다.)
+/(slash)
+_(Underbar)      
+|:파이프(pipe) 
+& : 앰퍼샌드(Ampersand)
+;(semi-) :
+* : 애스터리스크(Asterisk)
+``(backtic)
+'(싱클커테이션) "(더블커테이션)
+
+\\192.168.0.78 공유폴더

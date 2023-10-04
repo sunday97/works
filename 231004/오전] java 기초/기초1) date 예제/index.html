@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date 예제</title>
+    <!-- css -->
+</head>
+<body>
+    
+
+
+    <!-- js -->
+    <script>
+        var now = new Date();
+        // document.write(); => 화면에 출력
+        document.write(now);
+        let year = now.getFullYear();
+        document.write(`<br/>` + year);
+
+        let month = now.getMonth();
+        month = month + 1;
+        month = month >= 10 ? month : '0' + month;
+        document.write(`<br/>` + month);
+
+        let date = now.getDate();
+        date = date >= 10 ? date : '0' + date;
+
+        document.write('<br/>' + date);
+        document.write('<br/>' + year + '-' + month + '-' + date);
+
+        // 나중에 협업을 할 순간이 올 것이기에 (혹은 유지보수) 보편적으로 보기 쉽고 편한 코드가 좋은 코드라고 할 수 있다.
+        
+        let isoFormat = now.toISOString().split('T')[0];
+        // isoFormat = isoFormat.split('T');
+        // console.log(isoFormat);
+        // isoFormat = isoFormat[0];
+        document.write('<br/>' + isoFormat);
+    </script>
+
+</body>
+</html>
