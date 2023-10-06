@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array(배열)</title>
+  </head>
+  <body></body>
+  <script>
+    // Array 생성(선언) 방법
+    const arr = [];
+    const arr2 = new Array();
+
+    // Array의 생성과 값(초기화)을 동시에 하는 방법
+    const arr3 = [1, 3, 5, 7, 9, "smith", true];
+    console.log(arr3);
+    console.log(arr3.length);
+    console.log(arr3[5]);
+
+    // Array 관련 함수 - 원본배열을 변형시키는 함수's
+    // 1. push() 함수 - 하나 이상의 요소를 배열의 가장 마지막에 추가한다.
+    // 헌데 여기서 const의 값의 형식 그 자체가 변한 게 아니라 추가이기게 가능하다.
+    // const는 재할당이 불가능하다 = 예) (주소지변경)이사가 불가능하다. => 냉장고는 들여올 수 있다.
+    // arr3 = [3, 4];  이게 안된다는 것이다.
+    // 배열에 요소가 성공저긍로 추가가 되면 추가된 이후 배열의 길이를 반환한다.
+    console.log("push 후의 배열 길이 : " + arr3.push(11, false)); // 이 경우 길이가 먼저 나오고 값이 출력됨.
+    console.log("push 이후의 배열 : " + arr3);
+
+    // 2. pop() 함수 - 배열의 가장 마지막 요소를 제거하고, 그 제거된 요소를 반환한다.
+    console.log("pop 으로 제거한 요소 : " + arr3.pop());
+    console.log("pop 이후의 배열 : " + arr3);
+    // 콘솔을 보면 알겠지만 배열도 문자와 더해지면 문자열로 변함.
+
+    // 3. unshift() 함수 - 하나 이상의 요소를 배열의 가장 앞에 추가한다.
+    // 배열에 요소가 성공적으로 추가가 되면 추가된 이후 배열의 길이를 반환한다.
+    console.log("unshift 후의 배열 길이 : " + arr3.unshift(-1, -3));
+    console.log("unshift 후의 배열 : " + arr3);
+
+    // 4. shift() 함수 - 배열의 첫번째 요소를 제거하고, 그 제거된 요소를 반환한다.
+    console.log("shift 으로 제거한 요소 : " + arr3.shift());
+    console.log("shift 이후의 배열 : " + arr3);
+
+    console.log("5. reverse() 함수");
+    // 5. reverse() 함수 - 배열 요소의 순서를 전부 반대로 바꾼다. 반환은 없다.
+    arr3.reverse();
+    console.log("reverse 이후의 배열 : " + arr3);
+
+    console.log("6. sort 함수");
+    // 6. sort() 함수 - 배열의 요소들을 알파벳 순서에 따라 정렬한다. 반환은 없다.
+    const strArr = ["그리스", "한국", "일본", "미국"];
+    const numArr = [20, 10, 2, 3, 1];
+    strArr.sort();
+    numArr.sort();
+    console.log("sort 이후의 strArr : " + strArr);
+    console.log("sort 이후의 numArr : " + numArr); // 문자열 취급 후 sorting한다. 그래서 잘 안쓴다.
+
+    console.log("7. splice() 함수");
+    // 7. splice() 함수 - 기존 배열 요소를 제거하거나 새로운 배열 요소를 추가한다.
+    // 첫번째 파라미터는 새로운 요소가 삽입될 위치의 인덱스이며, 두번째 파라미터는 제거할 요소의 갯수이다.
+    // 제거된 요소를 배열의 형태로 반환하고, 아무요소도 제거되지 않았으면 빈 배열을 반환한다.
+    const arr4 = [1, true, "javascript", "자바스크립트"];
+    console.log("splice 이전의 배열 : " + arr4);
+    console.log("splice로 제거된 요소들 : " + arr4.splice(1, 2, false, "java"));
+    console.log("splice 이후의 배열 : " + arr4);
+
+    const ex = [1, 2, 3, 4, "실험실", "Lob"];
+    console.log(ex);
+    console.log(ex.splice(1, 0, 2.1, 2.2));
+    console.log(ex);
+  </script>
+</html>
