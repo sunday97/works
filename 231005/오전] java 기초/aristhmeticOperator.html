@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aristhmetic Operator-산수연산자</title>
+  </head>
+  <body></body>
+  <script>
+    // 증감연산자
+    let num = 1;
+    num++; // num = num + 1
+    console.log(num);
+    num--; // num = num - 1
+    console.log(num);
+
+    /**
+     * 전위 연산자 : 관계있는 연산자가 읽히기 전에 연산.
+     * 후위 연산자 : 관계있는 연산자가 읽히고 난 후 연산.
+     */
+
+    // let x = 3;
+    // let y = 4;
+    // ++x + y++;
+    // console.log(x+y);
+
+    let x = 3;
+    let y = x++;
+    // ++x + y++;
+    console.log("x : " + x + ", y :" + y);
+
+    let w = 10;
+    let z = w-- + 5 + --w + --w;
+    /** 해석
+     * 먼저 w-- + 5 부터 계산
+     * 이때 w = 10
+     * z = 15, w는 후위형 특성이기에 연산 끝난 후 적용으로 9
+     * 15 + --w 계산
+     * 이때는 --w가 전위형이기에 먼저 계산하여 w = 8
+     * 그래서 15 + 8.
+     * 결과 w = 8, z = 23.
+     */
+    console.log("w : " + w + ", z :" + z);
+
+    let k = 5;
+    let l = k++ - 3 + ++k;
+    k++;
+    console.log("k : " + k + ", l :" + l);
+  </script>
+</html>

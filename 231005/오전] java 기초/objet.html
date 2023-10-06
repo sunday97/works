@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체형 연습</title>
+  </head>
+  <style>
+    div {
+      background-color: yellow;
+      width: 300px;
+      height: 200px;
+      /* display: inline; */ /* 없어진다. */
+      display: inline-block;
+    }
+  </style>
+  <body>
+    <div></div>
+    <span>span태그</span>
+  </body>
+
+  <script>
+    // 객체 리터럴을 이용해서 객체 생성과 동시에 프로퍼티 설정
+    let temp = {
+      test: "test",
+    };
+    var myCar = {
+      model: "bmw",
+      color: "red",
+      hp: 100,
+      temp: temp,
+    };
+
+    //둘이 같다.
+    let person = {};
+    let person2 = new Object();
+
+    // 객체 생성 후 프로퍼티 추가 방법1
+    person.age = 20;
+    person.name = "춘향";
+
+    // 객체 생성 후 프로퍼티 추가 방법2
+    person["addr"] = "대전광역시 중구 선화동";
+    person["tel"] = "010-0000-0000";
+
+    // 객체의 값을 가져오는 방법
+    console.log(person);
+    console.log(person["age"]); // 20 =>["~"] age란 key값에 value값을 가져온다.
+    document.write(
+      "<h3>저의 이름은 " +
+        person["name"] +
+        "이며, 나이는 " +
+        person["age"] +
+        "세이며, 주소는 " +
+        person["addr"] +
+        "입니다. 그리고 전화번호는 " +
+        person["tel"] +
+        "입니다. </h3>" //<h>tag는 블록요소라 <br>tag 불필요
+    );
+
+    console.log(myCar);
+    document.write(myCar.model + "<br>");
+    document.write(myCar.color + "<br>");
+    document.write(myCar.hp + "<br>");
+    document.write(myCar.temp + "<br>"); //[object Object]
+    document.write(myCar.temp.test + "<br>");
+
+    // Object:자바에서 지원한는 오프젝트(객체).
+    console.log(Object.keys(myCar)); //object의 key값을 배열로 반환
+    console.log(Object.values(myCar)); //object의 value값을 배열로 반환
+    console.log(Object.entries(myCar)); //object의 key, value 쌍을 배열로 반환
+  </script>
+</html>
