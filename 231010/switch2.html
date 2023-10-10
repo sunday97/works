@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>switch문 연습2</title>
+  </head>
+  <body></body>
+  <script>
+    let num = prompt("학점을 입력하세요", "0~100");
+    console.log(typeof num);
+    // num = parseInt(num);
+    // console.log(typeof num);
+    // 100, 90~99, 80~89, 70~79, 60~69, 0~59(default)
+
+    // parseInt는 "정수" 변환하여 소수점을 제거한다. 예) 4.2 => 4
+    switch (parseInt(num / 10)) {
+      case 10:
+      case 9:
+        document.write("<h1>A 학점</h1>");
+        break;
+      case 8:
+        document.write("<h1>B 학점</h1>B");
+        break;
+      case 7:
+        document.write("C");
+        break;
+      case 6:
+        document.write("D");
+        break;
+      default:
+        num;
+        document.write("F");
+    }
+  </script>
+</html>

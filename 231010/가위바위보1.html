@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가위바위보(switch 중첩의 경우)</title>
+  </head>
+  <body></body>
+  <script>
+    let hand1 = prompt("첫번째 사람의 가위 바위 보를 입력하세요");
+    let hand2 = prompt("두번째 사람의 가위 바위 보를 입력하세요");
+    document.write(hand1 + "<br>");
+    document.write(hand2 + "<br> <br>");
+
+    switch (hand1) {
+      case "가위":
+        switch (hand2) {
+          case "가위":
+            document.write("비겼습니다.");
+            break;
+          case "바위":
+            document.write("졌습니다.");
+            break;
+          case "보":
+            document.write("이겼습니다.");
+            break;
+        }
+        break;
+      case "바위":
+        switch (hand2) {
+          case "가위":
+            document.write("이겼습니다.");
+            break;
+          case "바위":
+            document.write("비겼습니다.");
+            break;
+          case "보":
+            document.write("졌습니다.");
+            break;
+        }
+        break;
+      case "보":
+        switch (hand2) {
+          case "가위":
+            document.write("졌습니다.");
+            break;
+          case "바위":
+            document.write("이겼습니다.");
+            break;
+          case "보":
+            document.write("비겼습니다.");
+            break;
+        }
+        break;
+    }
+  </script>
+</html>

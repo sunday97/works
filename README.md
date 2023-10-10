@@ -125,3 +125,10 @@ velog / https://dev.to
 - 각종 디자인 관련 포트폴리오 사례 사이트
 
 달레 블로그(HTML,CSS)
+
+http://www.i-award.or.kr/
+https://www.gdweb.co.kr/main/
+
+- 특히 여기 무료이미지 좋음(단 포폴에만 사용, 사업적용도 xxx)
+
+IDEO 디자인 싱크 프로세스 5단계
