@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>while문 연습</title>
+  </head>
+  <body></body>
+  <script>
+    var i = 0;
+
+    // while
+    while (i < 10) {
+      document.write("카운터 : " + i + "<br />");
+      i++; // 후위연산자
+    }
+
+    document.write("<hr>"); // 경계선
+
+    // do - while 문
+    // do블록을 먼저 실행 시키고 while블록이 참일 경우 do블록을 반복시키며 거짓일 경우 while블록을 실행키며 끝낸다.
+    // i = 0;
+    do {
+      document.write("카운터 : " + i + "<br />"); // 이때 i = 10이다.
+      i++;
+    } while (i < 10);
+    {
+      document.write("마지막에 도달하는 부분입니다. <br>");
+    }
+    document.write(i);
+  </script>
+</html>
