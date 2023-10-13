@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반복문과 배열</title>
+  </head>
+  <body></body>
+  <script>
+    let arr = [1, 3, 5, 7, 9];
+    document.write("첫번째 원소값 : " + arr[0]);
+    document.write("<br>");
+
+    document.write("<h4>기본 for문</h4>");
+    for (let i = 0; i < arr.length; i++) {
+      document.write(i + 1 + "번째 원소값 : " + arr[i]);
+      document.write("<br>");
+    }
+
+    document.write("<hr>");
+
+    document.write("<h4>for in문</h4>");
+    // for - in 구문
+    for (let i in arr) {
+      console.log(i); // 0 1 2 3 4
+      // 이때 i값은 문자열로 나오기 때문에 i 앞에 +붙여줘서 양수취급해준다.
+      // arr[i]의 i는 [] 때문에 자동으로 숫자취급된다.
+      document.write("<h5>" + (+i + 1) + "번째 원소값 : " + arr[i] + "</h5>");
+    }
+    document.write("<hr>");
+
+    let cars = {
+      brand: "hyunai",
+      name: "kona",
+      price: "400,000,000",
+    };
+    console.log(Object.keys(cars));
+    Object.keys(cars);
+    Object.values(cars);
+    Object.entries(cars);
+    console.log(cars["brand"]);
+
+    document.write("<h4>for..in 구문을 활용한 object 값 가져오기</h4>");
+    for (let i in cars) {
+      // key값이 순차적으로 출력됨
+      // document.write("<h5>" + i + "</h5>");
+      document.write("<h5>key값은" + i + ", value값은 " + cars[i] + "</h5>");
+    }
+
+    document.write("<hr>");
+
+    document.write("<h4>for..of문</h4>");
+    for (let v of arr) {
+      // value값을 가져온다.
+      document.write("<h5>배열에 있는 원소값 : " + v + "</h5>");
+    }
+
+    document.write("<hr>");
+
+    document.write("<h4>for..of문을 활용한 객체 값 가져오기</h4>");
+    // for (let v of cars) {
+    // document.write("<h5>" + v + "</h5>");
+    // }
+    document.write(
+      "Uncaught TypeError: cars is not iterable : 객체는 배열이 아니라 사용 못함"
+    );
+
+    document.write("<hr>");
+
+    document.write("<h4>forEach 사용 </h4>");
+    // arr.forEach(function (value, index, array)
+    arr.forEach(function (val, ind, arr) {
+      document.write(
+        "<h5>value값: " + val + ", index값: " + ind + ", array" + arr + "</h5>"
+      );
+      document.write(
+        `<h5> 백틱으로 씀 : value값 : ${val}, index값 : ${ind}, array : ${arr} </h5>`
+      );
+    });
+  </script>
+</html>

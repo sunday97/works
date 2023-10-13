@@ -77,6 +77,30 @@
       document.write("<br>");
     }
 
+    // 선생님 풀이 1번
+    for (let i = 0; i < 5; i++) {
+      for (let j = 4; j > i; j--) {
+        document.write("&nbsp;");
+      }
+      for (let k = 0; k <= i; k++) {
+        document.write("*");
+      }
+      for (let z = 1; z <= i; z++) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+    // 선생님 풀이 2번
+    for (let i = 0; i < 5; i++) {
+      for (let j = 4; j > i; j--) {
+        document.write("&nbsp;");
+      }
+      for (k = 0; k <= i * 2; k++) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+
     document.write("<h4>별찍기 역 정삼각형</h4>");
     for (i = 1; i < 10; i += 2) {
       for (k = 1; k < i; k += 2) {
@@ -86,6 +110,116 @@
         document.write("*");
       }
       document.write("<br>");
+    }
+
+    // 선생님 풀이 1번
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < i; j++) {
+        document.write("&nbsp;");
+      }
+      for (let k = 5; k > i; k--) {
+        document.write("*");
+      }
+      for (z = 4; z > i; z--) {
+        document.write("*");
+      }
+      document.write("<br/>");
+    }
+    // 선생님 풀이 2번
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < i; j++) {
+        document.write("&nbsp;");
+      }
+      for (let k = 8; k >= i * 2; k--) {
+        document.write("*");
+      }
+
+      document.write("<br/>");
+    }
+    // 풀이 2-1번
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < i; j++) {
+        document.write("&nbsp;");
+      }
+      for (k = 8; k >= i * 2; k--) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+
+    document.write("<hr>");
+
+    document.write("<h4>별찍기 마름모</h4>");
+    // 상부
+    for (let i = 0; i < 5; i++) {
+      for (let j = 4; j > i; j--) {
+        document.write("-");
+      }
+      for (k = 0; k <= i * 2; k++) {
+        document.write("*");
+      }
+      for (let j = 4; j > i; j--) {
+        document.write("-");
+      }
+      document.write("<br>");
+    }
+    // 하부
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j <= i; j++) {
+        document.write("-");
+      }
+      for (let k = 6; k >= i * 2; k--) {
+        document.write("*");
+      }
+      for (let j = 0; j <= i; j++) {
+        document.write("-");
+      }
+      document.write("<br/>");
+    }
+    // 선생님 풀이(상부 하부의 포문이 3개인 경우)
+    for (let i = 0; i < 5; i++) {
+      for (let j = 4; j > i; j--) {
+        document.write("&nbsp;");
+      }
+      for (let k = 0; k <= i; k++) {
+        document.write("*");
+      }
+      for (let z = 1; z <= i; z++) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j <= i; j++) {
+        document.write("&nbsp;");
+      }
+      for (let k = 4; k > i; k--) {
+        document.write("*");
+      }
+      for (z = 3; z > i; z--) {
+        document.write("*");
+      }
+      document.write("<br/>");
+    }
+
+    document.write("<hr>");
+    document.write("<h4>별찍기 마름모(repeat 함수 이용의 경우)</h4>");
+    // 문자열.repeat(반복횟수);
+    // document.write("*".repeat(5));
+    document.write("<br/>");
+    for (i = 1; i <= 5; i++) {
+      document.write("&nbsp;".repeat(5 - i) + "*".repeat(2 * i - 1) + "<br>");
+    }
+    for (j = 4; j >= 1; j--) {
+      document.write("&nbsp;".repeat(5 - j) + "*".repeat(2 * j - 1) + "<br>");
+    }
+
+    console.log(-(-3));
+
+    for (i = 0; i < 9; i++) {
+      document.write("-".repeat((5 % (i * 2)) + 4));
+      // document.write("+".repeat(i + 4));
+      document.write("<br/>");
     }
   </script>
 </html>
