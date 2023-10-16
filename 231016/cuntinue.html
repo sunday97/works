@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>continue문</title>
+  </head>
+  <body></body>
+  <script>
+    // continue문 :
+
+    var msg = ""; //문자열변수로 사용을 하겠다!!!
+    for (var i = 0; i < 10; i++) {
+      if (i == 3) {
+        continue;
+      }
+      msg += i + "<br>";
+      // msg = msg + (i + "<br>"); 과 같음
+      //   "" + "0<br>" + "1<br>" + "2<br>"
+    }
+    document.write(msg);
+
+    document.write("<hr>");
+
+    // while 문에서 break문 활용
+    let j = 0;
+    // while(true){} : 무한의 굴례...
+    while (true) {
+      document.write(j + "<br>");
+      j++;
+      if (j == 5) {
+        continue;
+      }
+      if (j == 10) {
+        break;
+      }
+    }
+  </script>
+</html>

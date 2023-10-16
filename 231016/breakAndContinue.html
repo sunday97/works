@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>예제</title>
+  </head>
+  <body></body>
+  <script>
+    // 1~200까지의 짝수를 합을 구하는 프로그램을 작성(Continue를 활용)
+
+    document.write("<h4>1~200까지의 짝수 합(continue 활용)</h4>");
+    let sum = 0;
+    for (let i = 1; i <= 200; i++) {
+      if (i % 2 == 1) {
+        continue;
+      }
+      sum += i;
+    }
+    document.write(`sum : ${sum}`);
+
+    document.write("<hr>");
+
+    document.write(
+      "<h4>사용자가 입력값을 계속 합, 0 입력시 누적된 값을 출력하는 프로그램 작성</h4>"
+    );
+    // 사용자가 입력값을 계속 합, 0 입력시 누적된 값을 출력하는 프로그램 작성
+    /** 
+    let sum2 = 0;
+    while (true) {
+      let val = prompt("값을 입력하세요");
+      val = parseInt(val);
+      // val = 없으면 그 줄에서만 잠시 참조한다는 느낌이다. 전체 할당이 아니다. 즉, 재할당의 느낌?
+      console.log(typeof val);
+      sum2 = sum2 + val;
+      if (val == 0) {
+        document.write(sum2);
+        break;
+      }
+    }
+    */
+
+    /** 
+    // 선생님의 경우
+    // 사용자가 입력값을 계속 합, 0 입력시 누적된 값을 출력하는 프로그램 작성
+
+    document.write(
+      "사용자가 입력값을 계속 합, 0 입력시 누적된 값을 출력하는 프로그램 작성<br>"
+    );
+    sum = 0; // 재할당
+    while (true) {
+      //prompt에 +(양수)로 넘버타입으로 변환
+      let inputNum = +prompt("값을 입력하세요");
+      sum = sum + inputNum;
+      if (inputNum == 0) {
+        document.write(`지금까지의 합 : ${sum}`);
+        break;
+      }
+    }
+    */
+
+    document.write("<hr>");
+
+    // 1~10까지 반복되는 2개의 for문을 이용해서 i와 k를 더한 합이 3의 배수일 때만 출력(continue 활용)
+    // ex) i : 00 , k : 00 , 결과 : 00
+    document.write(
+      "<h4>1~10까지 반복되는 2개의 for문을 이용해서 i와 k를 더한 합이 3의 배수일 때만 출력(continue 활용)</h4><br>"
+    );
+
+    // sum = 0;
+    // for (let i = 1; i <= 10; i++) {
+    //   for (let k = 1; k <= 10; k++) {
+    //     sum = i + k;
+    //     if (sum % 3 == 0) {
+    //       document.write(`i : ${i} , k : ${k} , 결과 : ${sum} <br>`);
+    //       continue;
+    //     }
+    //   }
+    // }
+    // document.write(`i : ${i} , k : ${k} , 결과 : ${i + k} <br>`);
+    // 여기서 continue 는 의미가 없다...
+
+    document.write(`선생님의 경우<br>`);
+
+    for (let i = 1; i <= 10; i++) {
+      for (let k = 1; k <= 10; k++) {
+        if ((i + k) % 3 !== 0) {
+          continue;
+        }
+        document.write(`i : ${i} , k : ${k} , 결과 : ${i + k} <br>`);
+      }
+    }
+
+    document.write("<hr>");
+    // 1~100 까지 중 2의 배수이면서 3의 배수인 것만 출력
+    document.write(
+      "<h4>1~100 까지 중 2의 배수이면서 3의 배수인 것만 출력</h4><br>"
+    );
+    for (let i = 1; i <= 100; i++) {
+      if (i % 2 == 0 && i % 3 == 0) {
+        document.write(`i값은 ${i}입니다.<br>`);
+      }
+    }
+    document.write("<hr>");
+
+    // 두 수를 입력(prompt), 두 수의 합이 100 이상일 때만 출력
+    // continue 활용, 두 수 모두 0이 입력되면 종료
+    document.write(
+      "<h4>두 수를 입력(prompt), 두 수의 합이 100 이상일 때만 출력 / continue 활용, 두 수 모두 0이 입력되면 종료</h4><br>"
+    );
+
+    while (true) {
+      //prompt에 +(양수)로 넘버타입으로 변환
+      let inputNum1 = +prompt("첫 값을 입력하세요(0을 입력하면 종료됨)");
+      let inputNum2 = +prompt("둘 값을 입력하세요(0을 입력하면 종료됨)");
+      if (inputNum1 + inputNum2 >= 100) {
+        document.write(
+          `첫 번째 : ${inputNum1} , 두 번째 : ${inputNum2} , 합 : ${
+            inputNum1 + inputNum2
+          } <br>`
+          // 100 이상이면 무조건 끝나고 싶으면 여기에 break를 넣으면 ok
+        );
+      } else if (inputNum1 == 0 && inputNum2 == 0) {
+        break;
+      } else {
+        continue;
+      }
+    }
+  </script>
+</html>

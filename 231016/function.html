@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+  </head>
+  <body>
+    <button style="font-weight: bold" onclick="showDialog('홍길동', '부장')">
+      눌러보세요!
+    </button>
+    <button style="font-weight: bold" onclick="showDialog('김민수', '차장')">
+      눌러보세요!
+    </button>
+  </body>
+  <script>
+    // showDialog함수 안에서 alert함수 호출 즉 함수 안에서 함수 호출도 가능하다.
+    // function showDialog() {
+    //   alert("안녕하세요?");
+    // }
+    function showDialog(name, position) {
+      //   alert(name + " " + position + "님을 환영합니다.");
+      alert(`환영합니다. ${name} ${position}님.`);
+    }
+  </script>
+</html>
