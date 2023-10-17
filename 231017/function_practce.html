@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수연습</title>
+  </head>
+  <!-- HTML은 순차적이 아니다. script와 body는 동시에 읽힌다. -->
+  <body>
+    <p id="aa"></p>
+  </body>
+  <script>
+    // 익명함수의 사용
+    function plus(a, b) {
+      return a + b;
+    }
+    // window.onload => DOM이 모두 그려지고 난 후 실행하겠다.
+    window.onload = function () {
+      // var res = plus(4, 5);
+      // document.getElementById("aa").innerHTML = res;
+      document.getElementById("aa").innerHTML = plus(4, 5);
+    };
+
+    // 지역변수
+    document.write(`<h4>지역변수</h4>`);
+    function localNum() {
+      // var num = 10;
+      num = 10;
+      document.write(
+        // `함수 내부에서 변수 num의 타입은 ${typeof num} 입니다.<br>` // number
+        `함수 내부에서 변수 num의 값은 ${num} 입니다.<br>` // 10
+      );
+    }
+    localNum();
+    document.write(
+      // `함수 호출이 끝난 뒤 변수 num의 타입은 ${typeof num} 입니다.<br>` // undefined
+      `함수 호출이 끝난 뒤 변수 num의 값은 ${num} 입니다.<br>` // 10
+    );
+    //  즉 함수 안에서 지역변수로 사용하려면 var로 변수처리를 해주어야 한다.
+
+    // 전역변수
+    document.write(`<h4>전역변수</h4>`);
+    var num = 10;
+    function globalNum() {
+      // document.write(`함수 내부에서 변수 num의 값은 ${num}입니다.<br>`); // 1번 10
+      // num = 20; // 1번
+
+      var num = 20; // 2번
+      document.write(`함수 내부에서 변수 num의 값은 ${num}입니다.<br>`); // 2번 20
+      document.write(
+        `함수 내부에서 전역변수 num의 값은 ${window.num}입니다.<br>`
+      ); // 10 , 같은 선언의 이름일 경우(var) 전역변수를 사용할 때(근데 헛갈려서 잘 사용안함.)
+    }
+
+    globalNum();
+    // document.write(`함수의 호출이 끈난 뒤 변수 num의 값은 ${num}입니다.<br>`); // 1번 20
+
+    document.write(`함수의 호출이 끈난 뒤 변수 num의 값은 ${num}입니다.<br>`); // 2번 10
+
+    // 함수유효범위  var:함수단위 | let,const:block단위
+    let x = 10,
+      y = 20; // ,로 한번에 여러게 선언 가능
+    function sub() {
+      return x - y;
+    }
+    document.write(`${sub()}<br>`);
+
+    function paranFunc() {
+      let x = 1,
+        y = 2;
+      function add() {
+        return x + y;
+      }
+      return add();
+    }
+    document.write(`${paranFunc()}<br>`);
+
+    // 화살표 함수
+    // const arrowFunc = () => {};
+    // const arrowFunc = function () {};
+    function arrowFunc() {}
+
+    // 매개변수
+    document.write(`<h4>매개변수</h4>`);
+
+    const addNum = (x, y, z) => {
+      console.log(`x : ${x} , y : ${y} , z : ${z}`);
+      if (x === undefined) x = 0;
+      if (y === undefined) y = 0;
+      if (z === undefined) z = 0;
+      return x + y + z;
+    };
+
+    document.write(`${addNum(1, 2, 3)}<br>`);
+    document.write(`${addNum(1, 2)}<br>`);
+    document.write(`${addNum(1)}<br>`);
+    document.write(`${addNum()}<br>`);
+
+    // arguments 객체
+    document.write(`<h4>arguments 객체</h4>`);
+    const addNum2 = function () {
+      // 화살표함수는 function과 완전히 같지 않다. 서로 엄연히 다르기에 arguments내장속성(function안에있는)은 사용하지 못한다.
+      let sum = 0;
+      // arguments 객체는 함수가 호출될 때 전달된 인수를 배열 형태로 저장하고 있습니다.
+      for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+      }
+      return sum;
+    };
+    document.write(`${addNum2(1, 2, 3)}<br>`);
+    document.write(`${addNum2(1, 2)}<br>`);
+    document.write(`${addNum2(1)}<br>`);
+    document.write(`${addNum2()}<br>`);
+    document.write(`${addNum2(34, 54, 32, 17, 45)}<br>`);
+    // 그래서 arguments의 장점은 파라미터 갯수가 정해진 게 아니라 능동적으로 변화시킬 수 있는 수식을 작성할 수 있다.
+    console.log(addNum);
+    console.log(addNum2);
+  </script>
+</html>

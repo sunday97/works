@@ -131,4 +131,6 @@ https://www.gdweb.co.kr/main/
 
 - 특히 여기 무료이미지 좋음(단 포폴에만 사용, 사업적용도 xxx)
 
+UX : User Experience/ UI : User Interface
 IDEO 디자인 싱크 프로세스 5단계
+페르소나
