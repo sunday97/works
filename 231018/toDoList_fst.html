@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toDoList 초안</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 600px;
+      border: 2px solid #ddd;
+      border-radius: 10px 10px;
+      position: absolute;
+      top: 100px;
+      left: 200px;
+      padding: 0 10px;
+      /* 알아서 스크롤 만든다. */
+      overflow: auto;
+    }
+    p {
+      background-color: rgb(255, 255, 0);
+      padding: 10px 5px;
+      border-radius: 10px;
+      color: white;
+    }
+  </style>
+  <body>
+    <input type="text" id="input" placeholder="To Do List" />
+    <button onclick="clickFunc()">CLICK</button>
+    <div></div>
+  </body>
+  <script>
+    const input = document.querySelector("#input");
+    const div = document.querySelector("div");
+    const clickFunc = function () {
+      const pTag = document.createElement("p");
+      pTag.innerHTML = input.value;
+      //   pTag.style.backgroundColor = "rgb()"
+      changeBackGroundColor(pTag);
+      div.append(pTag);
+      input.value = "";
+    };
+
+    const changeBackGroundColor = function (tag) {
+      const colorArr = [];
+      for (i = 0; i < 3; i++) {
+        colorArr.push(parseInt(Math.random() * 256));
+        //   console.log(colorArr);
+
+        // rgb에서 색의 명도를 구하는 법.
+
+        /** 16진수로 바꾸는 법
+         console.log(
+             parseInt(Math.random() * 256)
+             .toString(16) // ()안에 넣어서 16진수 변환
+             .padStart(2, 0)
+             );
+             // .padStart(문자열의 길이, 빈 자리를 앞에서부터 이걸로 채우겠다.)
+             // .padEnd(문자열의 길이, 빈 자리를 뒤에서부터 이걸로 채우겠다.)
+             */
+      }
+      //   luma? : 빛에 대하여 색의 밝고 어두움의 값 0에 가까울수록 어둡고 255에 가까울수록 밝다.
+      const luma =
+        0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
+      console.log(luma);
+      tag.style.backgroundColor = `rgb(${colorArr.toString()})`;
+      tag.style.color = parseInt(luma) <= 155 ? "white" : "black";
+    };
+  </script>
+</html>

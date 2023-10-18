@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숙제</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 300px;
+      background-color: rgb(81, 255, 0);
+    }
+  </style>
+  <body>
+    <input type="button" name="버튼" value="시작" id="btn" onclick="func()" />
+    <div class="box"></div>
+    <div class="box"></div>
+  </body>
+  <script>
+    function func() {
+      let arr = [];
+      const boxColor = document.querySelectorAll(".box");
+      // console.log(boxColor);
+
+      for (i = 0; i < boxColor.length; i++) {
+        for (let i = 0; i < 3; i++) {
+          arr.push(parseInt(Math.random() * 256));
+        }
+        console.log(arr);
+        boxColor[i].style.backgroundColor = `rgb(${arr})`;
+        arr = [];
+      }
+
+      // let boxColor = [];
+      // boxColor = document.querySelectorAll(".box");
+      // console.log(boxColor);
+      // for (i = 0; i < 2; i++) {
+      //   boxColor[i].style.backgroundColor = `rgb(${arr})`;
+      // }
+
+      // console.log(boxColor);
+    }
+  </script>
+</html>

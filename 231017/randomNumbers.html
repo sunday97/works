@@ -7,7 +7,7 @@
   </head>
   <style>
     div {
-      background-color: yellow;
+      background-color: rgb(255, 149, 0);
       border: 1px solid red;
       width: 300;
       height: 500;
@@ -25,7 +25,7 @@
       // alert("randProc함수입니다.");
       let arr = [];
       for (let i = 0; i < 5; i++) {
-        arr.push(parseInt(Math.random() * 100 + 1));
+        arr.push(parseInt(Math.random() * 100 + 1)); // 소수점 제거
       }
       // console.log(arr);
       const res = document.getElementById("res");

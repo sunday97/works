@@ -134,3 +134,4 @@ https://www.gdweb.co.kr/main/
 UX : User Experience/ UI : User Interface
 IDEO 디자인 싱크 프로세스 5단계
 페르소나
+멘셀의 20색상.

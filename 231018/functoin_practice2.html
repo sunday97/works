@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수연습2번</title>
+  </head>
+  <body>
+    <input type="text" id="input" placeholder="이름을 적어주세요." />
+    <button onclick="clickFunc()">CLICK</button>
+    <p id="greeting">내용</p>
+  </body>
+  <script>
+    const clickFunc = function () {
+      const input = document.querySelector("#input");
+      document.querySelector("#greeting").innerHTML = input.value;
+      input.value = ""; //input태그에 남아있는 기록 초기화
+    };
+  </script>
+</html>

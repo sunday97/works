@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수연습</title>
+  </head>
+  <body>
+    <div id="name"></div>
+  </body>
+  <script>
+    // 이름을 prompt로 입력 받는다.
+    const userName = prompt("이름을 입력하세요.");
+    // 색상명을 prompt로 입력 받는다.
+    const color = prompt("색상명을 입력하세요.");
+    // 배경색상명을 prompt로 입력 받는다.
+    const backgroundColor = prompt("배경색을 입력하세요.");
+
+    const func = function (userName, color, backgroundColor) {
+      // 여기서 (userName, color)은 위의 prompt와 상관x, 함수의 인지 이름이다.
+      // 이름을 div 태크 안에 넣는다. innerHTML 이용
+      const divEL = document.querySelector("#name");
+      divEL.innerHTML = userName;
+      //   이름의 색을 입력받은 색상명으로 바꾼다. style.color
+      divEL.style.color = color;
+      //   이름의 색을 입력받은 배경 색상명으로 바꾼다.  style.backgroundColor
+      divEL.style.backgroundColor = backgroundColor;
+    };
+    func(userName, color, backgroundColor); // 마지막으로 호출을 한다.
+  </script>
+</html>
