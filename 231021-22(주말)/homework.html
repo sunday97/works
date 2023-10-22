@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙제HTMLCSS</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .wraper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .wraper>.menubar {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .wraper>.main {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .wraper>.main>.items {
+        display: flex;
+
+
+    }
+</style>
+
+<body>
+    <div class="wraper">
+        <header class="header">
+            <h1>Web Shopping</h1>
+        </header>
+        <div class="menubar">
+            <a href="#">HOME</a>
+            <a href="#">HOME</a>
+            <a href="#">HOME</a>
+            <a href="#">HOME</a>
+            <a href="#">HOME</a>
+        </div>
+        <main class="main">
+            <div class="sidebar lift">
+                <ul>
+                    <li>temp</li>
+                    <li>temp</li>
+                    <li>temp</li>
+                    <li>temp</li>
+                    <li>temp</li>
+                    <li>temp</li>
+                    <li>temp</li>
+                </ul>
+            </div>
+            <div class="items">
+                <div class="item">
+                    <div class="img"><img src="" alt=""></div>
+                    <div class="itemInfo">Lorem ipsum dolor sit amet.</div>
+                    <a href="" class="link">쇼핑카트에 추가하기</a>
+                </div>
+                <div class="item">
+                    <div class="img"><img src="" alt=""></div>
+                    <div class="itemInfo">Lorem ipsum dolor sit amet.</div>
+                    <a href="" class="link">쇼핑카트에 추가하기</a>
+                </div>
+                <div class="item">
+                    <div class="img"><img src="" alt=""></div>
+                    <div class="itemInfo">Lorem ipsum dolor sit amet.</div>
+                    <a href="" class="link">쇼핑카트에 추가하기</a>
+                </div>
+            </div>
+            <div class="sidebar right">
+                <p>title</p>
+                <P>없음</P>
+                <a href="#">쇼핑카트보기</a>
+                <div class="login">
+                    <p>LOGIN</p>
+                    <p>아이디</p>
+                    <input type="text">
+                    <p>비밀번호</p>
+                    <input type="text">
+                    <div class="loginbut">
+                        <button>로그인</button>
+                        <button>초기화</button>
+                    </div>
+                    <div class="joinMember">
+                        <a href="#">회원가입</a>
+                        <a href="#">비밀번호 분실</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>copy right ----</p>
+        </footer>
+    </div>
+</body>
+
+</html>
