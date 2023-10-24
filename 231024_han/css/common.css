@@ -1,0 +1,157 @@
+/* CSS RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* padding-top을 이용해 글자를 내리는 방법 */
+/* 그러나 박스의 높이가 달라지면 다시 노가다... */
+/* color:글자색이 아니라 기본색이다. */
+/* #box1 {
+  width: 200px;
+  height: 100px;
+  background-color: #0066cc;
+  color: #3df01e;
+  border: 5px solid;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 35px;
+} */
+
+/* 높이가 딱 얼마다 라고 할 필요가 없는 경우 */
+/* 높이가 얼만지 몰?루 */
+/* #box1 {
+  width: 200px;
+  background-color: #0066cc;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  padding: 30px 0;
+} */
+
+/* 글이 !한줄로! 끝나는 것이 확실할 때 */
+/* 정중앙 정렬 가능, 박스의 높이도 이야기할 수 있음. */
+/* line-height : 행간변경, 행간이 넓으면 글씨가 중앙으로 오는 특성이 있다.*/
+/* #box1 {
+  width: 200px;
+  height: 100px;
+  background-color: #0066cc;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 100px;
+} */
+
+/* 박스 화며의 정중앙 보내기 */
+/* translate는 자기 모습이 기준이다. */
+/* #box1 {
+  width: 200px;
+  height: 100px;
+  background-color: red;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+/* 글이 여러줄 일수도 있고 */
+/* 박스의 높이도 확실히 이야기 하고싶고 */
+/* 정확히 상하 중앙정렬을 하고 싶을 때! */
+#box2 {
+  width: 200px;
+  height: 100px;
+  background-color: red;
+  color: rgb(49, 133, 207);
+  position: relative;
+}
+#inner_box {
+  display: inline;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+nav ul {
+  list-style: none;
+}
+nav a {
+  text-decoration: none;
+}
+#lnb {
+  float: right;
+  padding-right: 15px;
+}
+
+.main {
+  float: left;
+}
+
+.main > a {
+  display: inline-block;
+  padding: 10px 15px;
+  color: #06c;
+  font-weight: bold;
+  position: relative;
+}
+
+.sub {
+  position: absolute;
+  background-color: #06c;
+  padding: 10px 5px;
+  width: 120px;
+  box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: none;
+}
+
+/* .main중에 막내 의 자식 .sub */
+.main:last-of-type > .sub {
+  margin-left: -30px;
+}
+
+.sub a {
+  color: white;
+  display: block;
+  padding: 4px 5px;
+}
+.sub a:hover {
+  background-color: #5af;
+}
+
+/* .main에 마우스를 올렸을때 */
+/* 방금마우스올린그것의 자식 .sub를 보여준다 */
+.main:hover > .sub {
+  display: block;
+}
+
+.main > a::before {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 0px;
+  background-color: #06c;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  transition: width 0.4s;
+}
+
+/* .main에 마우스를 올렸을때 */
+/* 마우스올린그것의 자식 a의 before의 */
+/* 가로길이를 늘리자 */
+.main:hover > a::before {
+  width: 80px;
+}
+
+#cover {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

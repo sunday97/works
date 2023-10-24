@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇼핑몰</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      html,
+      body,
+      #wrapper {
+        width: 100%;
+        height: 100%;
+      }
+      #wrapper {
+        display: grid;
+        /* 4개의 행으로 나눔 */
+        grid-template-rows: 1fr 1fr 6fr 1fr;
+        gap: 1%;
+        /* padding: 1%; */
+      }
+      /* 제외 : wrapper 아래의 div를 선택하는데 content의 자손 div를 빼고 */
+      #wrapper > div:not(#content div) {
+        border-radius: 50px;
+      }
+      #header1 {
+        background-color: #ffd65c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #header1 > div {
+        display: flex;
+        width: 30%;
+        align-items: center;
+      }
+      #header1 > div > span {
+        font-size: 2.5em;
+        font-weight: 900;
+        color: #551a8b;
+      }
+      #header2 {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #d1b3e0;
+        font-size: 20px;
+        letter-spacing: 0.5em;
+      }
+      #header2 > a {
+        color: white;
+        text-decoration: none;
+      }
+      li > a {
+        color: white;
+        text-decoration: none;
+      }
+      @media screen and (min-width: 1065px) {
+        #content {
+          /* background-color: aqua; */
+          display: grid;
+          grid-template-columns: 1fr 4fr 1fr;
+          gap: 0.7%;
+        }
+      }
+      @media screen and (max-width: 1064px) {
+        #content {
+          /* background-color: aqua; */
+          display: grid;
+          /* grid-template-columns: 1fr 4fr 1fr; */
+          gap: 0.7%;
+          .aside {
+            display: none;
+          }
+        }
+      }
+      @media screen and (max-width: 880px) {
+        #wrapper {
+          grid-template-rows: 1fr 7fr 1fr;
+        }
+        #header2 {
+          display: none;
+        }
+      }
+      #main {
+        background-color: #fafafa;
+        display: grid;
+        /* repeat(반복수, minmax(최솟값, 최댓값)) */
+        /* flex의 shrink와 grow */
+        /* 그러나 요즘 모바일용은 가로로 길면 못쓰기 때문에 지양하는 형식이다. */
+        grid-template-columns: repeat(3, minmax(120px, auto));
+        gap: 1%;
+        padding: 2%;
+        border-radius: 50px 50px 0 0;
+      }
+      .item {
+        display: grid;
+        grid-template-rows: 5fr 4fr 1fr;
+        border: 1px solid #e1e1e1;
+        padding: 5%;
+        border-radius: 50px 50px 0 0;
+        gap: 1%;
+      }
+
+      .item > div {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .aside {
+        background-color: #faebeb;
+        border-radius: 50px 50px 0 0;
+        padding: 15% 8%;
+      }
+      #category {
+        background-color: #e6b3b3;
+        list-style: none;
+        /* 리스트에 기본적으로 있는 padding 제거 */
+        padding: 0;
+      }
+      #category > li {
+        padding: 8%;
+        font-size: 1.2em;
+        font-weight: 600;
+        border-bottom: 1px solid #d1a3a3;
+      }
+      #category > li:nth-child(1) {
+        border-top: 1px solid #d1a3a3;
+      }
+
+      #footer {
+        background-color: #ccccf2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header1">
+        <div>
+          <img src="쇼핑백.jpg" style="width: inherit; max-height: 80px" />
+          <span>Web Shopping</span>
+        </div>
+      </div>
+      <div id="header2">
+        <a href="#">HOME</a>
+        <a href="#">SHOPPING ABOUT</a>
+        <a href="#">NEWS</a>
+        <a href="#">MT ACOUNT</a>
+        <a href="#">CONTACTS</a>
+      </div>
+      <div id="content">
+        <div id="aside1" class="aside">
+          <h2>카테고리</h2>
+          <ul id="category">
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div id="main">
+          <div id="item1" class="item">
+            <!-- 이미지 -->
+            <div style="background-image: url('한성컴퓨터.jpg')"></div>
+            <!-- 내용 -->
+            <span
+              >한성컴퓨터 데스크탑 프리워커 F12700W (i7-12700 엘더레이크 WIN11
+              Home RAM 8GB NVMe 250GB)</span
+            >
+            <!-- 버튼 -->
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+          <div id="item2" class="item">
+            <!-- 이미지 -->
+            <div style="background-image: url('본체.jpg')"></div>
+            <!-- 내용 -->
+            <span
+              >한성컴퓨터 데스크탑 프리워커 F12700W (i7-12700 엘더레이크 WIN11
+              Home RAM 8GB NVMe 250GB)</span
+            >
+            <!-- 버튼 -->
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+          <div id="item3" class="item">
+            <!-- 이미지 -->
+            <div style="background-image: url('tow본체.jpg')"></div>
+            <!-- 내용 -->
+            <span
+              >한성컴퓨터 데스크탑 프리워커 F12700W (i7-12700 엘더레이크 WIN11
+              Home RAM 8GB NVMe 250GB)</span
+            >
+            <!-- 버튼 -->
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+        <div id="aside2" class="aside">
+          <h2>Sshopping Cart</h2>
+          <p>현재 쇼핑카드에 물품이 없습니다.</p>
+          <a href="#">쇼핑카트 보기</a>
+          <br /><br />
+          <form action="...">
+            <h2>Log In</h2>
+            <span>아이디</span>
+            <p><input type="text" style="width: 100%" name="ID" /></p>
+            <span>비밀번호</span>
+            <p><input type="password" style="width: 100%" /></p>
+            <!-- submit으로 하면 Enter키가 작동가능함. -->
+            <input type="submit" value="로그인" name="PW" />
+            <!-- form태그 안의 값을 날려줌. -->
+            <input type="reset" value="초기화" />
+          </form>
+          <br />
+          <a href="#">회원가입</a>
+          <a href="#">비밀번호 분실</a>
+        </div>
+      </div>
+      <div id="footer">
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+  </body>
+</html>
