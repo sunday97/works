@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;400;700&display=swap");
+
+/* {} 단위 : css에선 rule 이라고 한다. */
+
+/* CSS RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  /* a는 상속을 받긴 받는데 기본색상은 받지 않는다. */
+  text-decoration: none;
+  color: #333;
+}
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
+}
+nav ul {
+  list-style: none;
+}
+
+/* modal window의 뒷배경 */
+/* modal window가 가운데 오도록하는 부모역활 
+화면전체를 꽈악! 채우는 면적
+스크롤따라 올라가면 안됨*/
+
+#modal_back {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#modal_win {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 12px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  max-width: 700px;
+  width: calc(100% - 30px);
+}
+#modal_header {
+  height: 40px;
+  border-bottom: 1px solid #999;
+  padding-top: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: aquamarine;
+  border-radius: 5px 5px 0 0;
+}
+#modal_header > h4 {
+  float: left;
+}
+#modal_close {
+  float: right;
+  width: 22px;
+  height: 22px;
+  font-size: 1.2em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#modal_body {
+  padding: 20px 10px;
+}

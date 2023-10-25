@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal window</title>
+    <meta name="name" content="tae" />
+    <meta name="keywords" content="팝업, 모달, 모달창, 레이어팝업, 환기" />
+    <meta
+      name="description"
+      content="HTML, CSS를 이용해 기존의 내용은 그대로 유지하면서 새로운 내용을 환기하여 보여주는 modal window를 제작할 수 있다."
+    />
+    <link rel="stylesheet" href="css/common.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Lorem.</h1>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita magnam
+      tenetur consequuntur ullam magni nihil delectus perferendis, rem dolor
+      animi voluptatem consectetur quis quidem veritatis corrupti nulla fugit
+      vero tempore.
+    </p>
+    <h1>애국가</h1>
+    <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사</p>
+
+    <button type="button" id="modal_open">모달 열기</button>
+
+    <div id="modal_back">
+      <div id="modal_win">
+        <div id="modal_header">
+          <h4>Modal window</h4>
+          <button type="button" id="modal_close">&times;</button>
+        </div>
+        <div id="modal_body">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
+          cum modi consequatur omnis dolor repellat nihil. Expedita magni
+          eveniet voluptate id, quo, nostrum at omnis, facilis ad numquam quam
+          impedit!
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // #modal_open을 눌리면 이런일이벌어질것이다.
+      //    modal_back의 스타일 중 display의 값을 "block"으로 변경한다.
+      //    (숨겨졌던 #modal_back이 보여진다.)
+      //   document.getElementById("modal_open").onclick = function () {
+      //     document.getElementById("modal_back").style.display = "block";
+      //   };
+      //   jquery
+      $("#modal_open").click(function () {
+        // $("#modal_back").show();
+        $("#modal_back").fadeIn();
+      });
+
+      // #modal_close를 눌리면 이런일이벌어질것이다.
+      //    modal_back의 스타일 중 display의 값을 "none"으로 변경한다.
+      //    (보여졌던 #modal_back이 숨겨진다.)
+      //   document.getElementById("modal_close").onclick = () => {
+      //     document.getElementById("modal_back").style.display = "none";
+      //   };
+      //   jquery
+      $("#modal_close").click(function () {
+        // $("#modal_back").hide();
+        $("#modal_back").fadeOut();
+      });
+    </script>
+  </body>
+</html>

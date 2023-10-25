@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="string, 객체, 장관, method" />
+    <title>스트링 객체</title>
+  </head>
+  <body></body>
+  <script>
+    // 0. string 객체 생성
+    let str = "String"; // string wrapper class : 그냥 스트링
+    // let strObj = new String("비울 수도 있고 여기다 바로 쓸 수도 있다."); //string object : 필드생성
+    // string wrapper class vs string object : 자식과 부모의 관계다. 부모(string object)의 특성을 자식(wrapper)을 사용할 수 있다.
+    let strObj = new String("String"); //string object
+    console.log(typeof str);
+    console.log(typeof strObj);
+    console.log(str);
+    console.log(strObj);
+    // 로그를 확인해보면 STRING객체의 특성을 알 수 있음.
+    console.log(str == strObj);
+    console.log(str === strObj);
+
+    console.log("String 객체");
+
+    document.write(`<h2>charAt() 함수</h2>`);
+    // 1. charAt() 함수
+    // Stirng에서 전달받은 인덱스 위치한 문자나 문자코드를 반환한다.
+    const str1 = "Javascript";
+    document.write(`str1 : ${str1} <br>`);
+    document.write(`0번째 인덱스 : ${str1.charAt()} <br>`);
+    document.write(`5번째 인덱스 : ${str1.charAt(5)} <br>`);
+
+    document.write("<hr>");
+
+    document.write(`<h2>charCodeAte() 함수</h2>`);
+    // 2.charCodeAte() 함수
+    // Stringㅇ서 전달받은 인덱스에 위치한 문자를 유니코드-(DEC)-값으로 반환한다.
+    document.write(`str1 = ${str1} <br>`);
+    document.write(`0번째 인덱스의 유니코드 값 : ${str1.charCodeAt()} <br>`);
+    document.write(`5번째 인덱스의 유니코드 값 : ${str1.charCodeAt(5)} <br>`);
+
+    document.write("<hr>");
+
+    document.write(`<h2>indexOf() 함수</h2>`);
+    // 3. indexOf() 함수
+    // String에서 특정 '문자'나 '문자열'이 처음으로 등장하는 위치(index)를 반환한다.
+    const str2 = "abcDEFabc";
+    document.write(`str2 : ${str2} <br>`);
+    document.write(`abc가 시작되는 인덱스 : ${str2.indexOf("abc")} <br>`);
+    // 문자열을 비교할 때 문자의 대소문자를 구분한다.
+    document.write(`abcd가 시작되는 인덱스 : ${str2.indexOf("abcd")} <br>`);
+    // 뒤의 파라마터는 서칭 범위 시작 인덱스 번호다.
+    document.write(
+      `abc 인덱스 3부터 시작되는 인덱스 : ${str2.indexOf("abc", 3)} <br>`
+    );
+    // 서칭인덱스 번호의 번위는 자신의 번호도 포함이다.
+    document.write(
+      `abc 인덱스 6부터 시작되는 인덱스 : ${str2.indexOf("abc", 6)} <br>`
+    ); // 6
+
+    document.write("<hr>");
+
+    document.write(`<h2>lastIndexOf() 함수</h2>`);
+    // 3. lastIndexOf() 함수
+    // String에서 특정 '문자'나 '문자열'이 마지막으로 등장하는 위치(index)를 반환한다.
+    document.write(
+      `abc가 마지막으로 등장하는 곳의 시작 인덱스 : ${str2.lastIndexOf(
+        "abc"
+      )} <br>`
+    );
+    document.write(
+      `c가 마지막으로 등장하는 곳의 시작 인덱스 : ${str2.lastIndexOf("c")} <br>`
+    );
+
+    document.write("<hr>");
+
+    document.write(`<h2>concat() 함수</h2>`);
+    // 3. concat() 함수
+    // String에 전달받은 문자열을 결합한 새로운 문자열을 반환한다.
+    const str3 = "Javascript";
+    document.write(
+      `concat으로 문자열 결합 : ${str3.concat(" is Awesome!")} <br>`
+    );
+    document.write(
+      `concat으로 문자열 결합 : ${str3.concat(
+        " is Awesome!",
+        " and usefull!!"
+      )} <br>`
+    );
+
+    document.write("<hr>");
+
+    document.write(`<h2>trim() 함수</h2>`);
+    // 3. trim() 함수
+    // String 의 '양 끝에 존재'하는 모든 공백과 줄 바꿈 문자를 제거한 새로운 문자열을 반환한다.
+    const str4 = "J a v a s c r i p t";
+    document.write(`trim으로 공백제거 :${str4.trim()}`);
+
+    // toLowerCass() and toUpperCass()
+
+    document.write("<hr>");
+
+    document.write(`<h2>replace() 함수</h2>`);
+    // 3. replace() 함수
+    // String 에서 인수로 전달받은 정규 표현식을 이용하여 String의 대체 작업을 수행한다.
+    // replace(대체될 문자(열), 대체할 문자(열))
+
+    /**
+     * 정규표현식?
+     * 문자열에서 특정한 규칙을 갖는 문자열을 집합을 찾아내기 위한 검색 패턴이다.
+     * 문법: /검색패턴/플래그
+     * 플래그 설명
+     * *i - 검색 패턴을 비교할 때 대소문자를 구분하지 않도록 설정.
+     * *g - 검색 패턴을 비교할 때 일치하는 모든 부분을 선택하도록 설정.
+     * *m - 검색 패턴을 비교할 때 여러줄의 입력 문자열을 그대로 여러줄로 비교하도록 설정.
+     * *y - 대상 문자열의 현재 위치부터 비교를 시작하도록 설정.
+     */
+
+    /**
+     * 특수문자(검색패턴으로 들어갈 수 있는)
+     * : 단순한 패턴을 검색하고자 할 때는 찾고자하는 문자열을 직접 나열하면 된다.
+     * 그러나 숫자만을 검색, 띄어쓰기, 특수문자들을 검색하려면 검색패턴으로 특정한 특수문자를 사용해야한다.
+     * * \ : 역슬래시 다음에 일반 문자가 나오면 이스케이프? 문자로 해석하고, 특수문자가 나오면 일반문자로 해석한다.
+     * * * \d : 숫자를 검색. == /[0-9]/
+     * * * \D : 숫자가 아닌 문자를 검색 == /[^0-9]/
+     * * * \w : 언더바(_)를 포함한 영문자 및 숫자를 검색 == /[A-Za-z0-9_]/
+     * * * \W : 언더바(_), 영문자, 숫자가 아닌 문자를 검색 == /[^A-Za-z0-9_]/
+     * * * \s : 띄어쓰기, 탭, 줄바꿈 문자 등의 공백 문자를 검색
+     * * * \S : 띄어쓰기, 탭, 줄바꿈 문자 등의 공백 문자가 아닌 문자를 검색
+     * * * \b : 단어의 맨 앞이나 맨 뒤가 패턴과 일치하는지를 검색
+     */
+
+    // 전화번호 검색패턴 예 : 000-0000-0000 => /[0-9]{3}-[0-9{4}]-[0-9{4}]/
+    // 이메일 검색패턴 예 : 000@000.000(.000) => /[0-9a-zA-Z]+@[a-z]+\.[a-z\.]{3,}/
+
+    document.write();
+
+    const str5 = "javascript is AweSome";
+    document.write(`is 를 공백으로 대체 : ${str5.replace("is", "")} <br>`);
+    // 한계 : 가장 먼저 나온 하나의 경우만 변경
+    document.write(`s 를 *으로 대체 : ${str5.replace(/s/gi, "*")} <br>`); // java*cript i* Awe*ome
+    document.write(`s 를 *으로 대체 : ${str5.replace(/s/g, "*")} <br>`); // java*cript i* AweSome
+  </script>
+</html>

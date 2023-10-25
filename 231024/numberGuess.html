@@ -12,31 +12,61 @@
     <button type="button" onclick="test()">숫자 추측</button>
     <p id="message"></p>
   </body>
+  <!-- JS -->
   <script>
     let randNum = 0;
     let count = 0;
     // 보통 상수를 변수로 지정할 때 변하지 않을 것이기 때문에 대문자로 선언함.
     const MAX_COUNT = 5;
+    const message = document.querySelector("#message");
+    const input = document.querySelector("#number");
+    let resStr = "";
+
     function getRandom() {
-      parseInt(Math.random() * 100 + 1);
+      randNum = parseInt(Math.random() * 100 + 1);
     }
-    console.log(getRandom);
     function reset() {
       count = 0;
       getRandom();
+      message.innerHTML = "";
+      input.value = "";
+      resStr = "";
     }
     function test() {
-      const input = document.querySelector("#number");
       if (randNum == input.value) {
         alert(`게임에서 승리하셨습니다. 컴퓨터의 숫자 : ${randNum}`);
         reset();
       } else {
         count++;
+
+        let upDown = "";
+        if (input.value > randNum) {
+          upDown = "작습니다.";
+        } else if (input.value < randNum) {
+          upDown = "큽니다.";
+        }
+        // 1번째 방법
+        // const spanTag = document.createElement("span");
+        // spanTag.innerHTML = `컴퓨터의 숫자는 사용자의 입력 숫자보다 ${upDown}. 입력숫자 : ${
+        //   input.value
+        // }, 남은횟수 : ${MAX_COUNT - count} <br>`;
+        // message.appendChild(spanTag);
+
+        // 2번째 방법
+        resStr += `컴퓨터의 숫자는 사용자의 입력 숫자보다 ${upDown}. 입력숫자 : ${
+          input.value
+        }, 남은횟수 : ${MAX_COUNT - count} <br>`;
+        message.innerHTML = resStr;
+
+        // append vs appendChild 차이점 찾아보기
+
         if (count == MAX_COUNT) {
           alert(`게임에서 패배하셨습니다. 컴퓨터의 숫자 : ${randNum}`);
           reset();
         }
       }
+      input.value = "";
     }
+    getRandom();
   </script>
 </html>
