@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap");
+/* font-family: 'Noto Sans KR', sans-serif; */
+
+/* css reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
+  /* 작은 그리고 모여 있는 게 이쁘다 : 선생님 추천*/
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+nav ul {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  padding: 0 10px;
+}
+
+header {
+  /* 배경, 높이 */
+  background-color: #1e90ff;
+  background-color: #be3455;
+  height: 100px;
+}
+header h1 {
+  float: left;
+  margin-top: 14px;
+}
+
+header h1 a {
+  color: white;
+  display: block;
+}
+
+header h1 small {
+  display: block;
+  font-size: 0.5em;
+}
+#header_menu {
+  float: right;
+}
+#gnb {
+  float: right;
+  margin-top: 10px;
+}
+.gmain {
+  float: left;
+  margin-left: 15px;
+  position: relative;
+}
+.gmain::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 0.8em;
+  background-color: white;
+  position: absolute;
+  right: -8px;
+  top: 6px;
+}
+.gmain:last-of-type::after {
+  content: none;
+}
+.gmain a {
+  color: white;
+}
+
+.gmain:first-of-type > a {
+  /* 겹쳐서 마우스 호버 팅기기 */
+  padding-bottom: 10px;
+}
+
+.gsub {
+  margin-top: 5px;
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.2);
+  z-index: 800;
+}
+.gsub a {
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  display: block;
+  padding: 3px 0;
+}
+.gsub li:last-of-type a {
+  border-bottom: none;
+}
+.gmain:hover .gsub {
+  display: block;
+}
+
+header .container {
+  position: relative;
+}
+
+#lnb {
+  /* clear: both; : 다른 요소에 달린 reft, raght float의 영향을 받지 않겠다. */
+  /* clear: both; */
+  /* float: right; */
+  /* position: absolute; 쓸려고 float 지움 */
+  margin-top: 8px;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  /* overflow: hidden; */
+  /* height: 55px; */
+}
+
+.main {
+  float: left;
+  /* hover했을 때 전체가 보여야 해서 넓이를 줬다. */
+  width: 130px;
+}
+.main > a {
+  display: block;
+  text-align: center;
+  padding: 15px 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  position: relative;
+}
+.main > a::after {
+  content: "";
+  display: block;
+  width: 3px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  right: -1.5px;
+  bottom: -6px;
+  border-radius: 1px 1px 0 0;
+}
+.main:last-of-type > a::after {
+  display: none;
+}
+
+.sub {
+  width: 130px;
+  height: 300px;
+  border-right: 1px solid #cccccc;
+}
+.sub a {
+  display: block;
+  padding: 3px 15px;
+  border-bottom: 1px solid #ccc;
+  background-color: #fefefe;
+}

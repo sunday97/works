@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스트링 함수 연습</title>
+  </head>
+  <body></body>
+  <script>
+    // 주어진 문자열의 홀수번째 문자는 대문자로, 짝수번째 문자는 소문자로 변경해주세요.
+    // "try hello world"
+    const str = "try hello world";
+    // // console.log(str.split(""));
+    // let strArr = str.split("");
+    // console.log(strArr);
+    // let strArrUp = [];
+    // for (let i = 0; i < strArr.length; i += 2) {
+    //   strArrUp.push(strArr[i].toUpperCase());
+    // }
+    // console.log(strArrUp);
+
+    // 작동안함 왜? 아래랑 뭐가 다름? ...오타...
+    function toUpperLowerCase(string) {
+      let result = "";
+      for (let i = 0; i < string.length; i++) {
+        if (i % 2 == 0) {
+          result += string.charAt(i).toUpperCase();
+        } else {
+          result += string.charAt(i).toLowerCase();
+        }
+      }
+      return result;
+    }
+
+    // 1번
+    // function toUpperLowerCase(string) {
+    //   let result = "";
+    //   for (let i = 0; i < string.length; i++) {
+    //     console.log(string[i]);
+    //     if (i % 2 == 0) {
+    //       result += string.charAt(i).toUpperCase();
+    //     } else {
+    //       result += string.charAt(i).toLowerCase();
+    //     }
+    //   }
+    //   return result;
+    // }
+
+    // 2번
+    // function toUpperLowerCase(string) {
+    //   let result = "";
+    // result +=
+    //       i % 2 == 0 ? string[i].toUpperCase() : string[i].toLowerCase();
+    //   }
+
+    document.write(`${toUpperLowerCase(str)}<br>`);
+
+    // 문자열의 길이가 4 혹은 6이고, 숫자로만 구성돼어있는지 확인해주는 함수 작성
+    // "a234" ==> false / "1234" ==> true
+
+    const tempNum = "203233";
+    const str2 = "a234";
+    const str3 = "1234";
+    let reg = /[0-9]{4,6}/;
+    console.log(reg.test(tempNum));
+    function checkStr(s) {
+      if (s.length == 4 || s.length == 6) {
+        if (s.replace(/[0-9]/g, "").length == 0) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+
+      //   1번
+      //   if (s.length == 4 || s.length == 6) {
+      //     if (s.replace(/[0-9]/g, "").length == 0) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   } else {
+      //     return false;
+      //   }
+
+      //   2번
+      //   return (
+      //     (s.length == 4 || s.length == 6) && s.replace(/[0-9]/g, "").length == 0
+      //   );
+    }
+
+    document.write(`${checkStr(str3)}<br>`);
+  </script>
+</html>
