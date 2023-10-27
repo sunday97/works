@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>e~~~vent</title>
+  </head>
+  <style>
+    p {
+      background-color: dodgerblue;
+      height: 200px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+  </style>
+  <body>
+    <p id="pTag">이벤트 리스너 테스트</p>
+    <input id="inputTag" type="text" />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+  <script>
+    // **이벤트 리스너(event listener)**
+    // 이벤트 리스너란 이벤트가 발생했을 때 그 처리르 담당하는 함수를 가리키며, 이벤트 핸들러(event handler)라고도 한다.
+    // 지정된 타입의 이벤트가 특정 요소에서 발생하면, 그 요소에 등록된 이벤트 리스너를 실행시킨다.
+
+    // **이벤트 리스너 등록 방법**
+    // 1.HTML 태그에 속성으로 등록
+    // 2.javascrit 에서 프로퍼티로 등록✨
+
+    // addEventListener() 함수
+    // 대상객체.addEventListener(이벤트명, 실행할이벤트리스너, 이벤트전파방식(flase(기본)))
+
+    // *마우스 이벤트
+    const pTag = document.getElementById("pTag");
+
+    // click
+    // pTag.addEventListener("click", function () {
+    //   alert("click 이벤트 발생");
+    // });
+
+    // dblclick
+    // pTag.addEventListener("dblclick", function () {
+    //   alert("dblclick 이벤트 발생");
+    // });
+
+    // click과 dblclick은 동시에 사용할 수 없당. >-<
+
+    //mousedown - 마우스를 누르고 있을 때
+    // pTag.addEventListener("mousedown", function () {
+    //   alert("mousedown 이벤트 발생");
+    // });
+
+    // mouseup - 눌렀던 마우스 버튼을 뗄 때
+    // pTag.addEventListener("mouseup", function () {
+    //   alert("mouseup 이벤트 발생");
+    // });
+
+    // mousemove - 마우스를 움직였을 때
+    // pTag.addEventListener("mousemove", function () {
+    //   alert("mousemove 이벤트 발생");
+    // });
+
+    // mouseover - 마우스를 해당 요소 바깥에서 안으로 옮겼을 때
+    // pTag.addEventListener("mouseover", function () {
+    //   alert("mouseover 이벤트 발생");
+    // });
+
+    // mouseout - 마우스를 해당 요소 안에서 바깥으로 옮겼을 때
+    // pTag.addEventListener("mouseout", function () {
+    //   alert("mouseout 이벤트 발생");
+    // });
+
+    // contextmenu -마우스 오른쪽버튼을 누렀을 때
+    // pTag.addEventListener("contextmenu", function () {
+    //   alert("contextmenu 이벤트 발생");
+    // });
+
+    // preventDefault - 작동을 중지합니다.
+    // pTag.addEventListener("preventDefault", function (enent) {
+    //   event.preventDefault();
+    //   alert("마우스 오른쪽 버튼이 작동하지 않는 사이트입니다.");
+    // });
+
+    //  *UI 이벤트
+    //  load : doc 그려지기 전에
+    // window.addEventListener("load", function () {
+    //   alert("load 이벤트 발생");
+    // });
+
+    // resize : page size
+    // window.addEventListener("resize", function () {
+    //   alert("resize 이벤트 발생");
+    // });
+
+    // scroll
+    // window.addEventListener("scroll", function () {
+    //   alert("scroll 이벤트 발생");
+    // });
+
+    // *keyboard 이벤트
+    const inputTag = document.getElementById("inputTag");
+
+    // keydown - 사용자가 키를 처음 눌렀을 때
+    // inputTag.addEventListener("keydown", function (event) {
+    // alert("keydown 이벤트 발생");
+    // console.log(`key : ${event.key}, code : ${event.code}`);
+    // console.log(event);
+    // });
+
+    // keyup - 사용자가 키를 뗼 때
+    // inputTag.addEventListener("keyup", function (event) {
+    // console.log(`key : ${event.key}, code : ${event.code}`);
+    // });
+
+    // keyup과 replace를 활용한 input창 안에서 한글 막기
+    inputTag.addEventListener("keyup", function (event) {
+      inputTag.value = inputTag.value.replace(/[ㄱ-ㅎ ㅏ-ㅣ 가-힣]/g, "");
+      console.log(`key : ${event.key}, code : ${event.code}`);
+    });
+
+    // keypress - 사용자가 눌렀던 키의 문자가 입력되었을 때
+    // inputTag.addEventListener("keypress", function (event) {
+    // console.log(`key : ${event.key}, code : ${event.code}`);
+    // });
+
+    // 순서 : keydown - keypress - keyup
+
+    //포커스 이벤트
+    // focus - 요소가 포커스를 얻었을 때
+    // inputTag.addEventListener("focus", function () {
+    //   alert("focus 이벤트 발생");
+    // });  // 이렇게 사용 안함
+    inputTag.focus(); // 보통 이렇게 사용함
+  </script>
+</html>

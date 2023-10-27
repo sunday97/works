@@ -12,12 +12,12 @@
   <script>
     function openPopup() {
       // scrollbars=no, resizable=no는 IE에서만 적용가능
-      const child = open(
+      let child = open(
         "http://www.google.co.kr",
         "_blank",
         "width=1000,height=500,"
       );
-      // console.log(child);
+      console.log(child);
       // child.close();
       // ?? 왜 안됨
       function closePopup() {

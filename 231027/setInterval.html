@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>setInterval 함수</title>
+  </head>
+  <body>
+    <p>버튼을 누르면 계속해서 문구가 화면에 표시됩니다.</p>
+    <button onclick="interval()">START</button>
+    <button onclick="stopInterval()">STOP</button>
+  </body>
+  <script>
+    let printPtag;
+    function interval() {
+      console.log("printPtag 실행 전");
+      printPtag = setInterval(function () {
+        // body에 문구를 1초마다 넣어주는 방법
+        //  pTag = document.createElement("p");
+        // document.body.append(pTag, "계속해서 생성되는 문구입니다.");
+
+        // p태그의 배경과 기본색을 랜덤으로 1초마다 바꾸는 방법
+        let backGroundArr = [];
+        let colorArr = [];
+        for (i = 0; i < 2; i++) {
+          for (j = 0; j < 3; j++) {
+            const randNum = parseInt(Math.random() * 256);
+            i == 0 ? backGroundArr.push(randNum) : colorArr.push(randNum);
+            // if (i == 0) {
+            //   backGroundArr.push(parseInt(Math.random() * 256));
+            // } else {
+            //   colorArr.push(parseInt(Math.random() * 256));
+            // }
+          }
+        }
+        const pTag = document.querySelector("p");
+        pTag.style.backgroundColor = `rgb(${backGroundArr.toString()})`;
+        pTag.style.backgroundColor = `rgb(${colorArr.toString()})`;
+      }, 1000);
+      console.log("printPtag 실행 후");
+
+      //   console.log("clearInterval 실행 전");
+      //   clearInterval(printPtag);
+      //   console.log("clearInterval 실행 후");
+    }
+    function stopInterval() {
+      clearInterval(printPtag);
+    }
+  </script>
+</html>
