@@ -1,0 +1,112 @@
+.item {
+  position: relative;
+}
+
+.item > img {
+  width: 100%;
+}
+.item-text {
+  position: absolute;
+  left: 50px;
+  bottom: 70px;
+  padding: 30px 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  border-radius: 0 30px 0 30px;
+  text-shadow: 0.05em 0.2em 0.3em rgba(255, 255, 255, 0.8);
+}
+
+.item-text h3 {
+  font-size: 2em;
+}
+
+.slick-arrow {
+  position: absolute;
+  /* .slider엔 position:releative가 달려있네? */
+  bottom: 120px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* 투명 */
+  color: white;
+  border: 1px solid white;
+  backdrop-filter: blur(5px);
+}
+.slick-arrow:hover {
+  background-color: white;
+  color: #333;
+}
+.slick-next {
+  right: 50px;
+}
+.slick-prev {
+  right: 99px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+}
+.slick-dots li {
+  /* li가 블록속성이라 옆으로 나란히 하려고 */
+  float: left;
+  margin: 10px;
+}
+.slick-dots li button {
+  font-size: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  /* 50%아닌 이유는 active되었을 때 알약모양을 만들려고 */
+  border: none;
+  box-shadow: 3px 5px 6px rgba(255, 255, 255, 0.5);
+  transition: all 0.4s;
+}
+
+.slick-dots li.slick-active button {
+  width: 40px;
+}
+
+#cards {
+  background-color: #cceeff;
+  padding: 80px 0;
+  margin-top: 30px;
+  /* 상하값 자동 */
+  overflow: auto;
+}
+.card {
+  width: calc((100% - 60px) / 3);
+  float: left;
+  margin: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 3px 10px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px 15px;
+  transition: all 0.3s;
+}
+.card i {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+.card h3 {
+  font-size: 1.5em;
+}
+.card:hover {
+  margin-top: -10px;
+  transform: scale(1.05);
+  /* 물건이이 가까워지면 그림자의 변화 */
+  box-shadow: 3px 15px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* @media screen */
+@media all and (max-width: 700px) {
+  .card {
+    float: none;
+    width: calc(100% - 20px);
+  }
+}

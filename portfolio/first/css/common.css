@@ -125,8 +125,14 @@ header .container {
   position: absolute;
   right: 0;
   top: 30px;
-  /* overflow: hidden; */
-  /* height: 55px; */
+  overflow: hidden;
+  height: 55px;
+  transition: all 0.3s;
+  z-index: 10000;
+}
+#lnb:hover {
+  height: 180px;
+  border-bottom: 1px solid #ccc;
 }
 
 .main {
@@ -162,10 +168,23 @@ header .container {
   width: 130px;
   height: 300px;
   border-right: 1px solid #cccccc;
+  background-color: white;
 }
 .sub a {
   display: block;
   padding: 3px 15px;
   border-bottom: 1px solid #ccc;
   background-color: #fefefe;
+}
+
+footer {
+  margin-top: 60px;
+  background-color: #be3455;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  text-align: right;
+}
+footer a {
+  color: white;
 }
