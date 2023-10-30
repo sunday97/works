@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Tree Practice</title>
+  </head>
+  <body>
+    <!-- 경우 1 -->
+    <!-- <ul>
+      <li>list item 1</li>
+      <li>list item 2</li>
+      <li>list item 3</li>
+      <li>list item 4</li>
+      <li>list item 5</li>
+    </ul> -->
+    <!-- 경우 2 -->
+    <ul>
+      <li><span>list item 1</span></li>
+      <li><span>list item 2</span></li>
+      <li><span>list item 3</span></li>
+      <li><span>list item 4</span></li>
+      <li><span>list item 5</span></li>
+    </ul>
+  </body>
+  <script>
+    let list = document.getElementsByTagName("ul")[0];
+    let allItems = list.getElementsByTagName("li");
+    // let childNodesEx = list.childNodes;
+    // console.log(childNodesEx);
+
+    console.log(allItems);
+    allItems[4].lastChild.style.color = "red";
+
+    //노드로 잡혔기 때문에(개행, 띄어쓰기도 요소로 포함한다.) previousSibling을 2번 사용했다.
+    allItems[2].previousSibling.previousSibling.style.color = "yellow";
+    allItems[2].nextSibling.previousSibling.style.color = "blue";
+
+    for (let i = 0, length = allItems.length; i < length; i++) {
+      //   alert(allItems[i].firstChild.data);
+      //   console.log(allItems[i].firstChild.data);
+      //   console.log(allItems[i]);
+      //   console.log(allItems[i].firstChild);
+      //   console.log(allItems[i].firstChild.innerHTML);
+    }
+  </script>
+</html>

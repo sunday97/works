@@ -15,7 +15,45 @@
   </style>
   <body>
     <p id="pTag">이벤트 리스너 테스트</p>
-    <input id="inputTag" type="text" />
+    <!-- action= : 어디로 보낼 건가? -->
+    <form action="...">
+      <input id="inputTag" type="text" class="formEl" /><br />
+      <textarea id="textareaTag" cols="25" rows="5" class="formEl"></textarea
+      ><br />
+      <br />
+      <select class="chageTest">
+        <option>현대</option>
+        <option selected>기아</option>
+        <option>KG모빌리티</option>
+      </select>
+      <br />
+      <input
+        type="radio"
+        value="male"
+        id="male"
+        name="gender"
+        class="chageTest"
+      />
+      <label for="male">남자</label>
+      <input
+        type="radio"
+        value="female"
+        id="female"
+        name="gender"
+        class="chageTest"
+      />
+      <label for="female">여자</label>
+      <br />
+      <input type="checkbox" id="apple" class="chageTest" />
+      <label for="apple">사과</label>
+      <input type="checkbox" id="banana" class="chageTest" checked />
+      <label for="banana">바나나</label>
+      <input type="checkbox" id="grapefruit" class="chageTest" />
+      <label for="grapefruit">자몽</label>
+      <br />
+      <input type="submit" value="제출" id="submitBtn" />
+      <input type="reset" value="초기화" id="resetBtn" />
+    </form>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
   </body>
@@ -132,5 +170,66 @@
     //   alert("focus 이벤트 발생");
     // });  // 이렇게 사용 안함
     inputTag.focus(); // 보통 이렇게 사용함
+
+    // blur - 요소가 포커스를 잃었을 때
+    // inputTag.addEventListener("blur", function () {
+    //   alert("blur 이벤트 발생");
+    // });
+
+    // 폼(form) 이벤트
+    // input - input, textarea 태그의 값이 변경되었을 때
+    // 클래스로 요소 선택하기
+    // const classEl = document.getElementsByClassName("formEl");  // 아마 set 객체로 나와서 forEach 사용 불가
+    // const classEl = document.querySelectorAll(".formEl"); // 그래서 class 전체에 event를 걸어줄 경우 querySelectorAll을 사용하자.
+    // console.log(classEl);
+    // console.log(typeof classEl); // 객체로 나오네?
+
+    // classEl.forEach((el) => {
+    //   el.addEventListener("input", function () {
+    //     alert("input 이벤트 발생");
+    //   });
+    // });
+
+    // chage - 선택상자, 체크방스, 라디오 버튼의 상태가 변경되었을 때
+    const chageEl = document.querySelectorAll(".chageTest");
+    chageEl.forEach(function (el) {
+      el.addEventListener("change", function () {
+        console.log(this);
+        // alert("change 이벤트 발생");
+      });
+    });
+
+    // submit, reset
+    // 아래의 경우처럼 사용하는 경우는 거의 없고 보통은 input type button으로 만들고 클릭시 이벤트 만들고 마지막에
+    // temp.submit() , temp.reset() 같은 형식으로 사용한다.
+    // input type submit 이벤트의 경우 form 태그 안에서는 엔터로도 작동하기에 종종 사용함.
+
+    const formEl = document.forms[0]; // forms 해당 form 값을 전부 가져올 수 있당.  // HTMLCollecton이라는 object로 나옴. 그래서 [0] 붙여줌
+    console.log(formEl);
+
+    // 이벤트를 달아줄 대상은(변경되는 대상은) form 그 자체이지 reset버튼이나 submit버튼이 아니다.
+    const resetEl = document.getElementById("resetBtn");
+    const submitEl = document.getElementById("submitBtn");
+
+    formEl.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("submit 이벤트 발생");
+    });
+
+    formEl.addEventListener("reset", function () {
+      alert("reset 이벤트 발생");
+    });
+
+    // cut, copy, paste - 일 때 발생하는 이벤트
+    const textareaEl = document.getElementById("textareaTag");
+    textareaEl.addEventListener("cut", function () {
+      alert("cut 이벤트 발생");
+    });
+    textareaEl.addEventListener("copy", function () {
+      alert("copy 이벤트 발생");
+    });
+    textareaEl.addEventListener("paste", function () {
+      alert("paste 이벤트 발생");
+    });
   </script>
 </html>

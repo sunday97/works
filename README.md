@@ -145,3 +145,7 @@ IDEO 디자인 싱크 프로세스 5단계
 페르소나
 멘셀의 20색상.
 nefonts.com -> 폰트사이트
+
+js학습정보 사이트 https://off-dngw.github.io/
+
+Javascript Core -> Jquary

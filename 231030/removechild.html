@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RemoveChild</title>
+  </head>
+  <body>
+    <div id="target">
+      <p id="p1">첫번째 단락</p>
+      <p id="p2">두번째 단락</p>
+    </div>
+    <button onclick="removeNode()">누르세요!</button>
+  </body>
+  <script>
+    function removeNode() {
+      let parent = document.getElementById("target");
+      //   let child = parent.firstChild;
+      //   console.log(child);
+      //   parent.removeChild(child); // 2번씩 눌렀다. 왜? 노드값이라.
+
+      let child = parent.querySelectorAll("p")[0];
+      console.log(child);
+      if (child !== undefined) {
+        // parent.removeChild(child);  // 대상의 자식요소를 제거한다.
+        child.remove(); // .앞의 대상을 제거한다.
+      }
+    }
+  </script>
+</html>
