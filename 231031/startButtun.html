@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시작버튼</title>
+  </head>
+  <style>
+    #wrapper {
+      margin: 0;
+      padding: 30px;
+      max-width: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #circle {
+      padding: 4px;
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border: 4px solid black;
+      border-radius: 50%;
+      margin: 20px auto;
+    }
+    #circle:hover {
+      border: 6px solid black;
+    }
+
+    #circle a {
+      color: #333;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+    #circle:hover a {
+      color: red;
+      filter: blur(1px);
+    }
+    #circle a i {
+      font-size: 24px;
+    }
+
+    .spinner {
+      border: 4px solid #333;
+      border-top: 4px solid red;
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="circle">
+        <a id="clickMe" onclick="spin()" href="#"
+          ><i class="fa-solid fa-play"></i
+        ></a>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/ba5eef7094.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    let circle = document.getElementById("circle");
+    function spin() {
+      circle.style.border = "none";
+      circle.classList.add("spinner");
+    }
+  </script>
+</html>

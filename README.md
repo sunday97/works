@@ -135,8 +135,10 @@ velog / https://dev.to
 
 달레 블로그(HTML,CSS)
 
-http://www.i-award.or.kr/
-https://www.gdweb.co.kr/main/
+웹 사례 참고 사이트
+
+> http://www.i-award.or.kr/  
+> https://www.gdweb.co.kr/main/
 
 - 특히 여기 무료이미지 좋음(단 포폴에만 사용, 사업적용도 xxx)
 
@@ -146,6 +148,18 @@ IDEO 디자인 싱크 프로세스 5단계
 멘셀의 20색상.
 nefonts.com -> 폰트사이트
 
-js학습정보 사이트 https://off-dngw.github.io/
+js학습정보 사이트
+
+> https://off-dngw.github.io/
 
 Javascript Core -> Jquary
+
+아이콘 사이트
+
+> https://fontawesome.com/icons
+
+https://velog.io/@imok-_/JavaScript-DOM-BOM-%EC%9D%B4%EB%9E%80
+
+컴퓨터 프로그램 기초지식 도움
+
+> https://iosdevlime.tistory.com/entry/CSBasic-%EB%84%88%EC%99%80-%EB%82%98-%EC%9A%B0%EB%A6%AC-%EB%AA%A8%EB%91%90-%EA%B0%9D%EC%B2%B4Object

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* css를 줄 때 상하관계가 # > . 다. 그래서 on&off를 class로 추가/제거를 이용할 때 상위에 있는 id에 있는 css값은 건들 수 없다. */
+    #wrapper {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, lightgrey, white);
+      border: 3px solid grey;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 토글작동시 */
+    .imgWrapper {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid black;
+    }
+
+    /* #imgWrapper {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    } */
+    div.on {
+      border: 10px solid black;
+    }
+    /* div.off {
+      border: 5px solid black;
+    } */
+    img {
+      width: 50%;
+      height: 50%;
+      object-fit: cover;
+    }
+    img.on {
+      /* opacity + drop-shadow 은 야매방법이긴 해 */
+      filter: opacity(0.5) drop-shadow(0 0 0 red) saturate(1000%) blur(3px);
+    }
+    /* img.off {
+      filter: contrast(0%);
+    } */
+
+    /* 토글사용 시 */
+    img {
+      filter: contrast(0%);
+    }
+
+    img:hover {
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="imgWrapper" class="off imgWrapper">
+        <img src="전원.png" alt="#" class="off" />
+      </div>
+    </div>
+  </body>
+  <script>
+    const imgTag = document.querySelector("img");
+    const divTag = document.querySelector("#imgWrapper");
+    imgTag.addEventListener("click", function () {
+      //   alert("작동");
+      //   console.log(imgTag.classList);
+      //   문자열만 추출
+      const currentClass = imgTag.classList[0];
+      //   if (currentClass == "off") {
+      //     imgTag.classList.remove("off");
+      //     imgTag.classList.add("on");
+      //     divTag.classList.remove("off");
+      //     divTag.classList.add("on");
+      //   } else {
+      //     imgTag.classList.remove("on");
+      //     imgTag.classList.add("off");
+      //     divTag.classList.remove("on");
+      //     divTag.classList.add("off");
+      //   }
+
+      imgTag.classList.toggle("on");
+      divTag.classList.toggle("on");
+    });
+  </script>
+</html>
