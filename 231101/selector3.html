@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>selector 1</title>
+    <!-- jQuery -->
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <body>
+    <p>형제 선택자 에 대하여</p>
+    <h3>꼬마버스 타요 가족을 소개 합니다</h3>
+    <p>타요</p>
+    <p>로기</p>
+    <p>라니</p>
+    <p>가니</p>
+  </body>
+  <script>
+    //h3 다음의 모든 형제의 배경색을 변경, 길이지정, 가운데정렬
+    // 체인메소드 이용 ㄷㄷ
+    $("h3 ~ *")
+      .css("backgroundColor", "yellow")
+      .css("width", "200px")
+      .css("text-align", "center");
+    //h3 다음의 첫번째 형제의 글자를 굵게, 크게  : font-weight
+    $("h3 + *").css("font-weight", "900");
+  </script>
+</html>

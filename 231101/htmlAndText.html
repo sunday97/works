@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html and text</title>
+    <!-- jQuery -->
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+
+  <body>
+    <p>1 <span>홍길동</span></p>
+    <p>2 <span>개나리</span></p>
+    <p>3 <span>진달래</span></p>
+  </body>
+
+  <script>
+    // html() => innerHTML
+    // text() => 태크 제외 문자만 추출, 안에 있는 다른 태그 안의 내용도 포함
+
+    // $("p").on("click", function () {
+    //   //   console.log($(this).html());
+    //   console.log($(this).text());
+    // });
+
+    // jquery에선 forEach를 사용할 수 없다. 왜? jQuery변수는 jQuery객체로 담기지만 아래 예시에서 보았듯이 1번째는 HTML 그 자체에 담았기에 엄연히 둘은 다르다.
+    // HTML경우
+    // const ps = document.querySelectorAll("p");
+    // ps.forEach((el) => {
+    //   console.log(el);
+    // });
+    // jQuery경우
+    // const pTags = $("p");
+    // $("p") = document.querySelectorAll("p")
+    // console.log(pTags.length);
+    // pTags.array.forEach((value, index, array) => {
+    //   console.log(el);
+    // });
+
+    // 그래서 jQuery에선 forEach 대신 each를 사용한다.
+    const pTags = $("p");
+    // console.log(pTags.length);
+    pTags.each((index, item) => {
+      //   console.log(item);
+      console.log($(item).html());
+    });
+
+    // jQuery each 함수
+    $.each(pTags, function (index, item) {});
+
+    // $(selector).each(function (index, item) {
+    $($("p")).each(function (index, item) {
+      //
+    });
+  </script>
+</html>

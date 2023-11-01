@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>selector 1</title>
+    <!-- jQuery -->
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <body>
+    <p>이 문단에는 <span>스팬</span> 엘리먼트가 있다</p>
+    <div>
+      이 디비젼도 <span>스팬</span> 엘리먼트가 있다.
+      <p>디비젼 내부 문단의 <span>스팬</span> 엘리먼트이다</p>
+      <div>
+        <p>
+          내부 디비젼의 다시 문단 속 아주
+          <strong>깊은곳에</strong>
+          <em>숨어있는</em>
+          <span>스팬</span> 엘리먼트도 있다
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    // span태그의 배경색 변경- yellow
+    $("span").css("backgroundColor", "yellow");
+    // div의 모든 후손중  span 태그의 테두리  - red
+    $("div span").css("border", "2px solid red");
+    // div의 바로 다음 자식 span태그의 테두리  - blue
+    $("div > span").css("border", "2px solid blue");
+  </script>
+</html>

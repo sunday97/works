@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQEURY test</title>
+  </head>
+
+  <body>
+    <p id="testTag">jQuery test text</p>
+  </body>
+
+  <!-- jQuery CDN 방식 -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.js"></script> -->
+
+  <!-- 외부 js 불러오는 방식 -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+
+  <script>
+    const pTag = $("#testTag");
+    console.log(pTag);
+
+    $(document).ready(function () {
+      // 전체 배경색을 변경
+      // h1요소의 글자색을 파랑
+      // id가 para인 요소의 글자색은 녹색
+      // class가 sample 인 요소는 글자색 빨강
+    });
+  </script>
+</html>

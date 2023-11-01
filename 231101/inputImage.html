@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>input Image</title>
+  </head>
+  <body>
+    <button>클릭하세여</button>
+    <br />
+  </body>
+  <!-- jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+
+  <script>
+    $("button").on("click", function () {
+      const imgArr = [
+        "사진.jpg",
+        "생호박.jpg",
+        "잭오랜턴.jpg",
+        "전원.png",
+        "slide1.jpg",
+        "slide2.jpg",
+        "slide3.jpg",
+      ];
+      const randNum = parseInt(Math.random() * 7);
+      console.log(randNum);
+      //   alert("click check");
+      const img = $(
+        `<img src="../resources/images/${imgArr[randNum]}" style="width: 300px; height: 300px; border: 5px solid red"/>`
+      );
+      img.appendTo("body");
+    });
+  </script>
+</html>
