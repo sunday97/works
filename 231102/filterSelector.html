@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>filter selector</title>
+
+    <!-- jQuery -->
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>one</li>
+      <li>tow</li>
+      <li>three</li>
+      <li>four</li>
+      <li>five</li>
+      <li>six</li>
+      <li>seven</li>
+      <li>eight</li>
+      <li>nine</li>
+    </ul>
+  </body>
+  <script>
+    // $("li:lt(4)").css("font-size", "32px");
+    // $("li:first").css("backgroundColor", "yellow");
+    // $("li:last").css("backgroundColor", "yellow");
+    // $("li:eq(5)").css("backgroundColor", "red");
+
+    // odd와 even은 index를 기준이다. 그래서 0은 짝수로 본다. 즉, even에 0이 포함된다.
+    $("li:odd").css("backgroundColor", "yellow");
+    $("li:even").css("backgroundColor", "red");
+  </script>
+</html>
