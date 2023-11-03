@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulation Function</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    p {
+      cursor: pointer;
+    }
+  </style>
+
+  <body>
+    <p title="A">A</p>
+    <p title="B">B</p>
+    <p title="C">C</p>
+    <p title="D">D</p>
+  </body>
+
+  <script>
+    const imgArr = ["사진.jpg", "잭오랜턴.jpg", "생호박.jpg", "1 (4).jpg"];
+    $("p").on("click", function () {
+      //   alert("ptag");
+      //   console.log($(this).index());
+      const index = $(this).index();
+      //   $(this).append(`<img src="../resources/images/${imgArr[index]}">`);
+      $(`<img src="../resources/images/${imgArr[index]}">`).appendTo(this);
+    });
+  </script>
+</html>

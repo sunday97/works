@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="taeYang" />
+    <meta name="" content="" />
+    <meta name="" content="" />
+    <title>filter selector</title>
+  </head>
+
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      width: 150px;
+      text-align: center;
+    }
+  </style>
+
+  <body>
+    <table border="1">
+      <tr>
+        <td>이름</td>
+        <td>주소</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>대전</td>
+      </tr>
+      <tr>
+        <td>진달래</td>
+        <td>서울</td>
+      </tr>
+      <tr>
+        <td>개나리</td>
+        <td>부산</td>
+      </tr>
+      <tr>
+        <td>무궁화</td>
+        <td>대구</td>
+      </tr>
+    </table>
+  </body>
+  <script>
+    //   console.log($("tr"));
+    $("tr:even").css("backgroundColor", "grey");
+    $("tr:odd").css("backgroundColor", "#f9f9f9");
+    $("tr:first").css({
+      backgroundColor: "black",
+      color: "white",
+    });
+  </script>
+</html>

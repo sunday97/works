@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>child selector</title>
+  </head>
+
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    body {
+      padding: 30px;
+    }
+  </style>
+
+  <body>
+    <p>여자에게 인기있는 남자들</p>
+    <ol>
+      <li>능력있는 남자</li>
+      <li>돈 많은 남자</li>
+      <li>잘 생긴 남자</li>
+      <li>프로그래머</li>
+    </ol>
+    <ol>
+      <li>나만 있어?</li>
+    </ol>
+    <p>남자에게 인기있는 여자들</p>
+    <ol>
+      <li>예쁜 여자</li>
+      <li>귀여운 여자</li>
+      <li>섹시한 여자</li>
+    </ol>
+  </body>
+  <script>
+    $("li:first-child").css("border", "2px solid red");
+    $("li:first").css("backgroundColor", "yellow");
+    $("li:last-child").css("border", "2px solid blue");
+    $("li:last").css("backgroundColor", "orange");
+    $("li:only-child").css("border", "2px dotted purple");
+  </script>
+</html>

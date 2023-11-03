@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form selector</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <form action="...">
+      <input type="text" name="id" /><br />
+      <input type="password" name="pass" /><br />
+
+      <select name="mySelect">
+        <option>option 1</option>
+        <option selected>option 2</option>
+        <option>option 3</option>
+        <option>option 4</option>
+      </select>
+      <br />
+      <textarea name="enTextarea" cols="20" rows="10" disabled>text</textarea
+      ><br />
+      체크 :
+      <input type="checkbox" name="hobby" value="여행" checked /> 여행
+      <input type="checkbox" name="hobby" value="장기" /> 장기
+      <input type="checkbox" name="hobby" value="바둑" /> 바둑
+      <input type="checkbox" name="hobby" value="독서" /> 독서
+      <input type="checkbox" name="hobby" value="낚시" /> 낚시 <br /><br />
+      <!-- type="hidden", 굳이 사용자가 입력받지 않아도 알아서 전송하는 자료? 정보? -->
+      <input type="hidden" value="hidden" />
+      <input type="button" value="전송" /> <br />
+      <input type="button" value="확인" disabled /><br />
+    </form>
+  </body>
+  <script>
+    $(":disabled").css("border", "2px solid red");
+    $("input:disabled").css("border", "2px solid blue");
+    $(":selected").css("backgroundColor", "orange");
+    console.log($(":checked"));
+    $(":enabled").css("border", "2px solid yellow");
+    console.log($(":hidden"));
+  </script>
+</html>
