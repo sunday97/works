@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    div {
+      border: 3px solid orange;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화꽃이피었습니다.</p>
+    </div>
+    <p id="pTag">은주는 이쁘다~~~~~~~~~</p>
+    <div>
+      <p>사뿐이 즈려밟고 가시옵소서</p>
+    </div>
+  </body>
+  <script>
+    // const el = $("#pTag");
+    // console.log(el.prop("tagName").toLowerCase());
+
+    /*
+        $("p").on("click", function () {
+          // console.log($(this));
+          // $(this).parent().prop("tagName");
+          // console.log($(this).parent().prop("tagName").toLowerCase());
+          // if ($(this).parent().prop("tagName").toLowerCase() == "div") {
+          //   $(this).after("<p style = 'color : red'>무궁화꽃이 피었습니다.</p>");
+          // } else {
+          //   alert("잘못된 선택입니다.");
+          // }
+
+          console.log($(this).html());
+
+          // if ($(this).html() == "무궁화꽃이피었습니다.") {
+          //   $(this).after("<p style = 'color : red'>무궁화꽃이피었습니다.</p>");
+          // } else if ($(this).html() == "사뿐이 즈려밟고 가시옵소서") {
+          //   $(this).after(
+          //     "<p style = 'color : red'>사뿐이 즈려밟고 가시옵소서</p>"
+          //   );
+          // } else {
+          //   alert("잘못된 선택입니다.");
+          // }
+
+          if ($(this).parent().prop("tagName").toLowerCase() == "div") {
+            $(this).after(`<p style = "color : red;">${$(this).html()}</p>`);
+          } else {
+            alert("작업대상이 아닙니다.");
+          }
+        });
+    */
+    $("p").on("click", function () {
+      // 1. 선택된 p 태그를 가져온다.
+      const pTag = $(this);
+
+      // 2. 선택된 p태그의 부모요소를 가져온다.
+      const parentEl = pTag.parent();
+
+      // 3. 부모요소를 확인한다.(div 태그인지)
+      const parentTagName = parentEl.prop("tagName").toLowerCase();
+
+      // 4. div 태그라면 선택된 p태그의 텍스트를 가져온다.
+      if (parentTagName == "div") {
+        const txt = pTag.text();
+        // 4.1 선택된 p태그의 부모요소에 새로운 p태그를 추가한다.
+        // parentEl.append(`<p style="color: red;">${txt}</p>`);
+        // parentEl.append(
+        //   $("<p>").prop({
+        //     innerHTML: txt,
+        //     style: "color: red",
+        //   })
+        // );
+        parentEl.append(pTag.clone(true).css("color", "red"));
+        // 이벤트까지 복사11
+      } else {
+        // 5. div 태그가 아니라면 alert 창을 띄운다.
+        alert("작업대상이 아닙니다.");
+      }
+    });
+  </script>
+</html>

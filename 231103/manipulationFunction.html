@@ -30,8 +30,21 @@
       //   alert("ptag");
       //   console.log($(this).index());
       const index = $(this).index();
+      console.log(index);
+      // 요소 내부에 추가하는 것.
       //   $(this).append(`<img src="../resources/images/${imgArr[index]}">`);
-      $(`<img src="../resources/images/${imgArr[index]}">`).appendTo(this);
+      // $(`<img src="../resources/images/${imgArr[index]}">`).appendTo(this);
+      // prepend 와 prependTo도 있음
+
+      // 요소 내부에 추가 (선생님)
+      // $(this).append(`<img src="../resources/img/${imgArr[index]}" />`);
+      // $(`<img src="../resources/img/${imgArr[index]}" />`).appendTo(this);
+      // $(this).prepend(`<img src="../resources/img/${imgArr[index]}" />`);
+      // $(`<img src="../resources/img/${imgArr[index]}" />`).prependTo(this);
+
+      // 요소 외부에 추가하는 것(근데 여기서는 사용 못함. p태그 앞뒤로 붙여주면 그 자체의 인덱스값이 바뀌어서 전체가 깨짐)
+      // $(this).after(`<img src="../resources/img/${imgArr[index]}" />`);
+      $(`<img src="../resources/img/${imgArr[index]}" />`).insertAfter(this);
     });
   </script>
 </html>

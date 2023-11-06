@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>find method</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    .wrapper * {
+      display: block;
+      border: 2px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      1 body div
+      <div style="width: 300px">
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span1">span1</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrapper">
+      2 body div
+      <div style="width: 300px">
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span2">span2</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    // parent()
+    // $("#span1").parent().css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // parents();
+    // $("#span1").parents().css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // parents(para)
+    // $("#span1").parents("li").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // parentsUntil()
+    // $("#span1").parentsUntil("div").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // closest() - 가장 가까운 부모(조상)요소를 찾아준다.
+    // $("#span1").closest("div").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // find() - 자식 혹은 후손 중 () 안에 들어가는 선택자를 선택해줌.
+    // $(".wrapper > div").find("li").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // span1 -> span2
+    // $("#span1").parents("div.wrapper").siblings().find("#span2").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // span2 -> span1
+    // $("#span2").parents("div.wrapper").siblings().find("#span1").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+  </script>
+</html>
