@@ -51,16 +51,19 @@
       // alert("4가지 모두 버튼을 active 되었따.");
       // console.log($(this).prop("id"));
       const btnId = $(this).prop("id");
-      console.log(btnId.search("add") == 0);
+      // console.log(btnId.search("add") == 0);
       if (btnId.search("add") == 0) {
-        // 추가
+        // 추가버튼을 눌렀을 때
         $("li:last").addClass("big back");
       } else if (btnId.search("has") == 0) {
-        // 확인
+        // 확인버튼을 눌렀을 때
+        alert($("li:last").hasClass("big back"));
       } else if (btnId.search("remove") == 0) {
-        // 제거
+        // 제거버튼을 눌렀을 때
+        $("li:last").removeClass("big back");
       } else {
-        // 토글
+        // 토글버튼을 눌렀을 때
+        $("li:last").toggleClass("big back");
       }
     });
   </script>

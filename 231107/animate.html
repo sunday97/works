@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animate</title>
+  </head>
+  <!-- Local jQuery -->
+  <style></style>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <div
+      id="div"
+      style="
+        background-color: dodgerblue;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        font-size: 2rem;
+      "
+    >
+      div~~
+    </div>
+  </body>
+  <script>
+    $("#div").on("click", function () {
+      // $("#div").animate({
+      //   left: "250px",
+      // });
+      $("#div").animate({
+        left: "250px",
+        opacity: "0.3",
+        height: "300px",
+        width: "300px",
+        fontSize: "3rem",
+      });
+      $("#div").animate({
+        left: "0px",
+        opacity: "0.3",
+        height: "200px",
+        width: "200px",
+        fontSize: "2rem",
+      });
+    });
+  </script>
+</html>

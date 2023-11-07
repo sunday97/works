@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>attr method</title>
+  </head>
+  <style>
+    div {
+      border: 2px solid blue;
+      width: 1200px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <div>
+      <img src="../resources/images/사진.jpg" alt="" />
+      <img src="../resources/images/생호박.jpg" alt="" />
+      <img src="../resources/images/잭오랜턴.jpg" alt="" />
+      <img src="../resources/images/1 (1).jpg" alt="" />
+      <img src="../resources/images/1 (2).jpg" alt="" />
+      <br />
+      <button onclick="changeTitle()">눌러보세요</button>
+    </div>
+  </body>
+  <script>
+    function changeTitle() {
+      // 1. img 태그 전체 요소를 가져온다.
+      const imgTags = $("img");
+      //   //   console.log(imgTags);
+      //   // 2. 전체 태그에 대한 반복문을 실행
+      //   for (i = 0; i < imgTags.length; i++) {
+      //     // 3. 반복문 안에서 attr 함수를 활용해  title에 src와 똑같은 값을 넣어준다.
+      //     $(imgTags[i]).attr("title", `${$(imgTags[i]).attr("src")}`);
+      //   }
+      imgTags.each((i, el) => {
+        // $(el).attr("title", $(el).attr("src"));
+        const srcVal = $(el).attr("src");
+        $(el).attr("title", srcVal);
+      });
+    }
+
+    // `${$(imgTags)[i].attr("src")}`
+  </script>
+</html>
