@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>show_hide</title>
+  </head>
+  <!-- Local jQuery -->
+  <style></style>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <p>HIDE 버튼을 누르면 화면에 나타납니다.</p>
+    <button id="hide">HIDE</button>
+    <button id="show">SHOW</button>
+    <button id="toggle">TOGGLE</button>
+  </body>
+  <script>
+    /**/
+    // 움직임이 있다.
+    $("#hide").on("click", function () {
+      // $("p").hide(); // 기본형
+      // $("p").hide(2000); // 파라미터가 숫자
+      $("p").hide(2000, function () {
+        alert("아앗...없어졌어...");
+      }); // 파라미터 함수 - 기능이 끝난 후 func 작동
+    });
+    $("#show").on("click", function () {
+      // $("p").show(); // 기본형
+      // $("p").show(2000); // 파라미터가 숫자
+      $("p").show(function () {
+        alert("보여!");
+      }); // 파라미터 함수 - 기능이 끝난 후 func 작동
+    });
+    $("#toggle").on("click", function () {
+      // $("p").toggle(2000);
+      $("p").toggle(2000, function () {
+        alert("토글버튼 눌렀다");
+      });
+    });
+  </script>
+</html>

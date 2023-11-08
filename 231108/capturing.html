@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>capturing</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    body * {
+      border: 2px solid dodgerblue;
+      padding: 20px;
+    }
+  </style>
+  <body>
+    <form action="...">
+      FORM
+      <div>
+        DIV
+        <p>P</p>
+      </div>
+    </form>
+  </body>
+  <script>
+    const allEl = document.querySelectorAll("*");
+    for (let elem of allEl) {
+      console.log(elem);
+      elem.addEventListener(
+        "click",
+        function (e) {
+          alert(`캡처링 : ${elem.tagName}`);
+          // },{captur :true };
+        },
+        true
+      );
+      elem.addEventListener("click", function (e) {
+        alert(`캡처링 : ${elem.tagName}`);
+        // },{captur :true };
+      });
+    }
+  </script>
+</html>

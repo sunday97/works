@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bubblingExample</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    div {
+      border: 3px solid orange;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화꽃이피었습니다.</p>
+    </div>
+    <p id="pTag">은주는 이쁘다~~~~~~~~~</p>
+    <div>
+      <p>사뿐이 즈려밟고 가시옵소서</p>
+    </div>
+  </body>
+  <script>
+    // [this]는 이벤트를 걸린 주체를 말한다.
+
+    // $("div").on("click", function (e) {
+    //   // alert("div에 이벤트");
+    //   const pTag = e.target;
+    //   console.log(pTag);
+    //   if (this != pTag) {
+    //     $(this).append($(pTag).clone().css("color", "red"));
+    //   }
+    // });
+
+    // deligatton(위임) :
+    $("div").on("click", "p", function (e) {
+      // alert("div에 이벤트");
+      const pTag = e.target;
+      console.log(pTag);
+      // console.log(this);
+      // $(this).parent("div").append($(pTag).clone().css("color", "red"));
+      $(this).parent("div").append($(this).clone().css("color", "red"));
+    });
+  </script>
+</html>

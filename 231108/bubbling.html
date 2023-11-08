@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bubbling</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    /* body * {
+      margin: 20px;
+      border: 2px solid dodgerblue;
+    } */
+    form {
+      background-color: green;
+      position: relative;
+      width: 400px;
+      height: 400px;
+      text-align: center;
+      cursor: pointer;
+    }
+    div {
+      background-color: blue;
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: 50px;
+      left: 50px;
+    }
+    p {
+      background-color: red;
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50px;
+      left: 50px;
+      margin: 0;
+    }
+  </style>
+  <body onclick="alert('바디태그 이벤트 핸들러')">
+    <!-- <div onclick="alert('div에 할당한 핸들러!!!')">
+        <em>
+            <code>EM</code>을 클릭했는데도 <code>div</code>에 할당된 이벤트가
+            동작합니다.
+        </em>
+    </div> -->
+    <!-- <form action="..." onclick="alert('form')"> -->
+    <!-- <div onclick="alert('div')"> -->
+    <!-- <p onclick="alert('p')">P</p> -->
+    <!-- <br /><br /> 
+    <hr />
+    <br /><br />
+    <form>
+      FORM
+      <div>
+        DIV
+        <p>P</p>
+      </div>
+    </form>
+    -->
+    <button>클릭해주세요</button>
+  </body>
+  <script>
+    // bubbling 자식요소부터 조상요소 까지 이벤트가 전파되는 특성
+
+    // const form = document.forms[0];
+    // form.onclick = function (e) {
+    //   //   alert("test");
+    //   console.log(`target : ${e.target.tagName}, this : ${this.tagName}`);
+    // };
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", function (e) {
+      alert("버튼클릭");
+      e.stopPropagation();
+    });
+
+    // 이벤트는 여러개도 가능하다/ 하지만 굳이 그렇게 번거롭게 쓰진 않는다.
+    // btn.addEventListener("click", function (e) {
+    //   alert("버튼클릭");
+    // });
+  </script>
+</html>
