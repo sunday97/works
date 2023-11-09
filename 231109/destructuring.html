@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>destructuring(구조분해)</title>
+  </head>
+  <body></body>
+  <script>
+    // const gift = ["하니", "해린", "민지", "다니엘", "서니"];
+    // const gift = ["하니", "해린", "민지", "다니엘"];
+    const gift = ["하니", "해린", "민지", "다니엘", "서니"];
+
+    // ES5에서 쓰는 방식
+    // const aitMax = gift[0];
+    // const aitpod = gift[1];
+    // const appleCoupon = gift[2];
+    // const etcCoupon1 = gift[3];
+    // const etcCoupon2 = gift[4];
+
+    // ES6(구조분해-배열부분)
+    // const [ariMax, airpod, appleCoupon, etcCoupon1, etccoupon2] = gift;
+    // 기본갑설정가능
+    // const [
+    //   ariMax,
+    //   airpod,
+    //   appleCoupon,
+    //   etcCoupon1,
+    //   etcCoupon2 = "값이 없을 경우",
+    // ] = gift;
+    // const [ariMax, airpod, appleCoupon, etcCoupon1] = gift;
+    // 전개구문 (항상 마지막에 사용)
+    const [ariMax, airpod, appleCoupon, ...etcCoupon] = gift;
+    // console.log(ariMax, airpod, appleCoupon, etcCoupon1, etcCoupon2);
+    // console.log(ariMax, airpod, appleCoupon, etcCoupon1);
+    console.log(ariMax, airpod, appleCoupon, etcCoupon);
+
+    // ES5
+    const obj = {
+      name: "홍길",
+      age: 20,
+      address: "대전광역시",
+      weight: "70kg",
+      height: "190cm",
+    };
+    // const name = obj.name;
+    // const age = obj.name;
+    // const adress = obj.name;
+
+    // ES6(구조분해 - 객체부분)
+    // const { name, age, address } = obj;
+    // 변수명을 key값과 동일하게 간다.
+    // const { name: nam, age: ages, address: addr } = obj;
+    // 굳이 바꾸고 싶다명 위 처럼 처리한다.
+    // 전개구문 (항상 마지막에 사용), 기본값 설정 가능
+    const { name, age, address, tel = "010-1111-1111", ...etc } = obj;
+    console.log(name, age, address, tel, etc);
+  </script>
+</html>

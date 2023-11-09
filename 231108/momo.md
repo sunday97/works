@@ -1,5 +1,7 @@
 ### https://jsonplaceholder.typicode.com/
 
+> 제이슨 관련 예시들
+
 ---
 
 ### API는 Application Programming Interface(애플리케이션 프로그램 인터페이스)의 줄임말입니다.

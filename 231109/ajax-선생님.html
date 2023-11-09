@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ajax-선생님</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    li {
+      border: 3px solid yellow;
+      list-style: none;
+    }
+  </style>
+  <body>
+    <h1>Authors</h1>
+    <ul id="authors"></ul>
+    <button onclick="doAction()">Action</button>
+    <button onclick="doAjax()">Ajax</button>
+  </body>
+  <script>
+    const url = "https://jsonplaceholder.typicode.com/users";
+    function doAction() {
+      let data;
+      fetch(url)
+        .then((response) => response.text())
+        .then((result) => {
+          // ul 태그에 li 태그로 user 정보를 추가
+          data = JSON.parse(result);
+          console.log(data);
+
+          // 10명의 이름, 이메일, 주소(city) 를 li태그로 만들어서
+          // ul 태그에 추가를 해봅시다.
+
+          // 1. 가져온 data 의 반복문 통해 객체에 하나씩 접근한다.
+          for (const {
+            name,
+            email,
+            address: { city },
+          } of data) {
+            // 2. name, email, address 의 city 정보를 변수에 할당한다.
+            // const {
+            //   name,
+            //   email,
+            //   address: { city },
+            // } = user;
+
+            // 3. li태그를 생성하고 그 li 태그에 이름은 h2태그, 나머지 정보는
+            //    p태그에 담아서 append
+            //    <li>
+            //      <h2>name</h2>
+            //      <p>email</p>
+            //      <p>city</p>
+            //    </li>
+            const li = document.createElement("li");
+            const h2 = document.createElement("h2");
+            h2.innerHTML = name;
+            const p1 = document.createElement("p");
+            p1.innerHTML = `Email : ${email}`;
+            const p2 = document.createElement("p");
+            p2.innerHTML = `City : ${city}`;
+
+            const ul = document.getElementById("authors");
+            li.append(h2);
+            li.append(p1);
+            li.append(p2);
+            ul.append(li);
+          }
+        });
+    }
+  </script>
+</html>

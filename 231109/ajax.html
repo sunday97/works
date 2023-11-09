@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ajax</title>
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+
+  <style>
+    li {
+      padding: 1rem;
+      font-weight: 600;
+    }
+  </style>
+  <body>
+    <!-- 드디어 외부의 정보를 가공해서 사용하는 법을 배운다!!! -->
+    <h1>Authors</h1>
+    <ul id="Authors"></ul>
+    <button onclick="doAction()">Action</button>
+    <button onclick="doAjax()">!!!</button>
+  </body>
+
+  <script>
+    const url = "https://jsonplaceholder.typicode.com/users";
+    const ulTag = document.querySelector("ul");
+    function doAction() {
+      let data;
+      fetch(url)
+        .then((response) => response.text())
+        .then((result) => {
+          // ul 태그에 li 태그로 user 정보를 추가
+          data = JSON.parse(result);
+          console.log(data[0].address.city);
+          for (i = 0; i < data.length; i++) {
+            const liEl = document.createElement("li");
+            // console.log(data[i].name, data[i].email, data[i].address.city);
+            console.log(liEl);
+            liEl.append(
+              `사용자의 이름은 <span style ="color:red;">${data[i].name}<span>이고,  이메일은 ${data[i].email}이며, 주소지는 ${data[i].address.city}입니다.`
+            );
+            // console.log(liEl);
+            ulTag.append(liEl);
+          }
+
+          // 10명의 이름, 이메일, 주소(CITY)를 LI로 만들어서 UL태그에 추가 ㄱㄱ
+        });
+    }
+
+    function doAjax() {
+      console.log("doAjax 작동 확인");
+      console.log(url);
+      $.ajax({
+        type: "GET",
+        url: url,
+        success: function (data) {
+          for (const {
+            name,
+            email,
+            address: { city },
+          } of data) {
+            // $("#authors").append(
+            //   $("<li>").append(
+            //     $("<h2>").text(name),
+            //     $("<p>").text(`email : ${email}`),
+            //     $("<p>").text(`city : ${city}`)
+            //   )
+            // );
+            console.log(name);
+            $("#Authors").append(
+              `
+               <li>
+                   <h2>${name}</h2>
+                   <p>email : ${email}</p>
+                   <p>city : ${city}</p>
+               </li>
+              `
+            );
+          }
+        },
+        error: function () {},
+      });
+    }
+  </script>
+</html>
