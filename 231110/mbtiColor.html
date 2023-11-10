@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="taeyang kim" />
+    <title>MBTI COLOR</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="../resources/css/style.css" />
+    <link rel="stylesheet" href="../resources/css/home.css" />
+  </head>
+  <!-- Local jQuery -->
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <div class="container">
+      <div class="header-container">
+        <!-- 헤더 로고(제목) 작성부 -->
+        <div class="header">
+          <h1>
+            MTTI 별<br />
+            <span class="accent">좋아하는 컬러</span>
+          </h1>
+          <div>
+            <span class="filter">
+              <span>INTJ</span>
+              <img class="remove-icon" src="/resources/images/x.svg" alt="x" />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <!-- 새 컬로 등록하기 부분 -->
+        <a href="#" class="add-item">+ 새 컬러 등록하기</a>
+        <!-- MBTI별 컬로 -->
+        <ul class="items">
+          <li class="item">
+            <div class="item-id">20</div>
+            <div class="item-mbti">ENFP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de2222"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">19</div>
+            <div class="item-mbti">INFJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #970618"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">18</div>
+            <div class="item-mbti">ISTJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de8322"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">17</div>
+            <div class="item-mbti">ISTP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #afde22"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">16</div>
+            <div class="item-mbti">ISFJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #22de2f"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">15</div>
+            <div class="item-mbti">INTJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #22dec5"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">14</div>
+            <div class="item-mbti">INTP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #2254de"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">13</div>
+            <div class="item-mbti">INFJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #5122de"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">12</div>
+            <div class="item-mbti">ESTJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #ce22de"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">11</div>
+            <div class="item-mbti">ESTP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de2280"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">10</div>
+            <div class="item-mbti">ESFJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de7a22"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">9</div>
+            <div class="item-mbti">ESFP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #22de9f"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">8</div>
+            <div class="item-mbti">ENTJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de7022"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">7</div>
+            <div class="item-mbti">ENTP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de6422"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">6</div>
+            <div class="item-mbti">ENFJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de2248"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">5</div>
+            <div class="item-mbti">ISTJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: rgb(239, 118, 118)"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">4</div>
+            <div class="item-mbti">INFJ</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #de2222"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">3</div>
+            <div class="item-mbti">ESFP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #d8de22"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">2</div>
+            <div class="item-mbti">ISFP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #22de3b"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+          <li class="item">
+            <div class="item-id">1</div>
+            <div class="item-mbti">ENFP</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="../resources/images/arrow.svg"
+                alt="arrow"
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #22c5de"
+            ></div>
+            <div class="item-color-code">#DE2222</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script></script>
+</html>
