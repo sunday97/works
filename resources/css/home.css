@@ -21,6 +21,7 @@
   font-weight: 400;
   font-size: 40px;
   margin-top: 0;
+  margin-bottom: 32px;
 }
 .header > h1 > .accent {
   font-weight: 800;
@@ -41,9 +42,15 @@
   padding: 8px 24px;
   /* illine 요소처럼 움직이는 flex */
   display: inline-flex;
+  align-items: center;
   gap: 24px;
   border-radius: 8px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.remove-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .content {
@@ -111,6 +118,17 @@
 @media screen and (max-width: 944px) {
   .container {
     flex-direction: column;
+    margin: 0;
+    padding: 24px 16px;
+    gap: 24px;
+    width: 100%;
+  }
+  .header-container {
+    /* sticky는 부모요소의 영역! 안에서 작동 하는 얘임 */
+    /* 컬럼을 줘서 부모 header-container이 없다. */
+    position: sticky;
+    top: 24px;
+    z-index: 1000;
   }
   .header {
     padding: 32px;
@@ -119,9 +137,31 @@
   }
   .header > h1 {
     font-size: 24px;
+    margin-bottom: 16px;
   }
   .filter {
     padding: 4px 8px;
     gap: 8px;
+  }
+  .add-item {
+    padding: 20px 24px;
+  }
+  .item {
+    padding: 18px 16px;
+  }
+  .item-id {
+    width: 37px;
+    margin-right: 16px;
+  }
+  .item-mbti {
+    /* box-size를 보더기준으로 안 했기에 수치상은 패딩이 더해진 값으로 나온다. 계산 필요. */
+    width: 54px;
+    margin-right: 16px;
+  }
+  .item-color-chip {
+    margin: 0 8px 0 16px;
+  }
+  .item-color-code {
+    width: 72px;
   }
 }
