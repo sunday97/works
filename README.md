@@ -6,6 +6,10 @@
 
 three.js racat jquary
 
+crone coding
+
+lazy developer가 되지 마라.
+
 pretendar 폰트
 https://github.com/orioncactus/pretendard#html
 
@@ -24,7 +28,7 @@ Learning Curve / 변곡점(싱귤러레티) => 진입장벽의 원인 , 마치 �
 
 ---
 
-### 사이트 링크
+### 사이트 링크 모음
 
 VS Code download [링크](https://code.visualstudio.com/download)
 
@@ -32,7 +36,7 @@ MarkDown 작성 문법 정리 사이트 [링크](https://inpa.tistory.com/entry/
 
 Pexels [링크](https://www.pexels.com/ko-kr/)
 
-- 저작권 free 무료 이미지 사이트
+> 저작권 free 무료 이미지 사이트
 
 W3shools[링크](https://www.w3schools.com/)
 
