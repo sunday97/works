@@ -13,6 +13,8 @@ lazy developer가 되지 마라.
 pretendar 폰트
 https://github.com/orioncactus/pretendard#html
 
+외국계 취업 기회/ 3~4년 주기로 대거 채용함
+
 #### 공유폴더 주소 \\192.168.0.78
 
 ### 한지호 본부장님?
@@ -178,3 +180,8 @@ https://velog.io/@imok-_/JavaScript-DOM-BOM-%EC%9D%B4%EB%9E%80
 https://color.adobe.com/ko/create/color-wheel
 
 > 색상조합 추천 사이트
+
+### 중간 평가 사이트 예시
+
+> https://www.gentlemonster.com/kr/stories/jentle-garden > https://www.gentlemonster.com/kr/stories/caixukun-game > https://noneofficial.co.kr/category/story/flowerstar.
+> https://boucliershop.com/category/stories/battle.html
