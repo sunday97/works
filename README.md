@@ -15,6 +15,19 @@ https://github.com/orioncactus/pretendard#html
 
 외국계 취업 기회/ 3~4년 주기로 대거 채용함
 
+부트스트랩 https://getbootstrap.com/ -> Get started any way you want -> CDN via jsDelivr
+
+> 버전 중요. 특히 프로젝트를 진행할 시 팀원들과 버전을 일치화 시키는 게 기본이다.
+> 부트스트랩 템플릿을 카피하는 것도 방법이다. 단 너무 같진 않게.
+
+꽤 괜찮은 부트스트랩템플릿 - https://adminlte.io/
+
+> 다운로드 하는 이유는 cdn 방식은 내가 직접 수정하지 못하기에 직접 수정을 위한 것.
+
+summerNote 라이브러리
+
+중간 평가는 템플렛과 라이브러리를 이용해서 스타일 수정 방향으로 해야할 듯...
+
 #### 공유폴더 주소 \\192.168.0.78
 
 ### 한지호 본부장님?

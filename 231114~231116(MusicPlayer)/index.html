@@ -100,5 +100,13 @@
         </div>
       </div>
     </section>
+    <div class="back-button">뒤</div>
   </body>
+  <script>
+    const backBtn = document.querySelector(".back-button");
+    console.log(backBtn);
+    backBtn.addEventListener("click", function () {
+      history.go(-1);
+    });
+  </script>
 </html>

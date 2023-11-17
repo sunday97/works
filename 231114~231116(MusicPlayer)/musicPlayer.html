@@ -479,13 +479,16 @@
     const menuItems = document.querySelectorAll(".menu-item");
     menuItems.forEach((v) => {
       v.addEventListener("click", function () {
-        // console.log(v);
+        menuItems.forEach((v) => {
+          v.classList.remove("active");
+        });
+        console.log(v);
         const src = v.firstElementChild.src;
         // console.log(src.indexOf("icon_"));
         // console.log(src.substring(68, 72));
         // const srcName = src.substring(68, 72);
         // console.log(srcName);
-        // v.classList.toggle("active");
+        v.classList.toggle("active");
         // const srcTarget = src.split("_")[1].split(".")[0];
         // console.log(srcTarget);
 
@@ -495,9 +498,14 @@
         // console.log(startIndex, endIndex);
         const href = src.substring(startIndex + 1, endIndex);
         // console.log(href);
+
         if (href == "home") {
           location.href = `index.html`;
         }
+        // 새창에서 열기
+        // if (href == "home") {
+        //   window.open("index.html");
+        // }
       });
     });
   </script>

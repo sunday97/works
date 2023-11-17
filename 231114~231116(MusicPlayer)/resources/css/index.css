@@ -47,7 +47,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* !!! */
+  /* !!! 비디오 외곽선 뽀샤시로 날리기 */
   background-image: linear-gradient(
     rgba(0, 0, 0, 0) 50%,
     rgba(0, 0, 0, 1) 100%
@@ -163,4 +163,27 @@ header {
   grid-column-end: 3; */
   /* 그리드 복습하자... */
   grid-column: 1/3;
+}
+
+.back-button {
+  width: 48px;
+  height: 48px;
+  background-color: rgb(86, 86, 86);
+  border-radius: 50%;
+  color: black;
+  font-size: 28px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  z-index: 10;
+}
+.back-button:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: rgb(73, 73, 73);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
