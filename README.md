@@ -30,6 +30,10 @@ summerNote 라이브러리
 
 공부할 때 내용을 꼭 정리해보기, 이해 안 되면 상황과 흐름을 일단 외우기, 노션활용
 
+DB 활용
+
+> 파이어베이스 [firebase.google.com] C(create)R(read)U(upload)D(delete)
+
 #### 공유폴더 주소 \\192.168.0.78
 
 ### 한지호 본부장님?

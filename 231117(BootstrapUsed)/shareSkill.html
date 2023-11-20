@@ -359,77 +359,120 @@
       <!-- 클래스 목록 시작 -->
     </div>
   </body>
-  <script>
-    const courseArr = [];
-    const courseObj1 = {
-      courseImgPath: "/resources/images/course1.jpg",
-      courseAlt: "과정 1번 이미지",
-      courseName: "개성있는 일러스트 작품 만들기",
-      tchrPflImgPath: "/resources/images/user.png",
-      tchrName: "김태양",
-    };
-    const courseObj2 = {
-      courseImgPath: "/resources/images/course2.jpg",
-      courseAlt: "과정 2번 이미지",
-      courseName: "내가 만드는 나만의 악세서리",
-      tchrPflImgPath: "/resources/images/user.png",
-      tchrName: "김태양",
-    };
-    const courseObj3 = {
-      courseImgPath: "/resources/images/course3.jpg",
-      courseAlt: "과정 3번 이미지",
-      courseName: "내 이야기를 노래로",
-      tchrPflImgPath: "/resources/images/user.png",
-      tchrName: "김태양",
-    };
-    const courseObj4 = {
-      courseImgPath: "/resources/images/course4.jpg",
-      courseAlt: "과정 4번 이미지",
-      courseName: "비전공자를 위한 웹프로그래밍",
-      tchrPflImgPath: "/resources/images/user.png",
-      tchrName: "김태양",
-    };
-    const courseObj5 = {
-      courseImgPath: "/resources/images/course5.jpg",
-      courseAlt: "과정 5번 이미지",
-      courseName: "자신감 업! 메이크업 클래스",
-      tchrPflImgPath: "/resources/images/user.png",
-      tchrName: "김태양",
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+    } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAXN7xYmB78vz3iKk2DeB6UcAOafKp1jGg",
+      authDomain: "test-231120.firebaseapp.com",
+      projectId: "test-231120",
+      storageBucket: "test-231120.appspot.com",
+      messagingSenderId: "130174858623",
+      appId: "1:130174858623:web:a17f011865df61c162564a",
+      measurementId: "G-BP9G7P8JER",
     };
 
-    courseArr.push(courseObj1);
-    courseArr.push(courseObj2);
-    courseArr.push(courseObj3);
-    courseArr.push(courseObj4);
-    courseArr.push(courseObj5);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  <script>
+    // const courseArr = [];
+    // const courseObj1 = {
+    //   courseImgPath: "../resources/images/course1.jpg",
+    //   courseAlt: "과정 1번 이미지",
+    //   courseName: "개성있는 일러스트 작품 만들기",
+    //   tchrPflImgPath: "../resources/images/user.png",
+    //   tchrName: "김태양",
+    // };
+    // const courseObj2 = {
+    //   courseImgPath: "../resources/images/course2.jpg",
+    //   courseAlt: "과정 2번 이미지",
+    //   courseName: "내가 만드는 나만의 악세서리",
+    //   tchrPflImgPath: "../resources/images/user.png",
+    //   tchrName: "김태양",
+    // };
+    // const courseObj3 = {
+    //   courseImgPath: "../resources/images/course3.jpg",
+    //   courseAlt: "과정 3번 이미지",
+    //   courseName: "내 이야기를 노래로",
+    //   tchrPflImgPath: "../resources/images/user.png",
+    //   tchrName: "김태양",
+    // };
+    // const courseObj4 = {
+    //   courseImgPath: "../resources/images/course4.jpg",
+    //   courseAlt: "과정 4번 이미지",
+    //   courseName: "비전공자를 위한 웹프로그래밍",
+    //   tchrPflImgPath: "../resources/images/user.png",
+    //   tchrName: "김태양",
+    // };
+    // const courseObj5 = {
+    //   courseImgPath: "../resources/images/course5.jpg",
+    //   courseAlt: "과정 5번 이미지",
+    //   courseName: "자신감 업! 메이크업 클래스",
+    //   tchrPflImgPath: "../resources/images/user.png",
+    //   tchrName: "김태양",
+    // };
+    // const courseObj6 = {
+    //   courseImgPath: "../resources/images/course7.jpg",
+    //   courseAlt: "과정 6번 이미지",
+    //   courseName: "아이돌 댄스 정복하기",
+    //   tchrPflImgPath: "../resources/images/user.png",
+    //   tchrName: "김태양",
+    // };
+
+    // courseArr.push(courseObj1);
+    // courseArr.push(courseObj2);
+    // courseArr.push(courseObj3);
+    // courseArr.push(courseObj4);
+    // courseArr.push(courseObj5);
+    // courseArr.push(courseObj6);
+
     // console.log(courseArr);
     // 노드, 요소
     // 노드를 추가하는 방법
     // append, prepend, before, after, appendChild, insertBefore
     // 문자열로 추가하는 방법
     // innerHTML(덮어쓰기),
-    // insertAdjacentHTML(추가)(position,text)
+    // insertAdjacentHTML(추가)(position,text) 동적요소추가
 
-    const courseList = document.getElementById("course-list");
-    console.log(courseList);
-    courseArr.forEach((el) => {
-      courseList.insertAdjacentHTML(
-        "beforeend",
-        `
-      <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-      <a href="#" class="course">
-        <img src="${el.courseImgPath}" width="100%" class="course-img" alt="${el.courseAlt}" />
-        <div class="info">
-          <h4>${el.courseName}</h4>
-          <div class="lecture">
-            <img src="${el.tchrPflImgPath}" alt="강사 프로필" width="20px" height="20px" />
-            <span class="name">${el.tchrName}</span>
-          </div>
-        </div>
-      </a>
-    </div>
-      `
-      );
-    });
+    // const courseList = document.getElementById("course-list");
+    // // innerHTML로 활용할 때는 변수 하나를 만들어서 그곳에 추가하고 마지막에 insertAdjacentHTML 해주는 방법
+    // let htmlStr = "";
+    // console.log(courseList);
+    // courseArr.forEach((el) => {
+    //   courseList.insertAdjacentHTML(
+    //     "beforeend",
+    //     `
+    //   <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+    //   <a href="#" class="course">
+    //     <img src="${el.courseImgPath}" width="100%" class="course-img" alt="${el.courseAlt}" />
+    //     <div class="info">
+    //       <h4>${el.courseName}</h4>
+    //       <div class="lecture">
+    //         <img src="${el.tchrPflImgPath}" alt="강사 프로필" width="20px" height="20px" />
+    //         <span class="name">${el.tchrName}</span>
+    //       </div>
+    //     </div>
+    //   </a>
+    // </div>
+    //   `
+    //   );
+    // });
+
+    // DB 사용 경우
+
+    console.log();
   </script>
 </html>
