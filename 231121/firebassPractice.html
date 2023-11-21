@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firebase Practice</title>
+  </head>
+  <style>
+    .box {
+      width: 600px;
+      margin: 20px 0 0 20px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .box p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .box p label {
+      margin-left: 40px;
+    }
+    .box p input {
+      margin-right: 40px;
+    }
+    .box p:last-child {
+      justify-content: center;
+    }
+
+    /* ---- */
+    .selected {
+      background-color: yellow;
+    }
+  </style>
+  <body>
+    <div class="box">
+      <p>
+        <label for="">이름 : </label>
+        <input type="text" name="name" />
+      </p>
+      <p>
+        <label for="">나이 : </label>
+        <input type="text" name="age" />
+      </p>
+      <p>
+        <label for="">성별 : </label>
+        <input type="text" name="gender" />
+      </p>
+      <p>
+        <label for="">전화번호 : </label>
+        <input type="text" name="tel" />
+      </p>
+      <p>
+        <label for="">아이디 : </label>
+        <input type="text" name="id" />
+      </p>
+      <p>
+        <!-- <button onclick="saveData()">Save Data</button>  비동기 함수를 사용할 거라 HTML이 먼저시작되고 script가 늦게 읽힘 즉 스크립트 내용을 없다고 판단한다.-->
+        <button id="save">Save Data</button>
+      </p>
+
+      <table border="1">
+        <tr>
+          <th>이름</th>
+          <th>나이</th>
+          <th>성별</th>
+          <th>아이디</th>
+          <th>전화번호</th>
+        </tr>
+      </table>
+      <br />
+      <button id="delete">회원 삭제</button>
+    </div>
+  </body>
+  <script type="module">
+    // import
+    // 여기서 *는 firebass.js의 export만 말한다.
+    import * as firebase from "../resources/js/firebass.js";
+    const { db, getDocs, collection, getDatas, setDoc, addDoc, doc, addDatas } =
+      firebase;
+
+    const memberTable = document.querySelector("table");
+    async function getMembers() {
+      const snapshot = await getDatas("member");
+      snapshot.forEach((doc) => {
+        const { membarName, memberAge, memberGender, memberTel, memberId } =
+          doc.data();
+        console.log(doc.data());
+        memberTable.insertAdjacentHTML(
+          "beforeend",
+          `
+          <tr>
+            <td>${membarName}</td>
+            <td>${memberAge}</td>
+            <td>${memberGender}</td>
+            <td>${memberTel}</td>
+            <td>${memberId}</td>
+            <input type="hidden" value="${doc.id}">
+
+            </tr>
+          `
+        );
+      });
+    }
+    getMembers().then(function () {
+      const trs = document.querySelectorAll("tr");
+      trs.forEach((el) => {
+        el.addEventListener("click", function () {
+          el.classList.toggle("selected");
+        });
+      });
+    });
+
+    const deleteBtn = document.querySelector("#delete");
+    deleteBtn.addEventListener("click", function () {
+      const selectedTrs = memberTable.querySelectorAll("[class=selected]");
+      if (selectedTrs.length == 0) {
+        alert("삭제할 데이터가 없습니다.");
+        return;
+      }
+
+      selectedTrs.forEach((el) => {
+        const docId = el.lastElementChild.value;
+        console.log(docId);
+      });
+    });
+
+    const savebtn = document.querySelector("#save");
+    savebtn.addEventListener("click", function () {
+      const memberInfo = {
+        membarName: document.querySelector("input[name=name]").value,
+        memberAge: document.querySelector("input[name=age]").value,
+        memberGender: document.querySelector("input[name=gender]").value,
+        memberTel: document.querySelector("input[name=tel]").value,
+        memberId: document.querySelector("input[name=id]").value,
+      };
+      //   console.log(memberInfo);
+      addDatas("member", memberInfo);
+    });
+  </script>
+
+  <!--   
+//   console.log(memberInfo);
+document.querySelectorAll("input").forEach((el) => {
+  el.value = ""; -->
+</html>

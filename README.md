@@ -32,7 +32,12 @@ summerNote 라이브러리
 
 DB 활용
 
-> 파이어베이스 [firebase.google.com] C(create)R(read)U(upload)D(delete)
+> 파이어베이스 [firebase.google.com]
+
+### C(create)R(read)U(upload)D(delete)
+
+개발자들은 약간의 귀차니즘을 가지고 있어야 한다. => 최소의 움직임으로 최고효율을 추구
+머리가 나쁘면 몸이 고생한다. 반대도 성립 노가다xxxx
 
 #### 공유폴더 주소 \\192.168.0.78
 

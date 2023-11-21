@@ -359,6 +359,7 @@
       <!-- 클래스 목록 시작 -->
     </div>
   </body>
+  <!-- firebass 사용하기 -->
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
@@ -366,7 +367,7 @@
       getFirestore,
       collection,
       getDocs,
-    } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -387,6 +388,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
   </script>
+
   <script>
     // const courseArr = [];
     // const courseObj1 = {
@@ -448,7 +450,8 @@
     // insertAdjacentHTML(추가)(position,text) 동적요소추가
 
     // const courseList = document.getElementById("course-list");
-    // // innerHTML로 활용할 때는 변수 하나를 만들어서 그곳에 추가하고 마지막에 insertAdjacentHTML 해주는 방법
+    // // innerHTML로 활용할 때는 변수 하나를 만들어서 그곳에 추가하고 마지막에 insertAdjacentHTML 해주는 방법을 사용한다.
+    // 그러나 귀찮은 방법이라 지양한다.
     // let htmlStr = "";
     // console.log(courseList);
     // courseArr.forEach((el) => {
@@ -471,8 +474,8 @@
     //   );
     // });
 
-    // DB 사용 경우
+    // console.log();
 
-    console.log();
+    // DB 사용 경우
   </script>
 </html>
