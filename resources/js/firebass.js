@@ -8,6 +8,10 @@ import {
   setDoc,
   addDoc,
   doc,
+  deleteDoc,
+  updateDoc,
+  deleteField,
+  getDoc,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -45,4 +49,34 @@ async function addDatas(collectionName, dataObj) {
   await addDoc(collection(db, collectionName), dataObj);
 }
 
-export { db, getDocs, collection, getDatas, setDoc, addDoc, doc, addDatas };
+async function deletedatas(collection, docId) {
+  // await deleteDoc(doc(db."컬랙션명","문서ID"))
+  await deleteDoc(doc(db, collection, docId));
+}
+
+async function updatedatas(collectionName, docId, updateInfoObj) {
+  // 문서 필드 데이터 수정
+  // await updateDoc(수정할 문서 ref, 수정할정보를 객체형식으로)
+  const docRef = doc(db, collectionName, docId);
+  const docData = await getDoc(docRef);
+  console.log(docData);
+  debugger;
+  await updateDoc(docRef, updateInfoObj);
+}
+
+export {
+  db,
+  getDocs,
+  collection,
+  getDatas,
+  setDoc,
+  addDoc,
+  doc,
+  addDatas,
+  deleteDoc,
+  deletedatas,
+  updateDoc,
+  deleteField,
+  updatedatas,
+  getDoc,
+};

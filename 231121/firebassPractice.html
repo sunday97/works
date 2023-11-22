@@ -31,6 +31,11 @@
     .selected {
       background-color: yellow;
     }
+
+    tr {
+      cursor: pointer;
+      height: 50px;
+    }
   </style>
   <body>
     <div class="box">
@@ -70,14 +75,28 @@
       </table>
       <br />
       <button id="delete">회원 삭제</button>
+      <button id="update">회원 수정</button>
     </div>
   </body>
   <script type="module">
+    // type="module" => 외부 요소 사용, 즉 약간 느린 실행.
     // import
     // 여기서 *는 firebass.js의 export만 말한다.
     import * as firebase from "../resources/js/firebass.js";
-    const { db, getDocs, collection, getDatas, setDoc, addDoc, doc, addDatas } =
-      firebase;
+    const {
+      db,
+      getDocs,
+      collection,
+      getDatas,
+      setDoc,
+      addDoc,
+      doc,
+      addDatas,
+      deletedatas,
+      updateDoc,
+      deleteField,
+      updatedatas,
+    } = firebase;
 
     const memberTable = document.querySelector("table");
     async function getMembers() {
@@ -102,11 +121,15 @@
         );
       });
     }
+
     getMembers().then(function () {
       const trs = document.querySelectorAll("tr");
       trs.forEach((el) => {
-        el.addEventListener("click", function () {
-          el.classList.toggle("selected");
+        el.addEventListener("click", function (e) {
+          console.log(e.target);
+          if (e.target.tagName != "TH") {
+            el.classList.toggle("selected");
+          }
         });
       });
     });
@@ -121,7 +144,34 @@
 
       selectedTrs.forEach((el) => {
         const docId = el.lastElementChild.value;
-        console.log(docId);
+        // console.log(docId);
+        deletedatas("member", docId).then(function () {
+          window.location.reload();
+        });
+      });
+    });
+
+    const updateBtn = document.querySelector("#update");
+    updateBtn.addEventListener("click", function () {
+      // const memberRef = doc(db, "컬랙션명", "문서ID")
+      // const memberRef = doc(db, "member", "nowirteisauto");
+      // console.log(memberRef);
+      // updateDoc(memberRef, {
+      //   memberId: "idUpdate",
+      //   memberTel: "111-111-111",
+      //   // memberTel: "111-111-111",
+      //   // meberTell: deleteField(),
+      // });
+      // updatedatas(memberRef).than(() => window.location.reload());
+
+      const updateObj = {
+        memberId: "idUpdate4",
+        memberTel: "111-111-444",
+        // memberTel: "111-111-111",
+        memberTell: deleteField(),
+      };
+      updatedatas("member", "nowirteisauto", updateObj).then(() => {
+        window.location.reload();
       });
     });
 
@@ -135,7 +185,9 @@
         memberId: document.querySelector("input[name=id]").value,
       };
       //   console.log(memberInfo);
-      addDatas("member", memberInfo);
+      addDatas("member", memberInfo).then(() => {
+        window.location.reload();
+      });
     });
   </script>
 
