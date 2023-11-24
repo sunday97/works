@@ -1,0 +1,21 @@
+body {
+  background-color: #2f2f2f;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.scene {
+  /* 같은 카테고리 를 함께 서술함. => 좋은 습관 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  background-color: #3b93ff;
+  border: 20px solid white;
+  border-radius: 50%;
+}

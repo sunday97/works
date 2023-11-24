@@ -32,11 +32,12 @@
         .then((result) => {
           // ul 태그에 li 태그로 user 정보를 추가
           data = JSON.parse(result);
-          console.log(data[0].address.city);
+          console.log(data);
+          // console.log(data[0].address.city);
           for (i = 0; i < data.length; i++) {
             const liEl = document.createElement("li");
             // console.log(data[i].name, data[i].email, data[i].address.city);
-            console.log(liEl);
+            // console.log(liEl);
             liEl.append(
               `사용자의 이름은 <span style ="color:red;">${data[i].name}<span>이고,  이메일은 ${data[i].email}이며, 주소지는 ${data[i].address.city}입니다.`
             );

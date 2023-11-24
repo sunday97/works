@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.bigBox1 {
+  width: 100%;
+  text-align: center;
+  color: blue;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.bigBox2 {
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 20px;
+  padding: 10px;
+}
+.bigBox2 .b1 img {
+  width: 100%;
+}
+.bigBox2 .b2 {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+.bigBox3 {
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.bigBox3 img {
+  width: 100%;
+}
+.bigBox3 p {
+  font-size: 1.2rem;
+}

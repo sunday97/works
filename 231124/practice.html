@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    body {
+      padding: 50px;
+    }
+  </style>
+  <body>
+    <div>
+      out : <input type="text" id="out" />
+      <br />
+      <!-- <button id="btn">B</button> -->
+    </div>
+    <br /><br /><br />
+    <!-- modal -->
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      id="launchBtn"
+    >
+      Launch demo modal
+    </button>
+    <button type="button" class="btn btn-primary" id="final">최종확인</button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">인증번호</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">랜덤넘버 : <input type="text" id="in" /></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              닫기
+            </button>
+            <button type="button" class="btn btn-primary" id="btn">
+              인증번호 저장하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    // console.log(document.querySelector("#in").value);
+    const inIn = document.querySelector("#in");
+    const inOut = document.querySelector("#out");
+
+    const lauBtn = document.querySelector("#launchBtn");
+
+    let str = "";
+    lauBtn.addEventListener("click", function () {
+      str = "";
+      for (let i = 0; i < 6; i++) {
+        str += Math.floor(Math.random() * 10);
+      }
+      //   return str;
+      //   console.log(str);
+      inIn.value = str;
+    });
+
+    document.querySelector("#btn").addEventListener("click", function () {
+      inOut.value = inIn.value;
+    });
+
+    document.querySelector("#final").addEventListener("click", function () {
+      if (inOut.value == str) {
+        alert("회원가입을 완료되었습니다:)");
+      } else {
+        alert("인증번호가 일치하지 않습니다.:)");
+      }
+    });
+  </script>
+</html>

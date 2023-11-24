@@ -33,11 +33,13 @@
           // ul 태그에 추가를 해봅시다.
 
           // 1. 가져온 data 의 반복문 통해 객체에 하나씩 접근한다.
+          // for of 문 사용
           for (const {
             name,
             email,
             address: { city },
           } of data) {
+            console.log(name, email, city);
             // 2. name, email, address 의 city 정보를 변수에 할당한다.
             // const {
             //   name,
