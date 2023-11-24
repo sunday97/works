@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      simpleDB - 간단하게 로컬스토리지를 이용할 것이기 때문에 일종의 DB?
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="search">
+        <input class="search-input" placeholder="ID입력" type="text" />
+        <button class="search-btn" onclick="{searchID()}">검색</button>
+        <p class="msg"></p>
+      </div>
+      <hr />
+      <div class="content">
+        <label for="id">ID</label>
+        <input type="text" name="id" id="id" />
+        <br />
+        <label for="name">NAME</label>
+        <input type="text" name="name" id="name" />
+        <br />
+        <label for="gender">GENDER</label>
+        <input type="text" name="gender" id="gender" />
+        <br />
+        <label for="job">JOB</label>
+        <input type="text" name="job" id="job" />
+        <br />
+        <label for="address">ADDRESS</label>
+        <input type="text" name="address" id="address" />
+        <br />
+        <button class="submit" onclick="{register()}">등록</button>
+      </div>
+    </div>
+  </body>
+  <script src="simpleDB.js"></script>
+</html>

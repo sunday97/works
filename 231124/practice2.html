@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script type="module">
+    import * as practice2 from "./practice2.js";
+    const {
+      db,
+      getFirestore,
+      collection,
+      getDocs,
+      setDoc,
+      addDoc,
+      doc,
+      deleteDoc,
+      updateDoc,
+      deleteField,
+      getDoc,
+      getDatas,
+    } = practice2;
+
+    console.log(getDocs(collection(db, "user")));
+  </script>
+</html>
