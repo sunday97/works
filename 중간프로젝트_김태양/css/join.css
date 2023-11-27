@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 648px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 24px;
+}
+
+main * {
+  width: 100%;
+}
+
+.title {
+  margin: 24px 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.terms-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.terms-info {
+  border: 1px solid black;
+  height: 60px;
+}
+.terms-checkboxs {
+  width: fit-content;
+  align-self: flex-end;
+}
+.terms-checkbox-label {
+  width: fit-content;
+}
+#terms-checkbox {
+  width: 13px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.form input {
+  height: 40px;
+}
+
+.user-tel select {
+  width: 60px;
+}
+.user-tel input {
+  height: 17px;
+  width: 60px;
+}
+
+.join-info {
+  font-size: 12px;
+  height: 35px;
+  /* overflow: scroll; */
+}
+.register {
+  background-color: #303030;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 20px;
+}
