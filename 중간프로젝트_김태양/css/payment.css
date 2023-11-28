@@ -11,7 +11,6 @@ main {
   margin: 0px auto;
   padding: 20px;
   gap: 24px;
-  height: 100vh;
 }
 .title {
   font-size: 42px;
@@ -32,18 +31,34 @@ main {
   flex-direction: column;
   /* padding: 20px; */
   border-radius: 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  /* position: relative; */
+}
+.selected-card {
+  box-shadow: 0px 0px 4px 4px red;
 }
 .card.card1 {
   background-color: #fcec4e;
+  transition: all 0.15s linear;
+}
+.card.card1:hover {
+  transform: scale(1.1);
 }
 .card.card2 {
   background-color: #3e8c7f;
   color: white;
+  transition: all 0.15s linear;
+}
+.card.card2:hover {
+  transform: scale(1.1);
 }
 .card.card3 {
   background-color: #2b66b1;
   color: white;
+  transition: all 0.15s linear;
+}
+.card.card3:hover {
+  transform: scale(1.1);
 }
 .card-up {
   position: relative;
@@ -69,18 +84,52 @@ main {
   transform: translate(50%, 50%);
   font-size: 30px;
 }
-.card-mid {
-  font-size: 36px;
-  font-weight: 400;
-  margin: 80px 40px 20px 40px;
-  text-align: end;
+
+.card-hover {
+  width: 240px;
+  height: 80px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  color: #303030;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: -90%;
+  left: 300%;
+  /* opacity: 0; */
+  /* display: none; */
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s linear;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
-.card-down {
-  height: 100%;
+
+.card-up .fa-ellipsis-vertical:hover .card-hover {
+  /* opacity: 1; */
+  /* display: block; */
+  visibility: visible;
 }
-.card-down.card-down1 {
-  background-color: #fae34c;
-}
+
+/* .card-mid {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  color: #303030;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: 34%;
+  right: 15%;
+  opacity: 0;
+  transition: all 0.3s linear;
+} */
+
+/* .card-mid-active {
+  opacity: 1;
+} */
 
 .register {
   width: 100%;
@@ -90,4 +139,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.05s linear;
+  cursor: pointer;
+}
+.register:active {
+  background-color: #4b4b4b;
+  box-shadow: 0px 0px 10px 4px rgba(255, 255, 255, 0.5);
 }
