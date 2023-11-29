@@ -1,7 +1,12 @@
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  src: url("../font/AppleSDGothicNeoR.ttf");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "AppleSDGothicNeo";
 }
 main {
   display: flex;
@@ -13,19 +18,18 @@ main {
   gap: 24px;
 }
 .title {
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 700;
   text-align: center;
 }
 .cards {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .card {
   width: 100%;
-  height: 100%;
   /* background-color: #fcec4e; */
   display: flex;
   flex-direction: column;
@@ -62,7 +66,7 @@ main {
 }
 .card-up {
   position: relative;
-  margin: 40px;
+  margin: 36px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -79,7 +83,7 @@ main {
 }
 .card-up .fa-ellipsis-vertical {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   transform: translate(50%, 50%);
   font-size: 30px;
@@ -87,7 +91,7 @@ main {
 
 .card-hover {
   width: 240px;
-  height: 80px;
+  height: 100px;
   font-size: 20px;
   font-weight: 600;
   background-color: white;
@@ -95,22 +99,23 @@ main {
   padding: 20px;
   border-radius: 12px;
   position: absolute;
-  top: -90%;
-  left: 300%;
-  /* opacity: 0; */
+  top: -100%;
+  right: -100%;
+  opacity: 0;
   /* display: none; */
-  visibility: hidden;
+  /* visibility: hidden; */
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.2s linear;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s linear;
+  box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
 }
 
 .card-up .fa-ellipsis-vertical:hover .card-hover {
-  /* opacity: 1; */
+  opacity: 1;
   /* display: block; */
-  visibility: visible;
+  /* visibility: visible; */
 }
 
 /* .card-mid {

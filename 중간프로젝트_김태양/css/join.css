@@ -1,7 +1,13 @@
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  src: url("../font/AppleSDGothicNeoR.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "AppleSDGothicNeo";
 }
 
 main {
@@ -30,10 +36,7 @@ main * {
   flex-direction: column;
   gap: 4px;
 }
-.terms-info {
-  border: 1px solid black;
-  height: 60px;
-}
+
 .terms-checkboxs {
   width: fit-content;
   align-self: flex-end;
@@ -69,6 +72,14 @@ main * {
   font-size: 12px;
   font-weight: 600;
   color: red;
+}
+.mid-tel-info {
+  width: 100px;
+  left: 13%;
+}
+.aft-tel-info {
+  width: 100px;
+  left: 29%;
 }
 
 .user-tel span {
