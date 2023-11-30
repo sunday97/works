@@ -1,5 +1,22 @@
 // console.log("run");
+// import 부분
+import * as firebase from "./firebass.js";
+const {
+  db,
+  getDocs,
+  collection,
+  getDatas,
+  setDoc,
+  addDoc,
+  doc,
+  addDatas,
+  deletedatas,
+  updateDoc,
+  deleteField,
+  updatedatas,
+} = firebase;
 
+// Global variable
 const reg = document.querySelector(".register");
 
 const cheBox = document.querySelector("#terms-checkbox");
@@ -40,23 +57,32 @@ const telCheck = /^[0-9]{4}$/;
 
 reg.addEventListener("click", function () {
   if (
-    (cheBox.checked,
-    idInfo.innerHTML == "사용가능한 아이디 입니다:)",
-    (rePwInfo.innerHTML = "일치합니다:)"),
-    (nameInfo.innerHTML = "좋아요:)"),
-    (emailInfo.innerHTML = "좋아요:)"),
-    (midTelInfo.innerHTML = ":)"),
-    (aftTelInfo.innerHTML = ":)"))
+    (cheBox.checked == true,
+    idInfo.innerHTML == "사용가능한 아이디 입니다:)" &&
+      rePwInfo.innerHTML == "일치합니다:)" &&
+      nameInfo.innerHTML == "좋아요:)" &&
+      emailInfo.innerHTML == "좋아요:)" &&
+      midTelInfo.innerHTML == ":)" &&
+      aftTelInfo.innerHTML == ":)")
   ) {
-    // 모든 형식을 통과했을 경우
+    // 모든 정규식을 통과했을 경우
     const userObj = {
       id: userId.value,
       password: userPaw.value,
       name: userName.value,
       email: userEmail.value,
-      tel: userTel,
+      tel: userTelBef.value + userTelMid.value + userTelAft.value,
     };
-    console.log(userObj);
+    addDatas("user", userObj);
+    userId.value = "";
+    userPaw.value = "";
+    userPawChe.value = "";
+    userName.value = "";
+    userEmail.value = "";
+    userTelMid.value = "";
+    userTelAft.value = "";
+    alert("우산대여서비스 '쓰슈'에 오신 걸 환영합니다:)");
+    // 메인페이지로 이동하는 함수 추가 예정
   } else {
     alert("잘못된 형식이 들어있어요! 다시 확인해주세요.");
   }
@@ -66,12 +92,18 @@ reg.addEventListener("click", function () {
 function isVaildId(id) {
   id.addEventListener("keyup", function () {
     // console.log(userId.value);
+    console.log(getUserId(userId.value));
     if (id.value.length == 0) {
       idInfo.innerHTML = "";
       idInfo.style.color = "red";
     } else if (idCheck.test(id.value)) {
-      idInfo.style.color = "green";
-      idInfo.innerHTML = "사용가능한 아이디 입니다:)";
+      if (getUserId(userId.value) == true) {
+        idInfo.style.color = "red";
+        idInfo.innerHTML = "이미 존재하는 아이디 입니다:(";
+      } else {
+        idInfo.style.color = "green";
+        idInfo.innerHTML = "사용가능한 아이디 입니다:)";
+      }
     } else {
       idInfo.style.color = "red";
       idInfo.innerHTML = "잘못된 형식입니다:(";
@@ -164,3 +196,22 @@ function saveInfo(content) {
   localStorage.setItem(content.id, JSON.stringify(content));
   content = {}; // 성공 시 초기화
 }
+
+// console.log(getDatas("user"));
+
+async function getUserId(userId) {
+  const snapshot = await getDatas("user");
+  // console.log(snapshot);
+  const idArr = [];
+  snapshot.forEach((doc) => {
+    // console.log(doc.data());
+    const { email, id, password, name, tel } = doc.data();
+    // console.log(typeof id);
+    idArr.push(id);
+  });
+  // console.log(idArr);
+  console.log(idArr.includes(userId));
+  return idArr.includes(userId);
+}
+
+// getUserId();

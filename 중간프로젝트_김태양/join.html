@@ -184,7 +184,7 @@
             </div>
             <div class="terms-checkboxs">
               <label for="terms-checkbox" class="terms-checkbox-label"
-                >동의</label
+                ><span style="color: red">[필수]</span> 동의</label
               >
               <input id="terms-checkbox" type="checkbox" />
             </div>
@@ -197,7 +197,7 @@
             <input
               type="text"
               id="id-input"
-              placeholder="/^[A-Za-z0-9]{4,10}$/"
+              placeholder="&nbsp; 영어 대소문자, 숫자 조합으로 4~10자 사이로 작성해주세요."
             />
             <span class="id-info input-info"></span>
           </div>
@@ -207,7 +207,7 @@
             <input
               type="password"
               id="password-input"
-              placeholder="/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/"
+              placeholder="&nbsp;영어대소문자, 숫자, 특수문자[!@#$%^*+=-]를 적어도 1회 사용해서 8~15자 조합해주세요."
             />
             <span class="pw-info input-info"></span>
           </div>
@@ -217,7 +217,7 @@
             <input
               type="password"
               id="password-check-input"
-              placeholder="비밀번호를 다시 입력해주세요"
+              placeholder="&nbsp;비밀번호를 다시 입력해주세요"
             />
             <span class="re-pw-info input-info"></span>
           </div>
@@ -227,7 +227,7 @@
             <input
               type="text"
               id="user-name"
-              placeholder="한글, 3자 이상 10자 이하"
+              placeholder="&nbsp; 한글로 3자 이상 10자 이하입니다."
             />
             <span class="name-info input-info"></span>
           </div>
@@ -238,10 +238,11 @@
             <input
               type="text"
               id="user-email"
-              placeholder="이메일 형식 xxx@xxx.xxx"
+              placeholder="&nbsp;이메일 형식은 : xxx@xxx.xxx 입니다."
             />
             <span class="email-info input-info"></span>
           </div>
+          <!-- 전화번호 -->
           <div class="user-tel sec">
             <span>전화번호</span>
             <div class="tel">
@@ -276,5 +277,5 @@
     </footer>
   </body>
   <script src="./js/script.js"></script>
-  <script src="./js/join.js"></script>
+  <script src="./js/join.js" type="module"></script>
 </html>
