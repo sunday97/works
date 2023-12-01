@@ -65,10 +65,18 @@ main * {
   font-weight: bold;
   transition: all 0.1s linear;
 }
+.register-btn a {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
 .login-btn:hover,
 .register-btn:hover {
   background-color: #fff;
   border: 1px solid black;
+  color: #76f1a7;
+}
+.register-btn:hover a {
   color: #76f1a7;
 }
 .login-btn:active,

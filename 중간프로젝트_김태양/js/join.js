@@ -29,6 +29,7 @@ const userTelBef = document.querySelector("select");
 const userTelMid = document.querySelector("#mid-tel");
 const userTelAft = document.querySelector("#after-tel");
 const userTel = userTelBef.value + userTelMid.value + userTelAft.value;
+const duCheBtn = document.querySelector(".id-dup-che-btn");
 
 const idInfo = document.querySelector(".id-info");
 const pwInfo = document.querySelector(".pw-info");
@@ -91,19 +92,13 @@ reg.addEventListener("click", function () {
 // 정규식으로 확인작업 함수
 function isVaildId(id) {
   id.addEventListener("keyup", function () {
-    // console.log(userId.value);
-    console.log(getUserId(userId.value));
+    // let exsitBox = false;
     if (id.value.length == 0) {
       idInfo.innerHTML = "";
       idInfo.style.color = "red";
     } else if (idCheck.test(id.value)) {
-      if (getUserId(userId.value) == true) {
-        idInfo.style.color = "red";
-        idInfo.innerHTML = "이미 존재하는 아이디 입니다:(";
-      } else {
-        idInfo.style.color = "green";
-        idInfo.innerHTML = "사용가능한 아이디 입니다:)";
-      }
+      idInfo.style.color = "green";
+      idInfo.innerHTML = "좋아요:)";
     } else {
       idInfo.style.color = "red";
       idInfo.innerHTML = "잘못된 형식입니다:(";
@@ -184,6 +179,26 @@ function isVaildTel(tel, telinfo) {
   });
 }
 
+function isDup(id) {
+  duCheBtn.addEventListener("click", () => {
+    if (idInfo.innerHTML == "좋아요:)") {
+      getUserId(id.value).then((e) => {
+        console.log("Func isDup 안에서 e 값 : " + e);
+
+        if (e == false) {
+          idInfo.style.color = "green";
+          idInfo.innerHTML = "사용가능한 아이디 입니다:)";
+        } else {
+          idInfo.style.color = "red";
+          idInfo.innerHTML = "누군가 사용하고 있어요:(";
+        }
+
+        // console.log(id.value);
+      });
+    }
+  });
+}
+
 isVaildId(userId);
 isVaildPw(userPaw);
 isVaildRePw(userPawChe, userPaw);
@@ -191,13 +206,7 @@ isVaildName(userName);
 isVaildEmail(userEmail);
 isVaildTel(userTelMid, midTelInfo);
 isVaildTel(userTelAft, aftTelInfo);
-
-function saveInfo(content) {
-  localStorage.setItem(content.id, JSON.stringify(content));
-  content = {}; // 성공 시 초기화
-}
-
-// console.log(getDatas("user"));
+isDup(userId);
 
 async function getUserId(userId) {
   const snapshot = await getDatas("user");
@@ -209,9 +218,10 @@ async function getUserId(userId) {
     // console.log(typeof id);
     idArr.push(id);
   });
-  // console.log(idArr);
-  console.log(idArr.includes(userId));
+  // console.log("pormise 내에서 idArr : " + idArr);
+  // console.log("pormise 내에서 검사결과 : " + idArr.includes(userId));
   return idArr.includes(userId);
+  // var exsitBox = idArr.includes(userId);
 }
 
 // getUserId();

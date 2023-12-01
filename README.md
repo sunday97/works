@@ -73,6 +73,20 @@ https://replit.com/ -> 이거 쓰시네
 
 https://coolors.co/
 
+https://axios-http.com/kr/docs/intro
+
+https://www.framer.com/motion/
+
+https://boxicons.com/
+
+폰트추천
+구글폰트에서 poppins
+눈누에서 한글폰트 Gmarket sans
+
+#### 논리구조 >>>> coding
+
+코드 읽으며 단순화 노력, 주석으로 기능 설명하면 가독성이 좋아진다.
+
 ---
 
 ### 사이트 링크 모음

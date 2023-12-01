@@ -40,6 +40,7 @@
     <div class="back">
       <main>
         <p class="title">아이디 및 비밀번호 찾기</p>
+        <!-- 아이디 찾기 -->
         <div class="id-search">
           <!-- 공통 입력 부분 -->
           <div class="user-name-sec">
@@ -59,7 +60,11 @@
           </div>
           <div class="id-search-for-tel-btn btn">전화번호로 찾기</div>
         </div>
+
+        <!-- 선 -->
         <div class="line"></div>
+
+        <!-- 비밀번호 찾기 -->
         <div class="pw-serch">
           <!-- 아이디 입력 -->
           <div class="user-id-sec">
@@ -88,6 +93,19 @@
       </div>
       <p>Copyright © DW ACADEMY 2023 TEAM PROJECT. All Rights Reserved.</p>
     </footer>
+
+    <!-- 모달 -->
+    <div class="overlay">
+      <div class="modal-box box1">
+        <label for="changePw">비밀번호 변경하기</label>
+        <input
+          type="text"
+          id="changePw"
+          placeholder="변경할 비밀번호를 써 주세요."
+        />
+        <div class="changeBtn">변경하기</div>
+      </div>
+    </div>
   </body>
-  <script src="id_pw-find.js" type="module"></script>
+  <script src="./js/id_pw_find.js" type="module"></script>
 </html>
