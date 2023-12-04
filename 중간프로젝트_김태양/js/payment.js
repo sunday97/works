@@ -18,12 +18,15 @@ card.forEach((e) => {
 });
 
 regBtn.addEventListener("click", () => {
+  const names = ["Pay", "우리은행", "KEB Hana Card"];
+  const randNum = parseInt(Math.random() * 3 + 1);
+  console.log(randNum);
   cardBox.insertAdjacentHTML(
     "beforeend",
-    `<div class="card card3">
+    `<div class="card card${randNum}">
   <div class="card-up">
     <p class="card-title">
-      <img src="icon/우리카드 logo.svg" alt="" /> 우리은행
+      <img src="icon/우리카드 logo.svg" alt="" /> ${names[randNum - 1]}
     </p>
     <p>우리운행 *** 0042 <i class="fa-solid fa-chevron-right"></i></p>
     <span

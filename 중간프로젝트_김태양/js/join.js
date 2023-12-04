@@ -14,6 +14,7 @@ const {
   updateDoc,
   deleteField,
   updatedatas,
+  getId,
 } = firebase;
 
 // Global variable
@@ -83,7 +84,15 @@ reg.addEventListener("click", function () {
     userTelMid.value = "";
     userTelAft.value = "";
     alert("우산대여서비스 '쓰슈'에 오신 걸 환영합니다:)");
-    // 메인페이지로 이동하는 함수 추가 예정
+    userId.value = "";
+    userPaw.value = "";
+    userPawChe.value = "";
+    userName.value = "";
+    userEmail.value = "";
+    userTelMid.value = "";
+    userTelAft.value = "";
+    // 메인화면으로 연결
+    location.replace("/main.html");
   } else {
     alert("잘못된 형식이 들어있어요! 다시 확인해주세요.");
   }
@@ -181,21 +190,30 @@ function isVaildTel(tel, telinfo) {
 
 function isDup(id) {
   duCheBtn.addEventListener("click", () => {
-    if (idInfo.innerHTML == "좋아요:)") {
-      getUserId(id.value).then((e) => {
-        console.log("Func isDup 안에서 e 값 : " + e);
+    let isExist = 0;
+    getId("user", id.value).then((result) => {
+      isExist = result;
+      if (isExist === 0) {
+        idInfo.style.color = "green";
+        idInfo.innerHTML = "사용가능한 아이디 입니다:)";
+      } else {
+        idInfo.style.color = "red";
+        idInfo.innerHTML = "누군가 사용하고 있어요:(";
+      }
+    });
+    // if (idInfo.innerHTML == "좋아요:)") {
+    //   getUserId(id.value).then((e) => {
+    //     console.log("Func isDup 안에서 e 값 : " + e);
 
-        if (e == false) {
-          idInfo.style.color = "green";
-          idInfo.innerHTML = "사용가능한 아이디 입니다:)";
-        } else {
-          idInfo.style.color = "red";
-          idInfo.innerHTML = "누군가 사용하고 있어요:(";
-        }
-
-        // console.log(id.value);
-      });
-    }
+    //     if (e == false) {
+    //       idInfo.style.color = "green";
+    //       idInfo.innerHTML = "사용가능한 아이디 입니다:)";
+    //     } else {
+    //       idInfo.style.color = "red";
+    //       idInfo.innerHTML = "누군가 사용하고 있어요:(";
+    //     }
+    //   });
+    // }
   });
 }
 

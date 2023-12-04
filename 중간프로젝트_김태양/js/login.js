@@ -60,8 +60,10 @@ async function isVaildId(e) {
   // console.log(idPwArr.find((item) => item.id === e.value));
   // const idPwObj = idPwArr.find((item) => item.id === e.value);
   // console.log(idPwObj["pw"]);
+  // 아이디가 포함되어 있는지 확인 true/false
+  console.log(idArr);
+  console.log(idArr.includes(e.value));
   return idArr.includes(e.value);
-  // var exsitBox = idArr.includes(userId);
 }
 
 async function isVaildPw(a, b) {

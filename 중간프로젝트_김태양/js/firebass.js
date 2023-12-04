@@ -7,12 +7,13 @@ import {
   getDocs,
   setDoc,
   addDoc,
+  getDoc,
   doc,
   deleteDoc,
   updateDoc,
   deleteField,
-  getDoc,
   where,
+  query,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -50,6 +51,14 @@ async function getDatasLogin(collectionName, logInput) {
 async function getDatas(collectionName) {
   const querySnapshot = await getDocs(collection(db, collectionName));
   return querySnapshot;
+}
+
+// 선생님이 추가하신 부분 - query와 where 사용
+async function getId(collectionName, userId) {
+  const snapshot = await getDocs(
+    query(collection(db, collectionName), where("id", "==", userId))
+  );
+  return snapshot.size;
 }
 
 async function addDatas(collectionName, dataObj) {
@@ -91,5 +100,7 @@ export {
   updatedatas,
   getDoc,
   where,
+  query,
   getDatasLogin,
+  getId,
 };

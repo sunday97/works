@@ -45,18 +45,30 @@
           <!-- 공통 입력 부분 -->
           <div class="user-name-sec">
             <label for="user-name">이름</label>
-            <input type="text" id="user-name" />
+            <input
+              type="text"
+              id="user-name"
+              placeholder="&nbsp;이름을 입력하세요"
+            />
           </div>
           <!-- 이메일 입력 -->
           <div class="user-email-sec">
             <label for="user-email">이메일 입력</label>
-            <input type="text" id="user-email" />
+            <input
+              type="text"
+              id="user-email"
+              placeholder="&nbsp;이메일을 입력하세요"
+            />
           </div>
           <div class="id-search-for-email-btn btn">이메일로 찾기</div>
           <!-- 전화번호 입력 -->
           <div class="user-tel-sec">
             <label for="user-tel">전화번호 입력</label>
-            <input type="text" id="user-tel" />
+            <input
+              type="text"
+              id="user-tel"
+              placeholder="&nbsp;전화번호를 입력하세요(-제외)"
+            />
           </div>
           <div class="id-search-for-tel-btn btn">전화번호로 찾기</div>
         </div>
@@ -69,17 +81,29 @@
           <!-- 아이디 입력 -->
           <div class="user-id-sec">
             <label for="user-id">ID 입력</label>
-            <input type="text" id="user-id" />
+            <input
+              type="text"
+              id="user-id"
+              placeholder="&nbsp;ID을 입력하세요"
+            />
           </div>
           <!-- 이메일 입력 -->
           <div class="user-email-sec">
             <label for="user-email">이메일 입력</label>
-            <input type="text" id="user-email" />
+            <input
+              type="text"
+              id="user-email"
+              placeholder="&nbsp;이메일을 입력하세요"
+            />
           </div>
           <!-- 전화번호 입력 -->
           <div class="user-tel-sec">
             <label for="user-tel">전화번호 입력</label>
-            <input type="text" id="user-tel" />
+            <input
+              type="text"
+              id="user-tel"
+              placeholder="&nbsp;전화번호를 입력하세요(-제외)"
+            />
           </div>
           <div class="pw-search-btn btn">비밀번호 변경하기</div>
         </div>
@@ -101,9 +125,11 @@
         <input
           type="text"
           id="changePw"
-          placeholder="변경할 비밀번호를 써 주세요."
+          placeholder="영어대소문자+특수문자(!@#$%^*+=-),숫자(0-9)의 8이상 15이하"
         />
+        <!-- 나중에  placeholder에 들어갈 내용을 다른데 위치시키자-->
         <div class="changeBtn">변경하기</div>
+        <div class="changeBtnInfo"></div>
       </div>
     </div>
   </body>

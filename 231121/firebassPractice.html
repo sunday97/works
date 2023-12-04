@@ -101,10 +101,14 @@
     const memberTable = document.querySelector("table");
     async function getMembers() {
       const snapshot = await getDatas("member");
+      console.log(snapshot);
       snapshot.forEach((doc) => {
         const { membarName, memberAge, memberGender, memberTel, memberId } =
           doc.data();
+
         console.log(doc.data());
+        console.log(doc);
+        console.log(doc.id);
         memberTable.insertAdjacentHTML(
           "beforeend",
           `
@@ -114,7 +118,8 @@
             <td>${memberGender}</td>
             <td>${memberTel}</td>
             <td>${memberId}</td>
-            <input type="hidden" value="${doc.id}">
+            
+            <input type="hidden" value="${doc.id}  문서의 아이디를 뽑는부분">
 
             </tr>
           `
