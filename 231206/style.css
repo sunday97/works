@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* !!! */
+  overflow: hidden;
+  background-color: #333;
+}
+
+.items {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 긇음 허용 선택 속성 */
+  user-select: none;
+}
+
+.items .item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: -1;
+  /* 혹시나 모를 안전장치 */
+  opacity: 0;
+  /* transition의 0.3s 는 국룰(간단한 버튼이나 작동요소일 때). 인간이 가장 편안해함? ㅁㅊ놈들인가? */
+  transition: all 0.3s ease-in-out;
+}
+/* 언제나 이미지는 박스에 한번 감싸서 넣자 */
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* active 같이 흔히 쓰이는 이름은 엉킬수도 있기에 선택자를 될 수 있으면 단독이 아니라 자세하게 사용하도록하자 */
+.item.active {
+  opacity: 1;
+  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.3);
+  z-index: 99;
+}
+.item.prev {
+  opacity: 0.3;
+  z-index: 2;
+  transform: translate(-125%, -50%);
+  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.3);
+}
+.item.next {
+  opacity: 0.3;
+  z-index: 2;
+  transform: translate(25%, -50%);
+  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.3);
+}
+
+.items .button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 540px;
+  z-index: 100;
+  /* border: solid black; */
+  display: flex;
+  justify-content: space-between;
+}
+.button-container .button {
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.75;
+  transition: all 0.3s ease-in-out;
+}
+.button-container .button::before {
+  content: "";
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  z-index: -1;
+}
+.button-container .button:hover {
+  opacity: 1;
+}
+
+.mode {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: orange;
+}

@@ -1,5 +1,7 @@
 # **---Info---**
 
+개발자(Developer) = Creater
+
 ### 배현기 선생님 git [링크](https://github.com/baehyunki/dw_data2/tree/master)
 
 ### 김진용 선생님 (Tel.010-6773-3469)
@@ -82,6 +84,12 @@ https://boxicons.com/
 폰트추천
 구글폰트에서 poppins
 눈누에서 한글폰트 Gmarket sans
+
+https://www.freecodecamp.org/news/
+
+https://lodash.com/
+
+> 자바스크립트 라이브러리
 
 #### 논리구조 >>>> coding
 

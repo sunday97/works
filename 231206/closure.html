@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure 폐쇄</title>
+  </head>
+  <body>
+    <script>
+      // scope
+      //   const x = 0;
+      //   function myFunc() {
+      //     const x = 1;
+      //     console.log(`함수 안에서 : ${x}`);
+      //   }
+      //   console.log(`함수 밖에서 : ${x}`);
+      //   myFunc();
+      //   ------------------------------
+      //   counter 딜레마
+      //   : 카운터를 하는데 오직 함수로만(폐쇄적으로) 증감시키고 싶어!
+
+      //   //   접근방안 1
+      //   let counter = 0;
+      //   function add() {
+      //     counter = counter + 1;
+      //     console.log(counter);
+      //   }
+      //   add();
+      //   add();
+      //   add();
+      //   //   외부에서 개입가능...
+      //   counter = counter + 1;
+      //   console.log(counter);
+
+      //   //   접근방안 2
+      //   function add() {
+      //     let counter = 0;
+      //     counter = counter + 1;
+      //     console.log(counter);
+      //   }
+      //   add();
+      //   add();
+      //   add();
+      //   //   카운터기능을 상실..
+      //   counter = counter + 1;
+      //   console.log(counter);
+
+      //   접근방안 3
+      //   counter를 함수 내부에 선언하여 함수호출로만 접근가능하지만(폐쇄성립)
+      //   add 함수 종료 시 같이 사라지기에 카운팅 불가...
+      //   function add() {
+      //     let counter = 0;
+      //     function plus() {
+      //       counter = counter + 1;
+      //     }
+      //     plus();
+      //     console.log(counter);
+      //   }
+      //   add();
+      //   add();
+      //   add();
+      //   결과 : 접근법 번뜩! 하지만 만약 함수 안에 있는 plus()만 호출이 가능하다면?
+
+      //   접근방안 4
+      //   outer함수에서 선언된 변수는 nested함수에서 사용하는 한 사라지지 않느다는 자바스크립트의 성질을 이용함.
+      // 이것이 바로 CLOSURE!!!
+      // 4. 내부함수를 리턴하여 외부함수내의 counter 변수를 사용할 수 있도록 변경. 외부함수는 한번 실행 후 사라지기에 외부에서 접근 불가능함(===폐쇄상태)
+      const add = (function () {
+        let counter = 0;
+        return function () {
+          counter = counter + 1;
+          console.log(counter);
+        };
+      })();
+      console.log(add);
+      // ()() 를 이용해 앞의()든 함수를 바로 실행시키고
+      //   그러면 선언되었다가 사라져야할 외부함수의 counter 변수가 nested함수에 쓰여서 메모리에 남아있게 되고
+      //   add는 log로 보면 counter = counter + 1;이 부분이 들어있는 함수이기에 결국 add()하면 아무도 접근하지 못하는 변수 counter에 접근하는 것이다.
+      // 접근방안 1처럼 작동하고 하지만 외부에선 접근 불가능한 상태가 완성되는 것이다!!!
+      add();
+      add();
+      add();
+    </script>
+  </body>
+</html>

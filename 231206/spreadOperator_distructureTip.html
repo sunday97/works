@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spreadOperator</title>
+  </head>
+  <body>
+    <script>
+      // spreadOperator
+
+      // 배열 : ... 사용 시 [](대괄호)를 벗긴다. / []안에서만 유효하다.
+      const colors = ["black", "red", "blue"];
+      const nums = [1, 2, 3, 4];
+      const colorsNums = [...colors, ...nums];
+      //   console.log(colorsNums);
+      //   console.log(colorsNums.length);
+      //   console.log(typeof colorsNums);
+
+      //   객체 :: ... 사용 시 {}(중괄호)를 벗긴다. / {}안에서만 유효하다.
+      const user = {
+        name: "steve",
+        age: "20",
+        gender: "male",
+      };
+      const newUser = user;
+      const newUserSpreadOperater = { ...user };
+      newUser.age = 30;
+      newUserSpreadOperater.age = 50;
+
+      console.log(user);
+
+      //   얕은 값복사
+      //   보통 개체는 참조만 되지 복사가 되지 않는다.
+      console.log(newUser);
+      console.log(newUserSpreadOperater);
+
+      //   '개체는 키값이 중복될 수 없다'는 규칙을 이용한 값치환
+      //   객체내의 특정 키벨류만 수정하는 용도. 한줄코드가능!!!
+      const newUserSpreadOperater2 = { ...user, name: "Tom" };
+      console.log(newUserSpreadOperater2);
+
+      //   디스트럭쳐링문법 - 키이름 바꾸는 법
+      //   1
+      //   이 상태면 name이란 변수가 2개 생기게 되는 것인데 변수명은 중복x니 오류가 나온다.
+      //   const { name } = user;
+      //   const { name } = newUserSpreadOperater;
+      //   console.log(name);
+      //   2
+      // 그래서 이렇게 디스트럭쳐링할 때 변수명을 임의로 바꿀 수 있다.
+      const { name: name1 } = user;
+      const { name: name2 } = newUserSpreadOperater2;
+      console.log(name1);
+      console.log(name2);
+    </script>
+  </body>
+</html>
