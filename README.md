@@ -45,6 +45,30 @@ DB 지원 플랫폼
 개발자들은 약간의 귀차니즘을 가지고 있어야 한다. => 최소의 움직임으로 최고효율을 추구
 머리가 나쁘면 몸이 고생한다. 반대도 성립 노가다xxxx
 
+### raact
+
+#### raact 사용 및 bash 터미널명령어
+
+> ls -a : 모든 파일및폴더를 확인한다.  
+> pwd 현재 위치확인  
+> cd 이동할폴더명 : 이동명령  
+> https://nodejs.org/en -
+> 20.10.0 LTS 설치(가장 최신버전 중 안정화된)  
+> node -v : 노드 설치 및 버전 확인  
+> npm -v : node maniger packing 의 약자. nodejs 설치시 설치됨  
+> npx -v : 비슷한?  
+> npx create-react-app 01-dice_game
+> npm ERR! A complete log of this run can be found in: C:\Users\011\AppData\Local\npm-cache_logs\2023-12-07T00_22_15_335Z-debug-0.log에서  
+> npm-cache 폴더 삭제 ..실패  
+> npm rm -g create-react-app로 create-react-app 삭제 후 npm install create-react-app 로 재설치  
+> 그리고 npx create-react-app 01-dice_game로 react파일 생성
+> 01-dice_game로 프로젝트 폴더로 이동하고  
+> npm run start 로 프롬프트에서 열어야 한다.
+>
+> > local 은 컴퓨터에서, on your network는 서버를 공유하면 그곳에서 여는 주소.
+
+JSX 문법
+
 #### 공유폴더 주소 \\192.168.0.78
 
 ### 한지호 본부장님?
