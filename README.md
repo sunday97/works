@@ -55,8 +55,8 @@ DB 지원 플랫폼
 > https://nodejs.org/en -
 > 20.10.0 LTS 설치(가장 최신버전 중 안정화된)  
 > node -v : 노드 설치 및 버전 확인  
-> npm -v : node maniger packing 의 약자. nodejs 설치시 설치됨  
-> npx -v : 비슷한?  
+> npm -v : node maniger packing 의 약자. nodejs 설치시 설치됨 매니징담당
+> npx -v : Node Package eXecute[A tool for executing Node Packages]의 약자. 비슷한? 실행담당
 > npx create-react-app 01-dice_game
 > npm ERR! A complete log of this run can be found in: C:\Users\011\AppData\Local\npm-cache_logs\2023-12-07T00_22_15_335Z-debug-0.log에서  
 > npm-cache 폴더 삭제 ..실패  
@@ -114,6 +114,31 @@ https://www.freecodecamp.org/news/
 https://lodash.com/
 
 > 자바스크립트 라이브러리
+
+https://velog.io/@yoju/-How-the-web-works
+
+https://velog.io/@yoju/JavaScript-%EB%B0%B0%EC%97%B4-%EB%A9%94%EC%86%8C%EB%93%9C-map-filter-find-reduce
+
+### 리액트 : 구조화가 쉽다 = 일감분활이 쉽다 = 유지보수가 용의하다 = 회사(경영자)선호
+
+리액트 애니메이션 라이브러리
+
+> 1.  Framer - motion
+>     > 쉽다, 물리구현이 제한적이다.
+>     > &nbsp; &nbsp;
+> 2.  React Spring
+>     > 어렵다, 물리구현이 매우 다양하다.
+
+#### 흐름보기
+
+react_framer_motion 폴도 생성 후 이동  
+npx create-react-app . 실행(.은 현재위치라는 뜻)  
+npm install framer-motion 실행  
+package.json파일에서 freamer-motion이 의존성에 표시된 것 확인  
+"framer-motion":"^10.16.14",
+--
+언젠가 실행할 때 의존성 및 각종 라이브러리 문제가 생길 수 있음 그럴 떈 node_modules폴더 완전 삭제하고
+npm install 실행(node_modules폴더를 다시 받겠다는 뜻)
 
 #### 논리구조 >>>> coding
 
