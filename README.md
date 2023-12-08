@@ -84,6 +84,8 @@ Learning Curve / 변곡점(싱귤러레티) => 진입장벽의 원인 , 마치 �
 
 ### new teacher
 
+참조복사
+
 https://tabler-icons.io/
 
 font-awesome
