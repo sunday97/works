@@ -10,7 +10,8 @@ export function Scroll() {
       <div className="container">
         <motion.div
           className="bar"
-          style={{ scaleX: scrollYProgress }}
+          // style={{ scaleX: scrollYProgress }}
+          style={{ scaleY: scrollYProgress }}
         ></motion.div>
         <div>
           <p>
