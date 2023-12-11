@@ -23,11 +23,16 @@ body {
   height: 5vmin; */
   /* 스크롤하면 가우데서 시작하는 것을 왼쪽에서 시작하겠다. */
   /* x축 기준 */
-  transform-origin: 0;
+  /* transform-origin: 0; */
 
   width: 5vmin;
   height: 100%;
   /* y축 기준 */
-  -webkit-transform-origin-y: 0;
+  /* -webkit-transform-origin-y: 0; */
   /* -moz-transform-origin: 0 0 ; */
+  /* 위 두개만이 아니라 transform-origin로도 됨!! */
+  /* transform-origin */
+  /* transform-origin: 0 0; */
+  /* 아래에서 위로! */
+  transform-origin: 0 100%;
 }

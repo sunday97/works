@@ -1,0 +1,20 @@
+.container {
+  width: 100vw;
+  height: 500vh;
+  background: linear-gradient(90deg, #d0e, #91f);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.wrapper {
+  position: fixed;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.scrollBar {
+  width: 100px;
+  height: 300px;
+  background-color: white;
+  margin: 100px 50px;
+  transform-origin: 100% 100%;
+}
