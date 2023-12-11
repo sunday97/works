@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01-functionPractice</title>
+  </head>
+  <body></body>
+  <script>
+    // var:재선언,재할당가능 , let:선언만가능,재할당가능 , const:선언과초기화동시,재할당불가능 ; {} = 지역
+    // 전역변수 vs 지역변수
+    let z = 2;
+
+    // 파라미터연습
+    function A(a, b) {
+      //   console.log(a + b + B(a, b));
+      //   return a - b;
+      //   z = a - b;
+    }
+    // Not all Num
+    function B(a, b, ...args) {
+      // 유사배열(객체다)로 받은 파라미터를 표시한다. arguments
+      console.log(arguments);
+      console.log(args);
+
+      // reture이 있어야 반환이 존재한다, 있다는 소리다.
+
+      return a + b;
+    }
+
+    const C = (a, b, ...args) => {
+      return a + b;
+    };
+    // 축약하면서 reture도 생략(존재는 해)
+    const D = (a, b, ...args) => a + b;
+    // alert(C(1, 2));
+    const E = (a, b, ...args) => {
+      return { a: a + b, b: b - b };
+    };
+    // 객체를 한줄로 줄여쓸때!
+    const F = (a, b, ...args) => ({ a: a + b, b: b - b });
+    const G = (a) => {
+      return a + 20;
+    };
+    // const H = a => a + 20;
+
+    // A(2, 5); // 10
+    console.log(A(2, 5) + B(10, 3));
+    const resultA = A(2, 5);
+    const resultB = B(10, 3);
+    console.log(resultA + resultB);
+
+    if (true) {
+      let test = 0;
+      test = 1;
+
+      const test2 = 1;
+      //   test2 = 3;
+
+      //   let x;
+      //   const y;
+
+      console.log(z);
+      console.log(z);
+      A(10, 3);
+      console.log(z);
+
+      function sumArr(arr) {
+        arr.forEach((v) => {
+          return (z += v);
+        });
+      }
+
+      const arr = [1, 2, 3, 4, 5];
+
+      sumArr(arr);
+      console.log(z);
+
+      console.log(B(2, 5, 8, 10, 11, 12, 13));
+    }
+  </script>
+</html>

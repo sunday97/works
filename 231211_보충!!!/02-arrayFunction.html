@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02-arrayFunction</title>
+  </head>
+  <body></body>
+  <script>
+    // 1. forEach
+    const arr = [10, 20, 30, 40, 50];
+    let sum = 0;
+    arr.forEach((e) => {
+      sum = sum + e;
+    });
+    console.log(sum);
+    // 기본형
+    let sum2 = 0;
+    // arr.forEach(function (value, index, array) {
+    //   //   console.log(`value: ${value}, index: ${index}, array: ${array}`);
+    //   //   sum2 = sum2 + value;
+    //   sum2 += value;
+    // });
+
+    arr.forEach((v) => {
+      sum2 += v;
+    });
+    console.log(sum2);
+
+    // 2. map
+    const newArr3 = arr.map((v) => v * 3);
+    console.log(newArr3);
+
+    const newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      newArr.push(arr[i] * 3);
+    }
+    console.log(newArr);
+
+    const newArr2 = [];
+    arr.forEach((v) => {
+      newArr2.push(v * 3);
+    });
+    console.log(newArr2);
+
+    const objArr = [
+      { id: 1, name: "홍길동" },
+      { id: 2, name: "진달래" },
+      { id: 3, name: "임꺽정" },
+    ];
+    const nameArr = objArr.map((v) => v["name"]);
+    // const nameArr = objArr.map(function (v) {
+    //   return v.name;
+    // });
+    console.log(nameArr);
+
+    // 3. reduce
+    // const arrSum = arr.reduce(function (prevValue, curValue, CurIndex, array) {
+    //   //   console.log(
+    //   //     `prevValue:${prevValue}, curValue:${curValue}, CurIndex:${CurIndex}, array: ${array}`
+    //   //   );
+    //   return prevValue + curValue;
+    // });
+    // const arrSum = arr.reduce((a, b) => a + b, 30);
+    const arrSum2 = arr.reduce((a, b) => a + b, 30);
+    const arrSum3 = arr.reduce((a, b) => a + b, -30);
+
+    console.log(arrSum);
+  </script>
+</html>

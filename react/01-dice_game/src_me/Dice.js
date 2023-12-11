@@ -22,7 +22,7 @@ const DICE_IMAGES = {
     diceBlue06,
   ],
 };
-
+// { color = blue, num = 1 } 구조분해할당 안에서 = 다음은 값이 없으면 기본값으로 지정된다.
 function Dice({ color = "blue", num = 1 }) {
   const src = DICE_IMAGES[color][num - 1];
   const alt = `${color} ${num}`;
