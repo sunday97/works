@@ -7,7 +7,11 @@
 // import { Scroll } from "./conponents/Scroll";
 // import { Event } from "./conponents/Event";
 // import { MyAnimatePresence } from "./conponents/AnimatePresence";
-import { MotionValue } from "./conponents/MotionValue";
+// import { MotionValue } from "./conponents/MotionValue";
+// import { MotionValue2 } from "./conponents/MotionValue2";
+// import { MotionValue3 } from "./conponents/MotionValue3";
+import { AnimetionCotrol } from "./conponents/AnimetionCotrol";
+// import { MyAnimatePresence2 } from "./conponents/AnimatePresence2";
 
 function App() {
   return (
@@ -20,7 +24,11 @@ function App() {
       {/* Gesture import를 켜서 묶인 css 를 사용한다. */}
       {/* <Event /> */}
       {/* <MyAnimatePresence /> */}
-      <MotionValue />
+      {/* <MotionValue /> */}
+      {/* <MotionValue2 /> */}
+      {/* <MotionValue3 /> */}
+      <AnimetionCotrol />
+      {/* <MyAnimatePresence2 /> */}
     </>
   );
 }

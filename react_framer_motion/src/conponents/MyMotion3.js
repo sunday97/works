@@ -11,6 +11,7 @@ const keyFrameVariants = {
     transition: {
       duration: 2,
       ease: "easeInOut",
+      // duration을 100%로 했을 때
       times: [0, 0.2, 0.5, 0.8, 1],
       repeat: Infinity,
       repeatDelay: 1,

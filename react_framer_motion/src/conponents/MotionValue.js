@@ -37,6 +37,7 @@ export function MotionValue() {
 
   return (
     <>
+      {/* <motion.div className="container" style={{ background : background }}> 인데 같은 값이라 생략했다.   */}
       <motion.div className="container" style={{ background }}>
         <div className="wrapper">
           <motion.div

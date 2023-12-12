@@ -19,8 +19,11 @@ export function Event() {
           animate={{ x: 400 }}
           //   '크롬이슈'로 딜레이가 붙어있어야 한다.
           transition={{ delay: 1 }}
-          //   onUpdate={onUpdate}
+          // 진행중
+          // onUpdate={onUpdate}
+          // 시작
           onAnimationStart={onStart}
+          // 끝
           onAnimationComplete={onComplete}
         ></motion.div>
       </div>
