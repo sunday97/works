@@ -4,6 +4,7 @@ import HandIcon from "./HandIcon";
 import "./HandIcon.css";
 import { generateRandomHand, compareHand } from "./utils";
 import { useState } from "react";
+import "./App.css";
 
 // 결과를 한글로 변경하는 함수
 function getResult(me, other) {
@@ -21,19 +22,23 @@ function App() {
   const [score, setScore] = useState(0);
   const [otherScore, setOtherScore] = useState(0);
   const [bet, setBet] = useState(1);
+  const [isWin, setIsWin] = useState(0);
 
+  // 주먹,가위,보 버튼
   const handleButtonClick = (value) => {
     const myValue = value;
     const otherValue = generateRandomHand();
+    const comparison = compareHand(myValue, otherValue);
     // console.log(getResult(myValue, otherValue));
     const nextHistory = getResult(myValue, otherValue);
+    setIsWin(comparison);
     // alert(`${myValue}, ${otherValue}`); // 경우 1
     setNextHand(myValue);
     setOtherNextHand(otherValue);
     // alert(`${myValue}, ${otherValue}`); // 경우 2
 
-    if (nextHistory === "승리") setScore(score + bet);
-    if (nextHistory === "패배") setOtherScore(otherScore + bet);
+    if (comparison > 0) setScore(score + bet);
+    if (comparison < 0) setOtherScore(otherScore + bet);
 
     // gameHistory.push(nextHistory); 이건 x
     // setGameHistory([nextHistory]);
@@ -78,6 +83,7 @@ function App() {
   };
   // alert(`${myValue}, ${otherValue}`); // 경우 3
 
+  // 초기화버튼
   const handleClearClick = () => {
     setNextHand("rock");
     setOtherNextHand("rock");
@@ -85,38 +91,52 @@ function App() {
     setScore(0);
     setOtherScore(0);
     setBet(0);
+    setIsWin(0);
   };
 
   return (
     <>
-      <div>
-        <h1>가위바위보</h1>
-        <img src={resrt} alt="초기화" onClick={handleClearClick} />
-        <div className="App-scoes">
-          <div>
-            <div>{score}</div>
-            <div>나</div>
+      <div className="App">
+        <h1 className="App-heading">가위바위보</h1>
+        <img
+          src={resrt}
+          alt="초기화"
+          className="App-reset"
+          onClick={handleClearClick}
+        />
+        <div className="App-scores">
+          <div className="Score">
+            <div className="Score-num">{score}</div>
+            <div className="Score-name">나</div>
           </div>
-          <div>:</div>
-          <div>
-            <div>{otherScore}</div>
-            <div>상대</div>
+          <div className="App-versus">:</div>
+          <div className="Score">
+            <div className="Score-num">{otherScore}</div>
+            <div className="Score-name">상대</div>
           </div>
         </div>
         <div className="Box App-box">
           <div className="Box-inner">
             {/* 가위바위보 내는 곳 */}
-            <div>
-              <div className="Hand">
+            <div className="App-hands">
+              <div
+                className={`Hand ${
+                  isWin == 0 ? "" : isWin == 1 ? "winner" : ""
+                }`}
+              >
                 <HandIcon className="Hand-icon" value={nextHand} />
               </div>
-              <div>VS</div>
-              <div className="Hand">
+              <div className="App-versus">VS</div>
+              <div
+                className={`Hand ${
+                  isWin == 0 ? "" : isWin == 1 ? "" : "winner"
+                }`}
+              >
                 <HandIcon className="Hand-icon" value={otherNextHand} />
               </div>
             </div>
             {/* 배점 */}
-            <div>
+            <div className="App-bet">
               <span>배점</span>
               <input
                 type="Number"
@@ -128,7 +148,7 @@ function App() {
               <span>배</span>
             </div>
             {/* 기록 */}
-            <div>
+            <div className="App-history">
               <h2>승부기록</h2>
               <p>{gameHistory.join(", ")}</p>
             </div>
