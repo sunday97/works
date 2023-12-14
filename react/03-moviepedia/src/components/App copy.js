@@ -1,10 +1,9 @@
 import mockItems from "../mock.json";
 import ReviewList from "./ReviewList";
 import { useState } from "react";
-import { getDatas } from "./firebase";
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([mockItems]);
   const [order, setOrder] = useState("createdAt");
 
   // console.log(items);
@@ -18,12 +17,6 @@ function App() {
     // 단 이 경우엔 렌더링 범위는 App()부분이라 새로고침하면 mock.json가 다시 불려와서 다시 나타난다. 진짜 파일(서버)에 있는 걸 삭제한 것이 아니다.
     setItems(nextItems);
   };
-
-  const hanleLoadClick = async () => {
-    console.log(await getDatas("movie"));
-    const { reviews } = await getDatas("movie");
-  };
-
   // console.log(handleDelete);
 
   // sort 함수에 아무런 argument도 전달하지 않을 때는 기본적으로 유니코드에 정의된 문자열 순서에 따라 정렬된다.
@@ -64,7 +57,7 @@ function App() {
         <button onClick={handleBestClick}>베스트순</button>
       </div>
       <ReviewList items={sortedItems} onDelete={handleDelete} />
-      <button onClick={hanleLoadClick}>불러오기</button>
+      <button>불러오기</button>
     </>
   );
 }
