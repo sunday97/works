@@ -10,8 +10,11 @@ import {
   doc,
   deleteDoc,
   updateDoc,
-  deleteField,
   getDoc,
+  query,
+  orderBy,
+  limit,
+  startAfter,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -27,26 +30,48 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getDatas(collectionName) {
-  const querySnapshot = await getDocs(collection(db, collectionName));
+async function getDatas(collectionName, order, limitNum, lq) {
+  // const querySnapshot = await getDocs(collection(db, collectionName));
+  // 최초에는 lq가 undefined 나온다. 그걸 이용해 함수 기능을 나눈다.
+  let docQuery;
+  if (lq === undefined) {
+    docQuery = query(
+      collection(db, collectionName),
+      orderBy(order, "desc"),
+      limit(limitNum)
+    );
+  } else {
+    docQuery = query(
+      collection(db, collectionName),
+      orderBy(order, "desc"),
+      startAfter(lq),
+      limit(limitNum)
+    );
+  }
+
+  // asc(Ascending,기본값,생략가능) : 오름차순 , desc(Descending) : 내림차순
+  // 쿼리 query
+  // orderBy, limit, startAfter
+  const querySnapshot = await getDocs(docQuery);
+
   //   console.log(querySnapshot.docs);
   //   console.log(querySnapshot.docs[0]);
   //   console.log(querySnapshot.docs[0].data());
   //   const result = querySnapshot.getDocs.map((doc) => doc.data());
   const result = querySnapshot.docs;
+  // console.log(result);
+  const lastQuery = result[result.length - 1]; // 마지막 요소를 기억
+  // console.log(lastQuery);
   const reviews = result.map((doc) => doc.data());
   //   console.log(reviews);
-  return reviews;
+  // const obj = {
+  //   reviews: reviews,
+  // };
+  // console.log(obj);
+  // console.log(reviews);
+
+  // return은 하나의 형식의 하나만 보낼 수 있다..... 여러개를 리턴하기 위해서는 {}로 묶어서 보내든가.
+  return { reviews, lastQuery };
 }
 
-export {
-  db,
-  getDocs,
-  collection,
-  getDatas,
-  setDoc,
-  addDoc,
-  doc,
-  deleteField,
-  getDoc,
-};
+export { db, getDocs, collection, getDatas, setDoc, addDoc, doc, getDoc };

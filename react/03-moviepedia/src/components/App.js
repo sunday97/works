@@ -1,15 +1,21 @@
 import mockItems from "../mock.json";
 import ReviewList from "./ReviewList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getDatas } from "./firebase";
+
+const LIMIT = 5;
+// 상수의 변수는 대문자!
 
 function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
+  const [lq, setLq] = useState({}); // lastQuery를 담을 state
 
   // console.log(items);
+  console.log(order);
 
   // 찐 태그가 있는 곳이 아니라 함수를 굳이 여기서 선언하는 이유는 주요 기능을 여기에 모아서 "관리하기 용의"하기 위해서이다.
+  // 연결만 잘해놓으면 여기서 관리할 수 있느니까 용의하다.
   const handleDelete = (id) => {
     // alert(id);
     // items 에서 id 파라미터와 같은 id를 가지는 요소(객체)를 제거
@@ -19,10 +25,46 @@ function App() {
     setItems(nextItems);
   };
 
-  const hanleLoadClick = async () => {
-    console.log(await getDatas("movie"));
-    const { reviews } = await getDatas("movie");
+  // const hanleLoadClick = async () => {
+  //   // console.log(await getDatas("movie"));
+  //   // 구조분해할당
+  //   const { reviews } = await getDatas("movie");
+  //   // 만약 변수를 바꾸고 싶으면 {reviews:result} , 만약 디폴트값(기본값)을 주고 싶다? {result2 = "blue"}
+  //   // console.log(reviews);
+  //   setItems(reviews);
+  // };
+  const handleLoad = async (lq) => {
+    const { reviews, lastQuery } = await getDatas("movie", order, LIMIT, lq);
+    // console.log(lq); // 최초에는 undefined 나온다. 그걸 이용해 함수 기능을 나눈다.
+    setLq(lastQuery);
+    // console.log(reviews);
+    // 스테이트함수는 파라미터를 콜백으로도 받을 수 있는데 그 콜백함수의 파라미터로 해당 함수의 전값을 받을 수 있다.
+    // setItems((prevItems) => console.log(prevItems));
+
+    if (lq === undefined) {
+      setItems(reviews);
+    } else {
+      setItems((prevItems) => [...prevItems, ...reviews]);
+      /// ...reviews해주는 이유는 reviews 자체가 [{},{}] 처럼 []로 감싸여있잖아... 안 풀러주면 [[{},{}]]처럼  []가 이중으로 이렇게 되겠지??
+    }
   };
+
+  const handleLoadMore = () => {
+    handleLoad(lq);
+  };
+
+  // 아래처럼 하면 랜더링할때마다 함수가 실행되서 무한으로 setItems이 실핼되어 무한랜더링...
+  // hanleLoad();
+  // 그걸 해결하기 위해
+  // useEffect!!!
+  // useEffect는 arguments 로 콜백함수와 배열을 넘겨준다.
+  // []은 dependency list 라 하는데
+  // 위의 hanleLoad 무한루프를 처리해야 하는데
+  // 리액트는 [] 안에 있는 값들을 앞에서 기억한 값이랑 비교해서
+  // 다른 경우에만 실행함(그 전에는 콜백함수를 등록만 해놓음)
+  useEffect(() => {
+    handleLoad(); // 얘가 초기 화면을 뿌려주는 얘야.
+  }, [order]); // [] 안에 order를 넣은 이유는 order값이 변할 때마다 창을 새롭게 렌더링하기 위해서야.
 
   // console.log(handleDelete);
 
@@ -51,7 +93,7 @@ function App() {
 
   // 새로운 방법 order사용
   // a.createAt = a[order] 라는 말이다.
-  const sortedItems = items.sort((a, b) => b[order] - a[order]);
+  // const sortedItems = items.sort((a, b) => b[order] - a[order]);
   const handleNewestClick = () => setOrder("createdAt");
   const handleBestClick = () => setOrder("rating");
 
@@ -63,8 +105,9 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
-      <ReviewList items={sortedItems} onDelete={handleDelete} />
-      <button onClick={hanleLoadClick}>불러오기</button>
+      <ReviewList items={items} onDelete={handleDelete} />
+      {/* <button onClick={hanleLoadClick}>불러오기</button> */}
+      <button onClick={handleLoadMore}>더보기</button>
     </>
   );
 }
