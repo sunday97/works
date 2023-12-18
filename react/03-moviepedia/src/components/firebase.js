@@ -30,22 +30,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getDatas(collectionName, order, limitNum, lq) {
+async function getDatas(collectionName, options) {
+  // throw new Error("에러가 아니라 기능입니다.");
+  // console.error;
   // const querySnapshot = await getDocs(collection(db, collectionName));
   // 최초에는 lq가 undefined 나온다. 그걸 이용해 함수 기능을 나눈다.
   let docQuery;
-  if (lq === undefined) {
+  if (options.lq === undefined) {
     docQuery = query(
       collection(db, collectionName),
-      orderBy(order, "desc"),
-      limit(limitNum)
+      orderBy(options.order, "desc"),
+      limit(options.limit)
     );
   } else {
     docQuery = query(
       collection(db, collectionName),
-      orderBy(order, "desc"),
-      startAfter(lq),
-      limit(limitNum)
+      orderBy(options.order, "desc"),
+      startAfter(options.lq),
+      limit(options.limit)
     );
   }
 

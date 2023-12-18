@@ -45,7 +45,7 @@ function ReviewList({ items, onDelete }) {
           // 반복하는 element 중에 root element에 key를 넣어준다.
           <li key={item.id}>
             <ReviewListItem item={item} onDelete={onDelete} />
-            <input type="txet" />
+            {/* <input type="txet" /> */}
           </li>
         );
       })}

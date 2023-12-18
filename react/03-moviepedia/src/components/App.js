@@ -2,6 +2,8 @@ import mockItems from "../mock.json";
 import ReviewList from "./ReviewList";
 import { useState, useEffect } from "react";
 import { getDatas } from "./firebase";
+import ReviewFrom from "./ReviewFrom";
+import "./ReviewFrom.css";
 
 const LIMIT = 5;
 // 상수의 변수는 대문자!
@@ -10,9 +12,12 @@ function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState({}); // lastQuery를 담을 state
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(null);
+  const [hasNext, setHasNext] = useState(false);
 
   // console.log(items);
-  console.log(order);
+  // console.log(order);
 
   // 찐 태그가 있는 곳이 아니라 함수를 굳이 여기서 선언하는 이유는 주요 기능을 여기에 모아서 "관리하기 용의"하기 위해서이다.
   // 연결만 잘해놓으면 여기서 관리할 수 있느니까 용의하다.
@@ -33,15 +38,35 @@ function App() {
   //   // console.log(reviews);
   //   setItems(reviews);
   // };
-  const handleLoad = async (lq) => {
-    const { reviews, lastQuery } = await getDatas("movie", order, LIMIT, lq);
+  const handleLoad = async (options) => {
     // console.log(lq); // 최초에는 undefined 나온다. 그걸 이용해 함수 기능을 나눈다.
+    let result;
+    // let result; 를 사용하는 이유는 await getDatas("movie", order, LIMIT, lq);의 리턴이 지역에서 나오기 때문에 전역 result에 담아서 밖에서 쓸 수 있도록 한다.
+
+    try {
+      // 성공적일 때
+      setIsLoading(true);
+      setLoadingError(null);
+      result = await getDatas("movie", options);
+    } catch (error) {
+      // 실패(Error)할 때
+      console.error(error);
+      setLoadingError(error);
+      return;
+    } finally {
+      // 오류가 나는 안 나든 무조건 마지막에 실행
+      setIsLoading(false);
+    }
+
+    const { reviews, lastQuery } = result;
     setLq(lastQuery);
     // console.log(reviews);
     // 스테이트함수는 파라미터를 콜백으로도 받을 수 있는데 그 콜백함수의 파라미터로 해당 함수의 전값을 받을 수 있다.
     // setItems((prevItems) => console.log(prevItems));
 
-    if (lq === undefined) {
+    setHasNext(lastQuery);
+
+    if (options.lq === undefined) {
       setItems(reviews);
     } else {
       setItems((prevItems) => [...prevItems, ...reviews]);
@@ -50,7 +75,7 @@ function App() {
   };
 
   const handleLoadMore = () => {
-    handleLoad(lq);
+    handleLoad({ order, lq, limit: LIMIT });
   };
 
   // 아래처럼 하면 랜더링할때마다 함수가 실행되서 무한으로 setItems이 실핼되어 무한랜더링...
@@ -63,7 +88,7 @@ function App() {
   // 리액트는 [] 안에 있는 값들을 앞에서 기억한 값이랑 비교해서
   // 다른 경우에만 실행함(그 전에는 콜백함수를 등록만 해놓음)
   useEffect(() => {
-    handleLoad(); // 얘가 초기 화면을 뿌려주는 얘야.
+    handleLoad({ order, lq: undefined, limit: LIMIT }); // 얘가 초기 화면을 뿌려주는 얘야.
   }, [order]); // [] 안에 order를 넣은 이유는 order값이 변할 때마다 창을 새롭게 렌더링하기 위해서야.
 
   // console.log(handleDelete);
@@ -105,9 +130,29 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
+      <ReviewFrom />
       <ReviewList items={items} onDelete={handleDelete} />
       {/* <button onClick={hanleLoadClick}>불러오기</button> */}
-      <button onClick={handleLoadMore}>더보기</button>
+      {
+        // 에러가 있을 시 나타낼 요소, 텍스트들을 출력
+        // OptionalChaining : loadingError가 존재하면(?.) 프로퍼티(message)를 참조하겠다.
+        // react에서 조건부 연산자 - 일종의 필터역활
+        // AND(&&) : 앞에 나오는 값이 ture 면 렌더링
+        // OR(||) : 앞에 나오는 값이 false 면 렌더링
+        // 자바스크립트는  turthy 와 falsy 로 구분한다.
+        // falsy ==> null, NaN, 0, 빈 문자열, undefined
+        // falsy를 제외한 내용이 있으면 전부 turthy로 본다.
+        // 자고로 위를 IF문으로도 표현이 가능하지만 jsx에서 {}안에는 표현식만 사용할 수 있어서 사용을 못한다.
+        loadingError?.message && <span>{loadingError.message}</span>
+        // 다른 예시(3항연산자를 사용함)
+        // loadingError !== null ? <span>{loadingError.message}</span> : ""
+      }
+      {/* 나올 것이 없어지면 사라지도록 세팅함 */}
+      {hasNext && (
+        <button disabled={isLoading} onClick={handleLoadMore}>
+          더보기
+        </button>
+      )}
     </>
   );
 }
