@@ -1,7 +1,7 @@
 import mockItems from "../mock.json";
 import ReviewList from "./ReviewList";
 import { useState, useEffect } from "react";
-import { getDatas } from "./firebase";
+import { getDatas, addDatas, deleteDatas } from "./firebase";
 import ReviewFrom from "./ReviewFrom";
 import "./ReviewFrom.css";
 
@@ -21,13 +21,15 @@ function App() {
 
   // 찐 태그가 있는 곳이 아니라 함수를 굳이 여기서 선언하는 이유는 주요 기능을 여기에 모아서 "관리하기 용의"하기 위해서이다.
   // 연결만 잘해놓으면 여기서 관리할 수 있느니까 용의하다.
-  const handleDelete = (id) => {
+  const handleDelete = async (docId) => {
     // alert(id);
     // items 에서 id 파라미터와 같은 id를 가지는 요소(객체)를 제거
-    const nextItems = items.filter((item) => item.id !== id);
+    // const nextItems = items.filter((item) => item.id !== id);
     // 그래야 리액트가 렌더링을 실행하니까.
     // 단 이 경우엔 렌더링 범위는 App()부분이라 새로고침하면 mock.json가 다시 불려와서 다시 나타난다. 진짜 파일(서버)에 있는 걸 삭제한 것이 아니다.
-    setItems(nextItems);
+    // setItems(nextItems);
+    // db에서 데이터 삭제
+    const result = await deleteDatas("movie", docId);
   };
 
   // const hanleLoadClick = async () => {
@@ -76,6 +78,10 @@ function App() {
 
   const handleLoadMore = () => {
     handleLoad({ order, lq, limit: LIMIT });
+  };
+
+  const handleAddSuccess = (reviews) => {
+    setItems((prevItems) => [reviews, ...prevItems]);
   };
 
   // 아래처럼 하면 랜더링할때마다 함수가 실행되서 무한으로 setItems이 실핼되어 무한랜더링...
@@ -130,7 +136,7 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
-      <ReviewFrom />
+      <ReviewFrom onsbumit={addDatas} onSubmitSuccess={handleAddSuccess} />
       <ReviewList items={items} onDelete={handleDelete} />
       {/* <button onClick={hanleLoadClick}>불러오기</button> */}
       {

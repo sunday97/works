@@ -14,7 +14,7 @@ function ReviewListItem({ item, onDelete }) {
   // function test() {
   //   alert("test");
   // }
-  const handleDeleteClick = () => onDelete(item.id);
+  const handleDeleteClick = () => onDelete(item.docId);
   // console.log(handleDeleteClick);
   // console.log(onDelete(item.id));
   return (

@@ -17,12 +17,24 @@ function FileInput({ onChange, name, value }) {
   };
 
   useEffect(() => {
+    console.log(value);
     // 값이 없을 수도 있기 때문에
     // console.log(inputRef);  // ref를 쓴 input 태그가 객체에 담겨서 선택됨!!!
     // ObjetURL 객체를 사용하여 미리보기 기능을 구현할 수 있다.
     if (!value) return; // !null => true
-    const nextPreview = URL.createObjectURL(value);
+    // ObjetURL만들면 웹 브라우저에 메모리를 할당한다. 할당 이후에는 해제를 해줘야 메모리 낭비 방지할 수 있다.
+    // useEffect 에서는 사이드 이펙트(내부가 아닌 외부에 무언가가 변경되었다!!)를 정리하는 기능을 제공한다.
+    // 리턴을 해줄 때 정리하는 함수를 리턴해주면 사이드 이펙트를 정리할 수 있다.
+    const nextPreview = URL.createObjectURL(value); // URL.createObjectURL의 파라미터는 blob, MediaSourceObject, null 타입 데이터가 들어와야 한다. 문자열x
     setPreview(nextPreview);
+
+    // 디펜던시 리스트 값이 바뀌면 새로 콜백을 실행하는데 이 전에 리액트는 앞에서 리턴한 정리 함수를 실행해서 사이드 이펙트를 정리한다.
+    // 재렌더링 => useEffect => 그 안에 있는 return 함수 기억 => 사용자 파일 변경 되면 => value값 변경으로 인한 useEffect 함수 실행 및 골백함수 실행 => 앞에 기억해뒀던 return함수 실행
+    //  (앞에서 만들어진 사이드 이펙트가 더 이상 쓸모없어졌기 때문에)
+    return () => {
+      setPreview({});
+      URL.revokeObjectURL(nextPreview);
+    };
   }, [value]);
 
   return (

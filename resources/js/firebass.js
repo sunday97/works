@@ -42,10 +42,10 @@ async function getDatas(collectionName) {
 }
 
 async function addDatas(collectionName, dataObj) {
+  //   문서 ID 부여 (setDoc 사용)
   //   await setDoc(doc(db, "member", "nowirteisauto"), {}); 파라미터 없이 {}로 직접 쓸 수도 있음,
-  //   문서 ID 부여
   //   await setDoc(doc(db, "member", "nowirteisauto"), dataObj);
-  //   문서 ID 랜덤자동
+  //   문서 ID 랜덤자동 (addDoc 사용)
   await addDoc(collection(db, collectionName), dataObj);
 }
 

@@ -2,16 +2,18 @@ import { useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
 
-function ReviewFrom() {
+const INITIAL_VALUES = {
+  title: "",
+  rating: 0,
+  content: "",
+  imgUrl: null,
+};
+
+function ReviewFrom({ onsbumit, onSubmitSuccess }) {
   // const [title, setTitle] = useState("")
   // const [rating, setRating] = useState(0)
   // const [content, setContent] = useState("")
-  const [values, setValues] = useState({
-    title: "",
-    rating: 0,
-    content: "",
-    imgUrl: null,
-  });
+  const [values, setValues] = useState(INITIAL_VALUES);
 
   //   HTML에선 변수로 요소를 지정해서 이용했지만 react에선 이벤트를 연결하고 그 이벤트 중인 이벤트객체를 이용해서 타겟팅한다.
   // 예시) document.quarySelecter(".title").value 와 e.target 가 같다는 것이다.
@@ -63,8 +65,18 @@ function ReviewFrom() {
     // });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // tryCatch-finally 구문!!!
+    try {
+      const { review } = await onsbumit("movie", values);
+      onSubmitSuccess(review);
+    } catch (error) {
+      return;
+    } finally {
+    }
+    setValues(INITIAL_VALUES);
   };
 
   return (
