@@ -1,7 +1,7 @@
 import mockItems from "../mock.json";
 import ReviewList from "./ReviewList";
 import { useState, useEffect } from "react";
-import { getDatas, addDatas, deleteDatas } from "./firebase";
+import { getDatas, addDatas, deleteDatas, updateDatas } from "./firebase";
 import ReviewFrom from "./ReviewFrom";
 import "./ReviewFrom.css";
 
@@ -21,7 +21,7 @@ function App() {
 
   // 찐 태그가 있는 곳이 아니라 함수를 굳이 여기서 선언하는 이유는 주요 기능을 여기에 모아서 "관리하기 용의"하기 위해서이다.
   // 연결만 잘해놓으면 여기서 관리할 수 있느니까 용의하다.
-  const handleDelete = async (docId) => {
+  const handleDelete = async (docId, imgUrl) => {
     // alert(id);
     // items 에서 id 파라미터와 같은 id를 가지는 요소(객체)를 제거
     // const nextItems = items.filter((item) => item.id !== id);
@@ -29,7 +29,11 @@ function App() {
     // 단 이 경우엔 렌더링 범위는 App()부분이라 새로고침하면 mock.json가 다시 불려와서 다시 나타난다. 진짜 파일(서버)에 있는 걸 삭제한 것이 아니다.
     // setItems(nextItems);
     // db에서 데이터 삭제
-    const result = await deleteDatas("movie", docId);
+    const result = await deleteDatas("movie", docId, imgUrl);
+    if (!result) return; // db에서 삭제가 성공했을 때만 그 결과를 화면에 반영한다. return은 중단역활이다.
+
+    // Items 셋팅
+    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
   };
 
   // const hanleLoadClick = async () => {
@@ -137,7 +141,11 @@ function App() {
         <button onClick={handleBestClick}>베스트순</button>
       </div>
       <ReviewFrom onsbumit={addDatas} onSubmitSuccess={handleAddSuccess} />
-      <ReviewList items={items} onDelete={handleDelete} />
+      <ReviewList
+        items={items}
+        onDelete={handleDelete}
+        onUpdate={updateDatas}
+      />
       {/* <button onClick={hanleLoadClick}>불러오기</button> */}
       {
         // 에러가 있을 시 나타낼 요소, 텍스트들을 출력

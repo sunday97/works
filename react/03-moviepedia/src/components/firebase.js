@@ -23,6 +23,7 @@ import {
   ref,
   uploadBytes,
   getDownloadURL,
+  deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -99,8 +100,18 @@ async function getDatas(collectionName, options) {
   return { reviews, lastQuery };
 }
 
-async function deleteDatas(collectionName, docId) {
-  await deleteDoc(doc(db, collectionName, docId));
+async function deleteDatas(collectionName, docId, imgUrl) {
+  const storage = getStorage();
+  const deleteRef = ref(storage, imgUrl);
+  console.log(deleteRef); // 파일명을 찾고 싶어!
+
+  try {
+    await deleteObject(deleteRef);
+    await deleteDoc(doc(db, collectionName, docId)); //deleteDoc은 반환값이 없다.
+  } catch (error) {
+    return false;
+  }
+  return true;
 }
 
 // firebase-firestore엔 file 객체가 들어갈 수 없어서 firebase-storage를 생성해서 파일을 그쪽에 저장해서 그쪽에서 hppts를 받아서 저장해야 한다.
@@ -127,6 +138,48 @@ async function addDatas(collectionName, formData) {
     const review = { docId: docSnap.id, ...docSnap.data() };
     return { review };
   }
+}
+
+// updateDatas 와 addDatas 비슷한 구간이 만다. 그래서 파리미터 받는 게(lengrh) 달으니까 ...arg를 이용해서 분기 처리를 하면 하나의 함수에 2가지 기능을 넣을 수 있는 거지
+async function updateDatas(collectionName, formData, docId, imgUrl) {
+  // console.log("업데이트 함수입니다.");
+  // console.log(collectionName, formData, docId);
+
+  const docRef = await doc(db, collectionName, docId);
+
+  const time = new Date().getDate();
+
+  // const updateInfoObj = {
+  //   title: formData.title,
+  //   content: formData.content,
+  //   ratting: formData.rating,
+  //   updatedAt: time,
+  // };
+
+  // 사진을 변경하지 않았을 경우
+  formData.imgUrl = imgUrl;
+  formData.updatedAt = time;
+
+  // 사진을 변경했을 때
+  if (formData.imgUrl !== null) {
+    // 사진파일 업로드 및 업로드한 파일 경로 획득
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImage(path, formData.imgUrl);
+
+    // 기존사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    // 가져온 사진 경로 updateInfoObj의 imgUrl에 셋팅하기
+    formData.imgUrl = url;
+  }
+
+  // 문서 필드 데이터 수정
+  await updateDoc(docRef, formData);
+  const docData = await getDoc(docRef);
+  console.log("수정성공");
 }
 
 async function uploadImage(path, imgFile) {
@@ -165,4 +218,5 @@ export {
   getDoc,
   addDatas,
   deleteDatas,
+  updateDatas,
 };

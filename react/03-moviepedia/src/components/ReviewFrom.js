@@ -9,11 +9,19 @@ const INITIAL_VALUES = {
   imgUrl: null,
 };
 
-function ReviewFrom({ onsbumit, onSubmitSuccess }) {
+function ReviewFrom({
+  onsbumit,
+  onSubmitSuccess,
+  initialValues = INITIAL_VALUES, // 기본값 세팅
+  initialPreview,
+  onCancel,
+}) {
   // const [title, setTitle] = useState("")
   // const [rating, setRating] = useState(0)
   // const [content, setContent] = useState("")
-  const [values, setValues] = useState(INITIAL_VALUES);
+  const [values, setValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(null);
 
   //   HTML에선 변수로 요소를 지정해서 이용했지만 react에선 이벤트를 연결하고 그 이벤트 중인 이벤트객체를 이용해서 타겟팅한다.
   // 예시) document.quarySelecter(".title").value 와 e.target 가 같다는 것이다.
@@ -70,11 +78,15 @@ function ReviewFrom({ onsbumit, onSubmitSuccess }) {
 
     // tryCatch-finally 구문!!!
     try {
+      setSubmittingError(null);
+      setIsSubmitting(true);
       const { review } = await onsbumit("movie", values);
       onSubmitSuccess(review);
     } catch (error) {
+      setSubmittingError(error);
       return;
     } finally {
+      setIsSubmitting(false);
     }
     setValues(INITIAL_VALUES);
   };
@@ -82,7 +94,12 @@ function ReviewFrom({ onsbumit, onSubmitSuccess }) {
   return (
     // 폼 태그 안에서 <button type="submit">을 누르면 form태그 전체가 날라가는 것이라 handleSubmit을 form태그에 달아주는 게 맞다.
     <form className="ReviewFrom" onSubmit={handleSubmit}>
-      <FileInput name="imgUrl" value={values.imgUrl} onChange={handleChange} />
+      <FileInput
+        name="imgUrl"
+        value={values.imgUrl}
+        initialPreview={initialPreview}
+        onChange={handleChange}
+      />
       <input
         type="text"
         name="title"
@@ -100,7 +117,12 @@ function ReviewFrom({ onsbumit, onSubmitSuccess }) {
         value={values.content}
         onChange={handleInputChange}
       />
-      <button type="submit">확인</button>
+
+      <button type="submit" disabled={isSubmitting}>
+        확인
+      </button>
+      {onCancel && <button onClick={onCancel}>취소</button>}
+      {submittingError?.message && <div>{submittingError.message}</div>}
     </form>
   );
 }

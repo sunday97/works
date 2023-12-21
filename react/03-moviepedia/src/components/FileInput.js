@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import resetImg from "../assets/ic-reset.png";
 
-function FileInput({ onChange, name, value }) {
+function FileInput({ onChange, name, value, initialPreview }) {
+  // console.log(initialPreview);
+
   //  FileInput({onChange}) 구조분해할당방식으로 받는다.
 
   //   useRef✨
   const inputRef = useRef();
+  // console.log(inputRef.current);
 
-  const [preview, setPreview] = useState({});
+  const [preview, setPreview] = useState(initialPreview);
 
   const handleChange = (e) => {
     // console.log(e.target);
@@ -16,8 +20,16 @@ function FileInput({ onChange, name, value }) {
     onChange(name, nextFile);
   };
 
+  const handleClearClick = () => {
+    const inputNode = inputRef.current;
+    if (!inputNode) return;
+
+    inputNode.value = "";
+    onChange(name, null);
+  };
+
   useEffect(() => {
-    console.log(value);
+    // console.log(value);
     // 값이 없을 수도 있기 때문에
     // console.log(inputRef);  // ref를 쓴 input 태그가 객체에 담겨서 선택됨!!!
     // ObjetURL 객체를 사용하여 미리보기 기능을 구현할 수 있다.
@@ -32,10 +44,10 @@ function FileInput({ onChange, name, value }) {
     // 재렌더링 => useEffect => 그 안에 있는 return 함수 기억 => 사용자 파일 변경 되면 => value값 변경으로 인한 useEffect 함수 실행 및 골백함수 실행 => 앞에 기억해뒀던 return함수 실행
     //  (앞에서 만들어진 사이드 이펙트가 더 이상 쓸모없어졌기 때문에)
     return () => {
-      setPreview({});
+      setPreview(initialPreview);
       URL.revokeObjectURL(nextPreview);
     };
-  }, [value]);
+  }, [value, initialPreview]);
 
   return (
     <div>
@@ -47,6 +59,12 @@ function FileInput({ onChange, name, value }) {
         onChange={handleChange}
         ref={inputRef}
       />
+      {value && (
+        <button onClick={handleClearClick}>
+          <img src={resetImg} alt="선택해제" />
+          {/* onClick이 없으면 이 태그가 form 태그 안에 있기에 submit 되어 버린다... */}
+        </button>
+      )}
     </div>
   );
 }
