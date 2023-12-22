@@ -75,12 +75,18 @@ function ReviewFrom({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = {
+      title: values.title,
+      content: values.content,
+      imgUrl: values.imgUrl,
+      rating: values.rating,
+    };
 
     // tryCatch-finally 구문!!!
     try {
       setSubmittingError(null);
       setIsSubmitting(true);
-      const { review } = await onsbumit("movie", values);
+      const { review } = await onsbumit("movie", formData);
       onSubmitSuccess(review);
     } catch (error) {
       setSubmittingError(error);

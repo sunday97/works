@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { getDatas, addDatas, deleteDatas, updateDatas } from "./firebase";
 import ReviewFrom from "./ReviewFrom";
 import "./ReviewFrom.css";
+import LocaleSelect from "./LocaleSelect";
+import LocaleProvider from "../contexts/LocaleContext";
+import LocaleContext from "../contexts/LocaleContext";
 
 const LIMIT = 5;
 // 상수의 변수는 대문자!
@@ -15,6 +18,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(null);
   const [hasNext, setHasNext] = useState(false);
+  const [locale, setLocale] = useState("ko");
 
   // console.log(items);
   // console.log(order);
@@ -30,7 +34,11 @@ function App() {
     // setItems(nextItems);
     // db에서 데이터 삭제
     const result = await deleteDatas("movie", docId, imgUrl);
-    if (!result) return; // db에서 삭제가 성공했을 때만 그 결과를 화면에 반영한다. return은 중단역활이다.
+    // if (!result) return; // db에서 삭제가 성공했을 때만 그 결과를 화면에 반영한다. return은 중단역활이다.
+    if (!result) {
+      alert("저장된 이미지 파일이 없습니다. \n경로를 확인해 주세요.");
+      return;
+    }
 
     // Items 셋팅
     setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
@@ -88,6 +96,18 @@ function App() {
     setItems((prevItems) => [reviews, ...prevItems]);
   };
 
+  const handleUpdateSuccess = (review) => {
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => item.id === review.id);
+
+      return [
+        ...prevItems.slice(0, splitIdx),
+        review,
+        ...prevItems.slice(splitIdx + 1),
+      ];
+    });
+  };
+
   // 아래처럼 하면 랜더링할때마다 함수가 실행되서 무한으로 setItems이 실핼되어 무한랜더링...
   // hanleLoad();
   // 그걸 해결하기 위해
@@ -134,40 +154,45 @@ function App() {
 
   // 정렬방법이 많다....
 
+  // jsx의 안의 맨 위엔 주석이 올 수 없당
   return (
-    <>
+    <LocaleProvider>
       <div>
-        <button onClick={handleNewestClick}>최신순</button>
-        <button onClick={handleBestClick}>베스트순</button>
+        <LocaleSelect onchange={setLocale} locale={locale} />
+        <div>
+          <button onClick={handleNewestClick}>최신순</button>
+          <button onClick={handleBestClick}>베스트순</button>
+        </div>
+        <ReviewFrom onsbumit={addDatas} onSubmitSuccess={handleAddSuccess} />
+        <ReviewList
+          items={items}
+          onDelete={handleDelete}
+          onUpdate={updateDatas}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
+        {/* <button onClick={hanleLoadClick}>불러오기</button> */}
+        {
+          // 에러가 있을 시 나타낼 요소, 텍스트들을 출력
+          // OptionalChaining : loadingError가 존재하면(?.) 프로퍼티(message)를 참조하겠다.
+          // react에서 조건부 연산자 - 일종의 필터역활
+          // AND(&&) : 앞에 나오는 값이 ture 면 렌더링
+          // OR(||) : 앞에 나오는 값이 false 면 렌더링
+          // 자바스크립트는  turthy 와 falsy 로 구분한다.
+          // falsy ==> null, NaN, 0, 빈 문자열, undefined
+          // falsy를 제외한 내용이 있으면 전부 turthy로 본다.
+          // 자고로 위를 IF문으로도 표현이 가능하지만 jsx에서 {}안에는 표현식만 사용할 수 있어서 사용을 못한다.
+          loadingError?.message && <span>{loadingError.message}</span>
+          // 다른 예시(3항연산자를 사용함)
+          // loadingError !== null ? <span>{loadingError.message}</span> : ""
+        }
+        {/* 나올 것이 없어지면 사라지도록 세팅함 */}
+        {hasNext && (
+          <button disabled={isLoading} onClick={handleLoadMore}>
+            더보기
+          </button>
+        )}
       </div>
-      <ReviewFrom onsbumit={addDatas} onSubmitSuccess={handleAddSuccess} />
-      <ReviewList
-        items={items}
-        onDelete={handleDelete}
-        onUpdate={updateDatas}
-      />
-      {/* <button onClick={hanleLoadClick}>불러오기</button> */}
-      {
-        // 에러가 있을 시 나타낼 요소, 텍스트들을 출력
-        // OptionalChaining : loadingError가 존재하면(?.) 프로퍼티(message)를 참조하겠다.
-        // react에서 조건부 연산자 - 일종의 필터역활
-        // AND(&&) : 앞에 나오는 값이 ture 면 렌더링
-        // OR(||) : 앞에 나오는 값이 false 면 렌더링
-        // 자바스크립트는  turthy 와 falsy 로 구분한다.
-        // falsy ==> null, NaN, 0, 빈 문자열, undefined
-        // falsy를 제외한 내용이 있으면 전부 turthy로 본다.
-        // 자고로 위를 IF문으로도 표현이 가능하지만 jsx에서 {}안에는 표현식만 사용할 수 있어서 사용을 못한다.
-        loadingError?.message && <span>{loadingError.message}</span>
-        // 다른 예시(3항연산자를 사용함)
-        // loadingError !== null ? <span>{loadingError.message}</span> : ""
-      }
-      {/* 나올 것이 없어지면 사라지도록 세팅함 */}
-      {hasNext && (
-        <button disabled={isLoading} onClick={handleLoadMore}>
-          더보기
-        </button>
-      )}
-    </>
+    </LocaleProvider>
   );
 }
 

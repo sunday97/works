@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./ReviewList.css";
 import ReviewFrom from "./ReviewFrom";
+import LocaleContext from "../contexts/LocaleContext";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -9,6 +10,9 @@ function formatDate(value) {
 }
 
 function ReviewListItem({ item, onDelete, onEdit }) {
+  // const locale = useContext(LocaleContext);
+  // console.log(locale);
+
   // console.log(onDelete);
   // const handleDeleteClick = function () {
   //   onDelete(item.id);
@@ -31,6 +35,7 @@ function ReviewListItem({ item, onDelete, onEdit }) {
         <p>{formatDate(item.createdAt)}</p>
         <p>{item.updatedAtAt}</p>
         <p>{item.content}</p>
+        {/* <p>현재언어 : {locale}</p> */}
         <button onClick={handleEditClick}>수정</button>
         <button onClick={handleDeleteClick}>삭제</button>
       </div>
@@ -38,7 +43,7 @@ function ReviewListItem({ item, onDelete, onEdit }) {
   );
 }
 
-function ReviewList({ items, onDelete, onUpdate }) {
+function ReviewList({ items, onDelete, onUpdate, onUpdateSuccess }) {
   // console.log(onDelete);
   // console.log(items);
   const [editingID, setEditingId] = useState(null);
@@ -47,15 +52,28 @@ function ReviewList({ items, onDelete, onUpdate }) {
     <ul>
       {/* {[<li>tttt</li>]} */}
       {items.map((item) => {
+        // console.log(item);
         if (item.id === editingID) {
           const { title, rating, content, imgUrl, docId } = item;
           const initialValues = { title, rating, content, imgUrl: null };
           // console.log(initialValues);
+
           const handleSubmit = (collectionName, formData) => {
-            onUpdate(collectionName, formData, docId, imgUrl);
+            const result = onUpdate(collectionName, formData, docId, imgUrl);
+            if (result === null) {
+              alert("리뷰를 수정할 수 없습니다. 관리자에게 문의하세요.");
+              return;
+            } else {
+              return result;
+            }
           };
 
           const handleCancel = () => setEditingId(null);
+
+          const handleSubmitSuccess = (review) => {
+            onUpdateSuccess(review);
+            setEditingId(null);
+          };
           return (
             <li key={item.id}>
               <ReviewFrom
@@ -63,6 +81,7 @@ function ReviewList({ items, onDelete, onUpdate }) {
                 initialPreview={imgUrl}
                 onCancel={handleCancel}
                 onsbumit={handleSubmit}
+                onSubmitSuccess={handleSubmitSuccess}
               />
             </li>
           );

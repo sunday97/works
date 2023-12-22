@@ -102,10 +102,11 @@ async function getDatas(collectionName, options) {
 
 async function deleteDatas(collectionName, docId, imgUrl) {
   const storage = getStorage();
-  const deleteRef = ref(storage, imgUrl);
-  console.log(deleteRef); // 파일명을 찾고 싶어!
+  // console.log(imgUrl);
 
   try {
+    const deleteRef = ref(storage, imgUrl);
+    // console.log(deleteRef); // 파일명을 찾고 싶어!
     await deleteObject(deleteRef);
     await deleteDoc(doc(db, collectionName, docId)); //deleteDoc은 반환값이 없다.
   } catch (error) {
@@ -146,7 +147,6 @@ async function updateDatas(collectionName, formData, docId, imgUrl) {
   // console.log(collectionName, formData, docId);
 
   const docRef = await doc(db, collectionName, docId);
-
   const time = new Date().getDate();
 
   // const updateInfoObj = {
@@ -157,8 +157,14 @@ async function updateDatas(collectionName, formData, docId, imgUrl) {
   // };
 
   // 사진을 변경하지 않았을 경우
-  formData.imgUrl = imgUrl;
-  formData.updatedAt = time;
+  // formData.imgUrl = imgUrl;  ==> 오류일으킴?
+
+  const updateFormData = {
+    title: formData.title,
+    content: formData.content,
+    rating: formData.rating,
+    updatedAt: time,
+  };
 
   // 사진을 변경했을 때
   if (formData.imgUrl !== null) {
@@ -169,17 +175,24 @@ async function updateDatas(collectionName, formData, docId, imgUrl) {
 
     // 기존사진 삭제
     const storage = getStorage();
-    const deleteRef = ref(storage, imgUrl);
-    await deleteObject(deleteRef);
+    try {
+      const deleteRef = ref(storage, imgUrl);
+      await deleteObject(deleteRef);
+    } catch (error) {
+      return null;
+    }
 
     // 가져온 사진 경로 updateInfoObj의 imgUrl에 셋팅하기
-    formData.imgUrl = url;
+    updateFormData.imgUrl = url;
   }
 
   // 문서 필드 데이터 수정
-  await updateDoc(docRef, formData);
+  await updateDoc(docRef, updateFormData);
   const docData = await getDoc(docRef);
   console.log("수정성공");
+
+  const review = { docId: docData.id, ...docData.data() };
+  return { review };
 }
 
 async function uploadImage(path, imgFile) {
