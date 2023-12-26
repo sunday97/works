@@ -1,7 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./ReviewList.css";
 import ReviewFrom from "./ReviewFrom";
-import LocaleContext from "../contexts/LocaleContext";
+import { useLocale } from "../contexts/LocaleContext";
+import { useTrnaslate } from "../hooks/useTranslate";
+import Rating from "./Rating";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -10,8 +12,10 @@ function formatDate(value) {
 }
 
 function ReviewListItem({ item, onDelete, onEdit }) {
-  // const locale = useContext(LocaleContext);
+  // const locale = useContext(LocaleContext);  // Context훅을 사용하려면 먼저 이걸 작성하고 해야한다. 각 컴포마다.
   // console.log(locale);
+  // const locale = useLocale();
+  const t = useTrnaslate();
 
   // console.log(onDelete);
   // const handleDeleteClick = function () {
@@ -29,15 +33,27 @@ function ReviewListItem({ item, onDelete, onEdit }) {
   return (
     <div className="ReviewListItem">
       <img className="ReviewListItem-img" src={item.imgUrl} />
-      <div>
-        <h1>{item.title}</h1>
-        <span>{item.rating}</span>
-        <p>{formatDate(item.createdAt)}</p>
-        <p>{item.updatedAtAt}</p>
-        <p>{item.content}</p>
+      <div className="ReviewListItem-rows">
+        <h1 className="ReviewListItem-title">{item.title}</h1>
+        <Rating className="ReviewListItem-rating" hoverRating={item.rating} />
+        <p className="ReviewListItem-date">{formatDate(item.createdAt)}</p>
+        {/* <p>{item.updatedAtAt}</p> */}
+        <p className="ReviewListItem-content">{item.content}</p>
         {/* <p>현재언어 : {locale}</p> */}
-        <button onClick={handleEditClick}>수정</button>
-        <button onClick={handleDeleteClick}>삭제</button>
+        <div className="ReveiwListItem-buttons">
+          <button
+            className="ReviewListItem-edit-button"
+            onClick={handleEditClick}
+          >
+            {t("edit button")}
+          </button>
+          <button
+            className="ReviewListItem-delete-button"
+            onClick={handleDeleteClick}
+          >
+            {t("delete button")}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -49,7 +65,7 @@ function ReviewList({ items, onDelete, onUpdate, onUpdateSuccess }) {
   const [editingID, setEditingId] = useState(null);
   // console.log(editingID); // id 획득!
   return (
-    <ul>
+    <ul className="ReviewList">
       {/* {[<li>tttt</li>]} */}
       {items.map((item) => {
         // console.log(item);

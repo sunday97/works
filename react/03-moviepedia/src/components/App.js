@@ -3,13 +3,28 @@ import ReviewList from "./ReviewList";
 import { useState, useEffect } from "react";
 import { getDatas, addDatas, deleteDatas, updateDatas } from "./firebase";
 import ReviewFrom from "./ReviewFrom";
-import "./ReviewFrom.css";
+// import "./ReviewFrom.css";
 import LocaleSelect from "./LocaleSelect";
-import LocaleProvider from "../contexts/LocaleContext";
-import LocaleContext from "../contexts/LocaleContext";
+import { LocaleProvider } from "../contexts/LocaleContext";
+import { useTrnaslate } from "../hooks/useTranslate";
+import logoImg from "../assets/logo.png";
+import tichetIme from "../assets/ticket.png";
+import "./App.css";
 
 const LIMIT = 5;
 // 상수의 변수는 대문자!
+
+function AppSortButton({ selected, children, onClick }) {
+  return (
+    <button
+      disabled={selected}
+      className={`AppSortButton ${selected ? "s.elected" : ""}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
 
 function App() {
   const [items, setItems] = useState([]);
@@ -19,6 +34,7 @@ function App() {
   const [loadingError, setLoadingError] = useState(null);
   const [hasNext, setHasNext] = useState(false);
   const [locale, setLocale] = useState("ko");
+  const t = useTrnaslate();
 
   // console.log(items);
   // console.log(order);
@@ -156,43 +172,75 @@ function App() {
 
   // jsx의 안의 맨 위엔 주석이 올 수 없당
   return (
-    <LocaleProvider>
-      <div>
-        <LocaleSelect onchange={setLocale} locale={locale} />
-        <div>
-          <button onClick={handleNewestClick}>최신순</button>
-          <button onClick={handleBestClick}>베스트순</button>
+    <div className="App">
+      <nav className="App-nav">
+        <div className="App-nav-container">
+          <img className="App-logo" src={logoImg} alt="movie pidai logo" />
+          {/* <LocaleSelect onchange={setLocale} locale={locale} /> */}
+          <LocaleSelect />
         </div>
-        <ReviewFrom onsbumit={addDatas} onSubmitSuccess={handleAddSuccess} />
-        <ReviewList
-          items={items}
-          onDelete={handleDelete}
-          onUpdate={updateDatas}
-          onUpdateSuccess={handleUpdateSuccess}
-        />
-        {/* <button onClick={hanleLoadClick}>불러오기</button> */}
-        {
-          // 에러가 있을 시 나타낼 요소, 텍스트들을 출력
-          // OptionalChaining : loadingError가 존재하면(?.) 프로퍼티(message)를 참조하겠다.
-          // react에서 조건부 연산자 - 일종의 필터역활
-          // AND(&&) : 앞에 나오는 값이 ture 면 렌더링
-          // OR(||) : 앞에 나오는 값이 false 면 렌더링
-          // 자바스크립트는  turthy 와 falsy 로 구분한다.
-          // falsy ==> null, NaN, 0, 빈 문자열, undefined
-          // falsy를 제외한 내용이 있으면 전부 turthy로 본다.
-          // 자고로 위를 IF문으로도 표현이 가능하지만 jsx에서 {}안에는 표현식만 사용할 수 있어서 사용을 못한다.
-          loadingError?.message && <span>{loadingError.message}</span>
-          // 다른 예시(3항연산자를 사용함)
-          // loadingError !== null ? <span>{loadingError.message}</span> : ""
-        }
-        {/* 나올 것이 없어지면 사라지도록 세팅함 */}
-        {hasNext && (
-          <button disabled={isLoading} onClick={handleLoadMore}>
-            더보기
-          </button>
-        )}
+      </nav>
+      <div className="App-container">
+        <div
+          className="App-ReviewForm"
+          style={{ backgroundImage: `url("${tichetIme}")` }}
+        >
+          <ReviewFrom onsbumit={addDatas} onSubmitSuccess={handleAddSuccess} />
+        </div>
+        <div className="App-sorts">
+          <AppSortButton
+            onClick={handleNewestClick}
+            selected={order === "createdAt"}
+          >
+            {t("newest")}
+          </AppSortButton>
+          <AppSortButton
+            onClick={handleBestClick}
+            selected={order === "rating"}
+          >
+            {t("best")}
+          </AppSortButton>
+        </div>
+        <div className="App-ReviewList">
+          <ReviewList
+            items={items}
+            onDelete={handleDelete}
+            onUpdate={updateDatas}
+            onUpdateSuccess={handleUpdateSuccess}
+          />
+          {/* <button onClick={hanleLoadClick}>불러오기</button> */}
+          {
+            // 에러가 있을 시 나타낼 요소, 텍스트들을 출력
+            // OptionalChaining : loadingError가 존재하면(?.) 프로퍼티(message)를 참조하겠다.
+            // react에서 조건부 연산자 - 일종의 필터역활
+            // AND(&&) : 앞에 나오는 값이 ture 면 렌더링
+            // OR(||) : 앞에 나오는 값이 false 면 렌더링
+            // 자바스크립트는  turthy 와 falsy 로 구분한다.
+            // falsy ==> null, NaN, 0, 빈 문자열, undefined
+            // falsy를 제외한 내용이 있으면 전부 turthy로 본다.
+            // 자고로 위를 IF문으로도 표현이 가능하지만 jsx에서 {}안에는 표현식만 사용할 수 있어서 사용을 못한다.
+            loadingError?.message && <span>{loadingError.message}</span>
+            // 다른 예시(3항연산자를 사용함)
+            // loadingError !== null ? <span>{loadingError.message}</span> : ""
+          }
+          {/* 나올 것이 없어지면 사라지도록 세팅함 */}
+          {hasNext && (
+            <button
+              className="App-load-more-button"
+              disabled={isLoading}
+              onClick={handleLoadMore}
+            >
+              {t("load more")}
+            </button>
+          )}
+        </div>
       </div>
-    </LocaleProvider>
+      <footer className="App-footer">
+        <div className="App-footer-container">
+          {t("terms of service")} | {t("privacy policy")}
+        </div>
+      </footer>
+    </div>
   );
 }
 

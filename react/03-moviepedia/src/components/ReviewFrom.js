@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
+import { useTrnaslate } from "../hooks/useTranslate";
 
 const INITIAL_VALUES = {
   title: "",
@@ -22,6 +23,7 @@ function ReviewFrom({
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
+  const t = useTrnaslate();
 
   //   HTML에선 변수로 요소를 지정해서 이용했지만 react에선 이벤트를 연결하고 그 이벤트 중인 이벤트객체를 이용해서 타겟팅한다.
   // 예시) document.quarySelecter(".title").value 와 e.target 가 같다는 것이다.
@@ -111,6 +113,7 @@ function ReviewFrom({
         name="title"
         value={values.title}
         onChange={handleInputChange}
+        placeholder={t("title placeholder")}
       />
       <RatingInput
         type="number"
@@ -122,12 +125,13 @@ function ReviewFrom({
         name="content"
         value={values.content}
         onChange={handleInputChange}
+        placeholder={t("content placeholder")}
       />
 
       <button type="submit" disabled={isSubmitting}>
-        확인
+        {t("confirm button")}
       </button>
-      {onCancel && <button onClick={onCancel}>취소</button>}
+      {onCancel && <button onClick={onCancel}>{t("cancel button")}</button>}
       {submittingError?.message && <div>{submittingError.message}</div>}
     </form>
   );
