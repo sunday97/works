@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import resetImg from "../assets/ic-reset.png";
+import "./FileInput.css";
+import placeholderImg from "../assets/preview-placeholder.png";
 
 function FileInput({ onChange, name, value, initialPreview }) {
   // console.log(initialPreview);
@@ -50,17 +52,22 @@ function FileInput({ onChange, name, value, initialPreview }) {
   }, [value, initialPreview]);
 
   return (
-    <div>
+    <div className="FileInput">
       {/* img 태그는 jsx에선 꼭 div에 넣어서 서술해야 함. */}
-      <img alt="이미지미리보기" src={preview} />
+      <img
+        className={`FileInput-preview ${preview ? "selected" : ""}`}
+        alt="이미지미리보기"
+        src={preview || placeholderImg}
+      />
       <input
+        className="FileInput-hidden-overlay"
         type="file"
         accept="image/png, image/jpeg"
         onChange={handleChange}
         ref={inputRef}
       />
       {value && (
-        <button onClick={handleClearClick}>
+        <button className="FileInput-clear-button" onClick={handleClearClick}>
           <img src={resetImg} alt="선택해제" />
           {/* onClick이 없으면 이 태그가 form 태그 안에 있기에 submit 되어 버린다... */}
         </button>

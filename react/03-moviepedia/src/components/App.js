@@ -18,7 +18,7 @@ function AppSortButton({ selected, children, onClick }) {
   return (
     <button
       disabled={selected}
-      className={`AppSortButton ${selected ? "s.elected" : ""}`}
+      className={`AppSortButton ${selected ? "selected" : ""}`}
       onClick={onClick}
     >
       {children}

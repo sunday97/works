@@ -1,6 +1,7 @@
 .ReviewListItem {
   display: flex;
   align-items: center;
+  /* 취향껏 */
   min-height: 412px;
 }
 .ReviewListItem-img {
