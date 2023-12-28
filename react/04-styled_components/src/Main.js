@@ -4,6 +4,11 @@ import HelloStyled from "./components/01/HelloStyled";
 import Nesting from "./components/02/Nesting";
 import Practice1 from "./components/03/Practice1";
 import Practice2 from "./components/04/Practice2";
+import DynamicStyling from "./components/05/DynamicStyling";
+import Practice3 from "./components/06/Practice3";
+import Inheritance from "./components/07/Inheritance";
+import Reuse from "./components/08/Reuse";
+import Practice4 from "./components/09/Practice4";
 // import App2 from "./components/App2";
 
 // 스위치 케이스 문 과 유사하다. 나중에 복습해봐라.
@@ -21,6 +26,11 @@ function Main() {
           <Route path="02" element={<Nesting />} />
           <Route path="03" element={<Practice1 />} />
           <Route path="04" element={<Practice2 />} />
+          <Route path="05" element={<DynamicStyling />} />
+          <Route path="06" element={<Practice3 />} />
+          <Route path="07" element={<Inheritance />} />
+          <Route path="08" element={<Reuse />} />
+          <Route path="09" element={<Practice4 />} />
         </Route>
       </Routes>
     </BrowserRouter>

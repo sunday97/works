@@ -17,7 +17,22 @@ function App() {
           <li>3. Practice1</li>
         </Link>
         <Link to="04">
-          <li>3. Practice2</li>
+          <li>4. Practice2</li>
+        </Link>
+        <Link to="05">
+          <li>5. 다이나믹 스타일링</li>
+        </Link>
+        <Link to="06">
+          <li>6. Practice3</li>
+        </Link>
+        <Link to="07">
+          <li>7. 스타일 재상용 : 상속</li>
+        </Link>
+        <Link to="08">
+          <li>8. 스타일 재상용 : css함수</li>
+        </Link>
+        <Link to="09">
+          <li>9. Practice4</li>
         </Link>
       </ul>
       <Outlet />
