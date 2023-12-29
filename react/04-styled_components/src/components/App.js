@@ -34,6 +34,12 @@ function App() {
         <Link to="09">
           <li>9. Practice4</li>
         </Link>
+        <Link to="10">
+          <li>10. 로그인화면 구현</li>
+        </Link>
+        <Link to="11">
+          <li>10. 로그인화면 구현:선생님버전</li>
+        </Link>
       </ul>
       <Outlet />
     </>
