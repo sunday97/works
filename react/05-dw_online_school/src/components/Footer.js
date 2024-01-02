@@ -17,7 +17,7 @@ function Footer() {
         </ul>
         <ul className={styles.info}>
           <li>(주)DWOS</li>
-          <li>대표 | 김진용</li>
+          <li>대표 | 김흑룡</li>
           <li>개인정보보호책임자 | 김진용</li>
           <li>대표 번호 | 080-****-****</li>
           <li>사업자번호 | ***-**-****</li>

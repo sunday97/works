@@ -11,9 +11,23 @@ function UserMenu() {
   };
 
   useEffect(() => {
+    // isOpen이 false이면 return으로 끊어줘서 리소스 낭비를 방지한다.
+    if (!isOpen) return;
+
+    // TEST
+    // const handleClickOutside = () => {
+    //   alert("event click");
+    // };
     const handleClickOutside = () => setIsOpen(false);
+
     window.addEventListener("click", handleClickOutside);
-  }, []);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+  // []안에 변수가 있을 경우(예시:[isOpen]) useEffect가 재실행되며 addEventListener가 쌓인다. 즉 한번클릭으로 얼럿창이 여럿 열릴 수 있다는 것이다.
+  // 그래서 cleanUp 함수가 필요하다.
 
   return (
     <div className={styles.userMenu}>
