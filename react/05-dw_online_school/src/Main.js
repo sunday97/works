@@ -3,6 +3,7 @@ import App from "./components/App";
 import HomePage from "./pages/HamePage";
 import CourseListPage from "./pages/CourseListPage";
 import QuestionListPage from "./pages/QuestionListPage";
+import CoursePage from "./pages/CoursePage";
 
 function Main() {
   return (
@@ -12,7 +13,7 @@ function Main() {
           <Route index element={<HomePage />} />
           <Route path="courses">
             <Route index element={<CourseListPage />} />
-            {/* <Route path="" element={<CourseListPage />} /> */}
+            <Route path=":courseSlug" element={<CoursePage />} />
           </Route>
           <Route path="questions">
             <Route index element={<QuestionListPage />} />
