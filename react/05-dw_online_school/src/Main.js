@@ -4,6 +4,7 @@ import HomePage from "./pages/HamePage";
 import CourseListPage from "./pages/CourseListPage";
 import QuestionListPage from "./pages/QuestionListPage";
 import CoursePage from "./pages/CoursePage";
+import Login from "./components/Login";
 
 function Main() {
   return (
@@ -14,11 +15,13 @@ function Main() {
           <Route path="courses">
             <Route index element={<CourseListPage />} />
             <Route path=":courseSlug" element={<CoursePage />} />
+            {/* : 유동적이란 뜻 */}
           </Route>
           <Route path="questions">
             <Route index element={<QuestionListPage />} />
             {/* <Route path="" element={<CourseListPage />} /> */}
           </Route>
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>

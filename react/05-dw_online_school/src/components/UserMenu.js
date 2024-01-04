@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import personIcon from "../assets/person.png";
 import styles from "./UserMenu.module.css";
+import { Link } from "react-router-dom";
+import { useMember } from "../contexts/MemberContext";
 
 function UserMenu() {
+  const member = useMember();
+  // => memberContext.js의 useContext를 사용해서 그 안의 state를 가져와 마치 UserMenu.js에 있는 스테이트의 변화가 생긴 것 같이 되어 랜더링 된다.
+  // 즉, const member = useMember();를 여기에 작성했다는 것은 react에서 memberContext.js의 작성된 state의 변화를 이곳에서 감지할 수 있는 '구독'상태라는 것이다.
+  // 그래서 다른 곳에서 useSetContext를 이용하여 state를 변경한다면 그게 작성된 memberContext.js의 state가 변화하고
+  // 그 변화가 useMember가 있는 파일에서 마치 그 component안에서 작성된 state가 변화하여 랜더링된것마냥 useMember의 변화를 감지하고 랜더링한다는 것이다.
+  console.log(member);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleButtonClick = (e) => {
@@ -36,9 +44,13 @@ function UserMenu() {
       </button>
       {isOpen && (
         <ul className={styles.popup}>
-          <li>위시리스트</li>
+          <Link to="/wishlist">
+            <li>위시리스트</li>
+          </Link>
           <li className={styles.disabled}>회원가입</li>
-          <li>로그인</li>
+          <Link to="/login">
+            <li>{member ? "로그아웃" : "로그인"}</li>
+          </Link>
         </ul>
       )}
     </div>

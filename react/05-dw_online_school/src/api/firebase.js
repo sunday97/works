@@ -14,6 +14,7 @@ import {
   limit,
   startAfter,
   exists,
+  where,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import {
   getStorage,
@@ -72,6 +73,35 @@ async function getDatas(collectionName, options) {
   // });
 
   return { reviews, lastQuery };
+}
+
+async function getMember(values) {
+  const { id, password } = values;
+  let message;
+  let memberObj = {};
+
+  const docQuery = query(collection(db, "member"), where("id", "==", id));
+  const querySnapshot = await getDocs(docQuery);
+  if (querySnapshot.docs.length !== 0) {
+    // id가 있을 때
+    const memberData = querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...doc.data(),
+    }))[0];
+    console.log(memberData);
+    if (memberData.password === password) {
+      // 비밀번호 확인
+      memberObj = memberData;
+    } else {
+      message = "비밀번호가 틀렸습니다.";
+    }
+  } else {
+    // id가 없을 때
+
+    message = "일치하는 아이디가 없습니다.";
+  }
+
+  return { memberObj, message };
 }
 
 async function deleteDatas(collectionName, docId, imgUrl) {
@@ -181,4 +211,5 @@ export {
   addDatas,
   deleteDatas,
   updateDatas,
+  getMember,
 };
