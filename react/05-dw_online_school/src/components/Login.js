@@ -6,7 +6,7 @@ import Button from "./LoginButton";
 import KakaoButton from "./KakaoButton";
 import { useState } from "react";
 import { getMember } from "../api/firebase";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMember, useSetMember } from "../contexts/MemberContext";
 
 const Logo = styled.h1`
@@ -37,8 +37,13 @@ const Container = styled.div`
 `;
 
 function Login() {
-  const member = useMember();
-  const setMember = useSetMember();
+  // const member = useMember();
+  // const setMember = useSetMember();
+
+  // const props = useLocation();
+  // console.log(props);
+  const { state } = useLocation();
+
   const navigate = useNavigate();
   const [values, setValues] = useState({
     id: "",
@@ -58,13 +63,17 @@ function Login() {
     e.preventDefault();
     const { memberObj, message } = await getMember(values);
     if (message === undefined) {
+      // localStorage는 도메인이 기준이다.
+      localStorage.setItem("member", JSON.stringify(memberObj));
       // alert("로그인에 성공했습니다.");
 
-      // 창이 새로 로딩됨. 리액스스럽지 못함
       // window.location.href = "/";
-      setMember(memberObj);
+      // 창이 새로 로딩됨. 리액스스럽지 못함
+
+      // setMember(memberObj);
+
       // useNavigate()
-      navigate("/");
+      navigate(state ? state : "/");
     } else {
       alert(message);
       console.log(memberObj);
