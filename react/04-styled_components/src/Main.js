@@ -35,6 +35,7 @@ function Main() {
           <Route path="09" element={<Practice4 />} />
           <Route path="10" element={<Login />} />
           <Route path="11" element={<Login2 />} />
+          <Route path="aaa" element={<Login2 />} />
         </Route>
       </Routes>
     </BrowserRouter>
