@@ -1,30 +1,25 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import { useEffect, useRef, useState } from "react";
-import { getMockItems, getMockItemsByFilter } from "./lib/api";
+import { getMockItems } from "./lib/api";
 import ColorSurvey from "./components/ColorSurvey";
 
 function Home() {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState(null);
   const nextPageNum = useRef(null);
+  //   useRef의 또 다른 기능, current에 넣어준 값은 렌더링 후에도 유지된다.
 
-  const handleLoad = (filter) => {
-    let result;
-
-    if (filter) {
-      result = getMockItemsByFilter(filter);
-    } else {
-      result = getMockItems();
-    }
-
-    const { data } = result;
+  const handleLoad = () => {
+    const { data } = getMockItems();
+    // console.log(data);
     nextPageNum.current = data.length;
     setItems(data);
   };
 
   const handleLoadNext = () => {
     // 현재 아이템이 몇번째인지를 알고 있어야 한다.
+
     // 현재 아이템 이후의 아이템을 가져와서 items State 값을 변경해준다.
     const result = getMockItems(nextPageNum.current);
     if (result?.data) {
@@ -34,22 +29,25 @@ function Home() {
   };
 
   useEffect(() => {
-    handleLoad(filter);
-  }, [filter]);
+    handleLoad();
+  }, []);
 
   useEffect(() => {
     function handleScroll() {
-      console.log(nextPageNum);
-      if (!nextPageNum.current) return;
+      //   alert("스크롤이벤트발생");
+      //   const html = document.documentElement;
+      //   console.log(html);
+      if (!nextPageNum) return;
       const { scrollHeight, scrollTop, clientHeight } =
         document.documentElement;
+      //   console.log(scrollHeight, scrollTop, clientHeight);
       if (scrollTop + clientHeight >= scrollHeight) {
+        // alert("스크롤이 가장 아래에 내왔습니다.");
         handleLoadNext();
       }
     }
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -68,7 +66,7 @@ function Home() {
                 <img
                   className={styles.removeIcon}
                   src="/images/x.svg"
-                  alt="필터 삭제"
+                  alt="필터삭제"
                 />
               </div>
             )}

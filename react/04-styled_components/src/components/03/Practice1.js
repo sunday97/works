@@ -1,3 +1,4 @@
+import { css } from "styled-components";
 import Input from "./Input";
 
 function Practice1() {

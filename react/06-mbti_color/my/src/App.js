@@ -6,8 +6,9 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
+    // onbeforeunload : 페이지를 벗어나기 전에를 말함.
     window.onbeforeunload = () => window.scrollTo(0, 0);
-  });
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
