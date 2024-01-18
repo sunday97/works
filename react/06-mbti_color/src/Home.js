@@ -39,10 +39,11 @@ function Home() {
 
   useEffect(() => {
     function handleScroll() {
-      console.log(nextPageNum);
+      // console.log(nextPageNum);
       if (!nextPageNum.current) return;
       const { scrollHeight, scrollTop, clientHeight } =
         document.documentElement;
+      // console.log(scrollTop);
       if (scrollTop + clientHeight >= scrollHeight) {
         handleLoadNext();
       }
