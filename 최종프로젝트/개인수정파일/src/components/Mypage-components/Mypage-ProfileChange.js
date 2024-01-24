@@ -3,19 +3,6 @@ import man1 from "../../assets/남자1.jpg";
 import { useEffect } from "react";
 
 function MyProfile() {
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPosition = window.scrollY;
-      console.log(currentScrollPosition);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []); // 빈 배열은 컴포넌트가 마운트될 때 한 번만 실행됨을 의미
-
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>프로필 변경</h2>

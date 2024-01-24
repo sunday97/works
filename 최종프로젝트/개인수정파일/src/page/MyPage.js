@@ -6,8 +6,12 @@ import userIcon from "../assets/user-solid.svg";
 import deliveryIcon from "../assets/cart-shopping-solid.svg";
 import desktopIcon from "../assets/desktop-solid.svg";
 import MyProfile from "./../components/Mypage-components/Mypage-ProfileChange";
+import { useState } from "react";
 
 function MyPage() {
+  const [pageShift, setPageShift] = useState(1);
+  console.log(pageShift);
+
   const ImgWraper = styled.div`
     display: flax;
     justify-content: center;
@@ -30,7 +34,13 @@ function MyPage() {
       <MyPageContainer>
         <div className={styles.menus}>
           {/* 내정보 */}
-          <div className={styles.menu}>
+          <div
+            className={styles.menu}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setPageShift(1);
+            }}
+          >
             <div className={styles.menuTitle}>
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
@@ -53,7 +63,13 @@ function MyPage() {
           </div>
           {/* 배송 */}
           <div className={styles.menu}>
-            <div className={styles.menuTitle}>
+            <div
+              className={styles.menuTitle}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setPageShift(2);
+              }}
+            >
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
                 <img src={deliveryIcon} alt="deliveryIcon" />
@@ -65,7 +81,13 @@ function MyPage() {
           </div>
           {/* 고객센터 */}
           <div className={styles.menu}>
-            <div className={styles.menuTitle}>
+            <div
+              className={styles.menuTitle}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setPageShift(3);
+              }}
+            >
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
                 <img src={desktopIcon} alt="userIcon" />
