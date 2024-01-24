@@ -1,0 +1,38 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* max-width: 1440px; */
+  margin: 0 auto;
+  height: 100px;
+}
+
+.ul {
+  display: flex;
+  gap: 24px;
+  /* width: 650px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.ul li {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+.iconWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.iconCircle {
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+}
