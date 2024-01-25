@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
+  gap: 50px;
 }
 .content1 {
   border-bottom: 1px solid #333;
@@ -33,7 +33,7 @@
 .imgWraper {
   width: 200px;
   height: 200px;
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   overflow: hidden;
 }
@@ -63,9 +63,6 @@
 }
 .adressChange {
   width: 586px;
-  height: 120px;
-  background-color: #191919;
-  color: #fff;
 }
 .profileChangBtn {
   width: 342px;

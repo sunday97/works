@@ -7,6 +7,8 @@ import deliveryIcon from "../assets/cart-shopping-solid.svg";
 import desktopIcon from "../assets/desktop-solid.svg";
 import MyProfile from "./../components/Mypage-components/Mypage-ProfileChange";
 import { useState } from "react";
+import Delivery from "../components/Mypage-components/Mypage-Delivery";
+import Inquiry from "../components/Mypage-components/Mypage-inquiry";
 
 function MyPage() {
   const [pageShift, setPageShift] = useState(1);
@@ -24,6 +26,29 @@ function MyPage() {
     position: relative;
   `;
 
+  let content;
+
+  switch (pageShift) {
+    case 1:
+      content = <MyProfile />;
+      break;
+    case 2:
+      content = <Delivery />;
+      break;
+    case 3:
+      content = <Inquiry />;
+      break;
+
+    default:
+      content = null;
+  }
+
+  const handleProfile = (page, num) => (e) => {
+    e.stopPropagation();
+    window.scrollTo({ top: num, behavior: "smooth" });
+    setPageShift(page);
+  };
+
   return (
     <>
       <div className={styles.banner}>
@@ -34,13 +59,7 @@ function MyPage() {
       <MyPageContainer>
         <div className={styles.menus}>
           {/* 내정보 */}
-          <div
-            className={styles.menu}
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              setPageShift(1);
-            }}
-          >
+          <div className={styles.menu} onClick={handleProfile(1, 0)}>
             <div className={styles.menuTitle}>
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
@@ -48,58 +67,46 @@ function MyPage() {
               </div>
               내정보
             </div>
-            <div
-              className={styles.locationBtn}
-              onClick={() => window.scrollTo({ top: 400, behavior: "smooth" })}
-            >
+            <div className={styles.locationBtn} onClick={handleProfile(1, 400)}>
               프로필 수정
             </div>
             <div
               className={styles.locationBtn}
-              onClick={() => window.scrollTo({ top: 1466, behavior: "smooth" })}
+              onClick={handleProfile(1, 1466)}
             >
               비밀번호 변경
             </div>
           </div>
           {/* 배송 */}
           <div className={styles.menu}>
-            <div
-              className={styles.menuTitle}
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                setPageShift(2);
-              }}
-            >
+            <div className={styles.menuTitle} onClick={handleProfile(2, 0)}>
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
                 <img src={deliveryIcon} alt="deliveryIcon" />
               </div>
-              내정보
+              배송
             </div>
-            <div className={styles.locationBtn}>프로필 수정</div>
-            <div className={styles.locationBtn}>비밀번호 변경</div>
+            <div className={styles.locationBtn} onClick={handleProfile(2, 400)}>
+              조회/환불
+            </div>
+            <div className={styles.locationBtn}>주문내역</div>
           </div>
           {/* 고객센터 */}
           <div className={styles.menu}>
-            <div
-              className={styles.menuTitle}
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                setPageShift(3);
-              }}
-            >
+            <div className={styles.menuTitle} onClick={handleProfile(3, 0)}>
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
                 <img src={desktopIcon} alt="userIcon" />
               </div>
-              내정보
+              고객센터
             </div>
-            <div className={styles.locationBtn}>프로필 수정</div>
-            <div className={styles.locationBtn}>비밀번호 변경</div>
+            <div className={styles.locationBtn} onClick={handleProfile(3, 400)}>
+              1:1 문의하기
+            </div>
           </div>
         </div>
         {/* 컨텐츠 */}
-        <MyProfile />
+        {content}
       </MyPageContainer>
     </>
   );

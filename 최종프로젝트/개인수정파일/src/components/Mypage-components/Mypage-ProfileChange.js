@@ -1,12 +1,17 @@
 import styles from "./Mypage-ProfileChange.module.css";
 import man1 from "../../assets/남자1.jpg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import AddressForm from "./My-page-adressAPI";
 
 function MyProfile() {
+  const [adr, setAdr] = useState({});
+
+  console.log(adr);
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>프로필 변경</h2>
       <div className={styles.contents}>
+        <h2 className={styles.title}>프로필 변경</h2>
         <div className={`${styles.content} ${styles.content1}`}>
           <div className={styles.profileImgChange}>
             <div className={styles.imgWraper}>
@@ -18,10 +23,16 @@ function MyProfile() {
             </div>
           </div>
           <div className={styles.adressChange}>
-            주소변경이 들어갈 장소이다. 처음 렌더링될 때 기존의 주소값을 가지고
-            시작하자.
+            <AddressForm setAdr={setAdr} />
           </div>
-          <div className={styles.profileChangBtn}>프로필 변경하기</div>
+          <div
+            className={styles.profileChangBtn}
+            onClick={() => {
+              console.log(adr);
+            }}
+          >
+            프로필 변경하기
+          </div>
         </div>
         <div className={`${styles.content} ${styles.content2}`}>
           <h2 className={styles.title}>비밀번호 변경</h2>
@@ -45,7 +56,7 @@ function MyProfile() {
               <input className={styles.input} />
             </div>
           </div>
-          <div className={styles.profileChangBtn}>프로필 변경하기</div>
+          <div className={styles.profileChangBtn}>비밀번호 변경하기</div>
         </div>
       </div>
     </div>
