@@ -24,14 +24,21 @@
   gap: 50px;
 }
 .content1 {
-  border-bottom: 1px solid #333;
+  border-bottom: 4px solid #d9d9d9;
+  padding-bottom: 50px;
 }
 .item {
   width: 100%;
   width: 830px;
   padding: 40px 120px;
   border-radius: 20px;
-  box-shadow: inset 0 0 0 4px #d9d9d9;
+  box-shadow: inset 0 0 0 2px #d9d9d9;
+}
+.titlesTitle {
+  font-size: 32px;
+}
+.titlesPrice {
+  font-size: 20px;
 }
 .summary {
   display: flex;
@@ -56,6 +63,14 @@
   height: 100%;
   object-fit: cover;
 }
+.goodsTitle {
+  font-size: 16px;
+  color: var(--title-color);
+}
+.goodsPrice {
+  font-size: 16px;
+  color: var(--text-color);
+}
 
 .exchangeBtn {
   width: 220px;
@@ -67,4 +82,35 @@
   color: var(--title-color);
   border: 2px solid var(--text-color);
   border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 주문내역 */
+.orderDetailsClassification {
+  box-shadow: inset 0 0 0 2px #d9d9d9;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 16px 0;
+  border-radius: 20px;
+  font-size: 20px;
+}
+.orderDetails {
+  box-shadow: inset 0 0 0 2px #d9d9d9;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0;
+  border-radius: 20px;
+}
+.orderDetail {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 18px;
 }

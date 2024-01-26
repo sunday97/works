@@ -6,13 +6,27 @@ import userIcon from "../assets/user-solid.svg";
 import deliveryIcon from "../assets/cart-shopping-solid.svg";
 import desktopIcon from "../assets/desktop-solid.svg";
 import MyProfile from "./../components/Mypage-components/Mypage-ProfileChange";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Delivery from "../components/Mypage-components/Mypage-Delivery";
 import Inquiry from "../components/Mypage-components/Mypage-inquiry";
 
 function MyPage() {
   const [pageShift, setPageShift] = useState(1);
   console.log(pageShift);
+
+  const changeRef = useRef(null);
+  const OrderRef = useRef(null);
+
+  const scrollToEchangeRef = () => {
+    if (changeRef.current) {
+      changeRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+  const scrollToOrderRef = () => {
+    if (OrderRef.current) {
+      OrderRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const ImgWraper = styled.div`
     display: flax;
@@ -33,7 +47,7 @@ function MyPage() {
       content = <MyProfile />;
       break;
     case 2:
-      content = <Delivery />;
+      content = <Delivery changeRef={changeRef} OrderRef={OrderRef} />;
       break;
     case 3:
       content = <Inquiry />;
@@ -54,25 +68,51 @@ function MyPage() {
       <div className={styles.banner}>
         <ImgWraper>
           <img src={myPageBannerImg} />
+          <div className={styles.bannerTitles}>
+            <h2 className={styles.bannerTitle}>마이페이지</h2>
+            <p className={styles.bannerText}>나의 정보를 확인해 보세요!</p>
+          </div>
         </ImgWraper>
       </div>
       <MyPageContainer>
         <div className={styles.menus}>
           {/* 내정보 */}
-          <div className={styles.menu} onClick={handleProfile(1, 0)}>
-            <div className={styles.menuTitle}>
+          <div className={styles.menu}>
+            <div
+              className={styles.menuTitle}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (pageShift !== 1) {
+                  setPageShift(1);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
+            >
               <div className={styles.iconWraper}>
                 {/* <img src={userIcon} alt="userIcon" /> */}
                 <img src={userIcon} alt="userIcon" />
               </div>
               내정보
             </div>
-            <div className={styles.locationBtn} onClick={handleProfile(1, 400)}>
+            <div
+              className={styles.locationBtn}
+              onClick={pageShift === 1 ? handleProfile(1, 400) : undefined}
+              style={
+                pageShift === 1
+                  ? { color: "#333333", pointerEvents: "auto" }
+                  : { color: "#999999", pointerEvents: "none" }
+              }
+            >
               프로필 수정
             </div>
             <div
               className={styles.locationBtn}
-              onClick={handleProfile(1, 1466)}
+              onClick={pageShift === 1 ? handleProfile(1, 1466) : undefined}
+              style={
+                pageShift === 1
+                  ? { color: "#333333", pointerEvents: "auto" }
+                  : { color: "#999999", pointerEvents: "none" }
+              }
             >
               비밀번호 변경
             </div>
@@ -86,10 +126,28 @@ function MyPage() {
               </div>
               배송
             </div>
-            <div className={styles.locationBtn} onClick={handleProfile(2, 400)}>
+            <div
+              className={styles.locationBtn}
+              onClick={scrollToEchangeRef}
+              style={
+                pageShift === 2
+                  ? { color: "#333333", pointerEvents: "auto" }
+                  : { color: "#999999", pointerEvents: "none" }
+              }
+            >
               조회/환불
             </div>
-            <div className={styles.locationBtn}>주문내역</div>
+            <div
+              className={styles.locationBtn}
+              onClick={scrollToOrderRef}
+              style={
+                pageShift === 2
+                  ? { color: "#333333", pointerEvents: "auto" }
+                  : { color: "#999999", pointerEvents: "none" }
+              }
+            >
+              주문내역
+            </div>
           </div>
           {/* 고객센터 */}
           <div className={styles.menu}>
@@ -100,7 +158,15 @@ function MyPage() {
               </div>
               고객센터
             </div>
-            <div className={styles.locationBtn} onClick={handleProfile(3, 400)}>
+            <div
+              className={styles.locationBtn}
+              onClick={handleProfile(3, 400)}
+              style={
+                pageShift === 3
+                  ? { color: "#333333", pointerEvents: "auto" }
+                  : { color: "#999999", pointerEvents: "none" }
+              }
+            >
               1:1 문의하기
             </div>
           </div>

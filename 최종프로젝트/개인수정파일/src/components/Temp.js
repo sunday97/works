@@ -2,11 +2,7 @@ import Container from "./Container";
 import Input from "./Input";
 
 function Temp() {
-  return (
-    <Container>
-      <Input />
-    </Container>
-  );
+  return <Container></Container>;
 }
 
 export default Temp;
