@@ -23,6 +23,7 @@ import tempImg from "../assets/닭가슴살.png";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
+import MainMaps from "./main-components/MainMaps";
 
 function Body() {
   const ImgWraper = styled.div`
@@ -210,7 +211,9 @@ function Body() {
       <Container>
         <h2 className={styles.mapText}>내 주위 버디 보기</h2>
         {/* 시간에 따라 운동 필터링 보여주기? */}
-        <div className={styles.map}></div>
+        <div className={styles.map}>
+          <MainMaps />
+        </div>
       </Container>
 
       {/* 커뮤니티 시작 */}
