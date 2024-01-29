@@ -16,6 +16,8 @@ import tree6 from "../assets/tree6.svg";
 import tree7 from "../assets/tree7.svg";
 import tree8 from "../assets/tree8.svg";
 import bannerChar1 from "../assets/main-banner-charicter1.svg";
+import plusIcon from "../assets/plus-solid.svg";
+import tempImg from "../assets/닭가슴살.png";
 // import "./SequentialMountains.css";
 
 import styled from "styled-components";
@@ -24,7 +26,7 @@ import classnames from "classnames";
 
 function Body() {
   const ImgWraper = styled.div`
-    display: flax;
+    display: flex;
     justify-content: center;
     align-items: center;
   `;
@@ -88,6 +90,44 @@ function Body() {
     };
   }, []);
 
+  // 스크롤 이벤트
+  const containerRef = useRef(null);
+  let scrollPosition = 0;
+
+  const handleScroll = (event) => {
+    // ul 요소의 너비를 기준으로 스크롤 위치를 업데이트
+    const containerWidth = containerRef.current.offsetWidth;
+    const scrollWidth = containerRef.current.scrollWidth - containerWidth;
+
+    // 스크롤 이벤트 발생 시의 스크롤 위치 계산
+    const delta = event.deltaY || event.detail || event.wheelDelta;
+    if (delta > 0) {
+      // 아래로 스크롤하는 경우
+      scrollPosition = Math.min(scrollPosition + 30, scrollWidth);
+    } else {
+      // 위로 스크롤하는 경우
+      scrollPosition = Math.max(scrollPosition - 30, 0);
+    }
+
+    // 스크롤 위치를 업데이트하여 스크롤 이동
+    containerRef.current.scrollLeft = scrollPosition;
+
+    // 이벤트 전파 방지
+    event.preventDefault();
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    // container 영역에 대한 wheel 이벤트 핸들러 등록
+    container.addEventListener("wheel", handleScroll);
+
+    // 컴포넌트 언마운트 시 이벤트 핸들러 제거
+    return () => {
+      container.removeEventListener("wheel", handleScroll);
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const Container2 = styled(Container)`
     margin: 0 auto;
   `;
@@ -109,7 +149,7 @@ function Body() {
       {/* 큰이미지 시작 */}
       <div className={styles.big}>
         <span ref={title} className={styles.span}>
-          운동친구 <span className={styles.inSpan}>버디찾기</span> 서비스 혼자
+          운동친구 <span className={styles.inSpan}>버디찾기</span> 서비스! 혼자
           운동하는 친구들을 위해 주변 친구들 찾아 운동하는 복합 커뮤니티
         </span>
         {/* 구름 */}
@@ -170,15 +210,25 @@ function Body() {
       <Container>
         <h2 className={styles.mapText}>내 주위 버디 보기</h2>
         {/* 시간에 따라 운동 필터링 보여주기? */}
-        <div className={styles.map}>지도입니다.</div>
+        <div className={styles.map}></div>
       </Container>
 
       {/* 커뮤니티 시작 */}
       <section className={styles.communitySection}>
         <Container2 className={styles.community}>
           <Title>베스트 커뮤니티(자유, 운동팁, 물어봐요!)</Title>
-          <ul className={styles.post}>
-            <li className={styles.postItems}>lorem</li>
+          <ul className={styles.posts}>
+            {Array.from({ length: 5 }, (_, index) => (
+              <li className={styles.post}>
+                <p className={styles.postTitle}>
+                  {index % 2 == 1 ? <span>[공지]</span> : ""}글제목이 들어갈
+                  부분입니다.
+                </p>
+                <div className={styles.postIconWarper}>
+                  <img src={plusIcon} alt="plusIcon" />
+                </div>
+              </li>
+            ))}
           </ul>
         </Container2>
       </section>
@@ -187,56 +237,18 @@ function Body() {
       {/* 스토어 랭킹 시작 */}
       <Container className={styles.store}>
         <Title>스토어 랭킹(식품~기구)</Title>
-        <div className={styles.sort}>
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-
-          <div className={styles.item}>
-            <div className={styles.box}></div>
-            <h4>LOREM IPSUM</h4>
-            <p className={styles.font}>LOREM IPSUM</p>
-            <p className={styles.rating}>LOREM ★ 4.4</p>
-          </div>
-        </div>
+        <ul className={styles.items} ref={containerRef} onWheel={handleScroll}>
+          {Array.from({ length: 15 }, (_, index) => (
+            <li key={index} className={styles.item}>
+              <div className={styles.itemWraper}>
+                <img src={tempImg} alt="임시사진" />
+              </div>
+              <h4>LOREM IPSUM</h4>
+              <p className={styles.font}>LOREM IPSUM</p>
+              <p className={styles.rating}>LOREM ★ 4.4</p>
+            </li>
+          ))}
+        </ul>
       </Container>
       {/* 스토어 랭킹 끝 */}
       {/* Body 끝 */}

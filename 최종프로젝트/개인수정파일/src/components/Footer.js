@@ -5,8 +5,8 @@ function Footer() {
   return (
     <>
       <div className={styles.footer}>
-        <div>
-          <img src={logo} />
+        <div className={styles.logo}>
+          <img className={styles.logoImg} src={logo} />
         </div>
         <div>
           <p>대표 : 버디즈</p>
