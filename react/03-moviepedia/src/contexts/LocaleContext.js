@@ -8,16 +8,19 @@ const LocaleContext = createContext();
 
 export function LocaleProvider({ defaultValue = "ko", children }) {
   const [locale, setLocale] = useState(defaultValue);
+  const [userInfo, setUserInfo] = useState({});
   return (
     // LocaleContext.provider안에 있는 컴포넌트 에서만 사용할 수 있다. 그러니까 app을 감싼거다.
-    <LocaleContext.Provider value={{ locale, setLocale }}>
+    <LocaleContext.Provider
+      value={{ locale, setLocale, userInfo, setUserInfo }}
+    >
       {children}
     </LocaleContext.Provider>
   );
 }
 
 // 커스텀훅 만들기
-// 리엑드에 등록이 된다 => import/export가 필요 없다.
+// 리엑드에 등록이 된다 => import/export가 필요 없다. xxx
 // 지금 제작하는 이유?
 // 매번 useContext와 LocaleContext 값을 가지고 사용하는 것이 번거롭기 떄문에
 // 이것들을 대신할 수 있는 Hook을 만든다.

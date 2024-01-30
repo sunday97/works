@@ -21,9 +21,10 @@ import tempImg from "../assets/닭가슴살.png";
 // import "./SequentialMountains.css";
 
 import styled from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import MainMaps from "./main-components/MainMaps";
+import { BuddizContext, BuddizProvider } from "./../contexts/buddizContexts";
 
 function Body() {
   const ImgWraper = styled.div`
@@ -31,6 +32,9 @@ function Body() {
     justify-content: center;
     align-items: center;
   `;
+
+  const tmeper = useContext(BuddizContext);
+  console.log(tmeper);
 
   const mountain1Ref = useRef(null);
   const mountain2Ref = useRef(null);
@@ -63,7 +67,7 @@ function Body() {
         ref.current.classList.add(styles.animete);
       }, delay);
 
-      console.log(timerId);
+      // console.log(timerId);
       // setTimeout의 리턴 값, 즉 타이머 ID를 반환
       return timerId;
     };
@@ -196,13 +200,14 @@ function Body() {
           <img src={tree6} />
         </ImgWraper>
         <ImgWraper ref={tree7Ref} className={styles.tree7}>
-          <img src={tree4} />
+          <img src={tree7} />
         </ImgWraper>
         <ImgWraper ref={tree8Ref} className={styles.tree8}>
           <img src={tree8} />
         </ImgWraper>
         {/* 캐릭터 */}
         <ImgWraper ref={mainChar} className={styles.bannerChar1}>
+          b
           <img src={bannerChar1} />
         </ImgWraper>
       </div>

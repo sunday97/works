@@ -71,3 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 https://velog.io/@sanggyo/React-react-google-mapapi-GoogleMapMarkerFInfoWindowF-%EC%82%AC%EC%9A%A9
 https://velog.io/@hyunjoogo/react-google-mapsapi-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0
+https://developers.google.com/maps/documentation/javascript/examples/marker-animations
+https://visgl.github.io/react-google-maps/examples/markers-and-infowindows
+https://tomchentw.github.io/react-google-maps/#usage--configuration
+https://stackoverflow.com/questions/5868903/marker-content-infowindow-google-maps
