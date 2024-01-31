@@ -41,54 +41,88 @@ const myStyles = [
 const arr1 = [
   {
     name: "헬스",
+    date: 240131,
+    time: [8, 13],
     location: { lat: 36.328546, lng: 127.422258 },
     url: dumbbellIcon,
   },
   {
-    name: "a2",
+    name: "축구",
+    date: 240221,
+    time: [8, 13],
     location: { lat: 36.328402, lng: 127.42314 },
     url: footballIcon,
   },
   {
     name: "탁구",
+    date: 240311,
+    time: [8, 12],
     location: { lat: 36.328931, lng: 127.422356 },
     url: tableTennisIcon,
   },
   {
     name: "배구",
+    date: 241131,
+    time: [8, 13],
     location: { lat: 36.328419, lng: 127.421318 },
     url: volleyballIcon,
   },
   {
     name: "농구",
+    date: 240812,
+    time: [1, 13],
     location: { lat: 36.328932, lng: 127.424947 },
     url: basketballIcon,
+  },
+  {
+    name: "겹치1",
+    date: 240912,
+    time: [7, 13],
+    location: { lat: 36.328699, lng: 127.422998 },
+    url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+  },
+  {
+    name: "겹치2",
+    date: 241111,
+    time: [13, 20],
+    location: { lat: 36.328699, lng: 127.422998 },
+    url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
   },
 ];
 
 const arr2 = [
   {
     name: "걷기",
+    date: 241112,
+    time: [1, 2],
     location: { lat: 36.328546, lng: 127.422258 },
     url: WorkingIcon,
   },
   {
     name: "수영",
+    date: 241231,
+    time: [8, 9],
     location: { lat: 36.328402, lng: 127.42314 },
     url: swimmingIcon,
   },
   {
     name: "볼링",
+    date: 240101,
+    time: [9, 14],
     location: { lat: 36.328931, lng: 127.422356 },
     url: bowlingIcon,
   },
   {
     name: "등산",
+    date: 240603,
+    time: [13, 14],
     location: { lat: 36.328419, lng: 127.421318 },
     url: hikingIcon,
   },
   {
-    name: "자전거 타기",
+    name: "자전거",
+    date: 240303,
+    time: [20, 21],
     location: { lat: 36.328932, lng: 127.424947 },
     url: bikingIcon,
   },
@@ -136,16 +170,28 @@ function MainMaps() {
   }, []);
 
   useEffect(() => {
-    // Toggle rendering array after some time (e.g., 5 seconds)
-    console.log(renderingArray);
     const timer = setTimeout(() => {
-      setRenderingArray(renderingArray === arr1 ? arr2 : arr1);
-    }, 1000);
+      setRenderingArray((prev) => (prev === arr1 ? arr2 : arr1));
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [renderingArray]);
 
-  // console.log("GoogleMap component rendered");
+  const handleMarkerClick = (marker) => {
+    const markersAtSamePosition = renderingArray.filter(
+      (m) =>
+        m.location.lat === marker.location.lat &&
+        m.location.lng === marker.location.lng
+    );
+
+    setSelectedMarker(markersAtSamePosition);
+    setCenter(marker.location);
+  };
+
+  const closeInfoWindow = () => {
+    setSelectedMarker(null);
+  };
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
@@ -157,10 +203,8 @@ function MainMaps() {
         disableDefaultUI: true,
       }}
     >
-      {console.log(renderingArray)}
-      {/* Child components, such as markers, info windows, etc. */}
-      {renderingArray.map((el) => (
-        <React.Fragment key={el.name}>
+      {renderingArray.map((el, index) => (
+        <React.Fragment key={el.name + index}>
           <MarkerF
             className={styles.Marker}
             onLoad={onLoad}
@@ -171,38 +215,48 @@ function MainMaps() {
             }}
             onClick={(e) => {
               setCenter(el.location);
-              console.log(selectedMarker);
-              setSelectedMarker(el);
+              // console.log(selectedMarker);
+              handleMarkerClick(el);
             }}
           />
-
-          {selectedMarker && (
-            <InfoWindowF
-              position={selectedMarker && selectedMarker.location}
-              options={{ pixelOffset: new window.google.maps.Size(0, -25) }}
-              onCloseClick={() => {
-                setSelectedMarker(null);
-              }}
-            >
-              {selectedMarker && (
-                <div className={styles.info}>
-                  <h1 className={styles.infoTitle}>
-                    {" "}
-                    종목 : {selectedMarker.name}{" "}
-                  </h1>
-                  <p>모두 운동해요!</p>
-                </div>
-              )}
-            </InfoWindowF>
-          )}
-          {/* {console.log(selectedMarker)} */}
         </React.Fragment>
       ))}
+      {/* {console.log(selectedMarker?.length)} */}
+      {selectedMarker && (
+        <InfoWindowF
+          position={selectedMarker[0].location}
+          options={{ pixelOffset: new window.google.maps.Size(0, -25) }}
+          onCloseClick={closeInfoWindow}
+        >
+          <div className={styles.info}>
+            {/* <h1 className={styles.infoTitle}>대림헬스장</h1> */}
+            <ul>
+              {selectedMarker.map((marker, index) => (
+                <li className={styles.infoLi} key={index}>
+                  <div
+                    className={
+                      selectedMarker?.length <= 1
+                        ? styles.infoBox2
+                        : styles.infoBox1
+                    }
+                  >
+                    <p>
+                      {marker.name}인 / {marker.name} / {marker.date} /{" "}
+                      {`${marker.time[0]} - ${marker.time[1]}`} / 소개
+                    </p>
+                    <div>1:1 대화하기</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {/* <p>모두 운동해요!</p> */}
+          </div>
+        </InfoWindowF>
+      )}
     </GoogleMap>
   ) : (
     <></>
   );
 }
 
-// export default React.memo(MainMaps);
 export default React.memo(MainMaps);

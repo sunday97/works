@@ -12,3 +12,26 @@
 .infoTitle {
   font-size: 16px;
 }
+.infoLi {
+  padding: 2px 0;
+  width: 100%;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #999;
+}
+.infoLi:last-child {
+  border-bottom: none;
+}
+.infoBox1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.infoBox2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
