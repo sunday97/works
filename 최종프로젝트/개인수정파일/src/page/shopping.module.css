@@ -88,6 +88,11 @@
   background-color: var(--main-color);
   color: white;
 }
+.shoppingRoot {
+  width: fit-content;
+  padding: 8px 0;
+  color: var(--text-color);
+}
 
 /* shoppingList */
 .items {
@@ -97,7 +102,7 @@
 }
 .item {
   padding: 16px;
-  background-color: #f8f8f8;
+  background-color: #f2f2f2;
 }
 .imgWrapper {
   padding: 4px;

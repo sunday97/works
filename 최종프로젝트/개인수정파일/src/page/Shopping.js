@@ -5,13 +5,25 @@ import originItems from "../shoppingMock.json";
 import exImg from "../assets/닭가슴살.png";
 import { Link } from "react-router-dom";
 
+let tempArr = [];
+const seeShoppingRoot = [
+  {
+    "000": "전체보기",
+    "001": "장비",
+    "000": "의류",
+    "000": "식품",
+    "000": "기타",
+  },
+  { rating: "평점순", sales: "판매순" },
+];
+
 function Shopping() {
   const [selectedNavItem, setSelectedNavItem] = useState("000");
   const [itemSort, setItemSort] = useState("rating");
   const [items, setItems] = useState([]);
   const [sreachValue, setSearchValue] = useState("");
 
-  console.log(sreachValue);
+  // console.log(sreachValue);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -27,21 +39,30 @@ function Shopping() {
 
     if (selectedNavItem === "000") {
       setItems(originItems);
+      tempArr = originItems;
       setItemSort("rating");
     } else {
       setItems(originItems.filter((el) => el.type === temp[selectedNavItem]));
+      tempArr = originItems.filter((el) => el.type === temp[selectedNavItem]);
       setItemSort("rating");
     }
   }, [selectedNavItem]);
 
   const NavClick = (value) => {
     setSelectedNavItem(value);
+    setSearchValue("");
   };
   const sortHandleCkick = (value) => {
     setItemSort(value);
   };
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    setItems(
+      tempArr.filter((el) =>
+        el.name.toLowerCase().includes(sreachValue.toLowerCase())
+      )
+    );
+  };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -161,12 +182,17 @@ function Shopping() {
               className={styles.itemSearchInput}
               onChange={handleInputChange}
               onKeyUp={(e) => handleKeyPress(e)}
+              value={sreachValue}
             />
             <div className={styles.sortBtn} onClick={handleSearch}>
               검색
             </div>
           </div>
         </div>
+        <p className={styles.shoppingRoot}>
+          스토어 &gt; {seeShoppingRoot[0][selectedNavItem]} &gt;{" "}
+          {seeShoppingRoot[1][itemSort]}
+        </p>
         {/* ShoppingListSearch */}
         <div className={styles.items}>
           {items.map((item) => (
