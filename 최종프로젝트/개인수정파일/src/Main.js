@@ -8,11 +8,6 @@ import Body from "./components/Body";
 import Chatting from "./page/Chatting";
 import Introduction from "./page/Introduction";
 import Shopping from "./page/Shopping";
-import ShoppingItemAll from "./components/Shopping-components/Shopping-Item-All";
-import ShoppingItemClothes from "./components/Shopping-components/Shopping-Item-Clothes";
-import ShoppingItemEct from "./components/Shopping-components/Shopping-Item-Ect";
-import ShoppingItemEquipment from "./components/Shopping-components/Shopping-Item-Equipment";
-import ShoppingItemFood from "./components/Shopping-components/Shopping-Item-Food";
 import Board from "./page/Board";
 import BoardItemAll from "./components/Board-components/Board-Item-All";
 import BoardItemFree from "./components/Board-components/Board-Item-Free";
@@ -23,6 +18,7 @@ import BuddyFindMap from "./components/BuddyFind-components/BuddyFindMap";
 import BuddyFindSet from "./components/BuddyFind-components/BuddyFindSet";
 import Temp from "./components/Temp";
 import MyPage from "./page/MyPage";
+import ShoppingItemPage from "./components/Shopping-components/ShoppingItemPage";
 
 function Main() {
   return (
@@ -35,18 +31,9 @@ function Main() {
             <Route path="buddyMy" element={<BuddyFindSet />} />
           </Route>
           <Route path="intro" element={<Introduction />} />
-          <Route path="shopping" element={<Shopping />}>
-            <Route index element={<ShoppingItemAll />} />
-            <Route
-              path="ShoppingItemEquipment"
-              element={<ShoppingItemEquipment />}
-            />
-            <Route
-              path="shoppingItemClothes"
-              element={<ShoppingItemClothes />}
-            />
-            <Route path="shoppingItemFood" element={<ShoppingItemFood />} />
-            <Route path="shoppingItemEct" element={<ShoppingItemEct />} />
+          <Route path="shopping">
+            <Route index element={<Shopping />} />
+            <Route path=":itemId" element={<ShoppingItemPage />} />
           </Route>
           <Route path="board" element={<Board />}>
             <Route index element={<BoardItemAll />} />
