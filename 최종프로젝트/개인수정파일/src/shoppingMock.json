@@ -3,15 +3,15 @@
     "id": 1,
     "name": "헬스 청바지",
     "price": 29000,
-    "rating": 4.5,
+    "rating": 3.5,
     "inStock": true,
     "sales": 150,
     "dateAdded": 1641033600000,
     "type": "의류",
-    "image": "https://example.com/health-jeans.jpg",
+    "image": "https://sitem.ssgcdn.com/20/47/09/item/1000338094720_i1_750.jpg",
     "details": {
       "introduction": "편안한 착용감과 트렌디한 스타일이 특징인 헬스 청바지입니다.",
-      "image": "https://example.com/health-jeans-details.jpg"
+      "image": "https://sitem.ssgcdn.com/20/47/09/item/1000338094720_i1_750.jpg"
     },
     "reviews": [
       {
@@ -32,15 +32,15 @@
     "id": 2,
     "name": "헬스 러닝화",
     "price": 49900,
-    "rating": 4.2,
-    "inStock": true,
+    "rating": 5,
+    "inStock": false,
     "sales": 120,
     "dateAdded": 1641369600000,
     "type": "장비",
-    "image": "https://example.com/health-running-shoes.jpg",
+    "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/30d7afaa-343b-4439-b65d-bb544c65420e/%EB%A0%88%EB%B3%BC%EB%A3%A8%EC%85%98-7-%EB%82%A8%EC%84%B1-%EB%A1%9C%EB%93%9C-%EB%9F%AC%EB%8B%9D%ED%99%94-IIFdEk9F.png",
     "details": {
       "introduction": "최고의 러닝화! 가벼우면서 훌륭한 지지력을 제공합니다.",
-      "image": "https://example.com/health-running-shoes-details.jpg"
+      "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/30d7afaa-343b-4439-b65d-bb544c65420e/%EB%A0%88%EB%B3%BC%EB%A3%A8%EC%85%98-7-%EB%82%A8%EC%84%B1-%EB%A1%9C%EB%93%9C-%EB%9F%AC%EB%8B%9D%ED%99%94-IIFdEk9F.png"
     },
     "reviews": [
       {

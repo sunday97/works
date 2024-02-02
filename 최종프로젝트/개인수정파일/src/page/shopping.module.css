@@ -131,3 +131,22 @@
 .rating {
   align-self: flex-end;
 }
+
+/* pagination */
+.pagination {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paginationBtn {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}

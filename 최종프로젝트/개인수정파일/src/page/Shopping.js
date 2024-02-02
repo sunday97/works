@@ -29,6 +29,7 @@ function Shopping() {
     setSearchValue(e.target.value);
   };
 
+  // 카테고리별 정렬
   useEffect(() => {
     const temp = {
       "001": "장비",
@@ -41,10 +42,12 @@ function Shopping() {
       setItems(originItems);
       tempArr = originItems;
       setItemSort("rating");
+      setCurrentPage(1);
     } else {
       setItems(originItems.filter((el) => el.type === temp[selectedNavItem]));
       tempArr = originItems.filter((el) => el.type === temp[selectedNavItem]);
       setItemSort("rating");
+      setCurrentPage(1);
     }
   }, [selectedNavItem]);
 
@@ -81,6 +84,21 @@ function Shopping() {
   }, [itemSort]);
 
   // console.log(items);
+
+  // 페이지네이션부분
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  // 현재 페이지에 해당하는 아이템 추출
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+
+  // 페이지 변경 핸들러
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <ShoppingBanner />
@@ -195,10 +213,18 @@ function Shopping() {
         </p>
         {/* ShoppingListSearch */}
         <div className={styles.items}>
-          {items.map((item) => (
+          {currentItems.map((item) => (
             <div className={styles.item} key={item.id}>
               <div className={styles.imgWrapper}>
-                <img src={exImg} alt="상품사진" />
+                <img
+                  src={
+                    item.image ==
+                    "https://sitem.ssgcdn.com/20/47/09/item/1000338094720_i1_750.jpg"
+                      ? item.image
+                      : exImg
+                  }
+                  alt="상품사진"
+                />
               </div>
               <p className={styles.itemTitle}>
                 <Link
@@ -210,7 +236,9 @@ function Shopping() {
                 </Link>
               </p>
               <div className={styles.Summary}>
-                <p className={styles.itemPrice}>{item.price}원</p>
+                <p className={styles.itemPrice}>
+                  {item.price.toLocaleString()}원
+                </p>
                 <p className={styles.rating}>
                   <span
                     style={{
@@ -227,6 +255,24 @@ function Shopping() {
               </div>
             </div>
           ))}
+        </div>
+        {/* 페이지네이션 컴포넌트 */}
+        <div className={styles.pagination}>
+          {Array.from({ length: Math.ceil(items.length / itemsPerPage) }).map(
+            (_, index) => (
+              <div
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                className={
+                  index + 1 === currentPage
+                    ? `${styles.paginationBtn}`
+                    : `${styles.paginationBtn} ${styles.paginationBtnActive}`
+                }
+              >
+                {index + 1}
+              </div>
+            )
+          )}
         </div>
       </div>
     </>
