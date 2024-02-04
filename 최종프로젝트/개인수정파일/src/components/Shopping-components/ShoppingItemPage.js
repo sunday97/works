@@ -4,10 +4,10 @@ import styles from "./ShoppingItemPage.module.css";
 import plusIcon from "../../assets/plus-solid.svg";
 import minusIcon from "../../assets/minus-solid.svg";
 import { useState } from "react";
+import ShowStar from "./ShowStar";
 
 const delivery = 3000;
 const discount = 2000;
-const starArr = [1, 2, 3, 4, 5];
 function ShoppingItemPage() {
   const props = useLocation();
   const { state: item } = props;
@@ -19,26 +19,14 @@ function ShoppingItemPage() {
       <div className={styles.container}>
         {/* 헤더부분 */}
         <div className={styles.headBox}>
+          {/* 이미지 */}
           <div className={styles.headBoxItem}>
             <img src={item.image} />
           </div>
-          <div className={styles.headBoxItem}>
+          {/* 갯수 및 품절 */}
+          <div className={`${styles.headBoxItem} ${styles.headBoxItemMiddle}`}>
             <p className={styles.itemTitle}>{item.name}</p>
-            <div className={styles.starPack}>
-              {starArr.map((el) => (
-                <div
-                  key={el}
-                  className={
-                    el <= Math.floor(item.rating)
-                      ? `${styles.star} ${styles.selected}`
-                      : `${styles.star}`
-                  }
-                >
-                  ★
-                </div>
-              ))}
-              <div>{item.rating}</div>
-            </div>
+            <ShowStar num={item.rating} />
             <div className={styles.line}></div>
             <div className={styles.isStock}>
               재고여부 : {item.inStock ? "구매가능" : "품절"}
@@ -69,11 +57,11 @@ function ShoppingItemPage() {
               </div>
             ) : (
               <div style={{ fontSize: "32px", color: "var(--text-color)" }}>
-                {" "}
-                -{" "}
+                <img src={minusIcon} width={36} height={36} />
               </div>
             )}
           </div>
+          {/* 액수 및 장바구니 버튼 */}
           <div className={styles.headBoxItem}>
             {item.inStock ? (
               <>
@@ -111,9 +99,23 @@ function ShoppingItemPage() {
           <p className={styles.introduction}>{item.details.introduction}</p>
         </div>
         {/* 추천상품 */}
-        <div className={styles.recommendedItems}></div>
+        <div className={`${styles.details} ${styles.recommendedItems}`}>
+          <p className={styles.detailsHead}>추천상품</p>
+        </div>
         {/* 상품후기 */}
-        <div className={styles.reviews}></div>
+        <div className={`${styles.details} ${styles.reviews}`}>
+          <p className={styles.detailsHead}>후기</p>
+          <ul className={styles.reviews}>
+            <li className={styles.review}>
+              <p>{item.reviews[0].userName}</p>
+              <div className={styles.revierwName}>
+                <ShowStar num={item.reviews[0].rating} />
+                <p>작성일</p>
+              </div>
+              <p>{item.reviews[0].review}</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );
