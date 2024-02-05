@@ -2,7 +2,7 @@ import styles from "./ShowStar.module.css";
 
 const starArr = [1, 2, 3, 4, 5];
 function ShowStar({ num }) {
-  console.log(num);
+  // console.log(num);
   return (
     <>
       <div className={styles.starPack}>

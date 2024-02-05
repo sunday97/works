@@ -43,7 +43,7 @@ function Header() {
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      event.preventDefault();
+      // event.preventDefault();
       // 모달 외부를 클릭하면 모달을 닫음
       if (imgClick) {
         setImgClick(!imgClick);

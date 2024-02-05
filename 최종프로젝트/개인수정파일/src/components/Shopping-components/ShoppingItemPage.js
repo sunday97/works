@@ -15,11 +15,10 @@ function ShoppingItemPage() {
 
   return (
     <>
-      <ShoppingBanner />
+      <ShoppingBanner title={`쇼핑`} summary={`필요한 제품을 찾아보세요!`} />
       <div className={styles.container}>
         {/* 헤더부분 */}
         <div className={styles.headBox}>
-          {/* 이미지 */}
           <div className={styles.headBoxItem}>
             <img src={item.image} />
           </div>
@@ -71,7 +70,7 @@ function ShoppingItemPage() {
                 </div>
                 <div className={styles.priceBoxItem}>
                   <div>할인금액</div>
-                  <div>{discount.toLocaleString()} 원</div>
+                  <div>- {discount.toLocaleString()} 원</div>
                 </div>
                 <div className={styles.priceBoxItem}>
                   <div>배송비</div>
@@ -79,7 +78,15 @@ function ShoppingItemPage() {
                 </div>
                 <div className={`${styles.priceBoxItem} ${styles.total}`}>
                   <div>합계</div>
-                  <div> {item.price * number - discount + delivery} 원</div>
+                  <div>
+                    {" "}
+                    {(
+                      item.price * number -
+                      discount +
+                      delivery
+                    ).toLocaleString()}{" "}
+                    원
+                  </div>
                 </div>
                 <div className={styles.basket}>장바구니</div>
               </>
@@ -91,7 +98,7 @@ function ShoppingItemPage() {
               </div>
             )}
           </div>
-          {/* 자세히보기 */}
+          {/* 상세정보 */}
         </div>
         <div className={styles.details}>
           <p className={styles.detailsHead}>상세정보</p>
@@ -104,16 +111,20 @@ function ShoppingItemPage() {
         </div>
         {/* 상품후기 */}
         <div className={`${styles.details} ${styles.reviews}`}>
-          <p className={styles.detailsHead}>후기</p>
+          <p className={styles.detailsHead}>후기 ({item.reviews.length})</p>
           <ul className={styles.reviews}>
-            <li className={styles.review}>
-              <p>{item.reviews[0].userName}</p>
-              <div className={styles.revierwName}>
-                <ShowStar num={item.reviews[0].rating} />
-                <p>작성일</p>
-              </div>
-              <p>{item.reviews[0].review}</p>
-            </li>
+            {item.reviews.map((el, index) => (
+              <li className={styles.review} key={el.id}>
+                <p style={{ fontSize: "18px", fontWeight: "500" }}>
+                  {el.userName}
+                </p>
+                <div className={styles.revierwName}>
+                  <ShowStar num={el.rating} />
+                  <p>(작성일이 들어갈 곳입니다.)</p>
+                </div>
+                <p>{el.review}</p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

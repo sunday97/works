@@ -19,6 +19,7 @@ import BuddyFindSet from "./components/BuddyFind-components/BuddyFindSet";
 import Temp from "./components/Temp";
 import MyPage from "./page/MyPage";
 import ShoppingItemPage from "./components/Shopping-components/ShoppingItemPage";
+import ShoppingAddItem from "./components/Shopping-components/ShoppingAddItem";
 
 function Main() {
   return (
@@ -34,6 +35,7 @@ function Main() {
           <Route path="shopping">
             <Route index element={<Shopping />} />
             <Route path=":itemId" element={<ShoppingItemPage />} />
+            <Route path="addItem" element={<ShoppingAddItem />} />
           </Route>
           <Route path="board" element={<Board />}>
             <Route index element={<BoardItemAll />} />

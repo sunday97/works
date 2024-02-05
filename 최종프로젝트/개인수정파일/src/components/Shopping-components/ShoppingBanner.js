@@ -1,7 +1,8 @@
 import shoppingBannerImg from "../../assets/쇼핑(배너).svg";
 import styles from "./ShoppingBanner.module.css";
 
-function ShoppingBanner() {
+function ShoppingBanner({ title, summary }) {
+  // console.log(title, summary);
   return (
     <>
       <div className={styles.banner}>
@@ -9,8 +10,8 @@ function ShoppingBanner() {
           <img src={shoppingBannerImg} alt="쇼핑 배너 이미지" />
         </div>
         <div className={styles.bannerTitles}>
-          <h2 className={styles.bannerTitle}>스토어</h2>
-          <p className={styles.bannerText}>필요한 제품을 찾아보세요!</p>
+          <h2 className={styles.bannerTitle}>{title}</h2>
+          <p className={styles.bannerText}>{summary}</p>
         </div>
       </div>
     </>

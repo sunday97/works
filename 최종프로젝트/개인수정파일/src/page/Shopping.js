@@ -99,10 +99,18 @@ function Shopping() {
     setCurrentPage(pageNumber);
   };
 
+  // 관리자 확인
+  const isAdmin = JSON.parse(localStorage.getItem("abc"));
+  // console.log(isAdmin.name);
+
+  const handleChange = (e) => {
+    console.log(e.target);
+  };
+
   return (
     <>
-      <ShoppingBanner />
-
+      {/* 베너 */}
+      <ShoppingBanner title={`쇼핑`} summary={`필요한 제품을 찾아보세요!`} />
       <div className={styles.container}>
         {/* nav */}
         <ul className={styles.shoppingNav}>
@@ -194,7 +202,16 @@ function Shopping() {
             >
               판매순
             </div>
+            {isAdmin?.name == "isAdmin" ? (
+              <Link to={"addItem"}>
+                <div className={`${styles.itemAdd} `}>물품추가</div>
+              </Link>
+            ) : (
+              ""
+            )}
           </div>
+          {/* <input type="file" value={undefined} onClick={handleChange} /> */}
+
           <div className={styles.itemSearchBar}>
             <input
               className={styles.itemSearchInput}
@@ -265,8 +282,8 @@ function Shopping() {
                 onClick={() => handlePageChange(index + 1)}
                 className={
                   index + 1 === currentPage
-                    ? `${styles.paginationBtn}`
-                    : `${styles.paginationBtn} ${styles.paginationBtnActive}`
+                    ? `${styles.paginationBtn} ${styles.paginationBtnActive}`
+                    : `${styles.paginationBtn} `
                 }
               >
                 {index + 1}
