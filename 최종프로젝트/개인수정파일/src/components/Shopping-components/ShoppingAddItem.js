@@ -159,7 +159,7 @@ function ShoppingAddItem() {
                     name="stock"
                     type="radio"
                     checked={stock}
-                    onClick={() => {
+                    onChange={() => {
                       setStock(true);
                     }}
                   />
@@ -171,7 +171,7 @@ function ShoppingAddItem() {
                     name="stock"
                     type="radio"
                     checked={!stock}
-                    onClick={() => {
+                    onChange={() => {
                       setStock(false);
                     }}
                   />
