@@ -1,0 +1,105 @@
+// import MapComponent from "./component/MapComponent"
+// import beneImg from "./beneImg.png"  
+// import MapComponent from "./../components/MapComponent";
+
+import styles from "./BuddyFind.module.css";
+import Container from "../components/Container";
+import BuddyFindMap from "../components/BuddyFind-components/BuddyFindMap";
+import BuddyFindSet from "../components/BuddyFind-components/BuddyFindSet";
+import { useRef, useState } from "react";
+import BuddyNav from "../components/BuddyFind-components/BuddyNav";
+
+
+ 
+function BuddyFind() {
+  const [address, setAddress] = useState("");
+  const [sport, setSport] = useState("");
+  const [period, setPeriod] = useState("");
+  const [intro, setIntro] = useState("")
+  const [memAddresses, setMemAddresses] = useState([]);
+  const [items, setItems] = useState([])
+  const [coordinates, setCoordinates] = useState(null)
+  const [coordinatesTwo, setCoordinatesTwo] = useState([])
+  const [member, setMember] = useState(null)
+  const [markers, setMarkers] = useState([]);
+  const findRef = useRef();
+  const setRef = useRef()
+  //  버디 찾기 , 나의 설정 버튼 구분
+  const setBtnRef = useRef()
+  const [btn, setBtn] = useState("000");
+  // console.log(member)
+  // const loca = useLocation();
+  // console.log(memAddresses);
+  // console.log(coordinatesTwo)
+  const [selectedButton, setSelectedButton] = useState("buddyfind")
+
+  const handleButtonClick = (buttonName) => {
+    setSelectedButton(buttonName);
+  };
+
+  const addMarkerWithInfo = (map, location, infoContent) => {
+    // 이미 같은 위치에 마커가 있는지 체크
+    const isDuplicate = markers.some((marker) => {
+      return marker.getPosition().equals(new window.google.maps.LatLng(location.lat, location.lng));
+    });
+
+    // 중복된 위치이면 새로운 위치로 설정
+    if (isDuplicate) {
+      location.lat += (Math.random() - 0.5) * 0.0002; // 조정 값 변경
+      location.lng += (Math.random() - 0.5) * 0.0002; // 조정 값 변경
+    }
+
+    const marker = new window.google.maps.Marker({
+      position: location,
+      map: map,
+    });
+
+    const infowindow = new window.google.maps.InfoWindow({
+      content: infoContent,
+    });
+
+    marker.addListener("click", () => {
+      infowindow.open(map, marker);
+    });
+
+    setMarkers((prevMarkers) => [...prevMarkers, { marker, infowindow }]);
+
+    // 반환값 추가
+    return { marker, infowindow };
+  };
+
+  return (
+    <>
+      {/* 1번째 div */}
+      <div className={styles.bene}>
+        {/* <img src={beneImg} /> */}
+        <h2 className={styles.title}>버디 찾기</h2>
+        <p className={styles.text}>함께 운동할 버디를 찾아보세요!</p>
+      </div>
+
+      {/* 2번째 div */}
+      <Container>
+        <BuddyNav setBtnRef={setBtnRef} findRef={findRef} setRef={setRef} btn={btn} setBtn={setBtn} selectedButton={selectedButton}>
+        </BuddyNav>
+        {btn == "000" ? <BuddyFindMap addMarkerWithInfo={addMarkerWithInfo}
+        coordinatesTwo={coordinatesTwo} setCoordinatesTwo={setCoordinatesTwo} coordinates={coordinates} 
+        setCoordinates={setCoordinates} items={items} setItems={setItems} memAddresses={memAddresses} setMemAddresses={setMemAddresses} /> :
+          <BuddyFindSet
+          addMarkerWithInfo={addMarkerWithInfo}
+            items={items} setItems={setItems} member={member} setMember={setMember}
+            coordinatesTwo={coordinatesTwo} setCoordinatesTwo={setCoordinatesTwo}
+            coordinates={coordinates} setCoordinates={setCoordinates}
+            memAddresses={memAddresses} setMemAddresses={setMemAddresses}
+            address={address} sport={sport} period={period} setBtn={setBtn}
+            intro={intro} setIntro={setIntro}
+            setAddress={setAddress} setSport={setSport} setPeriod={setPeriod}
+          />}
+
+      </Container >
+      {/* <div className={styles.btnContainer}>
+        </div> */}
+    </>
+  );
+}
+
+export default BuddyFind;

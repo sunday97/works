@@ -1,0 +1,117 @@
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-color: bisque;
+}
+
+.order {
+    display: grid;
+    justify-content: center;
+}
+
+.cover {
+    background-color: rgb(143, 143, 143);
+    width: 1440px;
+    height: 1253px;
+    margin-top: 100px;
+
+}
+
+.orderer h1{
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shop {
+    width: 800px;
+}
+
+.shop p {
+    font-size: 30px;
+    margin-left: 150px;
+    margin-bottom: 50px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.a{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(170, 150, 123);
+    width: 1200px;
+    height: 60px;
+}
+
+.a h3 {
+    margin: 0px 100px;
+}
+
+.a input {
+    width: 24px;
+    height: 24px;
+}
+
+.b{ 
+    display: flex;
+    align-items: center;
+    background-color: antiquewhite;
+    width: 1200px;
+    height: 200px;
+    border-bottom: 2px solid black;
+}
+
+.b input{
+    margin-left: 170px;
+    margin-right: 140px;
+}
+
+.bbb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 160px;
+    height: 160px;
+}
+
+.bbb img {
+
+    background-color: rgb(136, 119, 98);
+    width: 148px;
+    height: 148px;
+}
+
+input{
+    width: 36px;
+    height: 36px;
+}
+
+.bbbname {
+    margin-left: 20px;
+}
+
+.bbbnumber {
+    margin-left: 130px;
+}
+
+.bbbamount {
+    margin-left: 230px;
+}
+
+.bbutton button{
+    margin: 100px;
+    width: 220px;
+    height: 60px;
+    border-radius: 50px;
+}

@@ -1,0 +1,16 @@
+.managerBanner {
+  width: 100%;
+  max-width: 1920px;
+  height: 100px;
+  position: relative;
+}
+
+.managerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}

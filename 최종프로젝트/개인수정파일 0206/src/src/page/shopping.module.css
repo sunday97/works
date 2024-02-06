@@ -1,0 +1,23 @@
+.container {
+  .container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 50px auto;
+  }
+  .banner {
+    background-color: #ffd8b6;
+    height: 400px;
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 840px) {
+    .container {
+      padding: 0 calc(14px * 5) 0 calc(14px * 5);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.Count{
+    border: 2px solid #A2EEFF;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    background: linear-gradient(39deg, rgba(212,210,242,0.9514180672268907) 0%, rgba(162,238,255,1) 47%, rgba(0,212,255,1) 100%);
+    color: #333;
+}
