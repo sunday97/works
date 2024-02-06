@@ -12,19 +12,30 @@ const discount = 2000;
 function ShoppingItemPage() {
   const props = useLocation();
   const { state: item } = props;
+  console.log(item);
   const [number, setNumber] = useState(1);
   const user = JSON.parse(localStorage.getItem("Member"));
-  console.log(user);
+  // console.log(user[0].MEN_NAME);
   const [modalState, setModalState] = useState(false);
+  const time = new Date().getTime();
   const [reviewWriteContents, setReviewWriteContents] = useState({
     STORE_REVIEW: "",
-    STORE_RATING: "",
-    STORE_REVIEW_TIME: 0,
-    STOER_NICKNAME: "",
+    STORE_RATING: 0,
+    STORE_REVIEW_TIME: time,
+    STOER_NICKNAME: user[0].MEN_NICKNAME,
+    MEN_ID: user[0].MEN_ID,
   });
+  const handleTextValue = (e) => {
+    // console.log(e.target.value);
+    setReviewWriteContents((prev) => ({
+      ...prev,
+      STORE_REVIEW: e.target.value,
+    }));
+  };
+  console.log(reviewWriteContents);
 
   const handleReviewSubmitBtn = () => {
-    // addStoreItemReviewData
+    // addStoreItemReviewData("Store", item.STORE); // docID를 쓰든 uuid를 쓰든 자유
   };
 
   return (
@@ -165,9 +176,17 @@ function ShoppingItemPage() {
           <div className={styles.reviewWriteBox}>
             <h4 className={styles.reviewWriteTitle}>리뷰작성하기</h4>
             <p className={styles.reviewWriteName}>
-              닉네임 : {user[0].MEM_NAME}
+              닉네임 : {user[0].MEN_NICKNAME}
             </p>
-            <textarea className={styles.reviewWriteContents} />
+            <ShowStar
+              num={reviewWriteContents.STORE_RATING}
+              setNum={setReviewWriteContents}
+            />
+            <textarea
+              placeholder="이곳에 버디의 후기를 작성해주세요 >o<"
+              className={styles.reviewWriteContents}
+              onChange={handleTextValue}
+            />
             <div className={styles.reviewWriteSubmitBtn}>작성완료</div>
             <img
               className={styles.reviewWriteModalClose}

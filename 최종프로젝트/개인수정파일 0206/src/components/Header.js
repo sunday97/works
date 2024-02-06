@@ -25,9 +25,9 @@ function Header() {
   // console.log(memberData);
   const temper = useContext(BuddizContext);
   const { headIconLeder } = temper;
-  console.log(headIconLeder);
+  // console.log(headIconLeder);
   useEffect(() => {
-    console.log(headIconLeder);
+    // console.log(headIconLeder);
     const getLocalStorageValue = (key) => {
       const value = localStorage.getItem(key);
       return value ? JSON.parse(value) : null;
@@ -42,20 +42,20 @@ function Header() {
       setMemberData("");
     }
 
-    // 관리자 
+    // 관리자
     const getLocalStoryManager = (key) => {
       const value = localStorage.getItem(key);
-      return value ? JSON.parse(value) : null
-    }
+      return value ? JSON.parse(value) : null;
+    };
 
     const manager = getLocalStoryManager("Manager");
-    console.log(manager);
+    // console.log(manager);
 
     if (manager) {
-      const managerEmail = manager.MG_EMAIL
-      setManagerData(managerEmail)
+      const managerEmail = manager.MG_EMAIL;
+      setManagerData(managerEmail);
     } else {
-      setManagerData("")
+      setManagerData("");
     }
   }, [forceRender1, headIconLeder]);
 
@@ -79,7 +79,7 @@ function Header() {
   const Logout = () => {
     if (memberData || managerData) {
       localStorage.removeItem("Member");
-      localStorage.removeItem("Manager")
+      localStorage.removeItem("Manager");
       navigate("/");
       setForceRender1((prev) => !prev);
     }
@@ -145,9 +145,21 @@ function Header() {
             <img src={mail} alt="mail" />
           </Img>
           {memberData ? (
-            <HeaderUser onClick={onClick} memberData={memberData} imgClick={imgClick} setImgClick={setImgClick} Logout={Logout} />
+            <HeaderUser
+              onClick={onClick}
+              memberData={memberData}
+              imgClick={imgClick}
+              setImgClick={setImgClick}
+              Logout={Logout}
+            />
           ) : managerData ? (
-            <HeaderMg onClick={onClick} managerData={managerData} imgClick={imgClick} setImgClick={setImgClick} Logout={Logout} />
+            <HeaderMg
+              onClick={onClick}
+              managerData={managerData}
+              imgClick={imgClick}
+              setImgClick={setImgClick}
+              Logout={Logout}
+            />
           ) : (
             <Link to={"Login"}>
               <Img className={styles.iconCircle}>

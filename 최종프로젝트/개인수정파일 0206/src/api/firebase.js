@@ -442,7 +442,7 @@ async function deleteDatas(collectionName, docId) {
 // 스토어 관련 함수들
 // 스토어 관련 함수들
 
-// 업로드
+// 스토어 아이템 업로드
 async function addStoreItemData(collectionName, formData) {
   const time = new Date().getTime(); // ms까지 표시되는 시간
   // 이미지들 배열
@@ -479,7 +479,7 @@ async function addStoreItemData(collectionName, formData) {
   return docSnap.data();
 }
 
-// 가져오기
+// 가져오기(DOCID 객체에 추가)
 async function getStoreItemData(collectionName) {
   const querySnapshot = await getDocs(collection(db, collectionName));
   // console.log(querySnapshot);
