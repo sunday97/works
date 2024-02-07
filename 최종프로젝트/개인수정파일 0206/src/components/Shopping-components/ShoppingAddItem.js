@@ -25,7 +25,7 @@ function ShoppingAddItem() {
 
   const handleChange = (e, set) => {
     // console.log(e.target.files[0]);
-    console.log(e.target);
+    // console.log(e);
     // console.log(imgRef);
     set(e.target.files[0]);
   };
@@ -35,6 +35,7 @@ function ShoppingAddItem() {
     setCategory(e.target.value);
   };
 
+  // 아이템사진
   useEffect(() => {
     if (!forFile) return;
 
@@ -100,7 +101,12 @@ function ShoppingAddItem() {
       STORE_CATEGORY: category,
       STORE_PRICE: price,
       STORE_STOCK: stock,
-      STORE_IMAGES: [forFile, forFile2, forFile3, forFile4],
+      STORE_IMAGES: [
+        forFile,
+        forFile2 ? forFile2 : null,
+        forFile3 ? forFile3 : null,
+        forFile4 ? forFile4 : null,
+      ],
     };
     console.log(datas);
 

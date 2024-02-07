@@ -3,17 +3,21 @@ import ShoppingBanner from "./ShoppingBanner";
 import styles from "./ShoppingItemPage.module.css";
 import plusIcon from "../../assets/plus-solid.svg";
 import minusIcon from "../../assets/minus-solid.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShowStar from "./ShowStar";
 import xMark from "../../assets/xmark-solid.svg";
+import { addStoreItemReviewData, getStoreItemData } from "../../api/firebase";
 
 const delivery = 3000;
 const discount = 2000;
+let num = 0;
+
 function ShoppingItemPage() {
   const props = useLocation();
-  const { state: item } = props;
-  console.log(item);
+  const { state } = props;
+  console.log(state);
   const [number, setNumber] = useState(1);
+  const [item, setItem] = useState({});
   const user = JSON.parse(localStorage.getItem("Member"));
   // console.log(user[0].MEN_NAME);
   const [modalState, setModalState] = useState(false);
@@ -22,9 +26,25 @@ function ShoppingItemPage() {
     STORE_REVIEW: "",
     STORE_RATING: 0,
     STORE_REVIEW_TIME: time,
-    STOER_NICKNAME: user[0].MEN_NICKNAME,
-    MEN_ID: user[0].MEN_ID,
+    MEN_NICKNAME: user[0]?.MEN_NICKNAME,
+    MEN: user[0]?.MEN,
   });
+
+  console.log(item);
+
+  const onLoad = async () => {
+    const tempItem = await getStoreItemData("Store", state?.STORE_DOCID);
+    console.log(tempItem);
+    setItem(tempItem);
+  };
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  console.log("dksehlsa??");
+
+  console.log(item);
   const handleTextValue = (e) => {
     // console.log(e.target.value);
     setReviewWriteContents((prev) => ({
@@ -34,9 +54,42 @@ function ShoppingItemPage() {
   };
   console.log(reviewWriteContents);
 
+  // 리뷰작성
   const handleReviewSubmitBtn = () => {
-    // addStoreItemReviewData("Store", item.STORE); // docID를 쓰든 uuid를 쓰든 자유
+    addStoreItemReviewData(
+      "Store",
+      state?.STORE_DOCID,
+      reviewWriteContents,
+      item
+    );
   };
+
+  // 댓글 시간변환
+  function timeChange(stemp) {
+    const date = new Date(stemp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1 해주고, 두 자리 숫자로 변환
+    const day = String(date.getDate()).padStart(2, "0"); // 일자를 두 자리 숫자로 변환
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // console.log(formattedDate); // "yyyy-mm-dd" 형식의 날짜 출력
+    return formattedDate;
+  }
+  // 평균별점구하는 함수?
+  // function averageStarRating() {
+  //   let number = 0;
+  //   item.STORE_REVIEWS.map((el) => {
+  //     number = number + el.STORE_RATING;
+  //   });
+
+  //   return number;
+  // }
+
+  item["STORE_REVIEWS"]?.map((el, index, arrey) => {
+    index === 3
+      ? (num = (num + el.STORE_RATING) / arrey.length)
+      : (num = num + el.STORE_RATING);
+  });
 
   return (
     <>
@@ -45,15 +98,17 @@ function ShoppingItemPage() {
         {/* 헤더부분 */}
         <div className={styles.headBox}>
           <div className={styles.headBoxItem}>
-            <img src={item.STORE_IMAGES[0]} />
+            {item.STORE_IMAGES?.map((el, index) => {
+              return index === 0 ? <img key={index} src={el} /> : null;
+            })}
           </div>
           {/* 갯수 및 품절 */}
           <div className={`${styles.headBoxItem} ${styles.headBoxItemMiddle}`}>
-            <p className={styles.itemTitle}>{item.STORE_NAME}</p>
-            <ShowStar num={item.STORE_RATING} />
+            <p className={styles.itemTitle}>{item?.STORE_NAME}</p>
+            <ShowStar num={num} />
             <div className={styles.line}></div>
             <div className={styles.isStock}>
-              재고여부 : {item.STORE_STOCK ? "구매가능" : "품절"}
+              재고여부 : {item?.STORE_STOCK ? "구매가능" : "품절"}
             </div>
             {item.STORE_STOCK ? (
               <div className={styles.howMany}>
@@ -130,7 +185,8 @@ function ShoppingItemPage() {
 
           {item.STORE_IMAGES?.map(
             // 0번째 인덱스 포함 x
-            (img, index) => index !== 0 && <img key={index} src={img} />
+            (img, index) =>
+              index !== 0 && { img } && <img key={index} src={img} />
           )}
           {/* 세부소개글 유무 고민 */}
           {/* <p className={styles.introduction}>{item.details.introduction}</p> */}
@@ -142,7 +198,7 @@ function ShoppingItemPage() {
         {/* 상품후기 */}
         <div className={`${styles.details} ${styles.reviews}`}>
           <p className={styles.detailsHead}>
-            후기 ({item.REVIEW ? item.REVIEWS.length : "0"})
+            후기 ({item.STORE_REVIEWS ? item.STORE_REVIEWS.length : "0"})
             <span
               className={styles.reviewWriteBtn}
               onClick={() => {
@@ -153,17 +209,17 @@ function ShoppingItemPage() {
             </span>
           </p>
           <ul className={styles.reviews}>
-            {item.REVIEWS
-              ? item.REVIEWS.map((el, index) => (
-                  <li className={styles.review} key={el.id}>
+            {item.STORE_REVIEWS
+              ? item.STORE_REVIEWS.map((el, index) => (
+                  <li className={styles.review} key={el.STORE_REVIEW_TIME}>
                     <p style={{ fontSize: "18px", fontWeight: "500" }}>
-                      {el.userName}
+                      {el.MEN_NICKNAME}
                     </p>
                     <div className={styles.revierwName}>
-                      <ShowStar num={el.rating} />
-                      <p>(작성일이 들어갈 곳입니다.)</p>
+                      <ShowStar num={el.STORE_RATING} />
+                      <p>{timeChange(el.STORE_REVIEW_TIME)}</p>
                     </div>
-                    <p>{el.review}</p>
+                    <p>{el.STORE_REVIEW}</p>
                   </li>
                 ))
               : ""}
@@ -187,7 +243,12 @@ function ShoppingItemPage() {
               className={styles.reviewWriteContents}
               onChange={handleTextValue}
             />
-            <div className={styles.reviewWriteSubmitBtn}>작성완료</div>
+            <div
+              className={styles.reviewWriteSubmitBtn}
+              onClick={handleReviewSubmitBtn}
+            >
+              작성완료
+            </div>
             <img
               className={styles.reviewWriteModalClose}
               src={xMark}

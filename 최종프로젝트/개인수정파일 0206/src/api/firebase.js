@@ -449,19 +449,21 @@ async function addStoreItemData(collectionName, formData) {
   const imgArr = [];
   const uuid = crypto.randomUUID();
   for (const img of formData.STORE_IMAGES) {
-    const uuid = crypto.randomUUID();
-    const path = `store/${uuid}`;
+    if (img !== null) {
+      const uuid = crypto.randomUUID();
+      const path = `store/${uuid}`;
 
-    // 파일을 저장하고 url을 받아온다.
-    const storage = getStorage();
-    const imageRef = ref(storage, path);
-    await uploadBytes(imageRef, img);
-    const url = await getDownloadURL(imageRef);
+      // 파일을 저장하고 url을 받아온다.
+      const storage = getStorage();
+      const imageRef = ref(storage, path);
+      await uploadBytes(imageRef, img);
+      const url = await getDownloadURL(imageRef);
 
-    console.log(imageRef);
-    imgArr.push(url);
-    console.log(imgArr);
-    console.log(url);
+      console.log(imageRef);
+      imgArr.push(url);
+      console.log(imgArr);
+      console.log(url);
+    }
   }
 
   formData.STORE_IMAGES = imgArr;
@@ -479,23 +481,71 @@ async function addStoreItemData(collectionName, formData) {
   return docSnap.data();
 }
 
-// 가져오기(DOCID 객체에 추가)
-async function getStoreItemData(collectionName) {
+// 리스트 가져오기(DOCID를 객체에 추가)
+async function getStoreItemDatas(collectionName) {
   const querySnapshot = await getDocs(collection(db, collectionName));
   // console.log(querySnapshot);
 
   const result = querySnapshot.docs.map((doc) => ({
-    DOCID: doc.id,
+    STORE_DOCID: doc.id,
     ...doc.data(),
   }));
   return result;
 }
+// 아이템 가져오기
+async function getStoreItemData(collectionName, docId) {
+  console.log(collectionName);
+  console.log(docId);
+  const docRef = doc(db, collectionName, docId);
+  const docSnap = await getDoc(docRef);
+  console.log(docSnap);
+  if (docSnap.exists()) {
+    console.log(docSnap.data());
+  }
+  return docSnap.data();
+}
 
-// 댓글작성
-async function addStoreItemReviewData(collectionName, docId, reviews) {
+// 리뷰작성
+async function addStoreItemReviewData(collectionName, docId, review, item) {
+  console.log(collectionName);
+  console.log(docId);
+  console.log(review);
+  console.log(item.STORE_REVIEWS);
+
+  // const docRef = doc(db, collectionName);
+  // const newArr = [...item.STORE_REVIEWS, review];
+  // console.log(newArr);
+
+  // const q = query(
+  //   collection(db, collectionName),
+  //   where("STORE_ID", "==", item.STORE_ID)
+  // );
+
+  // console.log(q);
+  // let result;
+
+  // const querySnapshot = await getDocs(q);
+  // console.log(querySnapshot);
+
+  // querySnapshot.forEach((doc) => {
+  //   result = { ...result, ...doc.data() };
+  // });
+
+  // console.log(result);
+
+  // result = { ...result, STORE_REVIEWS: [...review.STORE_REVIEWS] };
+
+  // await updateDoc(docRef, { STORE_REVIEWS: newArr });
+
   const docRef = doc(db, collectionName, docId);
 
-  await updateDoc(docRef, reviews);
+  try {
+    await updateDoc(docRef, {
+      STORE_REVIEWS: arrayUnion(review),
+    });
+  } catch (error) {
+    console.log("실패");
+  }
 }
 
 export {
@@ -522,5 +572,7 @@ export {
   deleteReply,
   getManager,
   addStoreItemData,
+  getStoreItemDatas,
   getStoreItemData,
+  addStoreItemReviewData,
 };

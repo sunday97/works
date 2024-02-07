@@ -4,7 +4,7 @@ import ShoppingBanner from "./../components/Shopping-components/ShoppingBanner";
 // import originItems from "../shoppingMock.json";
 import exImg from "../assets/닭가슴살.png";
 import { Link } from "react-router-dom";
-import { getStoreItemData } from "../api/firebase";
+import { getStoreItemDatas } from "../api/firebase";
 import ShowStar from "../components/Shopping-components/ShowStar";
 
 let tempArr = [];
@@ -12,29 +12,32 @@ const seeShoppingRoot = [
   {
     "000": "전체보기",
     "001": "장비",
-    "000": "의류",
-    "000": "식품",
-    "000": "기타",
+    "002": "의류",
+    "003": "식품",
+    "004": "기타",
   },
   { rating: "평점순", sales: "판매순" },
 ];
 
 function Shopping() {
   const [selectedNavItem, setSelectedNavItem] = useState("000");
+  // console.log(selectedNavItem);
   const [itemSort, setItemSort] = useState("rating");
   const [items, setItems] = useState([]);
   const [sreachValue, setSearchValue] = useState("");
   const [originItems, setOriginItems] = useState([]);
 
   // console.log(sreachValue);
-  console.log(originItems);
+  // console.log(originItems);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
 
   const onLoad = async () => {
-    setOriginItems(await getStoreItemData("Store"));
+    const p = await getStoreItemDatas("Store");
+    console.log(p);
+    setOriginItems(p);
   };
 
   useState(() => {
@@ -68,7 +71,7 @@ function Shopping() {
     console.log(originItems);
   }, [originItems, selectedNavItem]);
 
-  console.log(originItems);
+  // console.log(originItems);
 
   const NavClick = (value) => {
     setSelectedNavItem(value);
@@ -126,6 +129,7 @@ function Shopping() {
     console.log(e.target);
   };
 
+  console.log(seeShoppingRoot);
   return (
     <>
       {/* 베너 */}
@@ -259,7 +263,7 @@ function Shopping() {
               </div>
               <p className={styles.itemTitle}>
                 <Link
-                  to={`/shopping/${item.DOCID}`}
+                  to={`/shopping/${item.STORE_DOCID}`}
                   state={item}
                   className={styles.itemTitleLink}
                 >
