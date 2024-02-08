@@ -508,24 +508,27 @@ async function getStoreItemData(collectionName, docId) {
 // 리뷰작성
 async function addStoreItemReviewData(collectionName, docId, review, item) {
   console.log(collectionName);
-  console.log(docId);
-  console.log(review);
-  console.log(item.STORE_REVIEWS);
+  // console.log(docId);
+  // console.log(review);
+  // console.log(item.STORE_REVIEWS);
 
+  // 쿼리연습
   // const docRef = doc(db, collectionName);
-  // const newArr = [...item.STORE_REVIEWS, review];
-  // console.log(newArr);
+  const newArr = [...item.STORE_REVIEWS, review];
+  console.log(newArr);
 
-  // const q = query(
-  //   collection(db, collectionName),
-  //   where("STORE_ID", "==", item.STORE_ID)
-  // );
+  const q = query(
+    collection(db, collectionName),
+    where("STORE_ID", "==", item.STORE_ID)
+  );
 
   // console.log(q);
-  // let result;
 
-  // const querySnapshot = await getDocs(q);
-  // console.log(querySnapshot);
+  const querySnapshot = await getDocs(q);
+
+  // console.log(querySnapshot.docs);
+  // console.log(querySnapshot.docs[0]);
+  // console.log(querySnapshot.docs[0].id);
 
   // querySnapshot.forEach((doc) => {
   //   result = { ...result, ...doc.data() };
@@ -533,16 +536,23 @@ async function addStoreItemReviewData(collectionName, docId, review, item) {
 
   // console.log(result);
 
-  // result = { ...result, STORE_REVIEWS: [...review.STORE_REVIEWS] };
+  // result = { ...result, STORE_REVIEWS: [,review] };
 
   // await updateDoc(docRef, { STORE_REVIEWS: newArr });
 
-  const docRef = doc(db, collectionName, docId);
+  // 실제 구동부분
+  const docRef = doc(db, collectionName, querySnapshot.docs[0].id);
+
+  let result;
 
   try {
     await updateDoc(docRef, {
       STORE_REVIEWS: arrayUnion(review),
     });
+
+    return newArr;
+    // result = await getDoc(db, docRef);
+    // console.log(result);
   } catch (error) {
     console.log("실패");
   }

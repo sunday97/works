@@ -30,17 +30,18 @@ function ShoppingItemPage() {
     MEN: user[0]?.MEN,
   });
 
+  const [reviews, setReviews] = useState(item.STORE_REVIEWS);
+
   console.log(item);
 
-  const onLoad = async () => {
-    const tempItem = await getStoreItemData("Store", state?.STORE_DOCID);
-    console.log(tempItem);
-    setItem(tempItem);
-  };
-
   useEffect(() => {
+    const onLoad = async () => {
+      const tempItem = await getStoreItemData("Store", state?.STORE_DOCID);
+      console.log(tempItem);
+      setItem(tempItem);
+    };
     onLoad();
-  }, []);
+  }, [reviews]);
 
   console.log("dksehlsa??");
 
@@ -56,12 +57,14 @@ function ShoppingItemPage() {
 
   // 리뷰작성
   const handleReviewSubmitBtn = () => {
-    addStoreItemReviewData(
+    const neqwe = addStoreItemReviewData(
       "Store",
-      state?.STORE_DOCID,
+      // state?.STORE_DOCID,
+      item.STORE_ID,
       reviewWriteContents,
       item
     );
+    setReviews(neqwe);
   };
 
   // 댓글 시간변환
@@ -86,7 +89,7 @@ function ShoppingItemPage() {
   // }
 
   item["STORE_REVIEWS"]?.map((el, index, arrey) => {
-    index === 3
+    index + 1 === arrey.length
       ? (num = (num + el.STORE_RATING) / arrey.length)
       : (num = num + el.STORE_RATING);
   });
