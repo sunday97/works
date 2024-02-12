@@ -36,7 +36,6 @@ function Shopping() {
 
   const onLoad = async () => {
     const p = await getStoreItemDatas("Store");
-    console.log(p);
     setOriginItems(p);
   };
 
@@ -68,7 +67,6 @@ function Shopping() {
       setItemSort("rating");
       setCurrentPage(1);
     }
-    console.log(originItems);
   }, [originItems, selectedNavItem]);
 
   // console.log(originItems);
@@ -96,14 +94,53 @@ function Shopping() {
     }
   };
 
+  // useEffect(() => {
+  //   setItemSort("rating");
+  // }, []);
+
+  // 평점순/판매순 정렬
   useEffect(() => {
-    setItems((prevItems) => {
-      // 여기서 slice()는 이유는 이전값을 직접 수정하지 않기 위해서이다.
-      return prevItems.slice().sort((a, b) => {
-        return b[itemSort] - a[itemSort];
+    if (itemSort === "rating") {
+      console.log("rating");
+      setItems((prevItems) => {
+        // 여기서 slice()는 이유는 이전값을 직접 수정하지 않기 위해서이다.
+        return prevItems.slice().sort((a, b) => {
+          const averageRatingA = () => {
+            console.log("A함수진입");
+            let numA = 0;
+            if (a["STORE_REVIEWS"] && a["STORE_REVIEWS"].length >= 1) {
+              a["STORE_REVIEWS"].forEach((el) => {
+                numA += el.STORE_RATING;
+              });
+              numA /= a["STORE_REVIEWS"].length;
+            }
+            console.log(numA);
+            return numA;
+          };
+          const averageRatingB = () => {
+            let numB = 0;
+            if (b["STORE_REVIEWS"] && b["STORE_REVIEWS"].length >= 1) {
+              b["STORE_REVIEWS"].forEach((el) => {
+                numB += el.STORE_RATING;
+              });
+              numB /= b["STORE_REVIEWS"].length;
+            }
+            console.log(numB);
+            return numB;
+          };
+          // 정렬 기준에 따라 a와 b를 비교합니다.
+          return averageRatingB() - averageRatingA();
+        });
       });
-    });
-  }, [itemSort]);
+    } else if (itemSort === "sales") {
+      console.log("sales");
+      setItems((prevItems) => {
+        return prevItems.slice().sort((a, b) => {
+          return b["STORE_SALES"] - a["STORE_SALES"];
+        });
+      });
+    }
+  }, [itemSort, originItems]);
 
   // console.log(items);
 
@@ -129,7 +166,10 @@ function Shopping() {
     console.log(e.target);
   };
 
-  console.log(seeShoppingRoot);
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       {/* 베너 */}
@@ -226,7 +266,7 @@ function Shopping() {
               판매순
             </div>
             {isAdmin ? (
-              <Link to={"addItem"}>
+              <Link to={"addItem"} onClick={handleClick}>
                 <div className={`${styles.itemAdd} `}>물품추가</div>
               </Link>
             ) : (
@@ -251,7 +291,7 @@ function Shopping() {
           스토어 &gt; {seeShoppingRoot[0][selectedNavItem]} &gt;{" "}
           {seeShoppingRoot[1][itemSort]}
         </p>
-        {/* ShoppingListSearch */}
+        {/* 아이템 */}
         <div className={styles.items}>
           {currentItems.map((item) => (
             <div className={styles.item} key={item.DOCID}>
@@ -266,6 +306,7 @@ function Shopping() {
                   to={`/shopping/${item.STORE_DOCID}`}
                   state={item}
                   className={styles.itemTitleLink}
+                  // onClick={(window.scrollTo = { top: 0, behavior: "smooth" })}
                 >
                   {item.STORE_NAME}
                 </Link>
@@ -274,7 +315,16 @@ function Shopping() {
                 <p className={styles.itemPrice}>
                   {Number(item.STORE_PRICE).toLocaleString()}원
                 </p>
-                <ShowStar num={item.STORE_RATING} />
+                {(() => {
+                  let num = 0;
+                  item["STORE_REVIEWS"]?.map((el, index, arrey) => {
+                    index + 1 === arrey.length
+                      ? (num = (num + el.STORE_RATING) / arrey.length)
+                      : (num = num + el.STORE_RATING);
+                  });
+                  return <ShowStar num={num} />;
+                })()}
+
                 {/* <p>{item.sales}</p> */}
               </div>
             </div>

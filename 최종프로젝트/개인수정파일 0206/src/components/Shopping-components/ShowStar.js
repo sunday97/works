@@ -30,7 +30,7 @@ function ShowStar({ num, setNum }) {
               ★
             </li>
           ))}
-          <div>{`${num}`}</div>
+          <div>{`${num.toFixed(1)}`}</div>
         </ul>
       ) : (
         <ul className={styles.starPack}>

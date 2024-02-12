@@ -1,0 +1,158 @@
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  src: url("../font/AppleSDGothicNeoR.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "AppleSDGothicNeo";
+}
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 648px;
+  margin: 0px auto;
+  padding: 20px;
+  gap: 24px;
+}
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+  /* background-color: #fcec4e; */
+  display: flex;
+  flex-direction: column;
+  /* padding: 20px; */
+  border-radius: 20px;
+  /* overflow: hidden; */
+  /* position: relative; */
+}
+.selected-card {
+  box-shadow: 0px 0px 4px 4px red;
+}
+.card.card1 {
+  background-color: #fcec4e;
+  transition: all 0.15s linear;
+}
+.card.card1:hover {
+  transform: scale(1.1);
+}
+.card.card2 {
+  background-color: #3e8c7f;
+  color: white;
+  transition: all 0.15s linear;
+}
+.card.card2:hover {
+  transform: scale(1.1);
+}
+.card.card3 {
+  background-color: #2b66b1;
+  color: white;
+  transition: all 0.15s linear;
+}
+.card.card3:hover {
+  transform: scale(1.1);
+}
+.card-up {
+  position: relative;
+  margin: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card-up .card-title {
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.card-up .card-title > img {
+  width: 29px;
+  height: 27px;
+}
+.card-up .fa-ellipsis-vertical {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  transform: translate(50%, 50%);
+  font-size: 30px;
+}
+
+.card-hover {
+  width: 240px;
+  height: 100px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  color: #303030;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  opacity: 0;
+  /* display: none; */
+  /* visibility: hidden; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.25s linear;
+  box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.card-up .fa-ellipsis-vertical:hover .card-hover {
+  opacity: 1;
+  pointer-events: auto;
+  /* display: block; */
+  /* visibility: visible; */
+}
+
+/* .card-mid {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  color: #303030;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: 34%;
+  right: 15%;
+  opacity: 0;
+  transition: all 0.3s linear;
+} */
+
+/* .card-mid-active {
+  opacity: 1;
+} */
+
+.register {
+  width: 100%;
+  height: 50px;
+  background-color: #303030;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s linear;
+  cursor: pointer;
+}
+.register:hover {
+  background-color: #fff;
+  border: 1px solid black;
+  color: #76f1a7;
+}
+.register:active {
+  box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.3);
+}

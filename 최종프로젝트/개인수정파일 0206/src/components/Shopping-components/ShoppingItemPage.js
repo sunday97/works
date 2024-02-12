@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ShoppingBanner from "./ShoppingBanner";
 import styles from "./ShoppingItemPage.module.css";
 import plusIcon from "../../assets/plus-solid.svg";
@@ -19,6 +19,8 @@ function ShoppingItemPage() {
   const [number, setNumber] = useState(1);
   const [item, setItem] = useState({});
   const user = JSON.parse(localStorage.getItem("Member"));
+  const Manager = JSON.parse(localStorage.getItem("Manager"));
+  console.log(Manager);
   // console.log(user[0].MEN_NAME);
   const [modalState, setModalState] = useState(false);
   const time = new Date().getTime();
@@ -31,8 +33,11 @@ function ShoppingItemPage() {
   });
 
   const [reviews, setReviews] = useState(item.STORE_REVIEWS);
+  const [thankModal, setThankModal] = useState(false);
 
-  console.log(item);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     const onLoad = async () => {
@@ -43,9 +48,6 @@ function ShoppingItemPage() {
     onLoad();
   }, [reviews]);
 
-  console.log("dksehlsa??");
-
-  console.log(item);
   const handleTextValue = (e) => {
     // console.log(e.target.value);
     setReviewWriteContents((prev) => ({
@@ -53,18 +55,43 @@ function ShoppingItemPage() {
       STORE_REVIEW: e.target.value,
     }));
   };
-  console.log(reviewWriteContents);
+  // console.log(reviewWriteContents);
+
+  // 감사모달조절장치
+  useEffect(() => {
+    let timeoutId;
+
+    if (thankModal) {
+      // showModal이 true이면 3초 후에 모달을 닫음
+      timeoutId = setTimeout(() => {
+        setThankModal(false);
+      }, 1500);
+    }
+
+    // cleanup 함수: 컴포넌트가 언마운트되거나 showModal 상태가 변경될 때 실행
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [thankModal]);
 
   // 리뷰작성
   const handleReviewSubmitBtn = () => {
-    const neqwe = addStoreItemReviewData(
+    const upLoadReview = addStoreItemReviewData(
       "Store",
       // state?.STORE_DOCID,
       item.STORE_ID,
       reviewWriteContents,
       item
     );
-    setReviews(neqwe);
+    setReviews(upLoadReview);
+    setModalState(false);
+    setReviewWriteContents({
+      STORE_REVIEW: "",
+      STORE_RATING: 0,
+      STORE_REVIEW_TIME: time,
+      MEN_NICKNAME: user[0]?.MEN_NICKNAME,
+      MEN: user[0]?.MEN,
+    });
   };
 
   // 댓글 시간변환
@@ -171,13 +198,26 @@ function ShoppingItemPage() {
                     원
                   </div>
                 </div>
-                <div className={styles.basket}>장바구니</div>
+                {Manager ? (
+                  <Link to="/shopping/addItem" state={state}>
+                    <div className={styles.basket}>수정하기</div>
+                  </Link>
+                ) : (
+                  <div className={styles.basket}>장바구니</div>
+                )}
               </>
             ) : (
               <div className={styles.soldOut}>
                 <p>죄송합니다.</p>
                 <p>상품을 준비 중입니다.</p>
                 <p>조금만 기다려주세요.</p>
+                {Manager ? (
+                  <Link to="/shopping/addItem" state={state}>
+                    <div className={styles.basket}>수정하기</div>
+                  </Link>
+                ) : (
+                  ""
+                )}
               </div>
             )}
           </div>
@@ -215,9 +255,18 @@ function ShoppingItemPage() {
             {item.STORE_REVIEWS
               ? item.STORE_REVIEWS.map((el, index) => (
                   <li className={styles.review} key={el.STORE_REVIEW_TIME}>
-                    <p style={{ fontSize: "18px", fontWeight: "500" }}>
-                      {el.MEN_NICKNAME}
-                    </p>
+                    <div className={styles.MEN_NICKNAME}>
+                      <p style={{ fontSize: "18px", fontWeight: "500" }}>
+                        {el.MEN_NICKNAME}
+                      </p>
+                      {el.MEN === user[0].MEN ? (
+                        <div className={styles.reviewEditAndDeleteBtn}>
+                          <span>수정</span> / <span>삭제</span>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                     <div className={styles.revierwName}>
                       <ShowStar num={el.STORE_RATING} />
                       <p>{timeChange(el.STORE_REVIEW_TIME)}</p>
@@ -229,6 +278,8 @@ function ShoppingItemPage() {
           </ul>
         </div>
       </div>
+
+      {/* 후기작성란 */}
       {modalState ? (
         <div className={styles.reviewWriteModal}>
           <div className={styles.background} />
@@ -248,7 +299,12 @@ function ShoppingItemPage() {
             />
             <div
               className={styles.reviewWriteSubmitBtn}
-              onClick={handleReviewSubmitBtn}
+              onClick={() => {
+                handleReviewSubmitBtn();
+                if (reviewWriteContents.STORE_RATING >= 5) {
+                  setThankModal(true);
+                }
+              }}
             >
               작성완료
             </div>
@@ -262,6 +318,12 @@ function ShoppingItemPage() {
             />
           </div>
         </div>
+      ) : (
+        ""
+      )}
+      {/* 5점 감사 모달 */}
+      {thankModal ? (
+        <div className={styles.thanks}>소중한 리뷰 감사합니다!</div>
       ) : (
         ""
       )}

@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #333;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 상단 내브바, 로고 */
+
+.logoImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  height: 100px;
+  flex-grow: 1;
+}
+
+.logo {
+  height: 98px;
+  padding: 0 10rem;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+}
+
+li {
+  color: #ccc;
+  display: flex;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+  flex-grow: 1;
+}
+
+a:hover {
+  color: #73eeba;
+}
+
+a:active {
+  color: #73eeba;
+}
+
+/* 위쪽 service guide  */
+
+.serviceGuide {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.serviceTitle {
+  font-size: 40px;
+}
+
+/* 날씨 이미지와 현재위치 */
+
+.weather {
+  width: 100%;
+  height: 600px;
+  background-image: url("/teamProject/img/raindrops.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 환경문제 */
+
+.eco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.ecoContent {
+  padding-top: 5rem;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ecoBox {
+  display: flex;
+  gap: 2rem;
+}
+
+.ecoBoxContent {
+  display: flex;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  gap: 1rem;
+}
+
+.umbrella {
+  color: #73eeba;
+}
+
+.ecoNum {
+  color: #ccc;
+}
+
+/* 이용방법 */
+
+.useContent {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contentHeader {
+  text-align: center;
+}
+
+.logoContent {
+  color: #73eeba;
+}
+
+.mainContent {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* 대여, 반납 */
+
+.howToUse {
+  padding-top: 5rem;
+  display: flex;
+  width: 100%;
+}
+
+.rent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  border: 0;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,14 @@
+DB작성하기
+
+필요 작성 데이터
+회원가입 시-
+user/name
+user/id
+user/password
+user/email
+user/tel
+
+계좌연결 시-
+user/bank_account
+user/bank_account_password
+

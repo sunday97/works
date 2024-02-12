@@ -1,0 +1,472 @@
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  src: url("/font/AppleSDGothicNeoR.ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "AppleSDGothicNeo";
+  color: #303030;
+}
+
+:root {
+  --text-color: #303030;
+  --serve-color: #ccc;
+  --main-color: #76f1a7;
+  --background-color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 상단 내브바, 로고 */
+
+.header {
+  display: flex;
+  border-bottom: 2px solid var(--serve-color);
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: var(--background-color);
+}
+
+.logo-bar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 100%;
+  width: 200px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-bar .hamburger {
+  opacity: 0;
+  font-size: 20px;
+}
+
+.category:not(.active) {
+  width: 80%;
+  height: 80px;
+  background-color: var(--background-color);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  position: absolute;
+  right: -5px;
+  top: 13px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.category.active {
+  flex-direction: column;
+  background-color: var(--background-color);
+}
+
+.category li a {
+  font-size: 26px;
+  letter-spacing: 2px;
+  color: var(--text-color);
+}
+a:hover {
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+.category li:first-child a {
+  color: #76f1a7;
+  font-weight: 600;
+}
+
+/* 위쪽 service guide  */
+
+.serviceGuide {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.guideTitle {
+  font-size: 40px;
+}
+
+.serviceGuide p {
+  text-align: center;
+}
+
+/* 날씨 이미지와 현재위치 */
+
+/* .weatherWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 300px;
+} */
+
+.weather {
+  width: 100%;
+  height: 550px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/img/raindrops.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.city,
+.temp,
+.cloud,
+.tempC {
+  color: rgb(255, 255, 255, 0.8);
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 65px;
+}
+
+.temp,
+.tempC {
+  display: inline;
+}
+
+.icon {
+  /* width: 200px; */
+  height: 200px;
+}
+
+/* 환경문제 */
+
+.eco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.ecoContent {
+  padding-top: 200px;
+  font-size: 24px;
+}
+
+.ecoBox {
+  display: flex;
+  gap: 2rem;
+}
+
+.ecoBoxContent {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  gap: 1rem;
+}
+
+.umbrella {
+  font-weight: bold;
+  position: relative;
+}
+
+.umbrellaLine {
+  position: absolute;
+  width: 370px;
+  height: 18px;
+  background-color: #73eeba;
+  left: -10px;
+  top: 13px;
+  z-index: -999;
+}
+
+.ecoNum {
+  color: #ccc;
+}
+
+/* 이용방법 */
+
+.useContent {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contentHeader {
+  text-align: center;
+  font-size: 24px;
+}
+
+.logoContent {
+  color: #73eeba;
+}
+
+.mainContent {
+  text-align: center;
+  font-size: 20px;
+}
+
+/* 대여, 반납 */
+
+.howToUse {
+  padding-top: 100px;
+  display: flex;
+  width: 100%;
+}
+
+.howToUseWrapper {
+  padding-left: 1rem;
+  flex-grow: 1;
+}
+
+.rentWrapper,
+.returnWrapper {
+  display: flex;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.returnWrapper {
+  padding-right: 1rem;
+}
+
+.rent,
+.return {
+  width: 450px;
+  height: 600px;
+  background-color: #83e1c4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  padding: 4rem;
+  border-radius: 2rem;
+  box-shadow: 5px 1px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.rent p,
+.return p {
+  font-weight: bold;
+  font-size: 24px;
+  width: fit-content;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.useImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  padding: 1rem 5rem;
+  margin-bottom: 1rem;
+  border-radius: 3rem;
+  border: 0;
+  box-shadow: 5px 1px 8px rgba(0, 0, 0, 0.2);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.btn.rentBtn {
+  background-color: black;
+  color: snow;
+}
+
+.btn.returnBtn {
+  background-color: snow;
+}
+
+/* 탄소절감 content */
+
+.carbonContent {
+  padding-top: 100px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.carbon {
+  position: relative;
+  font-weight: bold;
+}
+
+.carbonLine {
+  position: absolute;
+  width: 115px;
+  height: 18px;
+  background-color: #73eeba;
+  left: -10px;
+  top: 13px;
+  z-index: -999;
+}
+
+/* footer */
+.footer {
+  border-top: 2px solid var(--serve-color);
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1;
+  background-color: white;
+  margin-top: 100px;
+}
+
+.logo-symbol {
+  height: 60%;
+  cursor: pointer;
+}
+
+.logo-symbol img {
+  width: 100%;
+  height: 100%;
+}
+
+.footer p {
+  text-align: center;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 1080px) {
+  .category:not(.active) {
+    width: 80%;
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  a {
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    color: var(--text-color);
+  }
+  .howToUse {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* align-items: center; */
+  }
+}
+@media screen and (max-width: 960px) {
+  .logo-bar .hamburger {
+    opacity: 100%;
+    padding-right: 38px;
+    font-size: 30px;
+  }
+
+  .category:not(.active) {
+    display: none;
+  }
+
+  .category.active {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    width: 100%;
+    height: calc(100vh - 100px);
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+    background-color: var(--background-color);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .category li {
+    padding: 25px 0px;
+  }
+
+  a {
+    font-size: 35px;
+    color: var(--text-color);
+  }
+
+  .footer {
+    border-top: 2px solid var(--serve-color);
+    width: 100%;
+    height: 100px;
+    background-color: var(--background-color);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* position: absolute; */
+    /* bottom: 0; */
+  }
+
+  /* 대여, 반납 반응형 */
+  .howToUse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rentWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /*  */
+  .ecoBox {
+    display: flex;
+    flex-direction: column;
+  }
+}

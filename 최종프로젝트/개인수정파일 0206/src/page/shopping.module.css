@@ -120,7 +120,8 @@
   background-color: #f2f2f2;
 }
 .imgWrapper {
-  /* padding: 4px; */
+  min-width: 310px;
+  min-height: 310px;
 }
 .imgWrapper > img {
   width: 100%;
@@ -128,7 +129,7 @@
   object-fit: cover;
 }
 .itemTitle {
-  font-size: 24px;
+  font-size: 28px;
 }
 .itemTitleLink {
   color: var(--text-color);
@@ -136,8 +137,10 @@
 
 .Summary {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
 .itemPrice {
   font-size: 32px;
   font-weight: bold;

@@ -1,0 +1,37 @@
+.modal {
+  position: fixed;
+  width: 1000px;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-70%);
+  z-index: 10;
+  display: none;
+}
+
+.modal_content {
+  position: relative;
+  background-color: #fff;
+  padding-left: 50px;
+  width: 100%;
+  margin: 50px;
+  height: 70vh;
+  overflow-y: auto;
+  top: 50%;
+  left: 18%;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.serviceTitle {
+  text-align: center;
+  font-size: 36px;
+  color: #76f1a7;
+  font-weight: bold;
+}
+
+.modal_content p {
+  padding: 30px;
+  text-align: center;
+  line-height: 2;
+  font-size: 16px;
+}

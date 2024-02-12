@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "AppleSDGothicNeo";
+  src: url("../font/AppleSDGothicNeoR.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "AppleSDGothicNeo";
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  width: 100%;
+  max-width: 648px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 24px;
+}
+
+main * {
+  width: 100%;
+}
+
+.title {
+  margin: 80px 0 80px 0;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.inputs {
+  position: relative;
+}
+
+.inputs input {
+  height: 40px;
+  margin-bottom: 20px;
+}
+.search-id-password {
+  position: absolute;
+  top: 144px;
+}
+.search-id-password a {
+  font-size: 14px;
+}
+
+.login-register-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.login-btn,
+.register-btn {
+  background-color: #303030;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.1s linear;
+}
+.register-btn a {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+.login-btn:hover,
+.register-btn:hover {
+  background-color: #fff;
+  border: 1px solid black;
+  color: #76f1a7;
+}
+.register-btn:hover a {
+  color: #76f1a7;
+}
+.login-btn:active,
+.register-btn:active {
+  box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.3);
+}

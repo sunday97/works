@@ -1,0 +1,19 @@
+.Container{
+    width: 1440px;
+    height: 1000px;
+    margin: 0 auto;
+}
+.PieChart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    
+}
+/* .Count{
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+} */

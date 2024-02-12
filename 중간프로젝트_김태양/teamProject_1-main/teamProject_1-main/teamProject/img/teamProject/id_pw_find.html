@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Id Pw find</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <link rel="stylesheet" href="css/id_pw_find.css" />
+  </head>
+  <body>
+    <!-- header 입니다. -->
+    <header class="header">
+      <div class="logo-bar">
+        <a href="main.html" class="logo">
+          <img src="img/쓰슈 로고(가로형)_1.png" alt="쓰슈 로고(가로형)" />
+        </a>
+        <div class="hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+
+      <ul class="category">
+        <li><a href="serviceGuide.html">SEVICE GUIDE</a></li>
+        <li><a href="rentalLocation.html">RENTAL LOCATION</a></li>
+        <li><a href="Q&A.html">Q&A</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+        <li><a href="payment.html">PAYMENT</a></li>
+      </ul>
+    </header>
+
+    <!-- 메인을 여기에 넣어주세요 :) -->
+    <!-- 메인을 사용하기 전 css의 예시를 확인해주세요 -->
+    <div class="back">
+      <main class="main_find">
+        <p class="title">아이디 및 비밀번호 찾기</p>
+        <div class="id-search">
+          <!-- 공통 입력 부분 -->
+          <div class="user-name-sec">
+            <label for="user-name">이름</label>
+            <input type="text" id="user-name" />
+          </div>
+          <!-- 이메일 입력 -->
+          <div class="user-email-sec">
+            <label for="user-email">이메일 입력</label>
+            <input type="text" id="user-email" />
+          </div>
+          <div class="id-search-for-email-btn btn">이메일로 찾기</div>
+          <!-- 전화번호 입력 -->
+          <div class="user-tel-sec">
+            <label for="user-tel">전화번호 입력</label>
+            <input type="text" id="user-tel" />
+          </div>
+          <div class="id-search-for-tel-btn btn">전화번호로 찾기</div>
+        </div>
+        <div class="line"></div>
+        <div class="pw-serch">
+          <!-- 아이디 입력 -->
+          <div class="user-id-sec">
+            <label for="user-id">ID 입력</label>
+            <input type="text" id="user-id" />
+          </div>
+          <!-- 이메일 입력 -->
+          <div class="user-email-sec">
+            <label for="user-email">이메일 입력</label>
+            <input type="text" id="user-email" />
+          </div>
+          <!-- 전화번호 입력 -->
+          <div class="user-tel-sec">
+            <label for="user-tel">전화번호 입력</label>
+            <input type="text" id="user-tel" />
+          </div>
+          <div class="pw-search-btn btn">비밀번호 변경하기</div>
+        </div>
+      </main>
+    </div>
+
+    <!-- footer 입니다. -->
+    <footer class="footer">
+      <div class="logo-symbol">
+        <img src="img/쓰슈 로고(심볼).png" alt="쓰슈 로고(심볼)" />
+      </div>
+      <p>Copyright © DW ACADEMY 2023 TEAM PROJECT. All Rights Reserved.</p>
+    </footer>
+  </body>
+  <script src="js/id_pw_find.js" type="module"></script>
+</html>

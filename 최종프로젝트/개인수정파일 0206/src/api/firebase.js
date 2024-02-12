@@ -27,20 +27,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
 const firebaseConfig = {
-  // 아래 안되면 위에거로
-  // apiKey: "AIzaSyDVWZ9ODiEMQRN8FWOBV8vHR2lqmX2p6kI",
-  // authDomain: "buddiz-72571.firebaseapp.com",
-  // projectId: "buddiz-72571",
-  // storageBucket: "buddiz-72571.appspot.com",
-  // messagingSenderId: "143210608224",
-  // appId: "1:143210608224:web:2f9e32fa243cbfa2d47505",
-  // 위에 안되면 이거로 다시
-  apiKey: "AIzaSyCJDkOrv7ZDSkqxHXknfxRf7G14LYnaizM",
-  authDomain: "buddiz2.firebaseapp.com",
-  projectId: "buddiz2",
-  storageBucket: "buddiz2.appspot.com",
-  messagingSenderId: "1011707955672",
-  appId: "1:1011707955672:web:c4fa09880e47738cc10aad",
+  apiKey: "AIzaSyAWMXt-juX5KCNIXU2f412D1hCxxjgJvwA",
+  authDomain: "dwfinaltest.firebaseapp.com",
+  projectId: "dwfinaltest",
+  storageBucket: "dwfinaltest.appspot.com",
+  messagingSenderId: "884068624763",
+  appId: "1:884068624763:web:7d84e23a22abe7dc0075de",
+  measurementId: "G-97TGCTC868",
 };
 const { v4: uuidv4 } = require("uuid");
 // Initialize Firebase
@@ -442,19 +435,96 @@ async function deleteDatas(collectionName, docId) {
 // 스토어 관련 함수들
 // 스토어 관련 함수들
 
-// 스토어 아이템 업로드
-async function addStoreItemData(collectionName, formData) {
+// 스토어 아이템 추가하기(파라미터를 조건으로 해서 state가 있으면 업데이트 없으면 추가하기)
+async function addStoreItemData(collectionName, formData, state = null) {
   const time = new Date().getTime(); // ms까지 표시되는 시간
   // 이미지들 배열
   const imgArr = [];
   const uuid = crypto.randomUUID();
-  for (const img of formData.STORE_IMAGES) {
-    if (img !== null) {
+
+  // async function processImage(img, index) {
+  //   // console.log(typeof img);
+  //   // img(File) 경우
+  //   if (typeof img === "object") {
+  //     // 기존에 값이 존재할 경우
+  //     if (state && state.STORE_IMAGES[index] !== null) {
+  //       console.log("기존에 값이 존재할 경우");
+  //       console.log(state.STORE_IMAGES[index]);
+
+  //       const prevUrl = decodeURIComponent(state.STORE_IMAGES[index]);
+  //       const prevFileName = prevUrl.slice(
+  //         prevUrl.lastIndexOf("/") + 1,
+  //         prevUrl.indexOf("?")
+  //       );
+  //       const storage = getStorage();
+  //       const desertRef = ref(storage, `store/${prevFileName}`);
+  //       deleteObject(desertRef);
+
+  //       const uuid = crypto.randomUUID();
+  //       const path = `store/${uuid}`;
+
+  //       // 파일을 저장하고 url을 받아온다.
+
+  //       const imageRef = ref(storage, path);
+  //       await uploadBytes(imageRef, img);
+  //       const url = await getDownloadURL(imageRef);
+
+  //       // console.log(imageRef);
+  //       imgArr.push(url);
+  //       // console.log(imgArr);
+  //       // console.log(url);
+  //     }
+  //     // 기존값이 존재하지 않을 경우
+  //     else {
+  //       console.log("기존값이 존재하지 않을 경우");
+  //       const uuid = crypto.randomUUID();
+  //       const path = `store/${uuid}`;
+  //       const storage = getStorage();
+  //       // 파일을 저장하고 url을 받아온다.
+
+  //       const imageRef = ref(storage, path);
+  //       await uploadBytes(imageRef, img);
+  //       const url = await getDownloadURL(imageRef);
+
+  //       console.log(imageRef);
+  //       imgArr.push(url);
+  //       console.log(imgArr);
+  //       console.log(url);
+  //     }
+  //   }
+  //   // 문자열(기존값유지) 경우
+  //   else if (typeof img === "string") {
+  //     console.log("문자열(기존값유지) 경우");
+  //     imgArr.push(img);
+  //   }
+  //   // img를 빈값(공란) 경우
+  //   else if (img === null) {
+  //     console.log("img를 빈값(공란) 경우");
+  //     // 기존에 이미지가 있었는데 빈값으로 바꿀경우
+  //     if (state.STORE_IMAGES[index] !== null) {
+  //       const prevUrl = state.STORE_IMAGES[index];
+  //       console.log(prevUrl);
+  //       const prevFileName = prevUrl.slice(
+  //         prevUrl.lastIndexOf("/") + 1,
+  //         prevUrl.indexOf("?")
+  //       );
+  //       console.log(prevFileName);
+  //       const storage = getStorage();
+  //       const desertRef = ref(storage, `store/${prevFileName}`);
+  //       deleteObject(desertRef);
+  //     }
+  //   }
+  // }
+
+  // 이미지 등록부분
+  async function processImage(img, index) {
+    // img가 File의 경우
+    if (typeof img === "object") {
+      console.log("img가 File의 경우");
       const uuid = crypto.randomUUID();
       const path = `store/${uuid}`;
-
-      // 파일을 저장하고 url을 받아온다.
       const storage = getStorage();
+
       const imageRef = ref(storage, path);
       await uploadBytes(imageRef, img);
       const url = await getDownloadURL(imageRef);
@@ -464,14 +534,73 @@ async function addStoreItemData(collectionName, formData) {
       console.log(imgArr);
       console.log(url);
     }
+    // img가 string의 경우
+    else if (typeof img === "string") {
+      imgArr.push(img);
+    }
   }
 
+  // formData.STORE_IMAGES 배열의 각 이미지에 대한 비동기 작업 처리
+  const promiseAddArray = formData.STORE_IMAGES.map(processImage);
+  // Promise.all : 모든 프로미스를 병렬 실행 후 모두 종료 시 반환 함.
+  await Promise.all(promiseAddArray);
+
+  // console.log(imgArr); 잘 나옴
+
+  // 이미지 삭제부분
+  async function deleteImage(img, index) {
+    if (img !== imgArr[index]) {
+      const prevUrl = decodeURIComponent(img);
+      console.log(prevUrl);
+      const prevFileName = prevUrl.slice(
+        prevUrl.lastIndexOf("/") + 1,
+        prevUrl.indexOf("?")
+      );
+      const storage = getStorage();
+      const desertRef = ref(storage, `store/${prevFileName}`);
+      deleteObject(desertRef);
+    }
+  }
+
+  if (state) {
+    // state.STORE_IMAGES 배열의 각 이미지에 대한 비동기 작업 처리
+    const promiseDeleteArray = state?.STORE_IMAGES.map(deleteImage);
+    await Promise.all(promiseDeleteArray);
+  }
+
+  // 고민의 흔적들
+  // for (const img of formData.STORE_IMAGES) {
+  //   if (img !== null) {
+  //     const uuid = crypto.randomUUID();
+  //     const path = `store/${uuid}`;
+
+  //     // 파일을 저장하고 url을 받아온다.
+  //     const storage = getStorage();
+  //     const imageRef = ref(storage, path);
+  //     await uploadBytes(imageRef, img);
+  //     const url = await getDownloadURL(imageRef);
+
+  //     console.log(imageRef);
+  //     imgArr.push(url);
+  //     console.log(imgArr);
+  //     console.log(url);
+  //   }
+  // }
+
   formData.STORE_IMAGES = imgArr;
-  formData.STORE_DATE = time;
+  state && state.STORE_DATE
+    ? (formData.STORE_DATE = state.STORE_DATE)
+    : (formData.STORE_DATE = time);
   formData.STORE_UPDATE = time;
-  formData.STORE_REVIEWS = [];
+
+  state && state.STORE_REVIEWS
+    ? (formData.STORE_REVIEWS = state.STORE_REVIEWS)
+    : (formData.STORE_REVIEWS = formData.STORE_REVIEWS = []);
+
   formData.STORE_RATING = 0;
-  formData.STORE_ID = uuid;
+  state && state.STORE_ID
+    ? (formData.STORE_ID = state.STORE_ID)
+    : (formData.STORE_ID = uuid);
 
   const result = await addDoc(collection(db, collectionName), formData);
   const docSnap = await getDoc(result);
@@ -512,8 +641,7 @@ async function addStoreItemReviewData(collectionName, docId, review, item) {
   // console.log(review);
   // console.log(item.STORE_REVIEWS);
 
-  // 쿼리연습
-  // const docRef = doc(db, collectionName);
+  // 기존 리뷰 배열에 구조분해로 삽입
   const newArr = [...item.STORE_REVIEWS, review];
   console.log(newArr);
 
@@ -526,35 +654,31 @@ async function addStoreItemReviewData(collectionName, docId, review, item) {
 
   const querySnapshot = await getDocs(q);
 
-  // console.log(querySnapshot.docs);
-  // console.log(querySnapshot.docs[0]);
-  // console.log(querySnapshot.docs[0].id);
+  console.log(querySnapshot);
+  console.log(querySnapshot.docs);
 
-  // querySnapshot.forEach((doc) => {
-  //   result = { ...result, ...doc.data() };
-  // });
-
-  // console.log(result);
-
-  // result = { ...result, STORE_REVIEWS: [,review] };
-
-  // await updateDoc(docRef, { STORE_REVIEWS: newArr });
-
-  // 실제 구동부분
+  // 쿼리해서 docId를 찾을 수 있다.
   const docRef = doc(db, collectionName, querySnapshot.docs[0].id);
 
-  let result;
+  // console.log(querySnapshot.docs[0].data());
 
-  try {
-    await updateDoc(docRef, {
-      STORE_REVIEWS: arrayUnion(review),
-    });
+  // 리뷰를 이미 작성했는데 필터하는 부분
+  const isIdExsist = querySnapshot.docs[0]
+    .data()
+    .STORE_REVIEWS.some((el) => el.MEN === review.MEN);
+  console.log(isIdExsist);
 
-    return newArr;
-    // result = await getDoc(db, docRef);
-    // console.log(result);
-  } catch (error) {
-    console.log("실패");
+  if (!isIdExsist) {
+    try {
+      await updateDoc(docRef, {
+        STORE_REVIEWS: arrayUnion(review),
+      });
+      return newArr;
+    } catch (error) {
+      alert("저장실패!!");
+    }
+  } else {
+    alert("이미 리뷰를 작성하셨어요!!!");
   }
 }
 
