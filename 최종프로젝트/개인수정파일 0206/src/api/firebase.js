@@ -713,9 +713,11 @@ async function addStoreItemReviewData(collectionName, docId, review, item) {
 
   console.log(querySnapshot);
   console.log(querySnapshot.docs);
+  console.log(querySnapshot.docs[0].id);
 
   // 쿼리해서 docId를 찾을 수 있다.
   const docRef = doc(db, collectionName, querySnapshot.docs[0].id);
+  // console.log(docRef);
 
   // console.log(querySnapshot.docs[0].data());
 
@@ -732,7 +734,7 @@ async function addStoreItemReviewData(collectionName, docId, review, item) {
       });
       return newArr;
     } catch (error) {
-      alert("저장실패!!");
+      alert(error);
     }
   } else {
     alert("이미 리뷰를 작성하셨어요!!!");

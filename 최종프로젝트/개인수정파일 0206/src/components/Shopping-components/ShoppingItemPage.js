@@ -95,7 +95,7 @@ function ShoppingItemPage() {
   }, [thankModal]);
 
   // 리뷰작성
-  const handleReviewSubmitBtn = () => {
+  const handleReviewSubmitBtn = async () => {
     const images = inputs.map((input) => input.forFile);
     // console.log(images);
     const reviewFormData = {
@@ -103,7 +103,7 @@ function ShoppingItemPage() {
       STORE_REVIEW_IMGAE: images,
     };
     console.log(reviewFormData);
-    const upLoadReview = addStoreItemReviewData(
+    const upLoadReview = await addStoreItemReviewData(
       "Store",
       // state?.STORE_DOCID,
       item.STORE_ID,
