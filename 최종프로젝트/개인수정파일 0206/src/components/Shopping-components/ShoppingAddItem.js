@@ -7,14 +7,14 @@ import { addStoreItemData } from "../../api/firebase";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function ShoppingAddItem() {
-  const [preview, setPreview] = useState("intialVaule");
-  const [preview2, setPreview2] = useState("intialVaule");
-  const [preview3, setPreview3] = useState("intialVaule");
-  const [preview4, setPreview4] = useState("intialVaule");
-  const [forFile, setForFile] = useState("intialVaule");
-  const [forFile2, setForFile2] = useState("intialVaule");
-  const [forFile3, setForFile3] = useState("intialVaule");
-  const [forFile4, setForFile4] = useState("intialVaule");
+  const [preview, setPreview] = useState("initialValue");
+  const [preview2, setPreview2] = useState("initialValue");
+  const [preview3, setPreview3] = useState("initialValue");
+  const [preview4, setPreview4] = useState("initialValue");
+  const [forFile, setForFile] = useState("initialValue");
+  const [forFile2, setForFile2] = useState("initialValue");
+  const [forFile3, setForFile3] = useState("initialValue");
+  const [forFile4, setForFile4] = useState("initialValue");
   const imgRef = useRef(null);
   const detailsImgRef = useRef(null);
   const detailsImgRef1 = useRef(null);
@@ -25,7 +25,7 @@ function ShoppingAddItem() {
   const [category, setCategory] = useState("장비");
   const location = useLocation();
   const { state } = location;
-  // console.log(state);
+  console.log(state);
 
   useEffect(() => {
     if (!state) return;
@@ -35,10 +35,18 @@ function ShoppingAddItem() {
       setCategory(state.STORE_CATEGORY);
       setPrice(state.STORE_PRICE);
       setStock(state.STORE_STOCK);
-      setForFile(state.STORE_IMAGES[0] ? state.STORE_IMAGES[0] : null);
-      setForFile2(state.STORE_IMAGES[1] ? state.STORE_IMAGES[1] : null);
-      setForFile3(state.STORE_IMAGES[2] ? state.STORE_IMAGES[2] : null);
-      setForFile4(state.STORE_IMAGES[3] ? state.STORE_IMAGES[3] : null);
+      setForFile(
+        state.STORE_IMAGES[0] ? state.STORE_IMAGES[0] : "initialValue"
+      );
+      setForFile2(
+        state.STORE_IMAGES[1] ? state.STORE_IMAGES[1] : "initialValue"
+      );
+      setForFile3(
+        state.STORE_IMAGES[2] ? state.STORE_IMAGES[2] : "initialValue"
+      );
+      setForFile4(
+        state.STORE_IMAGES[3] ? state.STORE_IMAGES[3] : "initialValue"
+      );
     }
   }, []);
 
@@ -57,8 +65,8 @@ function ShoppingAddItem() {
 
   // 삭제
   const handleprevImgDelete = (setPreview, setFile) => {
-    setPreview("intialVaule");
-    setFile("intialVaule");
+    setPreview("initialValue");
+    setFile("initialValue");
   };
 
   // main 사진
@@ -156,7 +164,7 @@ function ShoppingAddItem() {
     console.log(datas);
 
     try {
-      await addStoreItemData("Store", datas, state);
+      await addStoreItemData("Store", datas, state ? state : null);
       navigate("/shopping");
     } catch (error) {
       alert("저장실패");
@@ -183,7 +191,7 @@ function ShoppingAddItem() {
             />
             <div className={styles.previewWrap}>
               <img
-                src={preview === "intialVaule" ? initialImg : preview}
+                src={preview === "initialValue" ? initialImg : preview}
                 alt="미리보기"
                 className={styles.preview}
               />
@@ -273,7 +281,7 @@ function ShoppingAddItem() {
             />
             <div className={styles.previewWrap}>
               <img
-                src={preview2 === "intialVaule" ? initialImg : preview2}
+                src={preview2 === "initialValue" ? initialImg : preview2}
                 alt="미리보기"
                 className={styles.preview}
               />
@@ -289,7 +297,7 @@ function ShoppingAddItem() {
             />
           </div>
           {/* 컨텐츠 2 */}
-          {preview2 !== "intialVaule" ? (
+          {preview2 !== "initialValue" ? (
             <div className={styles.content}>
               <input
                 type="file"
@@ -301,7 +309,7 @@ function ShoppingAddItem() {
               />
               <div className={styles.previewWrap}>
                 <img
-                  src={preview3 === "intialVaule" ? initialImg : preview3}
+                  src={preview3 === "initialValue" ? initialImg : preview3}
                   alt="미리보기"
                   className={styles.preview}
                 />
@@ -320,7 +328,7 @@ function ShoppingAddItem() {
           )}
 
           {/* 컨텐츠 3 */}
-          {preview3 !== "intialVaule" ? (
+          {preview3 !== "initialValue" ? (
             <div className={styles.content}>
               <input
                 type="file"
@@ -332,7 +340,7 @@ function ShoppingAddItem() {
               />
               <div className={styles.previewWrap}>
                 <img
-                  src={preview4 === "intialVaule" ? initialImg : preview4}
+                  src={preview4 === "initialValue" ? initialImg : preview4}
                   alt="미리보기"
                   className={styles.preview}
                 />

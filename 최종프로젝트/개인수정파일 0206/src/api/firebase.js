@@ -435,7 +435,7 @@ async function deleteDatas(collectionName, docId) {
 // 스토어 관련 함수들
 // 스토어 관련 함수들
 
-// 스토어 아이템 추가하기(파라미터를 조건으로 해서 state가 있으면 업데이트 없으면 추가하기)
+// 스토어 아이템 추가 및 수정(파라미터를 조건으로 해서 state가 있으면 업데이트 없으면 추가하기)
 async function addStoreItemData(collectionName, formData, state = null) {
   const time = new Date().getTime(); // ms까지 표시되는 시간
   // 이미지들 배열
@@ -518,7 +518,7 @@ async function addStoreItemData(collectionName, formData, state = null) {
 
   // 이미지 등록부분
   async function processImage(img, index) {
-    // img가 File의 경우
+    // img가 File의 경우(새로운 사진이 등록됨)
     if (typeof img === "object") {
       console.log("img가 File의 경우");
       const uuid = crypto.randomUUID();
@@ -534,38 +534,56 @@ async function addStoreItemData(collectionName, formData, state = null) {
       console.log(imgArr);
       console.log(url);
     }
-    // img가 string의 경우
+    // img가 string의 경우(기본의 값을 유지)
     else if (typeof img === "string") {
+      console.log("img가 string의 경우");
       imgArr.push(img);
     }
   }
 
-  // formData.STORE_IMAGES 배열의 각 이미지에 대한 비동기 작업 처리
-  const promiseAddArray = formData.STORE_IMAGES.map(processImage);
-  // Promise.all : 모든 프로미스를 병렬 실행 후 모두 종료 시 반환 함.
-  await Promise.all(promiseAddArray);
+  // 병렬처리는 순서를 보장하지 않는다.
+  // // formData.STORE_IMAGES 배열의 각 이미지에 대한 비동기 작업 처리
+  // const promiseAddArray = formData.STORE_IMAGES.map(processImage);
+  // // Promise.all : 모든 프로미스를 병렬 실행 후 모두 종료 시 반환 함.
+  // await Promise.all(promiseAddArray);
+
+  for (const img of formData.STORE_IMAGES) {
+    await processImage(img);
+  }
 
   // console.log(imgArr); 잘 나옴
 
   // 이미지 삭제부분
   async function deleteImage(img, index) {
-    if (img !== imgArr[index]) {
+    const storage = getStorage();
+    if (img !== "initialValue" && img !== imgArr[index]) {
       const prevUrl = decodeURIComponent(img);
       console.log(prevUrl);
       const prevFileName = prevUrl.slice(
         prevUrl.lastIndexOf("/") + 1,
         prevUrl.indexOf("?")
       );
-      const storage = getStorage();
       const desertRef = ref(storage, `store/${prevFileName}`);
-      deleteObject(desertRef);
+      //
+      try {
+        await deleteObject(desertRef);
+        console.log(`Image ${prevFileName} deleted successfully.`);
+      } catch (error) {
+        console.error(`Error deleting image ${prevFileName}:`, error);
+      }
+    } else {
+      console.log("Skipping deletion of initial or previously deleted image.");
     }
   }
 
   if (state) {
+    console.log("이미지 삭제코드 작동");
     // state.STORE_IMAGES 배열의 각 이미지에 대한 비동기 작업 처리
-    const promiseDeleteArray = state?.STORE_IMAGES.map(deleteImage);
-    await Promise.all(promiseDeleteArray);
+    // const promiseDeleteArray = state?.STORE_IMAGES.map(deleteImage);
+    // await Promise.all(promiseDeleteArray);
+    await state.STORE_IMAGES.map((img, index) => {
+      deleteImage(img, index);
+    });
   }
 
   // 고민의 흔적들
@@ -602,12 +620,51 @@ async function addStoreItemData(collectionName, formData, state = null) {
     ? (formData.STORE_ID = state.STORE_ID)
     : (formData.STORE_ID = uuid);
 
-  const result = await addDoc(collection(db, collectionName), formData);
-  const docSnap = await getDoc(result);
-  console.log(result);
-  console.log(docSnap.data());
+  console.log("여기");
+  console.log(formData);
 
-  return docSnap.data();
+  // 추가할 때의 함수와 수정할 떄의 함수(state 유무)
+  if (state === null) {
+    console.log("!state");
+    const result = await addDoc(collection(db, collectionName), formData);
+    const docSnap = await getDoc(result);
+    console.log(result);
+    console.log(docSnap.data());
+    return docSnap.data();
+  } else if (typeof state === "object") {
+    console.log(state);
+    const ref = doc(db, "Store", state.STORE_DOCID);
+
+    await updateDoc(ref, formData);
+  }
+}
+
+// 스토어 아이템 삭제
+async function deleteStoreItemData(collectionName, state) {
+  const storage = getStorage();
+  for (const img of state.STORE_IMAGES) {
+    console.log("확인");
+
+    if (img !== "initialValue") {
+      const prevUrl = decodeURIComponent(img);
+      console.log(prevUrl);
+      const prevFileName = prevUrl.slice(
+        prevUrl.lastIndexOf("/") + 1,
+        prevUrl.indexOf("?")
+      );
+      console.log(prevFileName);
+      const desertRef = ref(storage, `store/${prevFileName}`);
+      // 이미지 삭제
+      console.log("이미지 삭제");
+      await deleteObject(desertRef).catch((error) => {
+        console.error("Error deleting image:", error);
+      });
+    }
+  }
+
+  console.log("문서삭제");
+  const docRef = doc(db, collectionName, state?.STORE_DOCID);
+  await deleteDoc(docRef);
 }
 
 // 리스트 가져오기(DOCID를 객체에 추가)
@@ -709,4 +766,5 @@ export {
   getStoreItemDatas,
   getStoreItemData,
   addStoreItemReviewData,
+  deleteStoreItemData,
 };

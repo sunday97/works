@@ -88,6 +88,12 @@
   font-size: 24px;
   font-weight: 400;
 }
+.adminBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
 .total {
   margin: 20px 0px;
   font-size: 36px;
@@ -182,7 +188,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.reviewEditAndDeleteBtn {
+.reviewEditAndDeleteBtn > span {
   cursor: pointer;
 }
 .revierwName {
@@ -224,6 +230,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
+  position: relative;
 }
 .reviewWriteTitle {
   font-size: 28px;
@@ -266,6 +273,46 @@
   right: 20px;
   top: 20px;
   cursor: pointer;
+}
+.imgWrapper {
+  width: 375px;
+  height: 120px;
+  position: absolute;
+  background-color: red;
+  top: 70px;
+  left: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modalImgBox {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+.modalImageHiddenInput {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.previewWrap {
+  width: 100%;
+  height: 100%;
+}
+.modalImgPreview {
+  width: 100%;
+  height: 100%;
+}
+.ModalimgX {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
 }
 
 /* 감사모달 */

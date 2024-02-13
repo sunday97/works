@@ -1,16 +1,21 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ShoppingBanner from "./ShoppingBanner";
 import styles from "./ShoppingItemPage.module.css";
 import plusIcon from "../../assets/plus-solid.svg";
 import minusIcon from "../../assets/minus-solid.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ShowStar from "./ShowStar";
 import xMark from "../../assets/xmark-solid.svg";
-import { addStoreItemReviewData, getStoreItemData } from "../../api/firebase";
+import {
+  addStoreItemReviewData,
+  deleteStoreItemData,
+  getStoreItemData,
+} from "../../api/firebase";
+import xIcon from "../../assets/xmark-solid.svg";
+import initialImg from "../../assets/modal-plus.svg";
 
 const delivery = 3000;
 const discount = 2000;
-let num = 0;
 
 function ShoppingItemPage() {
   const props = useLocation();
@@ -31,9 +36,18 @@ function ShoppingItemPage() {
     MEN_NICKNAME: user[0]?.MEN_NICKNAME,
     MEN: user[0]?.MEN,
   });
+  const [inputs, setInputs] = useState([
+    { preview: "initailValue", forFile: "initailValue", ref: useRef(null) },
+    { preview: "initailValue", forFile: "initailValue", ref: useRef(null) },
+    { preview: "initailValue", forFile: "initailValue", ref: useRef(null) },
+  ]);
+
+  console.log(inputs);
 
   const [reviews, setReviews] = useState(item.STORE_REVIEWS);
   const [thankModal, setThankModal] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -57,6 +71,12 @@ function ShoppingItemPage() {
   };
   // console.log(reviewWriteContents);
 
+  // 문서삭제
+  const handleItemDelete = () => {
+    deleteStoreItemData("Store", state);
+    navigate("/shopping");
+  };
+
   // 감사모달조절장치
   useEffect(() => {
     let timeoutId;
@@ -76,22 +96,53 @@ function ShoppingItemPage() {
 
   // 리뷰작성
   const handleReviewSubmitBtn = () => {
+    const images = inputs.map((input) => input.forFile);
+    // console.log(images);
+    const reviewFormData = {
+      ...reviewWriteContents,
+      STORE_REVIEW_IMGAE: images,
+    };
+    console.log(reviewFormData);
     const upLoadReview = addStoreItemReviewData(
       "Store",
       // state?.STORE_DOCID,
       item.STORE_ID,
-      reviewWriteContents,
+      reviewFormData,
       item
     );
     setReviews(upLoadReview);
     setModalState(false);
-    setReviewWriteContents({
-      STORE_REVIEW: "",
-      STORE_RATING: 0,
-      STORE_REVIEW_TIME: time,
-      MEN_NICKNAME: user[0]?.MEN_NICKNAME,
-      MEN: user[0]?.MEN,
-    });
+  };
+
+  // 모달이미지제어
+  const handleChange = (e, index) => {
+    const newInputs = [...inputs];
+    newInputs[index].forFile = e.target.files[0];
+
+    // 기존에 생성된 URL 해제
+    if (
+      typeof inputs[index].forFile === "object" &&
+      inputs[index].preview !== "initailValue"
+    ) {
+      URL.revokeObjectURL(inputs[index].preview);
+    }
+
+    // 새로운 preview 생성
+    if (typeof newInputs[index].forFile === "object") {
+      const nextPreview = URL.createObjectURL(newInputs[index].forFile);
+      newInputs[index].preview = nextPreview;
+    } else {
+      newInputs[index].preview = initialImg;
+    }
+
+    setInputs(newInputs);
+  };
+
+  const handlePrevImgDelete = (index) => {
+    const newInputs = [...inputs];
+    newInputs[index].forFile = "initailValue";
+    newInputs[index].preview = "initailValue";
+    setInputs(newInputs);
   };
 
   // 댓글 시간변환
@@ -115,6 +166,7 @@ function ShoppingItemPage() {
   //   return number;
   // }
 
+  let num = 0;
   item["STORE_REVIEWS"]?.map((el, index, arrey) => {
     index + 1 === arrey.length
       ? (num = (num + el.STORE_RATING) / arrey.length)
@@ -199,9 +251,14 @@ function ShoppingItemPage() {
                   </div>
                 </div>
                 {Manager ? (
-                  <Link to="/shopping/addItem" state={state}>
-                    <div className={styles.basket}>수정하기</div>
-                  </Link>
+                  <div className={styles.adminBtns}>
+                    <Link to="/shopping/addItem" state={state}>
+                      <div className={styles.basket}>수정</div>
+                    </Link>
+                    <div className={styles.basket} onClick={handleItemDelete}>
+                      삭제
+                    </div>
+                  </div>
                 ) : (
                   <div className={styles.basket}>장바구니</div>
                 )}
@@ -212,9 +269,14 @@ function ShoppingItemPage() {
                 <p>상품을 준비 중입니다.</p>
                 <p>조금만 기다려주세요.</p>
                 {Manager ? (
-                  <Link to="/shopping/addItem" state={state}>
-                    <div className={styles.basket}>수정하기</div>
-                  </Link>
+                  <div className={styles.adminBtns}>
+                    <Link to="/shopping/addItem" state={state}>
+                      <div className={styles.basket}>수정</div>
+                    </Link>
+                    <div className={styles.basket} onClick={handleItemDelete}>
+                      삭제
+                    </div>
+                  </div>
                 ) : (
                   ""
                 )}
@@ -228,8 +290,13 @@ function ShoppingItemPage() {
 
           {item.STORE_IMAGES?.map(
             // 0번째 인덱스 포함 x
-            (img, index) =>
-              index !== 0 && { img } && <img key={index} src={img} />
+            (img, index) => {
+              if (img !== "initialValue" && index !== 0) {
+                return <img key={index} src={img} />;
+              } else {
+                return null;
+              }
+            }
           )}
           {/* 세부소개글 유무 고민 */}
           {/* <p className={styles.introduction}>{item.details.introduction}</p> */}
@@ -316,6 +383,42 @@ function ShoppingItemPage() {
                 setModalState(false);
               }}
             />
+            <div className={styles.imgWrapper}>
+              {inputs.map((input, index) => (
+                <div key={index} className={styles.modalImgBox}>
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      handleChange(e, index);
+                    }}
+                    ref={input.ref}
+                    className={styles.modalImageHiddenInput}
+                  />
+                  <div className={styles.previewWrap}>
+                    <img
+                      src={
+                        input.preview === "initailValue"
+                          ? initialImg
+                          : input.preview
+                      }
+                      alt="미리보기"
+                      className={styles.modalImgPreview}
+                    />
+                  </div>
+                  {input.preview === "initailValue" ? (
+                    ""
+                  ) : (
+                    <img
+                      src={xIcon}
+                      className={styles.ModalimgX}
+                      onClick={() => {
+                        handlePrevImgDelete(index);
+                      }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : (

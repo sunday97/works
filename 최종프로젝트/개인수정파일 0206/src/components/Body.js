@@ -216,13 +216,13 @@ function Body() {
       </div>
       {/* 큰이미지 끝 */}
       {/* Body 시작 */}
-      <Container>
+      <div className={styles.container}>
         <h2 className={styles.mapText}>내 주위 버디 보기</h2>
         {/* 시간에 따라 운동 필터링 보여주기? */}
         <div className={styles.map}>
           <MainMaps />
         </div>
-      </Container>
+      </div>
 
       {/* 커뮤니티 시작 */}
       <section className={styles.communitySection}>
@@ -246,7 +246,7 @@ function Body() {
       {/* 커뮤니티 끝 */}
 
       {/* 스토어 랭킹 시작 */}
-      <Container className={styles.store}>
+      <div className={styles.container}>
         <Title>스토어 랭킹(식품~기구)</Title>
         <ul className={styles.items} ref={containerRef} onWheel={handleScroll}>
           {Array.from({ length: 15 }, (_, index) => (
@@ -260,7 +260,7 @@ function Body() {
             </li>
           ))}
         </ul>
-      </Container>
+      </div>
       {/* 스토어 랭킹 끝 */}
       {/* Body 끝 */}
     </>
