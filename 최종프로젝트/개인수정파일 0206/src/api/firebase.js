@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import {
   getFirestore,
@@ -693,14 +694,36 @@ async function getStoreItemData(collectionName, docId) {
 
 // 리뷰작성
 async function addStoreItemReviewData(collectionName, docId, review, item) {
-  console.log(collectionName);
+  // console.log(collectionName);
   // console.log(docId);
   // console.log(review);
   // console.log(item.STORE_REVIEWS);
 
-  // 기존 리뷰 배열에 구조분해로 삽입
-  const newArr = [...item.STORE_REVIEWS, review];
-  console.log(newArr);
+  const imgArr = [];
+  // 이미지 서버 저장 및 url 추출 작업
+  async function processImage(img) {
+    // img가 File의 경우(새로운 사진이 등록됨)
+    if (typeof img === "object") {
+      console.log("img가 File의 경우");
+      const uuid = crypto.randomUUID();
+      const path = `store/${uuid}`;
+      const storage = getStorage();
+
+      const imageRef = ref(storage, path);
+      await uploadBytes(imageRef, img);
+      const url = await getDownloadURL(imageRef);
+
+      console.log(imageRef);
+      imgArr.push(url);
+      console.log(imgArr);
+      console.log(url);
+    }
+    // img가 string의 경우(기본의 값을 유지)
+    else if (typeof img === "string") {
+      console.log("img가 string의 경우");
+      imgArr.push(img);
+    }
+  }
 
   const q = query(
     collection(db, collectionName),
@@ -711,34 +734,116 @@ async function addStoreItemReviewData(collectionName, docId, review, item) {
 
   const querySnapshot = await getDocs(q);
 
-  console.log(querySnapshot);
-  console.log(querySnapshot.docs);
-  console.log(querySnapshot.docs[0].id);
-
+  // console.log(querySnapshot);
+  // console.log(querySnapshot.docs);
+  // console.log(querySnapshot.docs[0].id);
   // 쿼리해서 docId를 찾을 수 있다.
-  const docRef = doc(db, collectionName, querySnapshot.docs[0].id);
-  // console.log(docRef);
 
-  // console.log(querySnapshot.docs[0].data());
+  const docRef = doc(db, collectionName, querySnapshot.docs[0].id);
 
   // 리뷰를 이미 작성했는데 필터하는 부분
   const isIdExsist = querySnapshot.docs[0]
     .data()
-    .STORE_REVIEWS.some((el) => el.MEN === review.MEN);
+    .STORE_REVIEWS.some((el) => el.MEM === review.MEM);
   console.log(isIdExsist);
 
   if (!isIdExsist) {
     try {
+      console.log(review);
+      console.log(review?.STORE_REVIEW_IMAGE);
+      for (const img of review?.STORE_REVIEW_IMAGE) {
+        // img가 정의되어 있는지 확인
+        console.log("img", img);
+        await processImage(img);
+      }
+
+      console.log("여긴 ?");
+      review.STORE_REVIEW_IMAGE = imgArr;
+
+      // 기존 리뷰들 배열에 구조분해로 삽입
+      const newArr = [...item.STORE_REVIEWS, review];
+      console.log(newArr);
+
       await updateDoc(docRef, {
         STORE_REVIEWS: arrayUnion(review),
       });
       return newArr;
     } catch (error) {
+      console.log("여기일듯?");
       alert(error);
     }
   } else {
     alert("이미 리뷰를 작성하셨어요!!!");
   }
+}
+
+// 리뷰 삭제
+async function deleteReviewData(collectionName, item, userId, state) {
+  // console.log(collectionName);
+  console.log(state.STORE_DOCID);
+  // console.log(userId);
+
+  const userArr = item.STORE_REVIEWS.find((obj) => obj.MEM === userId);
+  console.log(userArr);
+
+  // 리뷰 이미지 제거
+
+  const tempRef = doc(db, collectionName, state.STORE_DOCID);
+  // console.log(tempRef);
+
+  const storage = getStorage();
+  for (const img of userArr.STORE_REVIEW_IMAGE) {
+    console.log(img);
+    if (img !== "initialValue") {
+      const prevUrl = decodeURIComponent(img);
+      console.log(prevUrl);
+      const prevFileName = prevUrl.slice(
+        prevUrl.lastIndexOf("/") + 1,
+        prevUrl.indexOf("?")
+      );
+      console.log(prevFileName);
+      const desertRef = ref(storage, `store/${prevFileName}`);
+      // 이미지 삭제
+      console.log("이미지 삭제");
+      await deleteObject(desertRef).catch((error) => {
+        console.error("Error deleting image:", error);
+      });
+    }
+  }
+
+  const newArr = item.STORE_REVIEWS.filter((obj) => obj !== userArr);
+  console.log(newArr);
+
+  await updateDoc(tempRef, {
+    STORE_REVIEWS: newArr,
+  });
+
+  return newArr;
+}
+// 장바구니 저장
+async function addCartItem(collectionName, docId, data) {
+  console.log(collectionName);
+  console.log(docId);
+  console.log(data);
+
+  try {
+    await setDoc(doc(db, collectionName, docId), {
+      CART: [data],
+    });
+    console.log("장바구니 저장 성공");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getCartItem(collectionName, docId) {
+  console.log(collectionName);
+  console.log(docId);
+  const docRef = doc(db, collectionName, docId);
+  const docSnap = await getDoc(docRef);
+
+  // console.log(docSnap.data());
+  return docSnap.data().CART;
 }
 
 export {
@@ -769,4 +874,7 @@ export {
   getStoreItemData,
   addStoreItemReviewData,
   deleteStoreItemData,
+  deleteReviewData,
+  addCartItem,
+  getCartItem,
 };

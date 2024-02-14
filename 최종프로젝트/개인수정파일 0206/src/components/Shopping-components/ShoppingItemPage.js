@@ -8,7 +8,9 @@ import ShowStar from "./ShowStar";
 import xMark from "../../assets/xmark-solid.svg";
 import {
   addStoreItemReviewData,
+  deleteReviewData,
   deleteStoreItemData,
+  addCartItem,
   getStoreItemData,
 } from "../../api/firebase";
 import xIcon from "../../assets/xmark-solid.svg";
@@ -24,22 +26,23 @@ function ShoppingItemPage() {
   const [number, setNumber] = useState(1);
   const [item, setItem] = useState({});
   const user = JSON.parse(localStorage.getItem("Member"));
+  console.log(user[0]);
   const Manager = JSON.parse(localStorage.getItem("Manager"));
-  console.log(Manager);
-  // console.log(user[0].MEN_NAME);
+  console.log(item);
+  // console.log(user[0].MEM_NAME);
   const [modalState, setModalState] = useState(false);
   const time = new Date().getTime();
   const [reviewWriteContents, setReviewWriteContents] = useState({
     STORE_REVIEW: "",
     STORE_RATING: 0,
     STORE_REVIEW_TIME: time,
-    MEN_NICKNAME: user[0]?.MEN_NICKNAME,
-    MEN: user[0]?.MEN,
+    MEM_NICKNAME: user[0]?.MEM_NICKNAME,
+    MEM: user[0]?.MEM,
   });
   const [inputs, setInputs] = useState([
-    { preview: "initailValue", forFile: "initailValue", ref: useRef(null) },
-    { preview: "initailValue", forFile: "initailValue", ref: useRef(null) },
-    { preview: "initailValue", forFile: "initailValue", ref: useRef(null) },
+    { preview: "initialValue", forFile: "initialValue", ref: useRef(null) },
+    { preview: "initialValue", forFile: "initialValue", ref: useRef(null) },
+    { preview: "initialValue", forFile: "initialValue", ref: useRef(null) },
   ]);
 
   console.log(inputs);
@@ -60,6 +63,7 @@ function ShoppingItemPage() {
       setItem(tempItem);
     };
     onLoad();
+    //reviews(후기)가 변할 때마다 렌더링 시켰다
   }, [reviews]);
 
   const handleTextValue = (e) => {
@@ -100,18 +104,24 @@ function ShoppingItemPage() {
     // console.log(images);
     const reviewFormData = {
       ...reviewWriteContents,
-      STORE_REVIEW_IMGAE: images,
+      STORE_REVIEW_IMAGE: images,
     };
     console.log(reviewFormData);
     const upLoadReview = await addStoreItemReviewData(
       "Store",
-      // state?.STORE_DOCID,
-      item.STORE_ID,
+      state?.STORE_DOCID,
       reviewFormData,
       item
     );
     setReviews(upLoadReview);
     setModalState(false);
+  };
+
+  // 리뷰삭제
+  const handleReviewDelete = async () => {
+    const newArr = await deleteReviewData("Store", item, user[0].MEM, state);
+
+    setReviews(newArr);
   };
 
   // 모달이미지제어
@@ -140,8 +150,8 @@ function ShoppingItemPage() {
 
   const handlePrevImgDelete = (index) => {
     const newInputs = [...inputs];
-    newInputs[index].forFile = "initailValue";
-    newInputs[index].preview = "initailValue";
+    newInputs[index].forFile = "initialValue";
+    newInputs[index].preview = "initialValue";
     setInputs(newInputs);
   };
 
@@ -172,6 +182,17 @@ function ShoppingItemPage() {
       ? (num = (num + el.STORE_RATING) / arrey.length)
       : (num = num + el.STORE_RATING);
   });
+
+  const getItemToCart = async () => {
+    console.log();
+    const cartData = {
+      CART_TIME: new Date().getTime(),
+      CART_ITME_CODE: item.STORE_ID,
+      CART_ITEM_DOCID: state.STORE_DOCID,
+      CART_ITEM_COUNT: number,
+    };
+    await addCartItem("ShoppingCart", user[0].MEM, cartData);
+  };
 
   return (
     <>
@@ -260,7 +281,9 @@ function ShoppingItemPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className={styles.basket}>장바구니</div>
+                  <div className={styles.basket} onClick={getItemToCart}>
+                    장바구니
+                  </div>
                 )}
               </>
             ) : (
@@ -322,13 +345,15 @@ function ShoppingItemPage() {
             {item.STORE_REVIEWS
               ? item.STORE_REVIEWS.map((el, index) => (
                   <li className={styles.review} key={el.STORE_REVIEW_TIME}>
-                    <div className={styles.MEN_NICKNAME}>
+                    <div className={styles.MEM_NICKNAME}>
                       <p style={{ fontSize: "18px", fontWeight: "500" }}>
-                        {el.MEN_NICKNAME}
+                        {el.MEM_NICKNAME}
                       </p>
-                      {el.MEN === user[0].MEN ? (
+                      {el.MEM === user[0].MEM ? (
                         <div className={styles.reviewEditAndDeleteBtn}>
-                          <span>수정</span> / <span>삭제</span>
+                          {/* <span>수정</span> */}
+                          {/* /  */}
+                          <span onClick={() => handleReviewDelete()}>삭제</span>
                         </div>
                       ) : (
                         ""
@@ -338,7 +363,20 @@ function ShoppingItemPage() {
                       <ShowStar num={el.STORE_RATING} />
                       <p>{timeChange(el.STORE_REVIEW_TIME)}</p>
                     </div>
-                    <p>{el.STORE_REVIEW}</p>
+                    {el.STORE_REVIEW_IMAGE &&
+                    el.STORE_REVIEW_IMAGE.length > 0 &&
+                    el.STORE_REVIEW_IMAGE.every(
+                      (item, index, array) => item === array[0]
+                    ) === false ? (
+                      <div className={styles.reviewImageBox}>
+                        {el.STORE_REVIEW_IMAGE?.map((img) => {
+                          return img !== "initialValue" ? (
+                            <img src={img} className={styles.reviewImage} />
+                          ) : null;
+                        })}
+                      </div>
+                    ) : null}
+                    <p style={{ fontSize: "24px" }}>{el.STORE_REVIEW}</p>
                   </li>
                 ))
               : ""}
@@ -353,7 +391,7 @@ function ShoppingItemPage() {
           <div className={styles.reviewWriteBox}>
             <h4 className={styles.reviewWriteTitle}>리뷰작성하기</h4>
             <p className={styles.reviewWriteName}>
-              닉네임 : {user[0].MEN_NICKNAME}
+              닉네임 : {user[0].MEM_NICKNAME}
             </p>
             <ShowStar
               num={reviewWriteContents.STORE_RATING}
@@ -384,40 +422,109 @@ function ShoppingItemPage() {
               }}
             />
             <div className={styles.imgWrapper}>
-              {inputs.map((input, index) => (
-                <div key={index} className={styles.modalImgBox}>
+              {/* 1번사진 */}
+              <div key="img01" className={styles.modalImgBox}>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    handleChange(e, 0);
+                  }}
+                  ref={inputs[0].ref}
+                  className={styles.modalImageHiddenInput}
+                />
+                <div className={styles.previewWrap}>
+                  <img
+                    src={
+                      inputs[0].preview === "initialValue"
+                        ? initialImg
+                        : inputs[0].preview
+                    }
+                    alt="미리보기"
+                    className={styles.modalImgPreview}
+                  />
+                </div>
+                {inputs[0].preview === "initialValue" ? (
+                  ""
+                ) : (
+                  <img
+                    src={xIcon}
+                    className={styles.ModalimgX}
+                    onClick={() => {
+                      handlePrevImgDelete(0);
+                    }}
+                  />
+                )}
+              </div>
+              {/* 2번사진 */}
+              {inputs[0].preview !== "initialValue" ? (
+                <div key="img02" className={styles.modalImgBox}>
                   <input
                     type="file"
                     onChange={(e) => {
-                      handleChange(e, index);
+                      handleChange(e, 1);
                     }}
-                    ref={input.ref}
+                    ref={inputs[1].ref}
                     className={styles.modalImageHiddenInput}
                   />
                   <div className={styles.previewWrap}>
                     <img
                       src={
-                        input.preview === "initailValue"
+                        inputs[1].preview === "initialValue"
                           ? initialImg
-                          : input.preview
+                          : inputs[1].preview
                       }
                       alt="미리보기"
                       className={styles.modalImgPreview}
                     />
                   </div>
-                  {input.preview === "initailValue" ? (
+                  {inputs[1].preview === "initialValue" ? (
                     ""
                   ) : (
                     <img
                       src={xIcon}
                       className={styles.ModalimgX}
                       onClick={() => {
-                        handlePrevImgDelete(index);
+                        handlePrevImgDelete(1);
                       }}
                     />
                   )}
                 </div>
-              ))}
+              ) : null}
+              {/* 3번사진 */}
+              {inputs[1].preview !== "initialValue" ? (
+                <div key="img03" className={styles.modalImgBox}>
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      handleChange(e, 2);
+                    }}
+                    ref={inputs[2].ref}
+                    className={styles.modalImageHiddenInput}
+                  />
+                  <div className={styles.previewWrap}>
+                    <img
+                      src={
+                        inputs[2].preview === "initialValue"
+                          ? initialImg
+                          : inputs[2].preview
+                      }
+                      alt="미리보기"
+                      className={styles.modalImgPreview}
+                    />
+                  </div>
+                  {inputs[2].preview === "initialValue" ? (
+                    ""
+                  ) : (
+                    <img
+                      src={xIcon}
+                      className={styles.ModalimgX}
+                      onClick={() => {
+                        handlePrevImgDelete(1);
+                      }}
+                    />
+                  )}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
