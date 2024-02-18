@@ -14,6 +14,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  margin-top: 100px;
 }
 .headBoxItem {
   width: 100%;
@@ -133,7 +134,7 @@
 /* details  */
 .details {
   width: 100%;
-  margin: 100px 0;
+  margin: 200px 0 0 0;
 }
 .detailsHead {
   font-size: 24px;
@@ -183,7 +184,7 @@
   flex-direction: column;
   gap: 12px;
 }
-.MEN_NICKNAME {
+.MEM_NICKNAME {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -196,7 +197,17 @@
   align-items: end;
   gap: 12px;
 }
-
+.reviewImageBox {
+  height: 240px;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.reviewImage {
+  height: 100%;
+}
 /* 리뷰모달 */
 .reviewWriteModal {
   position: fixed;
@@ -278,12 +289,12 @@
   width: 375px;
   height: 120px;
   position: absolute;
-  background-color: red;
   top: 70px;
   left: 200px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 6px;
 }
 .modalImgBox {
   width: 120px;

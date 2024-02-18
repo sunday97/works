@@ -25,6 +25,7 @@ import Manager from "./page/Manager";
 
 import ShoppingItemPage from "./components/Shopping-components/ShoppingItemPage";
 import ShoppingAddItem from "./components/Shopping-components/ShoppingAddItem";
+import Cart from "./page/Cart";
 
 function Main() {
   return (
@@ -57,6 +58,7 @@ function Main() {
           </Route>
           <Route path="mypage" element={<MyPage />} />
           <Route path="manager" element={<Manager />} />
+          <Route path="cart" element={<Cart />} />
         </Route>
         <Route path="chatting" element={<Chatting />}></Route>
       </Routes>
