@@ -826,10 +826,22 @@ async function addCartItem(collectionName, docId, data) {
   console.log(docId);
   console.log(data);
 
+  const isExist = await getDoc(doc(db, collectionName, docId));
+  if (isExist?.data()) {
+    console.log("godd");
+    console.log(...isExist?.data().CART);
+  }
+
   try {
-    await setDoc(doc(db, collectionName, docId), {
-      CART: [data],
-    });
+    if (isExist?.data()) {
+      await updateDoc(doc(db, collectionName, docId), {
+        CART: [...isExist.data().CART, data],
+      });
+    } else {
+      await setDoc(doc(db, collectionName, docId), {
+        CART: [data],
+      });
+    }
     console.log("장바구니 저장 성공");
   } catch (error) {
     console.log(error);
@@ -843,7 +855,31 @@ async function getCartItem(collectionName, docId) {
   const docSnap = await getDoc(docRef);
 
   // console.log(docSnap.data());
-  return docSnap.data().CART;
+  return docSnap.data()?.CART;
+}
+
+// 장바구니 삭제
+async function deleteCartItem(collectionName, docId, arr, item) {
+  console.log(collectionName);
+  console.log(docId);
+  console.log(arr);
+
+  const result = item.filter(
+    (obj1) => !arr.some((obj2) => isEqual(obj1, obj2))
+  );
+
+  function isEqual(obj1, obj2) {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    if (keys1.length !== keys2?.length) return false;
+    return keys1.every((key) => obj1[key] === obj2[key]);
+  }
+
+  console.log(result);
+
+  await updateDoc(doc(db, collectionName, docId), {
+    CART: result,
+  });
 }
 
 export {
@@ -877,4 +913,5 @@ export {
   deleteReviewData,
   addCartItem,
   getCartItem,
+  deleteCartItem,
 };

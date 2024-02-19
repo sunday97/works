@@ -25,6 +25,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import MainMaps from "./main-components/MainMaps";
 import { BuddizContext } from "./../contexts/buddizContexts";
+import { getStoreItemDatas } from "../api/firebase";
+import ShowStar from "./Shopping-components/ShowStar";
 
 function Body() {
   // useContext 사용 예시
@@ -53,6 +55,8 @@ function Body() {
   const tree8Ref = useRef(null);
   const mainChar = useRef(null);
   const title = useRef(null);
+
+  const [storeItem, setStoreItem] = useState([]);
 
   // console.log(title);
 
@@ -140,6 +144,14 @@ function Body() {
   const Container2 = styled(Container)`
     margin: 0 auto;
   `;
+
+  const onLoad = async () => {
+    const storeList = await getStoreItemDatas("Store");
+    setStoreItem(storeList);
+  };
+  useEffect(() => {
+    onLoad();
+  }, []);
 
   return (
     <>
@@ -249,7 +261,7 @@ function Body() {
       <div className={styles.container}>
         <Title>스토어 랭킹(식품~기구)</Title>
         <ul className={styles.items} ref={containerRef} onWheel={handleScroll}>
-          {Array.from({ length: 15 }, (_, index) => (
+          {/* {Array.from({ length: 15 }, (_, index) => (
             <li key={index} className={styles.item}>
               <div className={styles.itemWraper}>
                 <img src={tempImg} alt="임시사진" />
@@ -257,6 +269,24 @@ function Body() {
               <h4>LOREM IPSUM</h4>
               <p className={styles.font}>LOREM IPSUM</p>
               <p className={styles.rating}>LOREM ★ 4.4</p>
+            </li>
+          ))} */}
+          {storeItem.map((el, index, arr) => (
+            <li key={index} className={styles.item}>
+              <div className={styles.itemWraper}>
+                <img src={el.STORE_IMAGES[0]} alt="상품사진" />
+              </div>
+              <h4>{el.STORE_NAME}</h4>
+              <p className={styles.font}>[{el.STORE_CATEGORY}]</p>
+              {(() => {
+                let num = 0;
+                el["STORE_REVIEWS"]?.map((el, index, arrey) => {
+                  index + 1 === arrey.length
+                    ? (num = (num + el.STORE_RATING) / arrey.length)
+                    : (num = num + el.STORE_RATING);
+                });
+                return <ShowStar num={num} />;
+              })()}
             </li>
           ))}
         </ul>

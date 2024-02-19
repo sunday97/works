@@ -146,7 +146,7 @@ function Shopping() {
 
   // 페이지네이션부분
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   // 현재 페이지에 해당하는 아이템 추출
   const indexOfLastItem = currentPage * itemsPerPage;

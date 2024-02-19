@@ -26,7 +26,7 @@ function ShoppingItemPage() {
   const [number, setNumber] = useState(1);
   const [item, setItem] = useState({});
   const user = JSON.parse(localStorage.getItem("Member"));
-  console.log(user[0]);
+  // console.log(user[0]);
   const Manager = JSON.parse(localStorage.getItem("Manager"));
   console.log(item);
   // console.log(user[0].MEM_NAME);
@@ -183,15 +183,23 @@ function ShoppingItemPage() {
       : (num = num + el.STORE_RATING);
   });
 
+  // 장바구니 담기
   const getItemToCart = async () => {
     console.log();
     const cartData = {
       CART_TIME: new Date().getTime(),
-      CART_ITME_CODE: item.STORE_ID,
+      CART_ITEM_CODE: item.STORE_ID,
       CART_ITEM_DOCID: state.STORE_DOCID,
       CART_ITEM_COUNT: number,
     };
-    await addCartItem("ShoppingCart", user[0].MEM, cartData);
+    await addCartItem("ShoppingCart", user[0].MEM, cartData)
+      .then(() => {
+        navigate("/cart");
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("장바구니 저장 오류");
+      });
   };
 
   return (
